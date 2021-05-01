@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
+		F748C1FB263D656A00DFD69F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1FA263D656A00DFD69F /* ContentView.swift */; };
+		F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FC263D656F00DFD69F /* Assets.xcassets */; };
+		F748C200263D656F00DFD69F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */; };
+		F748C20B263D656F00DFD69F /* PleiadesNicoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C20A263D656F00DFD69F /* PleiadesNicoTests.swift */; };
+		F748C216263D656F00DFD69F /* PleiadesNicoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C215263D656F00DFD69F /* PleiadesNicoUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F748C207263D656F00DFD69F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F748C1ED263D656A00DFD69F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F748C1F4263D656A00DFD69F;
+			remoteInfo = PleiadesNico;
+		};
+		F748C212263D656F00DFD69F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F748C1ED263D656A00DFD69F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F748C1F4263D656A00DFD69F;
+			remoteInfo = PleiadesNico;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoApp.swift; sourceTree = "<group>"; };
+		F748C1FA263D656A00DFD69F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F748C1FC263D656F00DFD69F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F748C201263D656F00DFD69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F748C206263D656F00DFD69F /* PleiadesNicoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleiadesNicoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F748C20A263D656F00DFD69F /* PleiadesNicoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoTests.swift; sourceTree = "<group>"; };
+		F748C20C263D656F00DFD69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F748C211263D656F00DFD69F /* PleiadesNicoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PleiadesNicoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F748C215263D656F00DFD69F /* PleiadesNicoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoUITests.swift; sourceTree = "<group>"; };
+		F748C217263D656F00DFD69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F748C1F2263D656A00DFD69F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C203263D656F00DFD69F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C20E263D656F00DFD69F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F748C1EC263D656A00DFD69F = {
+			isa = PBXGroup;
+			children = (
+				F748C1F7263D656A00DFD69F /* PleiadesNico */,
+				F748C209263D656F00DFD69F /* PleiadesNicoTests */,
+				F748C214263D656F00DFD69F /* PleiadesNicoUITests */,
+				F748C1F6263D656A00DFD69F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F748C1F6263D656A00DFD69F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F748C1F5263D656A00DFD69F /* PleiadesNico.app */,
+				F748C206263D656F00DFD69F /* PleiadesNicoTests.xctest */,
+				F748C211263D656F00DFD69F /* PleiadesNicoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F748C1F7263D656A00DFD69F /* PleiadesNico */ = {
+			isa = PBXGroup;
+			children = (
+				F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */,
+				F748C1FA263D656A00DFD69F /* ContentView.swift */,
+				F748C1FC263D656F00DFD69F /* Assets.xcassets */,
+				F748C201263D656F00DFD69F /* Info.plist */,
+				F748C1FE263D656F00DFD69F /* Preview Content */,
+			);
+			path = PleiadesNico;
+			sourceTree = "<group>";
+		};
+		F748C1FE263D656F00DFD69F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F748C209263D656F00DFD69F /* PleiadesNicoTests */ = {
+			isa = PBXGroup;
+			children = (
+				F748C20A263D656F00DFD69F /* PleiadesNicoTests.swift */,
+				F748C20C263D656F00DFD69F /* Info.plist */,
+			);
+			path = PleiadesNicoTests;
+			sourceTree = "<group>";
+		};
+		F748C214263D656F00DFD69F /* PleiadesNicoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F748C215263D656F00DFD69F /* PleiadesNicoUITests.swift */,
+				F748C217263D656F00DFD69F /* Info.plist */,
+			);
+			path = PleiadesNicoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F748C1F4263D656A00DFD69F /* PleiadesNico */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F748C21A263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNico" */;
+			buildPhases = (
+				F748C1F1263D656A00DFD69F /* Sources */,
+				F748C1F2263D656A00DFD69F /* Frameworks */,
+				F748C1F3263D656A00DFD69F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PleiadesNico;
+			productName = PleiadesNico;
+			productReference = F748C1F5263D656A00DFD69F /* PleiadesNico.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F748C205263D656F00DFD69F /* PleiadesNicoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F748C21D263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNicoTests" */;
+			buildPhases = (
+				F748C202263D656F00DFD69F /* Sources */,
+				F748C203263D656F00DFD69F /* Frameworks */,
+				F748C204263D656F00DFD69F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F748C208263D656F00DFD69F /* PBXTargetDependency */,
+			);
+			name = PleiadesNicoTests;
+			productName = PleiadesNicoTests;
+			productReference = F748C206263D656F00DFD69F /* PleiadesNicoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F748C210263D656F00DFD69F /* PleiadesNicoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F748C220263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNicoUITests" */;
+			buildPhases = (
+				F748C20D263D656F00DFD69F /* Sources */,
+				F748C20E263D656F00DFD69F /* Frameworks */,
+				F748C20F263D656F00DFD69F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F748C213263D656F00DFD69F /* PBXTargetDependency */,
+			);
+			name = PleiadesNicoUITests;
+			productName = PleiadesNicoUITests;
+			productReference = F748C211263D656F00DFD69F /* PleiadesNicoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F748C1ED263D656A00DFD69F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					F748C1F4263D656A00DFD69F = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					F748C205263D656F00DFD69F = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = F748C1F4263D656A00DFD69F;
+					};
+					F748C210263D656F00DFD69F = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = F748C1F4263D656A00DFD69F;
+					};
+				};
+			};
+			buildConfigurationList = F748C1F0263D656A00DFD69F /* Build configuration list for PBXProject "PleiadesNico" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F748C1EC263D656A00DFD69F;
+			productRefGroup = F748C1F6263D656A00DFD69F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F748C1F4263D656A00DFD69F /* PleiadesNico */,
+				F748C205263D656F00DFD69F /* PleiadesNicoTests */,
+				F748C210263D656F00DFD69F /* PleiadesNicoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F748C1F3263D656A00DFD69F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F748C200263D656F00DFD69F /* Preview Assets.xcassets in Resources */,
+				F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C204263D656F00DFD69F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C20F263D656F00DFD69F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F748C1F1263D656A00DFD69F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F748C1FB263D656A00DFD69F /* ContentView.swift in Sources */,
+				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C202263D656F00DFD69F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F748C20B263D656F00DFD69F /* PleiadesNicoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F748C20D263D656F00DFD69F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F748C216263D656F00DFD69F /* PleiadesNicoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F748C208263D656F00DFD69F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F748C1F4263D656A00DFD69F /* PleiadesNico */;
+			targetProxy = F748C207263D656F00DFD69F /* PBXContainerItemProxy */;
+		};
+		F748C213263D656F00DFD69F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F748C1F4263D656A00DFD69F /* PleiadesNico */;
+			targetProxy = F748C212263D656F00DFD69F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F748C218263D656F00DFD69F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F748C219263D656F00DFD69F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F748C21B263D656F00DFD69F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PleiadesNico/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = PleiadesNico/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNico";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F748C21C263D656F00DFD69F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PleiadesNico/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = PleiadesNico/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNico";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F748C21E263D656F00DFD69F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PleiadesNicoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNicoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PleiadesNico.app/PleiadesNico";
+			};
+			name = Debug;
+		};
+		F748C21F263D656F00DFD69F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PleiadesNicoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNicoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PleiadesNico.app/PleiadesNico";
+			};
+			name = Release;
+		};
+		F748C221263D656F00DFD69F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PleiadesNicoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNicoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PleiadesNico;
+			};
+			name = Debug;
+		};
+		F748C222263D656F00DFD69F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PleiadesNicoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Pleiades-App-studio.PleiadesNicoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PleiadesNico;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F748C1F0263D656A00DFD69F /* Build configuration list for PBXProject "PleiadesNico" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F748C218263D656F00DFD69F /* Debug */,
+				F748C219263D656F00DFD69F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F748C21A263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNico" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F748C21B263D656F00DFD69F /* Debug */,
+				F748C21C263D656F00DFD69F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F748C21D263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNicoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F748C21E263D656F00DFD69F /* Debug */,
+				F748C21F263D656F00DFD69F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F748C220263D656F00DFD69F /* Build configuration list for PBXNativeTarget "PleiadesNicoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F748C221263D656F00DFD69F /* Debug */,
+				F748C222263D656F00DFD69F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F748C1ED263D656A00DFD69F /* Project object */;
+}
