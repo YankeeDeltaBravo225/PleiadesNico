@@ -1,8 +1,7 @@
 //
-//  PleiadesNicoTests.swift
-//  PleiadesNicoTests
+//  PleiadesNico
 //
-//  Created by katot on 2021/05/01.
+//  (C) 2021 Pleiades apps
 //
 
 import XCTest

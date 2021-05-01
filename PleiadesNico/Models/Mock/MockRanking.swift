@@ -1,8 +1,7 @@
 //
-//  MockRanking.swift
-//  XML_Sample
+//  PleiadesNico
 //
-//  Created by katot on 2021/03/28.
+//  (C) 2021 Pleiades apps
 //
 
 import Foundation

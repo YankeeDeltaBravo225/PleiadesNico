@@ -1,8 +1,7 @@
 //
-//  NicoVideoProp.swift
-//  XML_Sample
+//  PleiadesNico
 //
-//  Created by katot on 2021/04/04.
+//  (C) 2021 Pleiades apps
 //
 
 import Foundation

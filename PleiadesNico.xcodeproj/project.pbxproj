@@ -49,7 +49,7 @@
 		F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27A263D67AF00DFD69F /* PlayerTopView.swift */; };
 		F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27B263D67AF00DFD69F /* PlayControlView.swift */; };
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
-		F748C294263D67C000DFD69F /* UserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C293263D67C000DFD69F /* UserPassword.swift */; };
+		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +116,7 @@
 		F748C27A263D67AF00DFD69F /* PlayerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTopView.swift; sourceTree = "<group>"; };
 		F748C27B263D67AF00DFD69F /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
-		F748C293263D67C000DFD69F /* UserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPassword.swift; sourceTree = "<group>"; };
+		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,6 @@
 				F748C262263D67AE00DFD69F /* ViewModels */,
 				F748C232263D678600DFD69F /* Models */,
 				F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */,
-				F748C293263D67C000DFD69F /* UserPassword.swift */,
 				F748C1FC263D656F00DFD69F /* Assets.xcassets */,
 				F748C201263D656F00DFD69F /* Info.plist */,
 				F748C1FE263D656F00DFD69F /* Preview Content */,
@@ -228,6 +227,7 @@
 		F748C236263D678600DFD69F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */,
 				F748C237263D678600DFD69F /* MockPage.swift */,
 				F748C238263D678600DFD69F /* MockRanking.swift */,
 				F748C239263D678600DFD69F /* MockSearchResult.swift */,
@@ -499,12 +499,12 @@
 				F748C27E263D67AF00DFD69F /* VideoDetailViewModel.swift in Sources */,
 				F748C289263D67AF00DFD69F /* VideoAbstractView.swift in Sources */,
 				F748C28B263D67AF00DFD69F /* ContentView.swift in Sources */,
+				F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */,
 				F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */,
 				F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */,
 				F748C286263D67AF00DFD69F /* SearchView.swift in Sources */,
 				F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */,
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
-				F748C294263D67C000DFD69F /* UserPassword.swift in Sources */,
 				F748C246263D678600DFD69F /* NicoRanking.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
 				F748C288263D67AF00DFD69F /* PropertyLabelView.swift in Sources */,
@@ -595,7 +595,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -650,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
