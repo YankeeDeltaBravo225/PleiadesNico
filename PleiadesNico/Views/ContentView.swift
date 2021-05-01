@@ -1,18 +1,21 @@
 //
 //  ContentView.swift
-//  PleiadesNico
+//  XML_Sample
 //
-//  Created by katot on 2021/05/01.
+//  Created by katot on 2021/03/28.
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        RankingTopView()
+//        PlayerTopView("sm38564936")
+//        PlayerTopView("sm1192")
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
