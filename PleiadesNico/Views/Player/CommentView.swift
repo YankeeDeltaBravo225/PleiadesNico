@@ -93,7 +93,7 @@ class CommentViewController: UIViewController {
             )
 
         self.firstLaneY    = CGFloat(self.fontSize)
-        let commentsHeight = self.view.bounds.width - ( CGFloat(self.fontSize) * 2.0 )
+        let commentsHeight = self.view.bounds.height - ( CGFloat(self.fontSize) * 2.0 )
         self.laneHeight = commentsHeight / CGFloat(self.laneNum)
     }
 
@@ -166,7 +166,7 @@ class CommentViewController: UIViewController {
             let startX = origX + ((endX - origX) * CGFloat(elapseRate))
             let startY  = self.firstLaneY + ( self.laneHeight * CGFloat(lane) )
 
-            print("timer:", time, "comment:", comment, "duration:", duration, "rate:", elapseRate)
+//            print("timer:", time, "comment:", comment, "duration:", duration, "rate:", elapseRate)
             
             let label = instantiateLabel(
                 text: comment.body,

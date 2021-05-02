@@ -321,7 +321,7 @@ extension PlayerViewModel {
             )
         }
         
-        print(self.comments)
+//        print(self.comments)
         
         self.connectState   = .postDmcReq
     }

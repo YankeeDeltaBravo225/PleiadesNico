@@ -169,10 +169,10 @@
 		F748C1F7263D656A00DFD69F /* PleiadesNico */ = {
 			isa = PBXGroup;
 			children = (
+				F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */,
 				F748C269263D67AF00DFD69F /* Views */,
 				F748C262263D67AE00DFD69F /* ViewModels */,
 				F748C232263D678600DFD69F /* Models */,
-				F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */,
 				F748C1FC263D656F00DFD69F /* Assets.xcassets */,
 				F748C201263D656F00DFD69F /* Info.plist */,
 				F748C1FE263D656F00DFD69F /* Preview Content */,
@@ -277,10 +277,10 @@
 		F748C269263D67AF00DFD69F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F748C272263D67AF00DFD69F /* Common */,
 				F748C26A263D67AF00DFD69F /* Ranking */,
 				F748C26E263D67AF00DFD69F /* VideoDetail */,
 				F748C270263D67AF00DFD69F /* Search */,
-				F748C272263D67AF00DFD69F /* Common */,
 				F748C277263D67AF00DFD69F /* ContentView.swift */,
 				F748C278263D67AF00DFD69F /* Player */,
 			);
