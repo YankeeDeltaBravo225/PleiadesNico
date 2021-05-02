@@ -47,9 +47,16 @@ struct PlayerTopView: View {
         )
         .onAppear(){
             viewModel.onAppear()
+            DispatchQueue.main.async {
+                AppDelegate.lockOrientationLandscape()
+            }
+
         }
         .onDisappear {
             viewModel.onDisappear()
+            DispatchQueue.main.async {
+                AppDelegate.unlockOrientation()
+            }
         }
         .navigationBarHidden( true )
         
