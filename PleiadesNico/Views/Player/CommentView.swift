@@ -82,13 +82,10 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /*
-         * 0.1秒ごとにsearchComments実行
-         */
         self.commentTimer = Timer.publish(every: 0.1, on: .main, in: .default)
             .autoconnect()
             .sink(receiveValue: { date in
-                    self.searchComments()
+                    self.tick()
                 }
             )
 
@@ -97,10 +94,8 @@ class CommentViewController: UIViewController {
         self.laneHeight = commentsHeight / CGFloat(self.laneNum)
     }
 
-    /*
-     * そのときの秒数にテキストが存在すればラベルを生成しアニメーション付加
-     */
-    func searchComments(){
+
+    func tick(){
 
         guard let viewModel = self.viewModel
         else {
@@ -108,8 +103,10 @@ class CommentViewController: UIViewController {
             return
         }
 
+        let isVideoPaused : Bool = viewModel.elapsedTime == self.lastElapsedTime
+        
         // Pause -> Play
-        if viewModel.isPlaying && !self.isPlaying{
+        if !self.isPlaying && !isVideoPaused{
             for chat in self.activeChats.values {
                 chat.resume()
             }
@@ -117,7 +114,7 @@ class CommentViewController: UIViewController {
         }
 
         // Play -> Pause
-        if !viewModel.isPlaying && self.isPlaying{
+        if self.isPlaying && isVideoPaused{
             for chat in self.activeChats.values {
                 chat.pause()
             }
@@ -157,7 +154,8 @@ class CommentViewController: UIViewController {
             if time > comment.sec + self.dispSec {
                 continue
             }
-            
+
+            // Valid comment
             let textWidth  = self.fontSize * comment.body.count
             let duration   = (comment.sec + self.dispSec) - time
             let elapseRate = (self.dispSec - duration) / self.dispSec
@@ -187,9 +185,7 @@ class CommentViewController: UIViewController {
         }
     }
 
-    /*
-     * テキストラベルの生成。引数はテキストラベルのストリングと生成する列
-     */
+
     func instantiateLabel(text: String, textWidth : Int, xPos : CGFloat, yPos : CGFloat) -> ChatLabel{
 
         let chatLabel = ChatLabel(
@@ -202,6 +198,7 @@ class CommentViewController: UIViewController {
 
         return chatLabel
     }
+
 
     func animateLabel(label: UILabel, endX : CGFloat, duration : Double, index: Int){
 
@@ -219,9 +216,11 @@ class CommentViewController: UIViewController {
         )
     }
 
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
 }
 
 
