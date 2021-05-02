@@ -43,7 +43,7 @@ class DmcSessionInfo {
 //        let videoAds: VideoAds
 //        let videoLive: JSONNull?
         let viewer: DmcSessionInfoViewer
-        let waku: Waku?
+//        let waku: Waku?
 
         enum CodingKeys: String, CodingKey {
             case ads = "ads"
@@ -72,7 +72,7 @@ class DmcSessionInfo {
 //            case videoAds = "videoAds"
 //            case videoLive = "videoLive"
             case viewer = "viewer"
-            case waku = "waku"
+//            case waku = "waku"
         }
     }
 
@@ -808,7 +808,7 @@ class DmcSessionInfo {
         let latestCommentSummary: String
         let isChannelVideo: Bool
         let isPaymentRequired: Bool
-        let playbackPosition: JSONNull?
+//        let playbackPosition: JSONNull?
         let owner: FirstOwner
         let requireSensitiveMasking: Bool
         let the9D091F87: Bool
@@ -826,7 +826,7 @@ class DmcSessionInfo {
             case latestCommentSummary = "latestCommentSummary"
             case isChannelVideo = "isChannelVideo"
             case isPaymentRequired = "isPaymentRequired"
-            case playbackPosition = "playbackPosition"
+//            case playbackPosition = "playbackPosition"
             case owner = "owner"
             case requireSensitiveMasking = "requireSensitiveMasking"
             case the9D091F87 = "9d091f87"
@@ -1003,11 +1003,11 @@ class DmcSessionInfo {
     // MARK: - Like
     struct Like: Codable {
         let isLiked: Bool
-        let count: JSONNull?
+//        let count: JSONNull?
 
         enum CodingKeys: String, CodingKey {
             case isLiked = "isLiked"
-            case count = "count"
+//            case count = "count"
         }
     }
 
@@ -1078,25 +1078,6 @@ class DmcSessionInfo {
             case age = "age"
             case prefecture = "prefecture"
             case sex = "sex"
-        }
-    }
-
-    // MARK: - Waku
-    struct Waku: Codable {
-        let information: JSONNull?
-        let bgImages: [JSONAny]
-        let addContents: JSONNull?
-        let addVideo: JSONNull?
-        let tagRelatedBanner: JSONNull?
-        let tagRelatedMarquee: JSONNull?
-
-        enum CodingKeys: String, CodingKey {
-            case information = "information"
-            case bgImages = "bgImages"
-            case addContents = "addContents"
-            case addVideo = "addVideo"
-            case tagRelatedBanner = "tagRelatedBanner"
-            case tagRelatedMarquee = "tagRelatedMarquee"
         }
     }
 
