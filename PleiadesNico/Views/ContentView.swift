@@ -15,6 +15,7 @@ struct ContentView: View {
     enum Tab {
         case ranking
         case search
+        case setting
     }
     
     var body: some View {
@@ -31,6 +32,13 @@ struct ContentView: View {
                     Label("検索", systemImage: "magnifyingglass")
                 }
                 .tag(Tab.search)
+
+            SettingView()
+                .tabItem {
+                    Label("設定", systemImage: "gear")
+                }
+                .tag(Tab.setting)
+
         }
         
         

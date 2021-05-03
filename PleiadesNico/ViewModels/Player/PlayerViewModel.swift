@@ -32,7 +32,7 @@ final class PlayerViewModel: ObservableObject {
     private    var timer           : Cancellable?
     private    let session         = NicoSession()
 
-    private var connectState       : ConnectState = .login
+    private var connectState       : ConnectState = .getVideoPage
     private var stream             : NicoStream
     private var heartBeatCount     : Int    = 0
 
@@ -171,8 +171,6 @@ final class PlayerViewModel: ObservableObject {
 extension PlayerViewModel {
 
     enum ConnectState: String, CaseIterable {
-        case login
-        case waitLogin
         case getVideoPage
         case waitVideoPage
         case postDmcReq
@@ -189,10 +187,6 @@ extension PlayerViewModel {
     func advanceConnection(){
 
         switch(connectState){
-        case .login:
-            startLogin()
-        case .waitLogin:
-            break
         case .getVideoPage:
             startGetVideoPage()
         case .waitVideoPage:
@@ -214,31 +208,7 @@ extension PlayerViewModel {
             break
         case .error:
             break
-        default:
-            break
         }
-    }
-
-
-    func startLogin(){
-        self.progressTexts = ["", "", videoId, "Start Login"]
-        
-        session.post(
-            urlText: NicoLogin.url,
-            data:    NicoLogin.postData(mail: userName, password: userPassword),
-            contentType: .none,
-            onReceived: {text in
-                self.onLoggedIn(page: text)
-            }
-        )
-        
-        self.connectState = .waitLogin
-    }
-
-
-    func onLoggedIn(page : String){
-        self.progressTexts.append("Login done")
-        self.connectState = .getVideoPage
     }
 
 

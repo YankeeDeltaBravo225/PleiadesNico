@@ -44,6 +44,10 @@ class NicoSession {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
+        if let stringCookie = NicoSetting.shared.loadStringCookie(){
+            request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
+        }
+        
         sendRequest(request: request, onReceived: onReceived)
     }
 
@@ -64,6 +68,10 @@ class NicoSession {
         }
         request.addValue("https://www.nicovideo.jp/", forHTTPHeaderField: "Origin")
 
+        if let stringCookie = NicoSetting.shared.loadStringCookie(){
+            request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
+        }
+        
         sendRequest(request: request, onReceived: onReceived)
     }
 
@@ -77,6 +85,10 @@ class NicoSession {
         var request = URLRequest(url: url)
         request.httpMethod = "OPTIONS"
 
+        if let stringCookie = NicoSetting.shared.loadStringCookie(){
+            request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
+        }
+        
         sendRequest(request: request, onReceived: onReceived)
     }
     

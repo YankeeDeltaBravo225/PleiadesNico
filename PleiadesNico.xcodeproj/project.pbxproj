@@ -23,7 +23,6 @@
 		F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23B263D678600DFD69F /* DmcSessionRequest.swift */; };
 		F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23C263D678600DFD69F /* DmcSessionResponse.swift */; };
 		F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23D263D678600DFD69F /* DmcSessionInfo.swift */; };
-		F748C24F263D678600DFD69F /* NicoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23E263D678600DFD69F /* NicoLogin.swift */; };
 		F748C250263D678600DFD69F /* NicoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23F263D678600DFD69F /* NicoSession.swift */; };
 		F748C251263D678600DFD69F /* DateTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C240263D678600DFD69F /* DateTimeFormat.swift */; };
 		F748C252263D678600DFD69F /* NicoVideoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C241263D678600DFD69F /* NicoVideoDetail.swift */; };
@@ -50,6 +49,10 @@
 		F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27B263D67AF00DFD69F /* PlayControlView.swift */; };
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
 		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
+		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
+		F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FD9263FE79400836A71 /* SettingView.swift */; };
+		F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */; };
+		F7D72FE4263FF24800836A71 /* NicoSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FE3263FF24800836A71 /* NicoSetting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +93,6 @@
 		F748C23B263D678600DFD69F /* DmcSessionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionRequest.swift; sourceTree = "<group>"; };
 		F748C23C263D678600DFD69F /* DmcSessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionResponse.swift; sourceTree = "<group>"; };
 		F748C23D263D678600DFD69F /* DmcSessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionInfo.swift; sourceTree = "<group>"; };
-		F748C23E263D678600DFD69F /* NicoLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicoLogin.swift; sourceTree = "<group>"; };
 		F748C23F263D678600DFD69F /* NicoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicoSession.swift; sourceTree = "<group>"; };
 		F748C240263D678600DFD69F /* DateTimeFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeFormat.swift; sourceTree = "<group>"; };
 		F748C241263D678600DFD69F /* NicoVideoDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicoVideoDetail.swift; sourceTree = "<group>"; };
@@ -117,6 +119,10 @@
 		F748C27B263D67AF00DFD69F /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
+		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		F7D72FD9263FE79400836A71 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		F7D72FE3263FF24800836A71 /* NicoSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,17 +215,17 @@
 		F748C232263D678600DFD69F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F748C236263D678600DFD69F /* Mock */,
+				F748C23A263D678600DFD69F /* DmcAPI */,
+				F748C243263D678600DFD69F /* CommentAPI */,
 				F748C233263D678600DFD69F /* NicoRanking.swift */,
 				F748C234263D678600DFD69F /* NicoStream.swift */,
 				F748C235263D678600DFD69F /* DebugLog.swift */,
-				F748C236263D678600DFD69F /* Mock */,
-				F748C23A263D678600DFD69F /* DmcAPI */,
-				F748C23E263D678600DFD69F /* NicoLogin.swift */,
 				F748C23F263D678600DFD69F /* NicoSession.swift */,
 				F748C240263D678600DFD69F /* DateTimeFormat.swift */,
 				F748C241263D678600DFD69F /* NicoVideoDetail.swift */,
 				F748C242263D678600DFD69F /* NicoSearch.swift */,
-				F748C243263D678600DFD69F /* CommentAPI */,
+				F7D72FE3263FF24800836A71 /* NicoSetting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 				F748C263263D67AE00DFD69F /* SearchViewModel.swift */,
 				F748C264263D67AE00DFD69F /* VideoDetailViewModel.swift */,
 				F748C265263D67AE00DFD69F /* RankingViewModel.swift */,
+				F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */,
 				F748C266263D67AE00DFD69F /* Player */,
 			);
 			path = ViewModels;
@@ -283,6 +290,7 @@
 				F748C26E263D67AF00DFD69F /* VideoDetail */,
 				F748C270263D67AF00DFD69F /* Search */,
 				F748C278263D67AF00DFD69F /* Player */,
+				F7D72FD8263FE76600836A71 /* Setting */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 				F748C274263D67AF00DFD69F /* PropertyLabelView.swift */,
 				F748C275263D67AF00DFD69F /* VideoAbstractView.swift */,
 				F748C276263D67AF00DFD69F /* ColorPalette.swift */,
+				F782BE44263FCCAD00EFB676 /* WebView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -333,6 +342,14 @@
 				F748C27C263D67AF00DFD69F /* CommentView.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		F7D72FD8263FE76600836A71 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				F7D72FD9263FE79400836A71 /* SettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +502,7 @@
 				F748C24A263D678600DFD69F /* MockRanking.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
 				F748C249263D678600DFD69F /* MockPage.swift in Sources */,
+				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
 				F748C247263D678600DFD69F /* NicoStream.swift in Sources */,
 				F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */,
@@ -492,7 +510,7 @@
 				F748C255263D678600DFD69F /* CommentRequest.swift in Sources */,
 				F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */,
 				F748C253263D678600DFD69F /* NicoSearch.swift in Sources */,
-				F748C24F263D678600DFD69F /* NicoLogin.swift in Sources */,
+				F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */,
 				F748C254263D678600DFD69F /* CommentResponse.swift in Sources */,
 				F748C287263D67AF00DFD69F /* OnlineImageIView.swift in Sources */,
 				F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */,
@@ -502,9 +520,11 @@
 				F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */,
 				F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */,
 				F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */,
+				F7D72FE4263FF24800836A71 /* NicoSetting.swift in Sources */,
 				F748C286263D67AF00DFD69F /* SearchView.swift in Sources */,
 				F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */,
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
+				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F748C246263D678600DFD69F /* NicoRanking.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
 				F748C288263D67AF00DFD69F /* PropertyLabelView.swift in Sources */,
