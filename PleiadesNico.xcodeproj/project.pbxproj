@@ -277,11 +277,11 @@
 		F748C269263D67AF00DFD69F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F748C277263D67AF00DFD69F /* ContentView.swift */,
 				F748C272263D67AF00DFD69F /* Common */,
 				F748C26A263D67AF00DFD69F /* Ranking */,
 				F748C26E263D67AF00DFD69F /* VideoDetail */,
 				F748C270263D67AF00DFD69F /* Search */,
-				F748C277263D67AF00DFD69F /* ContentView.swift */,
 				F748C278263D67AF00DFD69F /* Player */,
 			);
 			path = Views;
