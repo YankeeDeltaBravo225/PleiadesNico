@@ -31,7 +31,7 @@ class DmcSessionInfo {
         let okReason: String?
         let owner: DmcSessionInfoOwner?
 //        let payment: Payment
-        let pcWatchPage: PCWatchPage?
+//        let pcWatchPage: PCWatchPage?
 //        let player: Player?
 //        let ppv: JSONNull?
 //        let ranking: Ranking
@@ -60,7 +60,7 @@ class DmcSessionInfo {
             case okReason = "okReason"
             case owner = "owner"
 //            case payment = "payment"
-            case pcWatchPage = "pcWatchPage"
+//            case pcWatchPage = "pcWatchPage"
 //            case player = "player"
 //            case ppv = "ppv"
 //            case ranking = "ranking"
@@ -215,7 +215,7 @@ class DmcSessionInfo {
         let isLeafRequired: Bool
         let isOwnerThread: Bool
         let isThreadkeyRequired: Bool
-        let threadkey: JSONNull?
+//        let threadkey: JSONNull?
         let is184Forced: Bool
         let hasNicoscript: Bool
         let label: String
@@ -231,7 +231,7 @@ class DmcSessionInfo {
             case isLeafRequired = "isLeafRequired"
             case isOwnerThread = "isOwnerThread"
             case isThreadkeyRequired = "isThreadkeyRequired"
-            case threadkey = "threadkey"
+//            case threadkey = "threadkey"
             case is184Forced = "is184Forced"
             case hasNicoscript = "hasNicoscript"
             case label = "label"
@@ -675,41 +675,32 @@ class DmcSessionInfo {
     }
 
     // MARK: - PCWatchPage
+/*
     struct PCWatchPage: Codable {
-        let tagRelatedBanner: JSONNull?
-        let videoEnd: VideoEnd
+//        let tagRelatedBanner: JSONNull?
+//        let videoEnd: VideoEnd
         let showOwnerMenu: Bool
         let showOwnerThreadCoEditingLink: Bool
         let showMymemoryEditingLink: Bool
 
         enum CodingKeys: String, CodingKey {
-            case tagRelatedBanner = "tagRelatedBanner"
-            case videoEnd = "videoEnd"
+//            case tagRelatedBanner = "tagRelatedBanner"
+//            case videoEnd = "videoEnd"
             case showOwnerMenu = "showOwnerMenu"
             case showOwnerThreadCoEditingLink = "showOwnerThreadCoEditingLink"
             case showMymemoryEditingLink = "showMymemoryEditingLink"
         }
     }
-
-    // MARK: - VideoEnd
-    struct VideoEnd: Codable {
-        let bannerIn: JSONNull?
-        let overlay: JSONNull?
-
-        enum CodingKeys: String, CodingKey {
-            case bannerIn = "bannerIn"
-            case overlay = "overlay"
-        }
-    }
-
+*/
+ 
     // MARK: - Player
     struct Player: Codable {
-        let initialPlayback: JSONNull?
+//        let initialPlayback: JSONNull?
         let comment: PlayerComment
         let layerMode: Int
 
         enum CodingKeys: String, CodingKey {
-            case initialPlayback = "initialPlayback"
+//            case initialPlayback = "initialPlayback"
             case comment = "comment"
             case layerMode = "layerMode"
         }
