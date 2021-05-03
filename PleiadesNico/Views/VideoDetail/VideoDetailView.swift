@@ -16,7 +16,7 @@ struct VideoDetailView: View {
     
     init(_ contentId : String ){
         videoId   = contentId
-        viewModel = VideoDetailViewModel()
+        viewModel = VideoDetailViewModel(videoId: contentId)
     }
 
     var body: some View {
@@ -25,9 +25,10 @@ struct VideoDetailView: View {
                 if(viewModel.hasProp){
                     ownerSectionView()
                     infoSectionView()
-                    playVideoButton()
+                    if viewModel.showPlay {
+                        playVideoButton()
+                    }
                     openBrowserButton()
-
                     descriptionSectionView()
                     lastCommentSectionView()
                     tagSectionView()
@@ -169,10 +170,7 @@ extension VideoDetailView {
     fileprivate func openBrowserButton() -> some View {
         return Button(
             action: {
-                guard let url = URL(string: NicoStream.staticVideoPageUrl(videoId)) else {return}
-                UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
-                    print(completed)
-                })
+                viewModel.onOpenWithBrowser()
             },
             label: {
                 HStack(){

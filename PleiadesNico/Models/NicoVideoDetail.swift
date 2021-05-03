@@ -9,15 +9,25 @@ import Kanna
 
 class NicoVideoDetail{
 
-    static func url(videoId : String) -> String{
-        return "https://ext.nicovideo.jp/api/getthumbinfo/\(videoId)"
+    static let defaultProp = Prop(attr: ["":""], tagList: [])
+
+    let videoId : String
+
+
+    init(videoId : String){
+        self.videoId = videoId
     }
 
 
-    static func loadXML(_ xmlText : String) -> Prop {
+    func url() -> String{
+        return "https://ext.nicovideo.jp/api/getthumbinfo/\(self.videoId)"
+    }
+
+
+    func parseXML(_ xmlText : String) -> Prop {
         guard let xml = try? Kanna.XML(xml: xmlText, encoding: .utf8)
         else {
-            return defaultProp
+            return NicoVideoDetail.defaultProp
         }
 
         let xpathes : [String : String] = [
@@ -47,8 +57,6 @@ class NicoVideoDetail{
         return Prop( attr : attr, tagList : tags )
     }
 
-    
-    static let defaultProp = Prop(attr: ["":""], tagList: [])
 
     struct Prop: Hashable, Codable{
         let title         : String

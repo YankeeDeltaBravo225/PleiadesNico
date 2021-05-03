@@ -6,28 +6,52 @@
 //
 
 import Foundation
+import UIKit
 
 final class VideoDetailViewModel: ObservableObject {
 
-    @Published var prop    : NicoVideoDetail.Prop
-    @Published var hasProp : Bool
+    private    let session     : NicoSession
+    private    let detailModel : NicoVideoDetail
+    private    let videoId     : String
 
-    private let session  = NicoSession()
+    @Published var prop     : NicoVideoDetail.Prop
+    @Published var hasProp  : Bool
+    @Published var showPlay : Bool
+
+
     
-    init(){
-        hasProp = false
-        prop    = NicoVideoDetail.defaultProp
+    init(videoId : String){
+        self.session     = NicoSession()
+        self.detailModel = NicoVideoDetail( videoId:videoId )
+        self.videoId     = videoId
+        self.hasProp     = false
+        self.showPlay    = false
+        self.prop        = NicoVideoDetail.defaultProp
     }
 
 
     func loadVideoDetail(videoId : String){
         session.get(
-            urlText    : NicoVideoDetail.url(videoId : videoId),
+            urlText    : detailModel.url(),
             onReceived : {text in
                 self.hasProp = true
-                self.prop    = NicoVideoDetail.loadXML(text)
+                self.prop    = self.detailModel.parseXML(text)
+                
+                // FLV videos are not supported,
+                // Channel video will be supported in the future
+                if self.prop.videoId.hasPrefix("sm") && self.prop.fileType == "mp4" {
+                    self.showPlay = true
+                }
             }
         )
+    }
+
+
+    func onOpenWithBrowser() {
+        guard let url = URL(string: NicoStream.staticVideoPageUrl(videoId)) else {return}
+        UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
+            print(completed)
+        })
     }
 
 }
