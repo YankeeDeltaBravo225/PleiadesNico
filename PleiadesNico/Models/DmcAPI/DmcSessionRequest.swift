@@ -62,12 +62,13 @@ class DmcSessionRequest {
         init(_ info : DmcSessionInfo.ApiData){
             let movie   = info.media.delivery.movie
             let session = info.media.delivery.movie.session
+            let isPremium = info.viewer?.isPremium ?? false
             
             let audios = movie.audios.map{ $0.id }
-            let audio  = info.viewer.isPremium ? audios.first! : audios.last!
+            let audio  = isPremium ? audios.first! : audios.last!
 
             var videos = movie.videos.map{ $0.id }
-            if !info.viewer.isPremium && videos.count > 2 {
+            if !isPremium && videos.count > 2 {
                 videos = videos.dropFirst( videos.count - 2 ).map{ $0 }
             }
             

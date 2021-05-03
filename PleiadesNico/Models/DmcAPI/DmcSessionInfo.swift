@@ -42,7 +42,7 @@ class DmcSessionInfo {
         let video: DmcSessionInfoVideo
 //        let videoAds: VideoAds
 //        let videoLive: JSONNull?
-        let viewer: DmcSessionInfoViewer
+        let viewer: DmcSessionInfoViewer?
 //        let waku: Waku?
 
         enum CodingKeys: String, CodingKey {
@@ -610,7 +610,7 @@ class DmcSessionInfo {
 //        let live: JSONNull?
         let isVideosPublic: Bool
         let isMylistsPublic: Bool
-        let viewer: OwnerViewer
+//        let viewer: OwnerViewer?
 
         enum CodingKeys: String, CodingKey {
             case id = "id"
@@ -620,18 +620,10 @@ class DmcSessionInfo {
 //            case live = "live"
             case isVideosPublic = "isVideosPublic"
             case isMylistsPublic = "isMylistsPublic"
-            case viewer = "viewer"
+//            case viewer = "viewer"
         }
     }
 
-    // MARK: - OwnerViewer
-    struct OwnerViewer: Codable {
-        let isFollowing: Bool
-
-        enum CodingKeys: String, CodingKey {
-            case isFollowing = "isFollowing"
-        }
-    }
 
     // MARK: - Payment
     struct Payment: Codable {
@@ -888,28 +880,11 @@ class DmcSessionInfo {
         let items: [JSONAny]
         let hasR18Tag: Bool
         let isPublishedNicoscript: Bool
-        let edit: Edit
-        let viewer: Edit
 
         enum CodingKeys: String, CodingKey {
             case items = "items"
             case hasR18Tag = "hasR18Tag"
             case isPublishedNicoscript = "isPublishedNicoscript"
-            case edit = "edit"
-            case viewer = "viewer"
-        }
-    }
-
-    // MARK: - Edit
-    struct Edit: Codable {
-        let isEditable: Bool
-//        let uneditableReason: JSONNull?
-        let editKey: String
-
-        enum CodingKeys: String, CodingKey {
-            case isEditable = "isEditable"
-//            case uneditableReason = "uneditableReason"
-            case editKey = "editKey"
         }
     }
 
@@ -928,10 +903,10 @@ class DmcSessionInfo {
         let isNoBanner: Bool
         let isAuthenticationRequired: Bool
         let isEmbedPlayerAllowed: Bool
-        let viewer: VideoViewer
+        let viewer: VideoViewer?
         let watchableUserTypeForPayment: String
         let commentableUserTypeForPayment: String
-        let the9D091F87: Bool
+        let the9D091F87: Bool?
 
         enum CodingKeys: String, CodingKey {
             case id = "id"
