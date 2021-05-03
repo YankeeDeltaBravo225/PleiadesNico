@@ -189,11 +189,12 @@ class CommentViewController: UIViewController {
     func instantiateLabel(text: String, textWidth : Int, xPos : CGFloat, yPos : CGFloat) -> ChatLabel{
 
         let chatLabel = ChatLabel(
-            frame: CGRect(x: 0,y: 0,width: textWidth, height: fontSize)
+            frame: CGRect(x: 0,y: 0,width: textWidth, height: self.fontSize)
         )
         chatLabel.text           = text
         chatLabel.textColor      = UIColor.white
         chatLabel.textAlignment  = NSTextAlignment.center
+        chatLabel.font           = UIFont.boldSystemFont(ofSize: CGFloat(self.fontSize))
         chatLabel.layer.position = CGPoint( x : xPos, y: yPos )
 
         return chatLabel

@@ -25,13 +25,13 @@ struct PlayerTopView: View {
             contentId: contentId
         )
     }
-   
+       
     var body: some View {
         ZStack {
+            Color.black
             if( viewModel.showPlayer ){
                 screenView()
-                CommentView( viewModel: viewModel )
-                    .allowsHitTesting(false)
+                commentView()
             } else {
                 progressTextsView()
             }
@@ -73,6 +73,7 @@ extension PlayerTopView {
             ForEach(viewModel.progressTexts, id: \.self) { progressText in
                 HStack{
                     Text(progressText)
+                        .foregroundColor(.white)
                     Spacer()
                 }
             }
@@ -94,6 +95,12 @@ extension PlayerTopView {
             viewModel.onScreenTapp()
         }
         .ignoresSafeArea()
+    }
+
+    
+    fileprivate func commentView() -> some View {
+        return CommentView( viewModel: viewModel )
+            .allowsHitTesting(false)
     }
 
 }
