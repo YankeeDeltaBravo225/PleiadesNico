@@ -58,7 +58,7 @@ struct PlayerTopView: View {
                 AppDelegate.unlockOrientation()
             }
         }
-        .navigationBarHidden( true )
+//        .navigationBarHidden( true )
         
     } // View
 

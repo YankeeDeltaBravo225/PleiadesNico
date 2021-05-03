@@ -11,45 +11,22 @@ struct VideoDetailView: View {
     
     let videoId : String
     @ObservedObject var viewModel : VideoDetailViewModel
+    @State private var doesPlay = false
+
     
     init(_ contentId : String ){
         videoId   = contentId
         viewModel = VideoDetailViewModel()
     }
 
-
     var body: some View {
 
-//        NavigationView {
             List {
                 if(viewModel.hasProp){
                     ownerSectionView()
                     infoSectionView()
-
-                    NavigationLink(
-                        destination: PlayerTopView( videoId )
-                    ){
-                        HStack{
-                            Image(systemName:"play.circle")
-                            Text("Play")
-                            Spacer()
-                        }
-                    }
-                    Button(
-                        action: {
-                            guard let url = URL(string: NicoStream.staticVideoPageUrl(videoId)) else {return}
-                            UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
-                                print(completed)
-                            })
-                        },
-                        label: {
-                            HStack(){
-                                Image(systemName:"safari")
-                                Text("Browser")
-                                Spacer()
-                            }
-                        }
-                    )
+                    playVideoButton()
+                    openBrowserButton()
 
                     descriptionSectionView()
                     lastCommentSectionView()
@@ -58,10 +35,6 @@ struct VideoDetailView: View {
                 } else {
                     EmptyView()
                 }
-
-//            }
-//            .navigationBarTitle("")
-//            .navigationBarHidden(true)
         }
         .onAppear(){
             viewModel.loadVideoDetail(videoId: videoId)
@@ -190,6 +163,42 @@ extension VideoDetailView {
                     Text(tag)
                 }
             }
+        }
+    }
+    
+    fileprivate func openBrowserButton() -> some View {
+        return Button(
+            action: {
+                guard let url = URL(string: NicoStream.staticVideoPageUrl(videoId)) else {return}
+                UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
+                    print(completed)
+                })
+            },
+            label: {
+                HStack(){
+                    Image(systemName:"safari")
+                    Text("Browser")
+                    Spacer()
+                }
+            }
+        )
+    }
+    
+    fileprivate func playVideoButton() -> some View {
+        return Button(
+            action: {
+                doesPlay.toggle()
+            },
+            label: {
+                HStack(){
+                    Image(systemName:"play.circle")
+                    Text("Play")
+                    Spacer()
+                }
+            }
+        )
+        .fullScreenCover(isPresented: $doesPlay){
+            PlayerTopView(videoId)
         }
     }
 
