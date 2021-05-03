@@ -20,6 +20,7 @@ struct PlayControlView: View {
                 Color.black
                     .frame(maxHeight: 60)
                     .opacity(0.5)
+                    .allowsHitTesting(true)
                 closeButton()
             }
             Spacer()
