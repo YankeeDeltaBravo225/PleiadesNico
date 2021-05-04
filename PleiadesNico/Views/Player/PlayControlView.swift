@@ -18,6 +18,11 @@ struct PlayControlView: View {
     var body: some View {
         VStack {
             upperControlView()
+            .background(
+                Color.gray
+                    .opacity(0.6)
+            )
+            .cornerRadius(10)
             Spacer()
             Color.clear
             VStack{
@@ -33,7 +38,7 @@ struct PlayControlView: View {
             }
             .background(
                 Color.gray
-                    .opacity(0.2)
+                    .opacity(0.6)
             )
             .cornerRadius(10)
         }
@@ -91,23 +96,16 @@ extension PlayControlView {
 
 
     fileprivate func upperControlView() -> some View {
-        return ZStack{
-            Color.gray
-                .frame(maxHeight: 60)
-                .opacity(0.2)
-                .allowsHitTesting(true)
-            HStack{
-                Spacer()
-                    .frame(width : 10)
-                closeButton()
-                Spacer()
-                Image(systemName:"clock")
-                    .foregroundColor(.white)
-                Text(viewModel.currentTimeText)
-                    .foregroundColor(.white)
-            }
+        return HStack{
+            Spacer()
+                .frame(width : 10)
+            closeButton()
+            Spacer()
+            Image(systemName:"clock")
+                .foregroundColor(.white)
+            Text(viewModel.currentTimeText)
+                .foregroundColor(.white)
         }
-        .cornerRadius(10)
     }
 
 
