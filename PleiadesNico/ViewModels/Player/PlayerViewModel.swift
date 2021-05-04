@@ -21,6 +21,7 @@ final class PlayerViewModel: ObservableObject {
     @Published var remainTimeText  : String = "--:--"
     @Published var progressTexts   : [String] = []
     @Published var timeSliderPos   : Double = 0.0
+    @Published var commentFontSize : Int
     
     private    var errorCount      : Int  = 0
     private    var prevElapsedTime : Int  = -1
@@ -45,12 +46,13 @@ final class PlayerViewModel: ObservableObject {
         let body  : String
     }
     
-    
+
     init(avScreen : VideoScreen, contentId : String) {
-        screen  = avScreen
-        videoId = contentId
+        self.screen          = avScreen
+        self.videoId         = contentId
+        self.commentFontSize = NicoSetting.shared.commentFontSize
         
-        stream  = NicoStream(contentId)
+        self.stream  = NicoStream(contentId)
     }
     
     func onScreenTapp(){

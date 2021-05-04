@@ -54,11 +54,12 @@ class CommentViewController: UIViewController {
 
     private var commentTimer : Cancellable?
 
-    var activeChats     = [ Int : ChatLabel]()
-    let fontSize        = 20
     let dispSec         = 4.0
+
     var isPlaying       = false
-    let laneNum         = 16
+    var activeChats     = [ Int : ChatLabel]()
+    var fontSize        = 10
+    var laneNum         = 10
     var laneHeight      = CGFloat(0)
     var firstLaneY      = CGFloat(0)
     var commentIndex    = 0
@@ -89,8 +90,16 @@ class CommentViewController: UIViewController {
                 }
             )
 
+        guard let viewModel = self.viewModel
+        else {
+            print("ERROR! comment is not available")
+            return
+        }
+
+        self.fontSize = viewModel.commentFontSize
         self.firstLaneY    = CGFloat(self.fontSize)
         let commentsHeight = self.view.bounds.height - ( CGFloat(self.fontSize) * 2.0 )
+        self.laneNum = Int(commentsHeight) / fontSize
         self.laneHeight = commentsHeight / CGFloat(self.laneNum)
     }
 

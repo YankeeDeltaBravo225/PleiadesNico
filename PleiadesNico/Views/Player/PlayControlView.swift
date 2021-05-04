@@ -23,6 +23,7 @@ struct PlayControlView: View {
                     .allowsHitTesting(true)
                 closeButton()
             }
+            .cornerRadius(10)
             Spacer()
             Color.clear
             VStack{
@@ -39,6 +40,7 @@ struct PlayControlView: View {
             .background(
                 backgroundImageView()
             )
+            .cornerRadius(10)
         }
         .onAppear {
             viewModel.onTimerTick()

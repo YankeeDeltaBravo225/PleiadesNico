@@ -9,6 +9,12 @@ import Foundation
 
 class NicoSetting {
     
+    enum Key: String {
+        case login       = "isLoggedIn"
+        case cookie      = "stringCookie"
+        case commentSize = "commentFontSize"
+    }
+    
     static  let shared       = NicoSetting()
     private let userDefaults : UserDefaults
 
@@ -19,36 +25,43 @@ class NicoSetting {
 
         userDefaults.register(
             defaults: [
-                "isLoggedIn"   : false,
-                "stringCookie" : ""
+                Key.login.rawValue    : false,
+                Key.cookie.rawValue   : "",
+                Key.commentSize.rawValue : 20,
             ]
         )
 
         self.userDefaults = userDefaults
     }
 
-
-    func saveStringCookie(_ stringCookie : String){
-        self.userDefaults.set(stringCookie,forKey: "stringCookie")
-        self.userDefaults.synchronize()
+    var stringCookie : String? {
+        set(stringCookie){
+            self.userDefaults.set(stringCookie,forKey: Key.cookie.rawValue)
+            self.userDefaults.synchronize()
+        }
+        get{
+            return self.userDefaults.string(forKey: Key.cookie.rawValue)
+        }
     }
 
-
-    func loadStringCookie() -> String? {
-        return self.userDefaults.string(forKey: "stringCookie")
+    var loginStatus : Bool {
+        set(isLoggedIn){
+            self.userDefaults.set(isLoggedIn,forKey: Key.login.rawValue)
+            self.userDefaults.synchronize()
+        }
+        get{
+            return self.userDefaults.bool(forKey: Key.login.rawValue)
+        }
     }
 
-
-    func saveLoginStatus(_ isLoggedIn : Bool) {
-        self.userDefaults.set(isLoggedIn,forKey: "isLoggedIn")
-        self.userDefaults.synchronize()
+    var commentFontSize : Int {
+        set(size){
+            self.userDefaults.set(size,forKey: Key.commentSize.rawValue)
+            self.userDefaults.synchronize()
+        }
+        get{
+            self.userDefaults.integer(forKey: Key.commentSize.rawValue)
+        }
     }
-
-    func loadLoginStatus() -> Bool {
-        return self.userDefaults.bool(forKey: "isLoggedIn")
-    }
-
-    
-    
     
 }

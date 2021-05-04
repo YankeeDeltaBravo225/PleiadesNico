@@ -22,7 +22,43 @@ struct SettingView: View {
 
 
     var body: some View {
-        Button("ログイン/ユーザ設定の確認") {
+        
+        List {
+            Section(header: Text("アカウント")){
+                loginPageButton()
+                loginStatusView()
+            }
+            
+            Section(header: Text("コメント")){
+                Text("フォントサイズ")
+                HStack{
+                    Stepper(
+                        value : $viewModel.commentFontSize,
+                        in : 10...50,
+                        step : 1,
+                        onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
+                    )
+                    {
+                        Text("サイズ")
+                        Divider()
+                        Text("\(viewModel.commentFontSize)")
+                    }
+                    Spacer()
+                }
+                
+            }
+        }
+
+        
+
+    }
+}
+
+
+extension SettingView {
+
+    fileprivate func loginPageButton() -> some View {
+        return Button("ログイン/ユーザ設定の確認(内蔵ブラウザが開きます)") {
             self.showLogin.toggle()
         }
         .sheet(
@@ -38,6 +74,21 @@ struct SettingView: View {
             )
         }
     }
+
+
+    fileprivate func loginStatusView() -> some View {
+        return HStack{
+            Text("状態：")
+            Divider()
+            if viewModel.isLoggedIn {
+                Image(systemName: "checkmark.circle")
+            } else {
+                Image(systemName: "x.circle.fill")
+            }
+            Spacer()
+        }
+    }
+
 }
 
 

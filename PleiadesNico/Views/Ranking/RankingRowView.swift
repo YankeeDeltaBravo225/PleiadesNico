@@ -16,10 +16,6 @@ struct RankingRowView: View {
         color     = ColorPalette.pastel( item.pos )
     }
 
-    /*
-     Color(red: color.r, green: color.g, blue: color.b)
-         .frame(height:6)
-     */
     
     var body: some View {
         HStack{

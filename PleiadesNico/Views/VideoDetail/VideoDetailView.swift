@@ -34,7 +34,7 @@ struct VideoDetailView: View {
                     tagSectionView()
                         .navigationBarTitleDisplayMode(.inline)
                 } else {
-                    EmptyView()
+                    Text("読み込み中")
                 }
         }
         .onAppear(){
