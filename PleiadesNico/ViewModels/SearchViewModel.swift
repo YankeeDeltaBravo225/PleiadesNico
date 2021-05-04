@@ -20,33 +20,35 @@ final class SearchViewModel: ObservableObject {
     
     private var isSearching   : Bool
     private var searchOffset  : Int
+    private var appearCount   : Int
     private let session       : NicoSession
 
     init(_ keyword : String = ""){
-        showAdd      = false
-        showNoHit    = false
-        searchOffset = 0
-        isSearching  = false
-        searchWord   = keyword
-        items        = []
-        kind         = .tag
-        session      = NicoSession()
+        self.showAdd      = false
+        self.showNoHit    = false
+        self.searchOffset = 0
+        self.appearCount  = 0
+        self.isSearching  = false
+        self.searchWord   = keyword
+        self.items        = []
+        self.kind         = .tag
+        self.session      = NicoSession()
     }
 
 
     func newSearch(){
-        if isSearching {
+        if self.isSearching {
             return
         }
 
-        showNoHit = false
-        items     = []
+        self.showNoHit = false
+        self.items     = []
         search()
     }
 
 
     func contSearch(){
-        if isSearching {
+        if self.isSearching {
             return
         }
 
@@ -86,9 +88,11 @@ final class SearchViewModel: ObservableObject {
     
 
     func onAppearSearch(){
-        if searchWord != "" {
+        if self.appearCount == 0 && self.searchWord != "" {
             newSearch()
         }
+        
+        self.appearCount += 1
     }
 
 }

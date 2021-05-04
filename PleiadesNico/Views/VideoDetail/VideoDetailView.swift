@@ -27,6 +27,8 @@ struct VideoDetailView: View {
                     infoSectionView()
                     if viewModel.showPlay {
                         playVideoButton()
+                    } else {
+                        Text("内蔵プレイヤーで再生できません")
                     }
                     openBrowserButton()
                     descriptionSectionView()
@@ -122,10 +124,10 @@ extension VideoDetailView {
                     size  : 14
                 )
                 HStack{
-                    Text("id: \(viewModel.prop.videoId)")
+                    Text("\(viewModel.prop.videoId)")
                         .font(.system(size: 14))
                     Divider()
-                    Text("type: \(viewModel.prop.fileType)")
+                    Text("\(viewModel.prop.fileType)")
                         .font(.system(size: 14))
                 }
             }
@@ -175,7 +177,7 @@ extension VideoDetailView {
             label: {
                 HStack(){
                     Image(systemName:"safari")
-                    Text("Browser")
+                    Text("ブラウザで開く")
                     Spacer()
                 }
             }
