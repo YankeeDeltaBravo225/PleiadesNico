@@ -59,9 +59,7 @@ class CommentViewController: UIViewController {
     var isPlaying       = false
     var activeChats     = [ Int : ChatLabel]()
     var fontSize        = 10
-    var laneNum         = 10
-    var laneHeight      = CGFloat(0)
-    var firstLaneY      = CGFloat(0)
+    var yCoords         = [CGFloat]()
     var commentIndex    = 0
     var lastElapsedTime = 0.0
 
@@ -96,11 +94,24 @@ class CommentViewController: UIViewController {
             return
         }
 
-        self.fontSize = viewModel.commentFontSize
-        self.firstLaneY    = CGFloat(self.fontSize)
-        let commentsHeight = self.view.bounds.height - ( CGFloat(self.fontSize) * 2.0 )
-        self.laneNum = Int(commentsHeight) / fontSize
-        self.laneHeight = commentsHeight / CGFloat(self.laneNum)
+        self.fontSize      = viewModel.commentFontSize
+
+        let chatHeight    = CGFloat(self.fontSize)
+        let heightMargin  = chatHeight * 2.0
+        let screenHeight  = self.view.bounds.height - heightMargin
+        let rawLaneNum    = (Int(screenHeight) / fontSize)
+
+        self.yCoords = []
+        
+        let primaryStartY = CGFloat(self.fontSize)
+        for primaryLane in 0..<rawLaneNum {
+            self.yCoords.append( primaryStartY   + ( chatHeight * CGFloat(primaryLane) ) )
+        }
+
+        let secondaryStartY = CGFloat(self.fontSize) * 1.5
+        for secondaryLane in 0..<rawLaneNum {
+            self.yCoords.append( secondaryStartY + ( chatHeight * CGFloat(secondaryLane) ) )
+        }
     }
 
 
@@ -150,7 +161,6 @@ class CommentViewController: UIViewController {
         for index in self.commentIndex..<comments.count {
 
             let comment = comments[index]
-            let lane     = comment.index % laneNum
 
             // Future comment
             if time < comment.sec {
@@ -164,17 +174,18 @@ class CommentViewController: UIViewController {
                 continue
             }
 
-            // Valid comment
+            // Estimate X coordinates and duration
             let textWidth  = self.fontSize * comment.body.count
             let duration   = (comment.sec + self.dispSec) - time
             let elapseRate = (self.dispSec - duration) / self.dispSec
-            let origX  = self.view.bounds.width + (CGFloat(textWidth) / 2.0)
-            let endX   = (CGFloat(textWidth) / 2.0) * -1.0
-            let startX = origX + ((endX - origX) * CGFloat(elapseRate))
-            let startY  = self.firstLaneY + ( self.laneHeight * CGFloat(lane) )
+            let origX      = self.view.bounds.width + (CGFloat(textWidth) / 2.0)
+            let endX       = (CGFloat(textWidth) / 2.0) * -1.0
+            let startX     = origX + ((endX - origX) * CGFloat(elapseRate))
 
-//            print("timer:", time, "comment:", comment, "duration:", duration, "rate:", elapseRate)
-            
+            // Estimate Y coordinate
+            let lane       = comment.index % self.yCoords.count
+            let startY     = self.yCoords[lane]
+
             let label = instantiateLabel(
                 text: comment.body,
                 textWidth: textWidth,
