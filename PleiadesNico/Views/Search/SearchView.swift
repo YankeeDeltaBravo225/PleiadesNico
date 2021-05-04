@@ -17,44 +17,38 @@ struct SearchView: View {
 
     
     var body: some View {
-
-        NavigationView {
-            VStack{
-                searchFieldView()
-                
-                List{
-                    if viewModel.showNoHit {
-                        Text("該当なし")
+        VStack{
+            searchFieldView()
+            
+            List{
+                if viewModel.showNoHit {
+                    Text("該当なし")
+                }
+                ForEach(viewModel.items.indices, id: \.self) { index in
+                    let item  = viewModel.items[index]
+                    NavigationLink(
+                        destination: VideoDetailView(item.contentId)
+                    ){
+                        videoAbstractView(index)
                     }
-                    ForEach(viewModel.items.indices, id: \.self) { index in
-                        let item  = viewModel.items[index]
-                        NavigationLink(
-                            destination: VideoDetailView(item.contentId)
-                        ){
-                            videoAbstractView(index)
-                        }
-                    }
-                    if viewModel.showAdd {
-                        Button(action: { viewModel.contSearch() }){
-                            Text("タップしてさらに読み込み")
-                        }
+                }
+                if viewModel.showAdd {
+                    Button(action: { viewModel.contSearch() }){
+                        Text("タップしてさらに読み込み")
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(false)
-            .toolbar{
-                ToolbarItem(placement:.principal ){
-                    kindSelectView()
-                }
-                
-                
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(false)
+        .toolbar{
+            ToolbarItem(placement:.principal ){
+                kindSelectView()
             }
         }
         .onAppear(){
             viewModel.onAppearSearch()
         }
-
     }
 }
 

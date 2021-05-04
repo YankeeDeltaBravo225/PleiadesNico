@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.ranking)
 
-            SearchView()
+            SearchTopView()
                 .tabItem {
                     Label("検索", systemImage: "magnifyingglass")
                 }

@@ -55,6 +55,7 @@
 		F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */; };
 		F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FE3263FF24800836A71 /* ConfigStorage.swift */; };
 		F7D83C912640E29B00FC42D7 /* NicoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D83C902640E29B00FC42D7 /* NicoURL.swift */; };
+		F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		F7D72FE3263FF24800836A71 /* ConfigStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStorage.swift; sourceTree = "<group>"; };
 		F7D83C902640E29B00FC42D7 /* NicoURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoURL.swift; sourceTree = "<group>"; };
+		F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				F748C271263D67AF00DFD69F /* SearchView.swift */,
+				F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				F748C286263D67AF00DFD69F /* SearchView.swift in Sources */,
 				F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */,
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
+				F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */,
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F748C246263D678600DFD69F /* NicoRanking.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
