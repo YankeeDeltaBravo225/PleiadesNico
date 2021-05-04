@@ -9,22 +9,46 @@ import Foundation
 
 class NicoSetting {
     
-    static let shared = NicoSetting()
+    static  let shared       = NicoSetting()
+    private let userDefaults : UserDefaults
 
+
+    // Creating indivisual instance is prohibited
     private init(){
-        // Creating indivisual instance is prohibited
+        let userDefaults = UserDefaults.standard
+
+        userDefaults.register(
+            defaults: [
+                "isLoggedIn"   : false,
+                "stringCookie" : ""
+            ]
+        )
+
+        self.userDefaults = userDefaults
     }
 
-    
+
     func saveStringCookie(_ stringCookie : String){
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(stringCookie,forKey: "stringCookie")
-        userDefaults.synchronize()
+        self.userDefaults.set(stringCookie,forKey: "stringCookie")
+        self.userDefaults.synchronize()
     }
 
 
     func loadStringCookie() -> String? {
-        let userDefaults = UserDefaults.standard
-        return userDefaults.string(forKey: "stringCookie")
+        return self.userDefaults.string(forKey: "stringCookie")
     }
+
+
+    func saveLoginStatus(_ isLoggedIn : Bool) {
+        self.userDefaults.set(isLoggedIn,forKey: "isLoggedIn")
+        self.userDefaults.synchronize()
+    }
+
+    func loadLoginStatus() -> Bool {
+        return self.userDefaults.bool(forKey: "isLoggedIn")
+    }
+
+    
+    
+    
 }

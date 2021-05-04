@@ -9,6 +9,7 @@ import WebKit
 
 final class SettingViewModel: ObservableObject {
 
+    let loginPageUrl = NicoURL.loginPage
 
     init(){
         
@@ -16,15 +17,14 @@ final class SettingViewModel: ObservableObject {
 
     func onLogginDisappear(webView : WKWebView) {
         webView.configuration.websiteDataStore.httpCookieStore.getAllCookies() { (cookies) in
-            var stringCookie = ""
-            
-            for eachcookie in cookies {
-                if eachcookie.domain.contains(".nicovideo.jp"){
-                    stringCookie += "\(eachcookie.name)=\(eachcookie.value);"
-                }
-            }
-            
+            let stringCookie = cookies
+                                .filter{ $0.domain.contains(NicoURL.cookieDomain) }
+                                .reduce(""){ $0 + "\($1.name)=\($1.value);" }
             NicoSetting.shared.saveStringCookie(stringCookie)
+
+            let lastUrlText : String = webView.url?.absoluteString ?? ""
+            let isLoggedIn  : Bool   = lastUrlText.hasPrefix(NicoURL.accountPage)
+            NicoSetting.shared.saveLoginStatus(isLoggedIn)
         }
     }
 

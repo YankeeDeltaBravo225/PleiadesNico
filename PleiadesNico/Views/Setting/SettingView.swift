@@ -7,6 +7,8 @@
 import SwiftUI
 import WebKit
 
+
+// MARK:- View
 struct SettingView: View {
 
     @State private var showLogin = false
@@ -25,10 +27,11 @@ struct SettingView: View {
         }
         .sheet(
             isPresented: $showLogin,
-            onDismiss: {print("画面を閉じた")})
+            onDismiss: {}
+        )
         {
             WebView(
-                "https://account.nicovideo.jp",
+                viewModel.loginPageUrl,
                 onDisappear: {webView in
                     viewModel.onLogginDisappear(webView: webView)
                 }
@@ -37,6 +40,8 @@ struct SettingView: View {
     }
 }
 
+
+// MARK:- Preview
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()

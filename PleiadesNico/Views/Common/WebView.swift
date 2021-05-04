@@ -39,8 +39,13 @@ struct WebView: View {
         if self.urlValid {
             WebViewRepresentable(url: self.url!, webView: self.webView)
                 .onDisappear(){
-                    print("WebView Disappear")
+                    print("WebView Disappear, URL: \(String(describing: self.webView.url))")
                     self.onDisappear?(self.webView)
+
+                    self.webView.stopLoading()
+                    self.webView.configuration.userContentController.removeScriptMessageHandler(forName: "...")
+                    self.webView.navigationDelegate = nil
+                    self.webView.scrollView.delegate = nil
                 }
         } else {
             Text("Error! cannot open the page")

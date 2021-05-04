@@ -230,6 +230,11 @@ extension PlayerViewModel {
         self.progressTexts.append("Video page received")
         self.progressTexts.append("Parsing DMC API data")
 
+        print("videoPage:")
+        print("-------------------------")
+        print(videoPage)
+        print("-------------------------")
+        
         guard let dmcApiText = stream.extractDmcApiText( videoPage )
         else {
             onError("DMC Api string extracting failed")
