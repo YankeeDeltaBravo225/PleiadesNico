@@ -394,7 +394,13 @@ extension PlayerViewModel {
         
         self.progressTexts.append("Stream is ready")
         
-        screen.loadUrl(streamUrl: streamUrl)
+        screen.loadUrl(
+            streamUrl: streamUrl,
+            handler: {
+                self.screen.play()
+                self.onPlay()
+            }
+        )
         self.showPlayer   = true
         self.showControl  = true
         self.isReady      = true

@@ -11,11 +11,14 @@ import AVKit
 // MARK: - Video Screen
 
 class VideoScreen{
-    var player   : AVPlayer
-    var duration : Double
 
+    typealias OperationHander = () -> Void
+
+    var player          : AVPlayer
+    var duration        : Double
     var durationObserver: NSKeyValueObservation?
 
+    
     init() {
         player   = AVPlayer(playerItem: nil)
         duration = 0
@@ -56,7 +59,7 @@ class VideoScreen{
         player.pause()
     }
     
-    func loadUrl(streamUrl : URL){
+    func loadUrl(streamUrl : URL, handler : @escaping OperationHander){
         player.replaceCurrentItem(with: AVPlayerItem(url: streamUrl))
 
         // Update duration when the Item's duration is notified
@@ -68,6 +71,7 @@ class VideoScreen{
                     return
                 }
 
+                handler()
                 self.duration = item.duration.seconds
             }
         )
