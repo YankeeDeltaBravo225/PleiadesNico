@@ -52,7 +52,7 @@ final class PlayerViewModel: ObservableObject {
     init(screen : VideoScreen, contentId : String) {
         self.screen          = screen
         self.videoId         = contentId
-        self.commentFontSize = NicoSetting.shared.commentFontSize
+        self.commentFontSize = ConfigStorage.shared.commentFontSize
         
         self.stream  = NicoStream(contentId)
     }
@@ -186,7 +186,7 @@ final class PlayerViewModel: ObservableObject {
 
 
     func restartControlFade(){
-        controlFadeTime = Double(NicoSetting.shared.controlFadeTime)
+        controlFadeTime = Double(ConfigStorage.shared.controlFadeTime)
         doesControlFade = true
     }
     

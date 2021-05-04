@@ -7,7 +7,7 @@
 import Foundation
 
 
-class NicoSetting {
+class ConfigStorage {
     
     enum Key: String {
         case login           = "isLoggedIn"
@@ -16,7 +16,7 @@ class NicoSetting {
         case controlFadeTime = "controlFadeTime"
     }
     
-    static  let shared       = NicoSetting()
+    static  let shared       = ConfigStorage()
     private let userDefaults : UserDefaults
 
 

@@ -16,9 +16,9 @@ final class SettingViewModel: ObservableObject {
     
 
     init(){
-        self.isLoggedIn      = NicoSetting.shared.loginStatus
-        self.commentFontSize = NicoSetting.shared.commentFontSize
-        self.controlFadeTime = NicoSetting.shared.controlFadeTime
+        self.isLoggedIn      = ConfigStorage.shared.loginStatus
+        self.commentFontSize = ConfigStorage.shared.commentFontSize
+        self.controlFadeTime = ConfigStorage.shared.controlFadeTime
     }
 
 
@@ -27,30 +27,30 @@ final class SettingViewModel: ObservableObject {
             let stringCookie = cookies
                                 .filter{ $0.domain.contains(NicoURL.cookieDomain) }
                                 .reduce(""){ $0 + "\($1.name)=\($1.value);" }
-            NicoSetting.shared.stringCookie = stringCookie
+            ConfigStorage.shared.stringCookie = stringCookie
 
             let lastUrlText : String = webView.url?.absoluteString ?? ""
             self.isLoggedIn = lastUrlText.hasPrefix(NicoURL.accountPage)
-            NicoSetting.shared.loginStatus = self.isLoggedIn
+            ConfigStorage.shared.loginStatus = self.isLoggedIn
         }
     }
     
     
     func onCommentFontSizeChanged(_ isPressed : Bool){
-        if !isPressed {
+        if isPressed {
             return
         }
 
-        NicoSetting.shared.commentFontSize = self.commentFontSize
+        ConfigStorage.shared.commentFontSize = self.commentFontSize
     }
 
     
     func onControlFadeTimeChanged(_ isPressed : Bool){
-        if !isPressed {
+        if isPressed {
             return
         }
 
-        NicoSetting.shared.controlFadeTime = self.controlFadeTime
+        ConfigStorage.shared.controlFadeTime = self.controlFadeTime
     }
 
 }
