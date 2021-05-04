@@ -9,12 +9,33 @@ import Foundation
 
 class DateTimeFormat {
 
-    static func duration(_ sec : Int) -> String {
+    let iso8601Formatter : ISO8601DateFormatter
+    let dateFormatter    : DateFormatter
+
+    // Singleton instance
+    static let shared    = DateTimeFormat()
+
+
+    // Creating indivisual instance is prohibited
+    private init(){
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.locale     = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyy/MM/dd(EEE) HH:mm:ss"
+        dateFormatter.dateStyle  = .full
+        dateFormatter.timeStyle  = .short
+
+        self.dateFormatter    = dateFormatter
+        self.iso8601Formatter = ISO8601DateFormatter()
+    }
+
+
+    func duration(_ sec : Int) -> String {
         return duration( Double(sec) )
     }
 
 
-    static func duration(_ sec : Double) -> String {
+    func duration(_ sec : Double) -> String {
         if isInvalid(sec){
             return "--:--"
         }
@@ -27,7 +48,7 @@ class DateTimeFormat {
     }
 
 
-    static func time(_ elapsedSec : Double, _ durationSec : Double) -> String {
+    func time(_ elapsedSec : Double, _ durationSec : Double) -> String {
         if isInvalid(elapsedSec) || isInvalid(durationSec) {
             return "--:--"
         }
@@ -40,12 +61,12 @@ class DateTimeFormat {
     }
 
 
-    static func isInvalid(_ rawSec : Double) -> Bool {
+    func isInvalid(_ rawSec : Double) -> Bool {
         return (rawSec.isNaN || rawSec < 0)
     }
     
 
-    static func hmsFormat(_ sec : Double ) -> String {
+    func hmsFormat(_ sec : Double ) -> String {
         let intSec = Int(sec)
 
         let h = intSec / 3600
@@ -55,7 +76,7 @@ class DateTimeFormat {
     }
     
 
-    static func msFormat(_ sec : Double ) -> String {
+    func msFormat(_ sec : Double ) -> String {
         let intSec = Int(sec)
 
         let m = (intSec % 3600) / 60
@@ -63,4 +84,15 @@ class DateTimeFormat {
         return String(format: "%02d:%02d", m, s)
     }
 
+
+    func dateFromISO8601(_ iso8601date : String) -> String {
+        guard let date = self.iso8601Formatter.date( from: iso8601date )
+        else {
+            return "Invalid date"
+        }
+        
+        return self.dateFormatter.string(from: date)
+    }
+    
+    
 }

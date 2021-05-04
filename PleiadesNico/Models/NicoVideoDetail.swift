@@ -77,12 +77,15 @@ class NicoVideoDetail{
         let tags          : [String]
 
         init(attr : [String : String], tagList : [String]){
+            
+            let uploadDate = DateTimeFormat.shared.dateFromISO8601(attr["uploaded"] ?? "")
+            
             title         = attr["title",         default: "no title"]
             videoId       = attr["videoId",       default: ""]
             fileType      = attr["fileType",      default: ""]
             description   = attr["description",   default: "no description"]
             thumbnail     = attr["thumbnail",     default: ""].trimmingCharacters(in: .newlines)
-            uploaded      = attr["uploaded",      default: "1970/1/1"] // [todo] use ISO8601DateFormatter ?
+            uploaded      = uploadDate
             duration      = attr["duration",      default: "0:0"]
             views         = attr["views",         default: "-1"]
             comments      = attr["comments",      default: "-1"]

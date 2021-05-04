@@ -76,7 +76,7 @@ extension SearchView {
                     title    : item.title,
                     thumbnail: item.thumbnailUrl,
                     uploaded : item.startTime,
-                    duration : DateTimeFormat.duration(item.lengthSeconds),
+                    duration : DateTimeFormat.shared.duration(item.lengthSeconds),
                     views    : String(item.viewCounter),
                     comments : String(item.commentCounter)
                 )
