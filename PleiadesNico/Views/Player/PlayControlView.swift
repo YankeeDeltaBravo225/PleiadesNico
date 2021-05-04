@@ -14,16 +14,10 @@ struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
     @Environment(\.presentationMode) var presentation
     
+
     var body: some View {
         VStack {
-            ZStack{
-                Color.black
-                    .frame(maxHeight: 60)
-                    .opacity(0.5)
-                    .allowsHitTesting(true)
-                closeButton()
-            }
-            .cornerRadius(10)
+            upperControlView()
             Spacer()
             Color.clear
             VStack{
@@ -38,7 +32,8 @@ struct PlayControlView: View {
                 timeSliderView()
             }
             .background(
-                backgroundImageView()
+                Color.gray
+                    .opacity(0.2)
             )
             .cornerRadius(10)
         }
@@ -87,11 +82,32 @@ extension PlayControlView {
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.white)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 40, height: 40)
                 }
             )
             Spacer()
         }
+    }
+
+
+    fileprivate func upperControlView() -> some View {
+        return ZStack{
+            Color.gray
+                .frame(maxHeight: 60)
+                .opacity(0.2)
+                .allowsHitTesting(true)
+            HStack{
+                Spacer()
+                    .frame(width : 10)
+                closeButton()
+                Spacer()
+                Image(systemName:"clock")
+                    .foregroundColor(.white)
+                Text(viewModel.currentTimeText)
+                    .foregroundColor(.white)
+            }
+        }
+        .cornerRadius(10)
     }
 
 
@@ -107,12 +123,6 @@ extension PlayControlView {
             .foregroundColor(.white)
             .font(.system(size: 18, design: .monospaced))
     }
-
-
-    fileprivate func backgroundImageView() -> some View {
-        return Color.black
-            .opacity(0.5)
-    }
     
 
     fileprivate func playPauseButtonView() -> some View {
@@ -123,7 +133,7 @@ extension PlayControlView {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.white)
-                .frame(width: 30, height: 30)
+                .frame(width: 40, height: 40)
         }
     }
 

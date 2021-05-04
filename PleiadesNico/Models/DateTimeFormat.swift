@@ -11,21 +11,26 @@ class DateTimeFormat {
 
     let iso8601Formatter : ISO8601DateFormatter
     let dateFormatter    : DateFormatter
-
+    let timeFormatter    : DateFormatter
+    
     // Singleton instance
     static let shared    = DateTimeFormat()
 
-
+    
     // Creating indivisual instance is prohibited
     private init(){
         let dateFormatter = DateFormatter()
-
         dateFormatter.locale     = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = "yyyy/MM/dd(EEE) HH:mm:ss"
         dateFormatter.dateStyle  = .full
         dateFormatter.timeStyle  = .short
-
         self.dateFormatter    = dateFormatter
+
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle  = .none
+        timeFormatter.timeStyle  = .long
+        self.timeFormatter = timeFormatter
+
         self.iso8601Formatter = ISO8601DateFormatter()
     }
 
@@ -93,6 +98,10 @@ class DateTimeFormat {
         
         return self.dateFormatter.string(from: date)
     }
+
     
-    
+    func currentTime() -> String {
+        return self.timeFormatter.string(from: Date())
+    }
+
 }

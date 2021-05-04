@@ -19,6 +19,7 @@ final class PlayerViewModel: ObservableObject {
 
     @Published var elapsedTimeText : String = "--:--"
     @Published var remainTimeText  : String = "--:--"
+    @Published var currentTimeText : String = ""
     @Published var progressTexts   : [String] = []
     @Published var timeSliderPos   : Double = 0.0
     @Published var commentFontSize : Int
@@ -216,7 +217,8 @@ final class PlayerViewModel: ObservableObject {
             onPause()
         }
 
-        self.elapsedTime = elapsedTime
+        self.elapsedTime     = elapsedTime
+        self.currentTimeText = DateTimeFormat.shared.currentTime()
     }
     
 }
