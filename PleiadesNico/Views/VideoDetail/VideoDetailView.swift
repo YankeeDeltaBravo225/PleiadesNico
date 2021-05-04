@@ -192,7 +192,7 @@ extension VideoDetailView {
             label: {
                 HStack(){
                     Image(systemName:"play.circle")
-                    Text("Play")
+                    Text("内蔵プレイヤーで再生")
                     Spacer()
                 }
             }
