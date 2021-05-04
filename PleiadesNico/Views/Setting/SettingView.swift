@@ -20,7 +20,7 @@ struct SettingView: View {
         viewModel = SettingViewModel()
     }
 
-
+    
     var body: some View {
         
         List {
@@ -29,23 +29,11 @@ struct SettingView: View {
                 loginStatusView()
             }
             
-            Section(header: Text("コメント")){
-                Text("フォントサイズ")
-                HStack{
-                    Stepper(
-                        value : $viewModel.commentFontSize,
-                        in : 10...50,
-                        step : 1,
-                        onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
-                    )
-                    {
-                        Text("サイズ")
-                        Divider()
-                        Text("\(viewModel.commentFontSize)")
-                    }
-                    Spacer()
-                }
-                
+            Section(header: Text("プレイヤー")){
+                Text("コメントのフォント")
+                commentFontSizeStepper()
+                Text("再生コントロールが閉じるまで")
+                controlFadeTimeStepper()
             }
         }
 
@@ -84,6 +72,41 @@ extension SettingView {
                 Image(systemName: "checkmark.circle")
             } else {
                 Image(systemName: "x.circle.fill")
+            }
+            Spacer()
+        }
+    }
+
+    
+    fileprivate func commentFontSizeStepper() -> some View {
+        return HStack{
+            Stepper(
+                value : $viewModel.commentFontSize,
+                in : 10...50,
+                step : 1,
+                onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
+            )
+            {
+                Text("サイズ")
+                Divider()
+                Text("\(viewModel.commentFontSize)")
+            }
+            Spacer()
+        }
+    }
+
+    fileprivate func controlFadeTimeStepper() -> some View {
+        return HStack{
+            Stepper(
+                value : $viewModel.controlFadeTime,
+                in : 1...99,
+                step : 1,
+                onEditingChanged: {viewModel.onControlFadeTimeChanged($0)}
+            )
+            {
+                Text("秒数")
+                Divider()
+                Text("\(viewModel.controlFadeTime)")
             }
             Spacer()
         }

@@ -26,7 +26,7 @@ struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
         let screen    = VideoScreen()
         let viewModel = PlayerViewModel(
-            avScreen  : screen,
+            screen  : screen,
             contentId : "sm1192"
         )
 

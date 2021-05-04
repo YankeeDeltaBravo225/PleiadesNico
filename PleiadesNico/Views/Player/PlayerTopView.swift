@@ -21,7 +21,7 @@ struct PlayerTopView: View {
     init(_ contentId : String){
         screen = VideoScreen()
         viewModel = PlayerViewModel(
-            avScreen: screen,
+            screen: screen,
             contentId: contentId
         )
     }
@@ -58,7 +58,6 @@ struct PlayerTopView: View {
                 AppDelegate.unlockOrientation()
             }
         }
-//        .navigationBarHidden( true )
         
     } // View
 
@@ -123,7 +122,6 @@ struct AvPlayerViewControllerWrap : UIViewControllerRepresentable {
     }
     
     func dismantleUIViewController(_ uiViewController: Self.UIViewControllerType, coordinator: Self.Coordinator){
-        print("Dismantle")
     }
     
 }

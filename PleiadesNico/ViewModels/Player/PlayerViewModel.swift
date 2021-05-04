@@ -27,7 +27,9 @@ final class PlayerViewModel: ObservableObject {
     private    var prevElapsedTime : Int  = -1
     private    var isSeeking       : Bool = false
     private    var isReady         : Bool = false
-
+    private    var controlFadeTime : Double = -1.0
+    private    var doesControlFade : Bool   = false
+    
     private    let videoId         : String
     private    let screen          : VideoScreen
     private    var timer           : Cancellable?
@@ -47,17 +49,19 @@ final class PlayerViewModel: ObservableObject {
     }
     
 
-    init(avScreen : VideoScreen, contentId : String) {
-        self.screen          = avScreen
+    init(screen : VideoScreen, contentId : String) {
+        self.screen          = screen
         self.videoId         = contentId
         self.commentFontSize = NicoSetting.shared.commentFontSize
         
         self.stream  = NicoStream(contentId)
     }
+
     
     func onScreenTapp(){
         showControl.toggle()
     }
+
 
     func onAppear(){
         self.timer = Timer.publish(every: 0.1, on: .main, in: .default)
@@ -69,8 +73,9 @@ final class PlayerViewModel: ObservableObject {
             )
     }
 
+
     func onDisappear(){
-        DebugLog.shared.error("disappear:\(videoId)")
+        DebugLog.shared.debug("disappear:\(videoId)")
         timer?.cancel()
     }
 
@@ -89,13 +94,15 @@ final class PlayerViewModel: ObservableObject {
         }
         
         isPlaying   = true
-        showControl = false
+        restartControlFade()
     }
+
 
     func onPause(){
         isPlaying   = false
         showControl = true
     }
+ 
     
     func togglePlay(){
         if isPlaying {
@@ -106,7 +113,8 @@ final class PlayerViewModel: ObservableObject {
             onPlay()
         }
     }
-    
+
+
     func onError(){
         if errorCount == 0 {
             showAlert = true
@@ -115,29 +123,74 @@ final class PlayerViewModel: ObservableObject {
         errorCount += 1
     }
 
+
     func onSwipeLeft(){
         screen.seek(deltaSec : -5)
+        
+        showControl = true
+        restartControlFade()
     }
+
 
     func onSwipeRight(){
         screen.seek(deltaSec : +5)
+
+        showControl = true
+        restartControlFade()
     }
+
+
+    func onSwipeUp(){
+        
+    }
+
     
+    func onSwipeDown(){
+        
+    }
+
+
     func onTimerTick(){
         if screen.failed() {
             onError()
         }
         
+        if isPlaying && showControl {
+            countDownControlFade()
+        }
+
         if !isSeeking {
             updateTime()
         }
     }
+
 
     func onTimeSliderChange(start : Bool){
         screen.seek(rate : timeSliderPos)
         isSeeking = start
     }
 
+    
+    func countDownControlFade(){
+        if !doesControlFade {
+            return
+        }
+        
+        controlFadeTime -= 0.1
+
+        if controlFadeTime < 0.0 {
+            showControl     = false
+            doesControlFade = false
+        }
+    }
+
+
+    func restartControlFade(){
+        controlFadeTime = Double(NicoSetting.shared.controlFadeTime)
+        doesControlFade = true
+    }
+    
+    
     func updateTime(){
         let duration = screen.duration
         if duration == 0.0 {
@@ -231,11 +284,6 @@ extension PlayerViewModel {
     func onReceiveVideoPage(videoPage : String){
         self.progressTexts.append("Video page received")
         self.progressTexts.append("Parsing DMC API data")
-
-        print("videoPage:")
-        print("-------------------------")
-        print(videoPage)
-        print("-------------------------")
         
         guard let dmcApiText = stream.extractDmcApiText( videoPage )
         else {

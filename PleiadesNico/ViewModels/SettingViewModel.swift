@@ -12,11 +12,13 @@ final class SettingViewModel: ObservableObject {
     let loginPageUrl = NicoURL.loginPage
     @Published var isLoggedIn      : Bool
     @Published var commentFontSize : Int
-
+    @Published var controlFadeTime : Int
+    
 
     init(){
         self.isLoggedIn      = NicoSetting.shared.loginStatus
         self.commentFontSize = NicoSetting.shared.commentFontSize
+        self.controlFadeTime = NicoSetting.shared.controlFadeTime
     }
 
 
@@ -42,7 +44,13 @@ final class SettingViewModel: ObservableObject {
         NicoSetting.shared.commentFontSize = self.commentFontSize
     }
 
+    
+    func onControlFadeTimeChanged(_ isPressed : Bool){
+        if !isPressed {
+            return
+        }
+
+        NicoSetting.shared.controlFadeTime = self.controlFadeTime
+    }
+
 }
-
-
-

@@ -10,9 +10,10 @@ import Foundation
 class NicoSetting {
     
     enum Key: String {
-        case login       = "isLoggedIn"
-        case cookie      = "stringCookie"
-        case commentSize = "commentFontSize"
+        case login           = "isLoggedIn"
+        case cookie          = "stringCookie"
+        case commentSize     = "commentFontSize"
+        case controlFadeTime = "controlFadeTime"
     }
     
     static  let shared       = NicoSetting()
@@ -25,9 +26,10 @@ class NicoSetting {
 
         userDefaults.register(
             defaults: [
-                Key.login.rawValue    : false,
-                Key.cookie.rawValue   : "",
-                Key.commentSize.rawValue : 20,
+                Key.login.rawValue           : false,
+                Key.cookie.rawValue          : "",
+                Key.commentSize.rawValue     : 20,
+                Key.controlFadeTime.rawValue : 6,
             ]
         )
 
@@ -61,6 +63,16 @@ class NicoSetting {
         }
         get{
             self.userDefaults.integer(forKey: Key.commentSize.rawValue)
+        }
+    }
+
+    var controlFadeTime : Int {
+        set(sec){
+            self.userDefaults.set(sec,forKey: Key.controlFadeTime.rawValue)
+            self.userDefaults.synchronize()
+        }
+        get{
+            self.userDefaults.integer(forKey: Key.controlFadeTime.rawValue)
         }
     }
     
