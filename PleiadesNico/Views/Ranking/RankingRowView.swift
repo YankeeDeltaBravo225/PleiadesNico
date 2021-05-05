@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RankingRowView: View {
-    let item      : NicoRanking.Item
+    let item      : RankingAPI.Item
     let color     : ColorPalette.RGBColor
     
-    init( rankItem : NicoRanking.Item){
+    init( rankItem : RankingAPI.Item){
         item      = rankItem
         color     = ColorPalette.pastel( item.pos )
     }

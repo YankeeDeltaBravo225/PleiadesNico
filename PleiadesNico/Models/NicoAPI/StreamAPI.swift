@@ -13,7 +13,7 @@ import Kanna
 //
 
 
-class NicoStream {
+class StreamAPI {
     
     private let contentId   : String
     private var dmcApiInfo  : DmcSessionInfo.ApiData?
@@ -35,31 +35,26 @@ class NicoStream {
     }
 
 
-    static func staticVideoPageUrl(_ videoId : String) -> String {
-        return "https://www.nicovideo.jp/watch/" + videoId
-    }
-
-
     func videoPageUrl() -> String{
-        return NicoStream.staticVideoPageUrl( self.contentId )
+        return NicoURL.videoPage( self.contentId )
     }
 
 
     func heartBeatUrl() -> String{
         let sessionId = self.dmcResponse?.data.session.id ?? ""
-        return "https://api.dmc.nico/api/sessions/\(sessionId)?_format=json&_method=PUT"
+        return NicoURL.heartBeat(sessionId)
     }
 
-
+    
     func dmcRequestUrl() -> String {
-        return "https://api.dmc.nico/api/sessions?_format=json"
+        return NicoURL.dmcRequest()
     }
     
 
     func commentRequestUrl() -> String {
-        return "https://nmsg.nicovideo.jp/api.json"
+        return NicoURL.commentRequest()
     }
-
+    
     
     func contentUri() -> String {
         return dmcResponse?.data.session.contentURI ?? ""

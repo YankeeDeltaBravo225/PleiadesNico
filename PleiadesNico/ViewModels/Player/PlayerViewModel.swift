@@ -37,7 +37,7 @@ final class PlayerViewModel: ObservableObject {
     private    let session         = NicoSession()
 
     private var connectState       : ConnectState = .getVideoPage
-    private var stream             : NicoStream
+    private var stream             : StreamAPI
     private var heartBeatCount     : Int    = 0
 
     public  var elapsedTime        : Double    = 0.0
@@ -55,7 +55,7 @@ final class PlayerViewModel: ObservableObject {
         self.videoId         = contentId
         self.commentFontSize = ConfigStorage.shared.commentFontSize
         
-        self.stream  = NicoStream(contentId)
+        self.stream  = StreamAPI(contentId)
     }
 
     

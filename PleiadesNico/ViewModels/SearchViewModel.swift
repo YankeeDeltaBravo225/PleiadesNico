@@ -12,15 +12,16 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
-    @Published var items       : [NicoSearch.Result.Item]
+    @Published var items       : [SearchAPI.Result.Item]
     @Published var searchWord  : String
-    @Published var kind        : NicoSearch.Kind
+    @Published var kind        : SearchAPI.Kind
     @Published var showAdd     : Bool
     @Published var showNoHit   : Bool
     
     private var isSearching   : Bool
     private var searchOffset  : Int
     private var appearCount   : Int
+    private var searchApi     : SearchAPI
     private let session       : NicoSession
 
     init(_ keyword : String = ""){
@@ -32,6 +33,7 @@ final class SearchViewModel: ObservableObject {
         self.searchWord   = keyword
         self.items        = []
         self.kind         = .tag
+        self.searchApi    = SearchAPI()
         self.session      = NicoSession()
     }
 
@@ -43,7 +45,7 @@ final class SearchViewModel: ObservableObject {
 
         self.showNoHit = false
         self.items     = []
-        search()
+        startSearch()
     }
 
 
@@ -52,40 +54,37 @@ final class SearchViewModel: ObservableObject {
             return
         }
 
-        search()
+        startSearch()
     }
     
     
-    func search(){
+    func startSearch(){
         self.isSearching = true
         self.showAdd = false
         
         session.get(
-            urlText    : NicoSearch.url(word: searchWord, kind: kind, offset: searchOffset),
+            urlText    : searchApi.url(word: searchWord, kind: kind, offset: searchOffset),
             onReceived : {text in
-                let data     = text.data(using: .utf8)
-                let decorder = JSONDecoder()
-                guard let decodeResp = try? decorder.decode(NicoSearch.Result.self, from: data!) else {
-                    DebugLog.shared.error("Json decode エラー")
-                    return
-                }
-                
-                let newItems = decodeResp.data
-                
-                
-                self.items += newItems
-                self.isSearching = false
-                self.searchOffset += newItems.count
-                if (newItems.count > 0) && (newItems.count == NicoSearch.unitNum)  {
-                    self.showAdd = true
-                }
-                if self.items.count == 0 {
-                    self.showNoHit = true
-                }
+                self.onReceivedSearchResult(text)
             }
         )
     }
-    
+
+
+    func onReceivedSearchResult(_ resultText : String ){
+        let newItems = searchApi.decode(resultText)
+
+        self.items += newItems
+        self.isSearching = false
+        self.searchOffset += newItems.count
+        if (newItems.count > 0) && (newItems.count == SearchAPI.unitNum)  {
+            self.showAdd = true
+        }
+        if self.items.count == 0 {
+            self.showNoHit = true
+        }
+    }
+
 
     func onAppearSearch(){
         if self.appearCount == 0 && self.searchWord != "" {

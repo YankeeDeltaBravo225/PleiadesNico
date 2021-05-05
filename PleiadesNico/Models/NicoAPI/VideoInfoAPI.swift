@@ -7,7 +7,7 @@
 import Foundation
 import Kanna
 
-class NicoVideoDetail{
+class VideoInfoAPI{
 
     static let defaultProp = Prop(attr: ["":""], tagList: [])
 
@@ -27,7 +27,7 @@ class NicoVideoDetail{
     func parseXML(_ xmlText : String) -> Prop {
         guard let xml = try? Kanna.XML(xml: xmlText, encoding: .utf8)
         else {
-            return NicoVideoDetail.defaultProp
+            return VideoInfoAPI.defaultProp
         }
 
         let xpathes : [String : String] = [
@@ -110,5 +110,3 @@ class NicoVideoDetail{
     }
 
 }
-
-

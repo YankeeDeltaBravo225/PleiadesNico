@@ -7,7 +7,7 @@
 import Foundation
 
 
-let mockRank = NicoRanking.Item(
+let mockRank = RankingAPI.Item(
     pos       : 35,
     comments  : "7,846",
     mylists   : "229",

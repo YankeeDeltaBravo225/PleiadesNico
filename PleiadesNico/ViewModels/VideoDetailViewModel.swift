@@ -11,10 +11,10 @@ import UIKit
 final class VideoDetailViewModel: ObservableObject {
 
     private    let session     : NicoSession
-    private    let detailModel : NicoVideoDetail
+    private    let detailModel : VideoInfoAPI
     private    let videoId     : String
 
-    @Published var prop     : NicoVideoDetail.Prop
+    @Published var prop     : VideoInfoAPI.Prop
     @Published var hasProp  : Bool
     @Published var showPlay : Bool
 
@@ -22,11 +22,11 @@ final class VideoDetailViewModel: ObservableObject {
     
     init(videoId : String){
         self.session     = NicoSession()
-        self.detailModel = NicoVideoDetail( videoId:videoId )
+        self.detailModel = VideoInfoAPI( videoId:videoId )
         self.videoId     = videoId
         self.hasProp     = false
         self.showPlay    = false
-        self.prop        = NicoVideoDetail.defaultProp
+        self.prop        = VideoInfoAPI.defaultProp
     }
 
 
@@ -48,7 +48,7 @@ final class VideoDetailViewModel: ObservableObject {
 
 
     func onOpenWithBrowser() {
-        guard let url = URL(string: NicoStream.staticVideoPageUrl(videoId)) else {return}
+        guard let url = URL(string: NicoURL.videoPage(videoId)) else {return}
         UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
             print(completed)
         })

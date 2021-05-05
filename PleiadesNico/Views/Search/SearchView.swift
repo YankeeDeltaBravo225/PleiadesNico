@@ -56,7 +56,7 @@ extension SearchView {
 
     fileprivate func kindSelectView() -> some View {
         return Picker("SearchKind", selection: $viewModel.kind) {
-            ForEach(NicoSearch.Kind.allCases, id: \.self) { (kind) in
+            ForEach(SearchAPI.Kind.allCases, id: \.self) { (kind) in
                 Text(kind.rawValue)
             }
         }

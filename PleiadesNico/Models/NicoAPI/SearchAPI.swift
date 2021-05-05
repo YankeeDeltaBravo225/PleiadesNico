@@ -6,20 +6,11 @@
 
 import Foundation
 
-// API spec:
-//https://site.nicovideo.jp/search-api-docs/snapshot
-//
-// Example:
-// https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search?q=BF5&targets=title,description,tags&fields=contentId,title,viewCounter,mylistCounter,lengthSeconds,commentCounter,startTime,lastCommentTime,thumbnailUrl&_sort=-viewCounter&_context=SwiftSampleApp&_offset=100
+class SearchAPI {
 
-
-class NicoSearch {
-    
-    static let baseUrl = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search?"
     static let unitNum = 10
-    
 
-    static func url(word : String, kind : Kind, offset : Int = 0 ) -> String{
+    func url(word : String, kind : Kind, offset : Int = 0 ) -> String{
         let targets = (kind == .tag) ? "tags" : "title,description,tags"
         let fields  = "contentId,title,viewCounter,mylistCounter,lengthSeconds,commentCounter,startTime,lastCommentTime,thumbnailUrl"
         
@@ -34,7 +25,19 @@ class NicoSearch {
 
         let reduced = queries.reduce("") {$0 + $1.key + "=" + $1.value + "&"}
 
-        return baseUrl + reduced
+        return NicoURL.searchBase + reduced
+    }
+
+
+    func decode(_ text : String) -> [SearchAPI.Result.Item]{
+        let data     = text.data(using: .utf8)
+        let decorder = JSONDecoder()
+        guard let decodeResp = try? decorder.decode(SearchAPI.Result.self, from: data!) else {
+            DebugLog.shared.error("Json decode エラー")
+            return []
+        }
+        
+        return decodeResp.data
     }
 
 
@@ -69,6 +72,4 @@ class NicoSearch {
         case tag
         case keyword
     }
-    
-    
 }

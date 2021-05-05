@@ -10,18 +10,20 @@ import Combine
 
 final class RankingViewModel: ObservableObject {
 
-    typealias Rank = NicoRanking.Item
+    typealias Rank = RankingAPI.Item
     
     @Published var showSelector: Bool       = false
     @Published var genreId     : Int        = 0
     @Published var ranks       : [Rank]     = []
     @Published var genreText   : String     = ""
 
+    private let rankingApi  : RankingAPI
     private let session     : NicoSession
     private var appearCount : Int
 
 
     init(){
+        self.rankingApi  = RankingAPI()
         self.session     = NicoSession()
         self.appearCount = 0
     }
@@ -37,19 +39,19 @@ final class RankingViewModel: ObservableObject {
 
     func loadRanking(){
         self.ranks       = []
-        self.genreText = NicoRanking.genreDescription(genreId: genreId)
+        self.genreText = rankingApi.genreDescription(genreId: genreId)
         
         self.session.get(
-            urlText    : NicoRanking.url(genreId: genreId),
+            urlText    : rankingApi.url(genreId: genreId),
             onReceived : {text in
-                self.ranks = NicoRanking.loadXML(text)
+                self.ranks = self.rankingApi.decodeXml(text)
             }
         )
     }
     
     
-    func genres() -> [NicoRanking.Genre] {
-        return NicoRanking.genres
+    func genres() -> [NicoURL.Genre] {
+        return NicoURL.genres
     }
 
 
@@ -59,17 +61,15 @@ final class RankingViewModel: ObservableObject {
             return
         }
 
-        let isChanged = (genreId != newGenreId)
-        genreId = newGenreId
-        
-        if isChanged{
+        if self.genreId != newGenreId{
+            self.genreId  = newGenreId
             loadRanking()
         }
     }
 
 
     func onSelectorEnabled(){
-        showSelector = true
+        self.showSelector = true
     }
 
 }

@@ -7,60 +7,9 @@
 import Foundation
 import Kanna
 
-// API detail:
-// https://dwango.github.io/niconico/genre_ranking/ranking_rss/
-//
 
+class RankingAPI{
 
-class NicoRanking{
-
-    static let genres : [Genre] = [
-        Genre( 0, "all",                   "全ジャンル"),
-        Genre( 1, "hot-topic",             "話題"),
-        Genre( 2, "entertainment",         "エンターテイメント"),
-        Genre( 3, "radio",                 "ラジオ"),
-        Genre( 4, "music_sound",           "音楽・サウンド"),
-        Genre( 5, "dance",                 "ダンス"),
-        Genre( 6, "animal",                "動物"),
-        Genre( 7, "nature",                "自然"),
-        Genre( 8, "cooking",               "料理"),
-        Genre( 9, "traveling_outdoor",     "旅行・アウトドア"),
-        Genre(10, "vehicle",               "乗り物"),
-        Genre(11, "sports",                "スポーツ"),
-        Genre(12, "society_politics_news", "社会・政治・時事"),
-        Genre(13, "technology_craft",      "技術・工作"),
-        Genre(14, "commentary_lecture",    "解説・講座"),
-        Genre(15, "anime",                 "アニメ"),
-        Genre(16, "game",                  "ゲーム"),
-        Genre(17, "other",                 "その他")
-    ]
-
-
-    struct Genre{
-        let id          : Int
-        let name        : String
-        let description : String
-        
-        init(_ genreId: Int, _ genreName: String, _ genreDescription: String){
-            id          = genreId
-            name        = genreName
-            description = genreDescription
-        }
-    }
-
-
-    static func genreDescription(genreId : Int) -> String{
-        let genre = genres[genreId]
-        return genre.description
-    }
-
-
-    static func url(genreId : Int) -> String{
-        let genre   = genres[genreId]
-        return "https://www.nicovideo.jp/ranking/genre/\(genre.name)?video_ranking_menu&rss=2.0&lang=ja-jp"
-    }
-
-    
     struct Item: Hashable, Codable{
         let pos       : Int
         let comments  : String
@@ -73,8 +22,19 @@ class NicoRanking{
         let duration  : String
     }
 
+    
+    func url(genreId : Int) -> String {
+        NicoURL.ranking(genreId : genreId)
+    }
 
-    static func loadXML(_ sourceText : String) -> [Item] {
+
+    func genreDescription(genreId : Int) -> String{
+        let genre = NicoURL.genres[genreId]
+        return genre.description
+    }
+    
+
+    func decodeXml(_ sourceText : String) -> [Item] {
         guard let xml = try? Kanna.XML(xml: sourceText, encoding: .utf8)
         else {
             return []
@@ -86,7 +46,7 @@ class NicoRanking{
         for (i,item) in xml.xpath(itemXpath).enumerated() {
             let htmlText = item.text ?? ""
             
-            var attr = loadItem(htmlText: htmlText)
+            var attr = extractItem(htmlText: htmlText)
 
             let xpath_link = #"//link"#
             attr["link"] = item.xpath(xpath_link).first?.text
@@ -114,7 +74,7 @@ class NicoRanking{
     }
 
 
-    static func loadItem(htmlText : String) -> [String : String] {
+    private func extractItem(htmlText : String) -> [String : String] {
         guard let doc = try? Kanna.HTML(html: htmlText, encoding: .utf8)
         else{
             return ["none":"none"]
@@ -134,7 +94,7 @@ class NicoRanking{
     }
 
 
-    static func extractUsingRegex(text: String, pattern: String) -> String {
+    private func extractUsingRegex(text: String, pattern: String) -> String {
         guard let regex = try? NSRegularExpression(pattern: pattern),
               let matches = regex.firstMatch(in: text, range: NSRange(location: 0, length: text.count))
         else {
