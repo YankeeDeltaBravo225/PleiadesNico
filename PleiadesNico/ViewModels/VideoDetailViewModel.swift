@@ -35,7 +35,7 @@ final class VideoDetailViewModel: ObservableObject {
             urlText    : detailModel.url(),
             onReceived : {text in
                 self.hasProp = true
-                self.prop    = self.detailModel.parseXML(text)
+                self.prop    = self.detailModel.decodeXml(text)
                 
                 // FLV videos are not supported,
                 // Channel video will be supported in the future

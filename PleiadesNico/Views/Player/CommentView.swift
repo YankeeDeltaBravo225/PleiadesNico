@@ -154,7 +154,7 @@ class CommentViewController: UIViewController {
             self.commentIndex = 0
         }
 
-        let comments         = viewModel.comments
+        let comments         = viewModel.comments()
         let time             = viewModel.elapsedTime
         self.lastElapsedTime = time
 

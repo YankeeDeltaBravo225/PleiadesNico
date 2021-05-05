@@ -43,27 +43,27 @@ class VideoScreen{
     }
     
     func remainTime() -> Float64 {
-        return duration - elapsedTime()
+        return self.duration - elapsedTime()
     }
 
     func failed() -> Bool {
-        guard let item = player.currentItem else { return false}
+        guard let item = self.player.currentItem else { return false}
         return item.status == .failed
     }
     
     func play(){
-        player.play()
+        self.player.play()
     }
     
     func pause(){
-        player.pause()
+        self.player.pause()
     }
     
     func loadUrl(streamUrl : URL, handler : @escaping OperationHander){
-        player.replaceCurrentItem(with: AVPlayerItem(url: streamUrl))
+        self.player.replaceCurrentItem(with: AVPlayerItem(url: streamUrl))
 
         // Update duration when the Item's duration is notified
-        durationObserver = player.currentItem?.observe(
+        durationObserver = self.player.currentItem?.observe(
             \.duration,
             changeHandler:{ [weak self] item, change in
                 guard let self = self
@@ -78,10 +78,10 @@ class VideoScreen{
     }
     
     func disappear(){
-        player.pause()
+        self.player.pause()
         durationObserver?.invalidate()
         durationObserver = nil
         
-        player.replaceCurrentItem(with: nil)
+        self.player.replaceCurrentItem(with: nil)
     }
 }

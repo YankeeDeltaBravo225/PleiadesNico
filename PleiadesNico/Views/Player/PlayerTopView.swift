@@ -42,7 +42,10 @@ struct PlayerTopView: View {
         .alert(
             isPresented: $viewModel.showAlert,
             content: {
-                Alert(title: Text("Failed to play the video"))
+                Alert(
+                    title  : Text(viewModel.alertTitle),
+                    message: Text(viewModel.alertMessage)
+                )
             }
         )
         .onAppear(){
@@ -68,14 +71,11 @@ struct PlayerTopView: View {
 extension PlayerTopView {
 
     fileprivate func progressTextsView() -> some View {
-        return ScrollView(){
-            ForEach(viewModel.progressTexts, id: \.self) { progressText in
-                HStack{
-                    Text(progressText)
-                        .foregroundColor(.white)
-                    Spacer()
-                }
-            }
+        return VStack{
+            Spacer()
+            Text(viewModel.progressText)
+                .foregroundColor(.white)
+            Spacer()
         }
     }
     
