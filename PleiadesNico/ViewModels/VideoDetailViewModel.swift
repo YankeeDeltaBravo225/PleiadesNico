@@ -39,9 +39,9 @@ final class VideoDetailViewModel: ObservableObject {
                 
                 // FLV videos are not supported,
                 // Channel video will be supported in the future
-                if self.prop.videoId.hasPrefix("sm") && self.prop.fileType == "mp4" {
+//                if self.prop.videoId.hasPrefix("sm") && self.prop.fileType == "mp4" {
                     self.showPlay = true
-                }
+//                }
             },
             onError: { error in
                 print(error)

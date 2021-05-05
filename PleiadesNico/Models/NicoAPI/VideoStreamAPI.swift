@@ -85,33 +85,13 @@ class VideoStreamAPI {
     func storeDmcSessionInfo(_ dmcInfoText : String) -> State{
         
         let data     = dmcInfoText.data(using: .utf8)
-        let decorder = JSONDecoder()
-        let dmcInfo  : DmcSessionInfo.ApiData
 
-        do {
-            dmcInfo = try decorder.decode(DmcSessionInfo.ApiData.self, from: data!)
-        } catch let DecodingError.dataCorrupted(context) {
-            registerError("\(context)")
-            return .error
-        } catch let DecodingError.keyNotFound(key, context) {
-            registerError("Key '\(key)' not found: \(context.debugDescription))")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.valueNotFound(value, context) {
-            registerError("Value '\(value)' not found: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.typeMismatch(type, context)  {
-            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch {
-            registerError("error: \(error)")
+        guard let dmcInfo  : DmcSessionInfo.ApiData = decodeJson(DmcSessionInfo.ApiData.self, from: data!)
+        else {
             return .error
         }
 
         self.dmcApiInfo = dmcInfo
-        
         return .success
     }
 
@@ -144,34 +124,13 @@ class VideoStreamAPI {
     func storeDmcSessionResponse(_ responseText : String) -> State {
         
         let data       = responseText.data(using: .utf8)
-        let decorder   = JSONDecoder()
-        let dmcResponse : DmcSessionResponse.Response
 
-        // [TODO] Make this section with a Generic
-        do {
-            dmcResponse = try decorder.decode(DmcSessionResponse.Response.self, from: data!)
-        } catch let DecodingError.dataCorrupted(context) {
-            registerError("\(context)")
-            return .error
-        } catch let DecodingError.keyNotFound(key, context) {
-            registerError("Key '\(key)' not found: \(context.debugDescription))")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.valueNotFound(value, context) {
-            registerError("Value '\(value)' not found: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.typeMismatch(type, context)  {
-            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch {
-            registerError("error: \(error)")
+        guard let dmcResponse : DmcSessionResponse.Response = decodeJson(DmcSessionResponse.Response.self, from: data!)
+        else {
             return .error
         }
 
         self.dmcResponse = dmcResponse
-
         return .success
     }
 
@@ -221,29 +180,9 @@ class VideoStreamAPI {
         
         let converted = "{ \"elements\": \(commentText) }"
         let data      = converted.data(using: .utf8)
-        let decorder  = JSONDecoder()
-        let response  : CommentResponse.Response
 
-        // [TODO] Make this section with a Generic
-        do {
-            response = try decorder.decode(CommentResponse.Response.self, from: data!)
-        } catch let DecodingError.dataCorrupted(context) {
-            registerError("\(context)")
-            return .error
-        } catch let DecodingError.keyNotFound(key, context) {
-            registerError("Key '\(key)' not found: \(context.debugDescription))")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.valueNotFound(value, context) {
-            registerError("Value '\(value)' not found: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch let DecodingError.typeMismatch(type, context)  {
-            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return .error
-        } catch {
-            registerError("error: \(error)")
+        guard let response : CommentResponse.Response = decodeJson(CommentResponse.Response.self, from: data!)
+        else {
             return .error
         }
 
@@ -259,6 +198,37 @@ class VideoStreamAPI {
     }
 
 
+    func decodeJson<T>(_ klass: T.Type, from data: Data) -> T? where T : Decodable
+    {
+        let decorder  = JSONDecoder()
+        let decoded  : T
+
+        do {
+            decoded = try decorder.decode(klass, from: data)
+        } catch let DecodingError.dataCorrupted(context) {
+            registerError("\(context)")
+            return nil
+        } catch let DecodingError.keyNotFound(key, context) {
+            registerError("Key '\(key)' not found: \(context.debugDescription))")
+            registerError("codingPath: \(context.codingPath)")
+            return nil
+        } catch let DecodingError.valueNotFound(value, context) {
+            registerError("Value '\(value)' not found: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
+            return nil
+        } catch let DecodingError.typeMismatch(type, context)  {
+            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
+            return nil
+        } catch {
+            registerError("error: \(error)")
+            return nil
+        }
+        
+        return decoded
+    }
+
+    
     func comments() -> [CommentResponse.Chat] {
         return self.chats
     }
