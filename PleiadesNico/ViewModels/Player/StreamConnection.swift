@@ -37,9 +37,10 @@ class StreamConnection {
 
     open var onSuccess             : OnSuccess? = nil
     open var onError               : OnError?   = nil
+    open var isPremium             : Bool?      = nil
     
     private let session        : NicoSession
-    private let stream         : StreamAPI
+    private let stream         : VideoStreamAPI
     
     private var state          : State
     private var heartBeatCount : Int
@@ -47,7 +48,7 @@ class StreamConnection {
 
     init(contentId : String) {
         self.session         = NicoSession()
-        self.stream          = StreamAPI(contentId)
+        self.stream          = VideoStreamAPI(contentId)
         self.state           = .getVideoPage
         self.heartBeatCount  = 0        
     }
@@ -113,7 +114,8 @@ class StreamConnection {
             return
         }
 
-        self.state = .postCommentReq
+        self.isPremium = stream.isPremium()
+        self.state     = .postCommentReq
     }
 
     
@@ -281,7 +283,7 @@ class StreamConnection {
         DebugLog.shared.error(message)
         DebugLog.shared.error(session.errLog)
         self.state = .error
-        self.onError?(message, session.errLog)
+        self.onError?(message, session.errLog + stream.errorLog)
     }
 
 }

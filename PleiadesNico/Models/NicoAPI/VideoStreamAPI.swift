@@ -13,8 +13,10 @@ import Kanna
 //
 
 
-class StreamAPI {
-    
+class VideoStreamAPI {
+
+    public var errorLog     : String = ""
+
     private let contentId   : String
     private var dmcApiInfo  : DmcSessionInfo.ApiData?
     private var dmcResponse : DmcSessionResponse.Response?
@@ -64,7 +66,7 @@ class StreamAPI {
     func extractDmcApiText(_ htmlText : String) -> String?{
         guard let doc = try? Kanna.HTML(html: htmlText, encoding: .utf8)
         else{
-            DebugLog.shared.error("Failed to parse HTML!")
+            registerError("Failed to parse HTML!")
             return nil
         }
 
@@ -72,7 +74,7 @@ class StreamAPI {
 
         guard let apiDataText : String = doc.xpath( xpath ).first?.text
         else {
-            DebugLog.shared.error("data-api-data not found")
+            registerError("data-api-data not found")
             return nil
         }
 
@@ -89,22 +91,22 @@ class StreamAPI {
         do {
             dmcInfo = try decorder.decode(DmcSessionInfo.ApiData.self, from: data!)
         } catch let DecodingError.dataCorrupted(context) {
-            print(context)
+            registerError("\(context)")
             return .error
         } catch let DecodingError.keyNotFound(key, context) {
-            print("Key '\(key)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Key '\(key)' not found: \(context.debugDescription))")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.valueNotFound(value, context) {
-            print("Value '\(value)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Value '\(value)' not found: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.typeMismatch(type, context)  {
-            print("Type '\(type)' mismatch:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch {
-            print("error: ", error)
+            registerError("error: \(error)")
             return .error
         }
 
@@ -118,7 +120,7 @@ class StreamAPI {
 
         guard let dmcInfo = self.dmcApiInfo
         else {
-            DebugLog.shared.error("DMC API info does not exist")
+            registerError("DMC API info does not exist")
             return nil
         }
 
@@ -127,7 +129,7 @@ class StreamAPI {
         encoder.outputFormatting = .prettyPrinted
         
         guard let jsonReq = try? encoder.encode(dmcReq) else {
-            DebugLog.shared.error("Failed to encode to JSON.")
+            registerError("Failed to encode to JSON.")
             return nil
         }
 
@@ -145,25 +147,26 @@ class StreamAPI {
         let decorder   = JSONDecoder()
         let dmcResponse : DmcSessionResponse.Response
 
+        // [TODO] Make this section with a Generic
         do {
             dmcResponse = try decorder.decode(DmcSessionResponse.Response.self, from: data!)
         } catch let DecodingError.dataCorrupted(context) {
-            print(context)
+            registerError("\(context)")
             return .error
         } catch let DecodingError.keyNotFound(key, context) {
-            print("Key '\(key)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Key '\(key)' not found: \(context.debugDescription))")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.valueNotFound(value, context) {
-            print("Value '\(value)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Value '\(value)' not found: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.typeMismatch(type, context)  {
-            print("Type '\(type)' mismatch:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch {
-            print("error: ", error)
+            registerError("error: \(error)")
             return .error
         }
 
@@ -177,13 +180,13 @@ class StreamAPI {
 
         guard let dmcData = self.dmcResponse?.data
         else {
-            DebugLog.shared.error("DMC Response Data is Invalid.")
+            registerError("DMC Response Data is Invalid.")
             return nil
         }
         
         let encoder = JSONEncoder()
         guard let jsonReq = try? encoder.encode(dmcData) else {
-            DebugLog.shared.error("Failed to encode to Heart Beat request.")
+            registerError("Failed to encode to Heart Beat request.")
             return nil
         }
 
@@ -195,16 +198,16 @@ class StreamAPI {
 
         guard let dmcInfo = self.dmcApiInfo
         else {
-            DebugLog.shared.error("DMC API info does not exist")
+            registerError("DMC API info does not exist")
             return nil
         }
 
         let commentReq = CommentRequest.Request( dmcInfo )
         let encoder = JSONEncoder()
-//        encoder.outputFormatting = .prettyPrinted
+//        encoder.outputFormatting = .prettyregisterErrored
 
         guard let jsonReq = try? encoder.encode(commentReq.elements) else {
-            DebugLog.shared.error("Failed to encode Comment Request to JSON.")
+            registerError("Failed to encode Comment Request to JSON.")
             return nil
         }
         
@@ -221,25 +224,26 @@ class StreamAPI {
         let decorder  = JSONDecoder()
         let response  : CommentResponse.Response
 
+        // [TODO] Make this section with a Generic
         do {
             response = try decorder.decode(CommentResponse.Response.self, from: data!)
         } catch let DecodingError.dataCorrupted(context) {
-            print(context)
+            registerError("\(context)")
             return .error
         } catch let DecodingError.keyNotFound(key, context) {
-            print("Key '\(key)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Key '\(key)' not found: \(context.debugDescription))")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.valueNotFound(value, context) {
-            print("Value '\(value)' not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Value '\(value)' not found: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch let DecodingError.typeMismatch(type, context)  {
-            print("Type '\(type)' mismatch:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
+            registerError("codingPath: \(context.codingPath)")
             return .error
         } catch {
-            print("error: ", error)
+            registerError("error: \(error)")
             return .error
         }
 
@@ -264,4 +268,15 @@ class StreamAPI {
         return 100.0
     }
 
+
+    func registerError(_ description : String){
+        DebugLog.shared.error(description)
+        self.errorLog += "\n" + description
+    }
+
+    
+    func isPremium() -> Bool?{
+        return self.dmcApiInfo?.viewer?.isPremium
+    }
+    
 }

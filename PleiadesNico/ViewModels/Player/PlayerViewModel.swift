@@ -26,7 +26,8 @@ final class PlayerViewModel: ObservableObject {
     @Published var timeSliderPos   : Double = 0.0
     @Published var commentFontSize : Int    = 10
     @Published var elapsedTime     : Double = 0.0
-    
+
+    private    let contentId       : String
     private    let screen          : VideoScreen
     private    let connect         : StreamConnection
 
@@ -42,6 +43,7 @@ final class PlayerViewModel: ObservableObject {
     init(screen : VideoScreen, contentId : String) {
         self.commentFontSize = ConfigStorage.shared.commentFontSize
 
+        self.contentId       = contentId
         self.screen          = screen
         self.connect         = StreamConnection(contentId: contentId)
         
@@ -90,10 +92,16 @@ final class PlayerViewModel: ObservableObject {
 
 
     func onError(reason : String, detail : String) {
-        self.showControl = true
-
+        self.showControl  = true
         self.alertTitle   = reason
-        self.alertMessage = detail + "\nエラー報告の際はこちらのスクリーンショット添付をお願いします。"
+        self.alertMessage = [
+            "エラー報告の際はこちらのスクリーンショット添付をお願いします。",
+            "",
+            self.contentId,
+            "ログイン:\(ConfigStorage.shared.loginStatus ? "Yes": "No")",
+            "プレミアム:\((connect.isPremium ?? false) ? "Yes": "No")",
+            detail
+        ].reduce(""){$0 + "\n" + $1}
         
         if self.errorCount == 0 {
             self.showAlert = true

@@ -15,7 +15,7 @@
 		F748C228263D664A00DFD69F /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = F748C227263D664A00DFD69F /* Kanna */; };
 		F748C22E263D672400DFD69F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F748C22D263D672400DFD69F /* SDWebImageSwiftUI */; };
 		F748C246263D678600DFD69F /* RankingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C233263D678600DFD69F /* RankingAPI.swift */; };
-		F748C247263D678600DFD69F /* StreamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C234263D678600DFD69F /* StreamAPI.swift */; };
+		F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C234263D678600DFD69F /* VideoStreamAPI.swift */; };
 		F748C248263D678600DFD69F /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C235263D678600DFD69F /* DebugLog.swift */; };
 		F748C249263D678600DFD69F /* MockPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C237263D678600DFD69F /* MockPage.swift */; };
 		F748C24A263D678600DFD69F /* MockRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C238263D678600DFD69F /* MockRanking.swift */; };
@@ -89,7 +89,7 @@
 		F748C215263D656F00DFD69F /* PleiadesNicoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoUITests.swift; sourceTree = "<group>"; };
 		F748C217263D656F00DFD69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F748C233263D678600DFD69F /* RankingAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingAPI.swift; sourceTree = "<group>"; };
-		F748C234263D678600DFD69F /* StreamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamAPI.swift; sourceTree = "<group>"; };
+		F748C234263D678600DFD69F /* VideoStreamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamAPI.swift; sourceTree = "<group>"; };
 		F748C235263D678600DFD69F /* DebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		F748C237263D678600DFD69F /* MockPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPage.swift; sourceTree = "<group>"; };
 		F748C238263D678600DFD69F /* MockRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRanking.swift; sourceTree = "<group>"; };
@@ -225,11 +225,11 @@
 			children = (
 				F748C236263D678600DFD69F /* Mock */,
 				F7E361392642679B00347944 /* NicoAPI */,
-				F748C235263D678600DFD69F /* DebugLog.swift */,
-				F748C23F263D678600DFD69F /* NicoSession.swift */,
-				F748C240263D678600DFD69F /* DateTimeFormat.swift */,
-				F7D72FE3263FF24800836A71 /* ConfigStorage.swift */,
 				F7D83C902640E29B00FC42D7 /* NicoURL.swift */,
+				F748C23F263D678600DFD69F /* NicoSession.swift */,
+				F7D72FE3263FF24800836A71 /* ConfigStorage.swift */,
+				F748C240263D678600DFD69F /* DateTimeFormat.swift */,
+				F748C235263D678600DFD69F /* DebugLog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,7 +363,7 @@
 			children = (
 				F748C243263D678600DFD69F /* CommentAPI */,
 				F748C23A263D678600DFD69F /* DmcAPI */,
-				F748C234263D678600DFD69F /* StreamAPI.swift */,
+				F748C234263D678600DFD69F /* VideoStreamAPI.swift */,
 				F748C233263D678600DFD69F /* RankingAPI.swift */,
 				F748C241263D678600DFD69F /* VideoInfoAPI.swift */,
 				F748C242263D678600DFD69F /* SearchAPI.swift */,
@@ -526,7 +526,7 @@
 				F748C249263D678600DFD69F /* MockPage.swift in Sources */,
 				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
-				F748C247263D678600DFD69F /* StreamAPI.swift in Sources */,
+				F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */,
 				F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */,
 				F748C284263D67AF00DFD69F /* GenreSelectView.swift in Sources */,
 				F748C255263D678600DFD69F /* CommentRequest.swift in Sources */,
