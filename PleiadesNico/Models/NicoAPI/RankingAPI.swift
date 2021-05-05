@@ -29,7 +29,7 @@ class RankingAPI{
 
 
     func genreDescription(genreId : Int) -> String{
-        let genre = NicoURL.genres[genreId]
+        let genre = NicoURL.rankingGenres[genreId]
         return genre.description
     }
     

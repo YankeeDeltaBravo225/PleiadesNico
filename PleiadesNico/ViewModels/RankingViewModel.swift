@@ -12,11 +12,12 @@ final class RankingViewModel: ObservableObject {
 
     typealias Rank = RankingAPI.Item
     
-    @Published var showSelector: Bool       = false
-    @Published var genreId     : Int        = 0
-    @Published var ranks       : [Rank]     = []
-    @Published var genreText   : String     = ""
-
+    @Published var showSelector: Bool                   = false
+    @Published var genreId     : Int                    = 0
+    @Published var ranks       : [Rank]                 = []
+    @Published var genreText   : String                 = ""
+    @Published var genres      : [NicoURL.RankingGenre] = NicoURL.rankingGenres
+    
     private let rankingApi  : RankingAPI
     private let session     : NicoSession
     private var appearCount : Int
@@ -47,11 +48,6 @@ final class RankingViewModel: ObservableObject {
                 self.ranks = self.rankingApi.decodeXml(text)
             }
         )
-    }
-    
-    
-    func genres() -> [NicoURL.Genre] {
-        return NicoURL.genres
     }
 
 

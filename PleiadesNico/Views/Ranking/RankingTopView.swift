@@ -47,8 +47,6 @@ struct RankingTopView: View {
 
 extension RankingTopView {
 
-
-    
     fileprivate func genreSelectionButton() -> ToolbarItem<Void, Button<TupleView<(Image, Text)>>> {
         return ToolbarItem(placement: .navigationBarLeading){
             Button(action: { viewModel.onSelectorEnabled() }) {

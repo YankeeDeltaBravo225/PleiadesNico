@@ -17,7 +17,7 @@ struct GenreSelectView: View {
             Text("ジャンルを選択")
                 .font(.title)
             List(selection: $genreId) {
-                ForEach(NicoURL.genres, id:\.id) { genre in
+                ForEach(viewModel.genres, id:\.id) { genre in
                     Text(genre.description).tag(genre.id)
                 }
             }
