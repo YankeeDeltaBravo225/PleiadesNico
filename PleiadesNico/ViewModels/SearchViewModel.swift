@@ -66,6 +66,9 @@ final class SearchViewModel: ObservableObject {
             urlText    : searchApi.url(word: searchWord, kind: kind, offset: searchOffset),
             onReceived : {text in
                 self.onReceivedSearchResult(text)
+            },
+            onError: { error in
+                print(error)
             }
         )
     }

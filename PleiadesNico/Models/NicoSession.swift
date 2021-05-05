@@ -9,33 +9,28 @@ import Combine
 
 class NicoSession {
 
-    private var session          : URLSession            = URLSession(configuration: .default)
-    private var statusCode       : Int                   = -1
-    private var cancellables     : Set<AnyCancellable>  = []
+    typealias OnReceived     = (_ text : String) -> Void
+    typealias OnError        = (_ text : String) -> Void
     
-    open    var errLog           : String                = ""
-    
-    struct HeaderAttr {
-        let key   : String
-        let value : String
-
-        init(_ key: String,_ value: String){
-            self.key   = key
-            self.value = value
-        }
-    }
-
     enum ContentType: String, CaseIterable {
         case textPlain
         case none
     }
-
+    
+    private var session      : URLSession
+    private var statusCode   : Int
+    private var cancellables : Set<AnyCancellable>
+    open    var errLog       : String
 
     init() {
+        self.session = URLSession(configuration: .default)
+        self.statusCode = -1
+        self.cancellables = []
+        self.errLog = ""
     }
 
 
-    func get(urlText:String, onReceived : @escaping (_ text : String) -> Void) {
+    func get(urlText:String, onReceived : @escaping OnReceived, onError : @escaping OnError) {
         guard let url = URL(string: urlText) else {
             errLog = "Invalid URL( \(urlText) )"
             return
@@ -48,11 +43,11 @@ class NicoSession {
             request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
         }
         
-        sendRequest(request: request, onReceived: onReceived)
+        sendRequest(request: request, onReceived: onReceived, onError: onError)
     }
 
 
-    func post(urlText:String, data:Data, contentType : ContentType, onReceived : @escaping (_ text : String) -> Void) {
+    func post(urlText:String, data:Data, contentType : ContentType, onReceived : @escaping OnReceived, onError : @escaping OnError) {
         guard let url = URL(string: urlText) else {
             errLog = "Invalid URL( \(urlText) )"
             return
@@ -62,21 +57,21 @@ class NicoSession {
         request.httpMethod = "POST"
         request.httpBody = data
 
-        request.addValue("https://www.nicovideo.jp/", forHTTPHeaderField: "Referer")
+        request.addValue(NicoURL.refer, forHTTPHeaderField: "Referer")
         if contentType == .textPlain {
             request.addValue("text/plain;charset=UTF-8",  forHTTPHeaderField: "Content-Type")
         }
-        request.addValue("https://www.nicovideo.jp/", forHTTPHeaderField: "Origin")
+        request.addValue(NicoURL.origin, forHTTPHeaderField: "Origin")
 
         if let stringCookie = ConfigStorage.shared.stringCookie {
             request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
         }
         
-        sendRequest(request: request, onReceived: onReceived)
+        sendRequest(request: request, onReceived: onReceived, onError: onError)
     }
 
     
-    func option(urlText:String, onReceived : @escaping (_ text : String) -> Void) {
+    func option(urlText:String, onReceived : @escaping OnReceived, onError : @escaping OnError) {
         guard let url = URL(string: urlText) else {
             errLog = "Invalid URL( \(urlText) )"
             return
@@ -89,16 +84,16 @@ class NicoSession {
             request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
         }
         
-        sendRequest(request: request, onReceived: onReceived)
+        sendRequest(request: request, onReceived: onReceived, onError: onError)
     }
     
     
-    private func sendRequest(request : URLRequest, onReceived : @escaping (_ text : String) -> Void){
+    private func sendRequest(request : URLRequest, onReceived : @escaping OnReceived, onError : @escaping OnError){
         session.dataTaskPublisher(for: request)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { (completion) in
-                    self.didReceiveCompletion(completion: completion)
+                    self.didReceiveCompletion(completion: completion, onError: onError)
                 },
                 receiveValue: { (data: Data, response: URLResponse) in
                     self.didReceiveValue(data: data, response: response, onReceived: onReceived)
@@ -108,18 +103,20 @@ class NicoSession {
     }
 
 
-    private func didReceiveCompletion(completion : Subscribers.Completion<URLError>){
+    private func didReceiveCompletion(completion : Subscribers.Completion<URLError>, onError : @escaping OnError){
         switch completion {
             case .finished:
                 self.errLog = ""
                 
             case .failure(let error):
-                self.errLog = "Failure: \(error.localizedDescription)\n"
+                let description = "Failure: \(error.localizedDescription)\n"
+                onError(description)
+                self.errLog = description
         }
     }
 
 
-    private func didReceiveValue(data: Data, response: URLResponse, onReceived : @escaping (_ text : String) -> Void){
+    private func didReceiveValue(data: Data, response: URLResponse, onReceived : @escaping OnReceived){
         if let httpURLResponse = response as? HTTPURLResponse {
             self.statusCode = httpURLResponse.statusCode
         }

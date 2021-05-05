@@ -276,6 +276,9 @@ extension PlayerViewModel {
             urlText    : stream.videoPageUrl(),
             onReceived : {text in
                 self.onReceiveVideoPage(videoPage: text)
+            },
+            onError: { error in
+                self.onError(error)
             }
         )
         
@@ -319,6 +322,9 @@ extension PlayerViewModel {
             contentType: .textPlain,
             onReceived : {text in
                 self.onReceiveCommentResponse(responseText : text)
+            },
+            onError: { error in
+                self.onError(error)
             }
         )
 
@@ -370,6 +376,9 @@ extension PlayerViewModel {
             contentType: .none,
             onReceived : {text in
                 self.onReceiveDmcResponse(responseText : text)
+            },
+            onError: { error in
+                self.onError(error)
             }
         )
 
@@ -418,6 +427,9 @@ extension PlayerViewModel {
             urlText    : stream.heartBeatUrl(),
             onReceived : {text in
                 self.onHeartBeatResponse(responseText : text)
+            },
+            onError: { error in
+                self.onError(error)
             }
         )
 
@@ -450,6 +462,9 @@ extension PlayerViewModel {
             contentType: .none,
             onReceived : {text in
                 self.onHeartBeatResponse(responseText : text)
+            },
+            onError: { error in
+                self.onError(error)
             }
         )
 

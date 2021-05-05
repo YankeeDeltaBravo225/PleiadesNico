@@ -42,6 +42,9 @@ final class VideoDetailViewModel: ObservableObject {
                 if self.prop.videoId.hasPrefix("sm") && self.prop.fileType == "mp4" {
                     self.showPlay = true
                 }
+            },
+            onError: { error in
+                print(error)
             }
         )
     }

@@ -7,6 +7,12 @@
 import Foundation
 
 class NicoURL {
+    
+    //
+    // General (for HTTP request)
+    //
+    static let origin = "https://www.nicovideo.jp/"
+    static let refer  = "https://www.nicovideo.jp/"
 
     //
     // Login page

@@ -46,6 +46,9 @@ final class RankingViewModel: ObservableObject {
             urlText    : rankingApi.url(genreId: genreId),
             onReceived : {text in
                 self.ranks = self.rankingApi.decodeXml(text)
+            },
+            onError: { error in
+                print(error)
             }
         )
     }
