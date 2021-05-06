@@ -13,35 +13,14 @@ import SwiftUI
 struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
     @Environment(\.presentationMode) var presentation
-    
-
+        
     var body: some View {
         VStack {
             upperControlView()
-            .background(
-                Color.gray
-                    .opacity(0.6)
-            )
-            .cornerRadius(10)
             .padding(10)
             Spacer()
             Color.clear
-            VStack{
-                Divider()
-                timeSliderView()
-                HStack (alignment: .bottom) {
-                    elapsedTimeView()
-                    Spacer()
-                    playPauseButtonView()
-                    Spacer()
-                    remainingTimeView()
-                }
-            }
-            .background(
-                Color.gray
-                    .opacity(0.6)
-            )
-            .cornerRadius(10)
+            lowerControlView()
             .padding(10)
         }
         .onAppear {
@@ -98,16 +77,42 @@ extension PlayControlView {
 
 
     fileprivate func upperControlView() -> some View {
+        let bg = ColorPalette.controlBackground
         return HStack{
-            Spacer()
-                .frame(width : 10)
             closeButton()
+                .padding(10)
             Spacer()
-            Image(systemName:"clock")
-                .foregroundColor(.white)
             Text(viewModel.currentTimeText)
                 .foregroundColor(.white)
+                .font(.system(size: 18, design: .monospaced))
+                .padding(10)
         }
+        .background(
+            Color(red:bg.r , green: bg.b, blue: bg.b)
+                .opacity(0.6)
+        )
+        .cornerRadius(10)
+    }
+
+    
+    fileprivate func lowerControlView() -> some View {
+        let bg = ColorPalette.controlBackground
+        return VStack{
+            Divider()
+            timeSliderView()
+            HStack (alignment: .bottom) {
+                elapsedTimeView()
+                Spacer()
+                playPauseButtonView()
+                Spacer()
+                remainingTimeView()
+            }
+        }
+        .background(
+            Color(red:bg.r , green: bg.b, blue: bg.b)
+                .opacity(0.6)
+        )
+        .cornerRadius(10)
     }
 
 
@@ -115,6 +120,7 @@ extension PlayControlView {
         return Text("  " + viewModel.elapsedTimeText)
             .foregroundColor(.white)
             .font(.system(size: 18, design: .monospaced))
+            .padding(10)
     }
     
 
@@ -122,6 +128,7 @@ extension PlayControlView {
         return Text(viewModel.remainTimeText + "  ")
             .foregroundColor(.white)
             .font(.system(size: 18, design: .monospaced))
+            .padding(10)
     }
     
 
@@ -134,6 +141,7 @@ extension PlayControlView {
                 .scaledToFit()
                 .foregroundColor(.white)
                 .frame(width: 40, height: 40)
+                .padding(10)
         }
     }
 

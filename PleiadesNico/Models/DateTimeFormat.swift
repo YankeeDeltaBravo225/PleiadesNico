@@ -28,7 +28,7 @@ class DateTimeFormat {
 
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle  = .none
-        timeFormatter.timeStyle  = .long
+        timeFormatter.timeStyle  = .short
         self.timeFormatter = timeFormatter
 
         self.iso8601Formatter = ISO8601DateFormatter()

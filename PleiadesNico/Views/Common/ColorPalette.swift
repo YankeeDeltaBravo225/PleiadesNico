@@ -17,10 +17,12 @@ class ColorPalette {
         RGBColor(0xF17E64)
     ]
     
+    static let controlBackground = RGBColor(0x353535)
+    
     static func pastel(_ num : Int) -> RGBColor {
         return _pastel[ num % _pastel.count ]
     }
-
+    
     struct RGBColor {
         let r : Double
         let g : Double
