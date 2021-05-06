@@ -23,10 +23,12 @@ struct PlayControlView: View {
                     .opacity(0.6)
             )
             .cornerRadius(10)
+            .padding(10)
             Spacer()
             Color.clear
             VStack{
                 Divider()
+                timeSliderView()
                 HStack (alignment: .bottom) {
                     elapsedTimeView()
                     Spacer()
@@ -34,13 +36,13 @@ struct PlayControlView: View {
                     Spacer()
                     remainingTimeView()
                 }
-                timeSliderView()
             }
             .background(
                 Color.gray
                     .opacity(0.6)
             )
             .cornerRadius(10)
+            .padding(10)
         }
         .onAppear {
             viewModel.onTimerTick()
