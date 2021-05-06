@@ -14,6 +14,7 @@ struct GenreSelectView: View {
 
     var body: some View {
         VStack {
+            Divider()
             Text("ジャンルを選択")
                 .font(.title)
             List(selection: $genreId) {
