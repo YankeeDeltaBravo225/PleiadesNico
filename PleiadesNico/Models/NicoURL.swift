@@ -38,7 +38,7 @@ class NicoURL {
     //
     static func ranking(genreId : Int) -> String{
         let genre = rankingGenres[genreId]
-        return "https://www.nicovideo.jp/ranking/genre/\(genre.name)?video_ranking_menu&rss=2.0&lang=ja-jp"
+        return "https://www.nicovideo.jp/ranking/\(genre.name)?video_ranking_menu&rss=2.0&lang=ja-jp"
     }
 
     struct RankingGenre{
@@ -54,24 +54,24 @@ class NicoURL {
     }
 
     static let rankingGenres : [RankingGenre] = [
-        RankingGenre( 0, "all",                   "全ジャンル"),
-        RankingGenre( 1, "hot-topic",             "話題"),
-        RankingGenre( 2, "entertainment",         "エンターテイメント"),
-        RankingGenre( 3, "radio",                 "ラジオ"),
-        RankingGenre( 4, "music_sound",           "音楽・サウンド"),
-        RankingGenre( 5, "dance",                 "ダンス"),
-        RankingGenre( 6, "animal",                "動物"),
-        RankingGenre( 7, "nature",                "自然"),
-        RankingGenre( 8, "cooking",               "料理"),
-        RankingGenre( 9, "traveling_outdoor",     "旅行・アウトドア"),
-        RankingGenre(10, "vehicle",               "乗り物"),
-        RankingGenre(11, "sports",                "スポーツ"),
-        RankingGenre(12, "society_politics_news", "社会・政治・時事"),
-        RankingGenre(13, "technology_craft",      "技術・工作"),
-        RankingGenre(14, "commentary_lecture",    "解説・講座"),
-        RankingGenre(15, "anime",                 "アニメ"),
-        RankingGenre(16, "game",                  "ゲーム"),
-        RankingGenre(17, "other",                 "その他")
+        RankingGenre( 0, "genre/all",                   "全ジャンル"),
+        RankingGenre( 1, "hot-topic",                   "話題"),
+        RankingGenre( 2, "genre/entertainment",         "エンターテイメント"),
+        RankingGenre( 3, "genre/radio",                 "ラジオ"),
+        RankingGenre( 4, "genre/music_sound",           "音楽・サウンド"),
+        RankingGenre( 5, "genre/dance",                 "ダンス"),
+        RankingGenre( 6, "genre/animal",                "動物"),
+        RankingGenre( 7, "genre/nature",                "自然"),
+        RankingGenre( 8, "genre/cooking",               "料理"),
+        RankingGenre( 9, "genre/traveling_outdoor",     "旅行・アウトドア"),
+        RankingGenre(10, "genre/vehicle",               "乗り物"),
+        RankingGenre(11, "genre/sports",                "スポーツ"),
+        RankingGenre(12, "genre/society_politics_news", "社会・政治・時事"),
+        RankingGenre(13, "genre/technology_craft",      "技術・工作"),
+        RankingGenre(14, "genre/commentary_lecture",    "解説・講座"),
+        RankingGenre(15, "genre/anime",                 "アニメ"),
+        RankingGenre(16, "genre/game",                  "ゲーム"),
+        RankingGenre(17, "genre/other",                 "その他")
     ]
 
     
