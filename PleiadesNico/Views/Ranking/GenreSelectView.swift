@@ -10,13 +10,22 @@ import SwiftUI
 struct GenreSelectView: View {
     
     @ObservedObject var viewModel : RankingViewModel
-    @State  private var genreId   : Int? = 0
+    @State private var genreId    : Int?
+    @State private var termId     : Int = 0
+
 
     var body: some View {
         VStack {
             Divider()
-            Text("ジャンルを選択")
-                .font(.title)
+            Text("集計期間")
+            Picker(selection: $termId, label: Text("集計期間")) {
+                ForEach(viewModel.terms, id:\.id) { term in
+                    Text(term.description).tag(term.id)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            Divider()
+            Text("ジャンル")
             List(selection: $genreId) {
                 ForEach(viewModel.genres, id:\.id) { genre in
                     Text(genre.description).tag(genre.id)
@@ -26,9 +35,10 @@ struct GenreSelectView: View {
         }
         .onAppear(){
             genreId = viewModel.genreId
+            termId  = viewModel.termId
         }
         .onDisappear(){
-            viewModel.updateGenre( genreId )
+            viewModel.updateGenre( rawNewGenreId: genreId, newTermId: termId )
         }
     }
 }

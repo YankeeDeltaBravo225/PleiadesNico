@@ -14,9 +14,11 @@ final class RankingViewModel: ObservableObject {
     
     @Published var showSelector: Bool                   = false
     @Published var genreId     : Int                    = 0
+    @Published var termId      : Int                    = 0
     @Published var ranks       : [Rank]                 = []
     @Published var genreText   : String                 = ""
     @Published var genres      : [NicoURL.RankingGenre] = NicoURL.rankingGenres
+    @Published var terms       : [NicoURL.RankingTerm]  = NicoURL.rankingTerms
     
     private let rankingApi  : RankingAPI
     private let session     : NicoSession
@@ -40,10 +42,10 @@ final class RankingViewModel: ObservableObject {
 
     func loadRanking(){
         self.ranks       = []
-        self.genreText = rankingApi.genreDescription(genreId: genreId)
+        self.genreText = rankingApi.genreDescription(genreId: self.genreId)
         
         self.session.get(
-            urlText    : rankingApi.url(genreId: genreId),
+            urlText    : rankingApi.url(genreId: self.genreId, termId: self.termId),
             onReceived : {text in
                 self.ranks = self.rankingApi.decodeXml(text)
             },
@@ -54,14 +56,18 @@ final class RankingViewModel: ObservableObject {
     }
 
 
-    func updateGenre(_ rawNewGenreId : Int?){
+    func updateGenre(rawNewGenreId : Int?, newTermId : Int){
         guard let newGenreId = rawNewGenreId
         else {
             return
         }
 
-        if self.genreId != newGenreId{
+        let isUpdated = (self.genreId != newGenreId) || (self.termId != newTermId)
+
+        if isUpdated {
             self.genreId  = newGenreId
+            self.termId   = newTermId
+
             loadRanking()
         }
     }

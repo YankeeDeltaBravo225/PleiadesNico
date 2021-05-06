@@ -23,8 +23,8 @@ class RankingAPI{
     }
 
     
-    func url(genreId : Int) -> String {
-        NicoURL.ranking(genreId : genreId)
+    func url(genreId : Int, termId : Int) -> String {
+        NicoURL.ranking(genreId : genreId, termId : termId)
     }
 
 

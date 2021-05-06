@@ -48,6 +48,7 @@
 		F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27A263D67AF00DFD69F /* PlayerTopView.swift */; };
 		F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27B263D67AF00DFD69F /* PlayControlView.swift */; };
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
+		F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FA98926441E9400D06430 /* TestbedView.swift */; };
 		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
@@ -122,6 +123,7 @@
 		F748C27A263D67AF00DFD69F /* PlayerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTopView.swift; sourceTree = "<group>"; };
 		F748C27B263D67AF00DFD69F /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		F74FA98926441E9400D06430 /* TestbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestbedView.swift; sourceTree = "<group>"; };
 		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				F748C277263D67AF00DFD69F /* ContentView.swift */,
+				F74FA98926441E9400D06430 /* TestbedView.swift */,
 				F748C272263D67AF00DFD69F /* Common */,
 				F748C26A263D67AF00DFD69F /* Ranking */,
 				F748C26E263D67AF00DFD69F /* VideoDetail */,
@@ -517,6 +520,7 @@
 				F7D83C912640E29B00FC42D7 /* NicoURL.swift in Sources */,
 				F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */,
 				F748C252263D678600DFD69F /* VideoInfoAPI.swift in Sources */,
+				F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */,
 				F748C27F263D67AF00DFD69F /* RankingViewModel.swift in Sources */,
 				F748C251263D678600DFD69F /* DateTimeFormat.swift in Sources */,
 				F748C24B263D678600DFD69F /* MockSearchResult.swift in Sources */,

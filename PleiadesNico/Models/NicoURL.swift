@@ -36,9 +36,10 @@ class NicoURL {
     // API detail:
     // https://dwango.github.io/niconico/genre_ranking/ranking_rss/
     //
-    static func ranking(genreId : Int) -> String{
+    static func ranking(genreId : Int, termId : Int) -> String{
         let genre = rankingGenres[genreId]
-        return "https://www.nicovideo.jp/ranking/\(genre.name)?video_ranking_menu&rss=2.0&lang=ja-jp"
+        let term  = rankingTerms[termId]
+        return "https://www.nicovideo.jp/ranking/\(genre.name)?\(term.name)&rss=2.0&lang=ja-jp"
     }
 
     struct RankingGenre{
@@ -74,7 +75,24 @@ class NicoURL {
         RankingGenre(17, "genre/other",                 "その他")
     ]
 
-    
+    struct RankingTerm{
+        let id          : Int
+        let name        : String
+        let description : String
+        
+        init(_ termId: Int, _ termName: String, _ termDescription: String){
+            id          = termId
+            name        = termName
+            description = termDescription
+        }
+    }
+
+    static let rankingTerms : [RankingTerm] = [
+        RankingTerm( 0, "term=hour",  "1時間"),
+        RankingTerm( 1, "term=24h",   "24時間"),
+    ]
+
+
     //
     // Video stream APIs ( include DMC API)
     //

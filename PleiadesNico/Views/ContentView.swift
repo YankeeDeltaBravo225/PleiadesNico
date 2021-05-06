@@ -16,6 +16,7 @@ struct ContentView: View {
         case ranking
         case search
         case setting
+        case testbed
     }
     
     var body: some View {
@@ -39,6 +40,11 @@ struct ContentView: View {
                 }
                 .tag(Tab.setting)
 
+            TestbedView()
+                .tabItem {
+                    Label("Testbed", systemImage: "eyedropper")
+                }
+                .tag(Tab.testbed)
         }
         
         
