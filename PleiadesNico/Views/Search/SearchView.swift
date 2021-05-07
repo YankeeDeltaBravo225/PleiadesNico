@@ -85,17 +85,17 @@ extension SearchView {
 
     
     fileprivate func searchFieldView() -> some View {
+        UITextField.appearance().clearButtonMode = .whileEditing
         return HStack{
+            Image(systemName: "magnifyingglass")
             TextField(
                 "タグ or キーワード を入力",
                 text: $viewModel.searchWord,
                 onCommit: { viewModel.newSearch() }
             )
             .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button(action: { viewModel.newSearch() }){
-                Image(systemName: "magnifyingglass")
-            }
         }
+        .padding(10)
     }
     
 }
