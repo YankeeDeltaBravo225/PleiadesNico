@@ -34,7 +34,9 @@ struct SearchView: View {
                 }
                 if viewModel.showAdd {
                     Button(action: { viewModel.contSearch() }){
+                        Image(systemName: "chevron.compact.down")
                         Text("タップしてさらに読み込み")
+                            .padding(4)
                     }
                 }
             }
