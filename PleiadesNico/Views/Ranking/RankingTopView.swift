@@ -22,7 +22,7 @@ struct RankingTopView: View {
                 List{
                     ForEach(viewModel.ranks, id:\.pos) { rank in
                         NavigationLink(
-                            destination: VideoDetailView(rank.videoId)
+                            destination: VideoDetailView(rank.videoId, colorIndex: rank.pos)
                         ){
                             RankingRowView( rankItem:rank )
                         }

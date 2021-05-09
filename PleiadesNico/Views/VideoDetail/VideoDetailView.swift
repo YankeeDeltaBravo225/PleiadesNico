@@ -9,32 +9,44 @@ import SwiftUI
 
 struct VideoDetailView: View {
     
-    let videoId : String
+    let videoId    : String
+    let colorIndex : Int
     @ObservedObject var viewModel : VideoDetailViewModel
     @State private var doesPlay = false
 
     
-    init(_ contentId : String ){
-        videoId   = contentId
-        viewModel = VideoDetailViewModel(videoId: contentId)
+    init(_ videoId : String, colorIndex : Int ){
+        self.videoId    = videoId
+        self.colorIndex = colorIndex
+        self.viewModel  = VideoDetailViewModel(videoId: videoId)
     }
 
     var body: some View {
 
             List {
                 if(viewModel.hasProp){
-                    ownerSectionView()
-                    infoSectionView()
-                    if viewModel.showPlay {
-                        playVideoButton()
-                    } else {
-                        Text("(内蔵プレイヤー非対応の動画です)")
+                    Section(header: Text(viewModel.prop.ownerType)){
+                        ownerInfoView()
                     }
-                    openBrowserButton()
-                    descriptionSectionView()
-                    lastCommentSectionView()
-                    tagSectionView()
-                        .navigationBarTitleDisplayMode(.inline)
+                    Section(header: Text("動画情報")){
+                        videoInfoView()
+                        if viewModel.showPlay {
+                            playVideoButton()
+                        } else {
+                            Text("(内蔵プレイヤー非対応の動画です)")
+                        }
+                        openBrowserButton()
+                    }
+                    Section(header: Text("概要")){
+                        descriptionView()
+                    }
+                    Section(header: Text("最新コメント")){
+                        lastCommentView()
+                    }
+                    Section(header: Text("タグ")){
+                        tagsView()
+                            .navigationBarTitleDisplayMode(.inline)
+                    }
                 } else {
                     Text("読み込み中")
                 }
@@ -66,8 +78,8 @@ struct VideoDetailView: View {
 
 extension VideoDetailView {
 
-    fileprivate func ownerSectionView() -> some View {
-        return Section(header: Text(viewModel.prop.ownerType)){
+    fileprivate func ownerInfoView() -> some View {
+        return
             HStack{
                 OnlineImageIView(
                     urlText: viewModel.prop.ownerIcon,
@@ -77,95 +89,54 @@ extension VideoDetailView {
                 Text(viewModel.prop.ownerName)
                     .font(.system(size: 16))
             }
-        }
     }
 
 
-    fileprivate func infoSectionView() -> some View {
-        return Section(header: Text("動画情報")){
-            VStack(alignment: .leading){
-                Text(viewModel.prop.title)
-                    .font(.system(size: 16))
-            }
-            HStack{
-                OnlineImageIView(
-                    urlText: viewModel.prop.thumbnail,
-                    width  : 160,
-                    height : 120
-                )
-                Divider()
-                VStack{
-                    DetailPropertyView(
-                        symbol: "clock",
-                        text  : viewModel.prop.duration,
-                        size  : 14
-                    )
-                    DetailPropertyView(
-                        symbol: "play",
-                        text  : viewModel.prop.views,
-                        size  : 14
-                    )
-                    DetailPropertyView(
-                        symbol: "text.bubble",
-                        text  : viewModel.prop.comments,
-                        size  :14
-                    )
-                    DetailPropertyView(
-                        symbol: "star",
-                        text  : viewModel.prop.mylists,
-                        size  :14
-                    )
-                }
-            }
-            VStack(alignment: .leading){
-                DetailPropertyView(
-                    symbol: "calendar",
-                    text  : viewModel.prop.uploaded,
-                    size  : 14
-                )
-                HStack{
-                    Text("\(viewModel.prop.videoId)")
-                        .font(.system(size: 14))
-                    Divider()
-                    Text("\(viewModel.prop.fileType)")
-                        .font(.system(size: 14))
-                }
-                Divider()
-            }
-        }
+    fileprivate func videoInfoView() -> some View {
+        let prop = viewModel.prop
+        
+        return VideoAbstractView(
+            title         : prop.title,
+            thumbnail     : prop.thumbnail,
+            uploaded      : prop.uploaded,
+            duration      : prop.duration,
+            views         : prop.views,
+            comments      : prop.comments,
+            mylists       : prop.mylists,
+            colorIndex    : colorIndex,
+            imageWidth    : 160,
+            imageHeight   : 120,
+            titleFontSize : 18,
+            attrFontSize  : 14
+        )
+        .padding(10)
     }
 
     
-    fileprivate func descriptionSectionView() -> some View {
-        return Section(header: Text("概要")){
-            ScrollView(){
-                Text(viewModel.prop.description)
+    fileprivate func descriptionView() -> some View {
+        return ScrollView(){
+            Text(viewModel.prop.description)
                     .font(.system(size: 14))
             }
             .frame(height:100)
-        }
     }
     
     
-    fileprivate func lastCommentSectionView() -> some View {
-        return Section(header: Text("最新コメント")){
-            ScrollView(){
+    fileprivate func lastCommentView() -> some View {
+        return ScrollView(){
                 Text(viewModel.prop.lastComment)
                     .font(.system(size: 14))
             }
             .frame(height:50)
-        }
     }
     
 
-    fileprivate func tagSectionView() -> some View {
-        return Section(header: Text("タグ")){
-            ForEach(viewModel.prop.tags, id: \.self) { tag in
-                NavigationLink(
-                    destination: SearchView(tag)
-                ){
-                    Text(tag)
-                }
+    fileprivate func tagsView() -> some View {
+        return ForEach(viewModel.prop.tags, id: \.self) { tag in
+            NavigationLink(
+                destination: SearchView(tag)
+            ){
+                Text(tag)
             }
         }
     }
@@ -212,6 +183,6 @@ struct VideoDetailView_Previews: PreviewProvider {
 //        let videoId = "so38523333"
         let videoId = "sm35919998"
         
-        VideoDetailView(videoId)
+        VideoDetailView(videoId, colorIndex: 3)
     }
 }

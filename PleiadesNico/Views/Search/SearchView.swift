@@ -30,7 +30,7 @@ struct SearchView: View {
                 ForEach(viewModel.resultItems.indices, id: \.self) { index in
                     let item  = viewModel.resultItems[index]
                     NavigationLink(
-                        destination: VideoDetailView(item.contentId)
+                        destination: VideoDetailView(item.contentId, colorIndex: index)
                     ){
                         videoAbstractView(index)
                     }
@@ -79,21 +79,21 @@ extension SearchView {
 
     fileprivate func videoAbstractView(_ index : Int) -> some View {
         let item  = viewModel.resultItems[index]
-        let color = ColorPalette.pastel( index )
         
-        return HStack{
-                Color(red: color.r, green: color.g, blue: color.b)
-                    .frame(width:4)
-                VideoAbstractView(
-                    title    : item.title,
-                    thumbnail: item.thumbnailUrl,
-                    uploaded : item.startTime,
-                    duration : DateTimeFormat.shared.duration(item.lengthSeconds),
-                    views    : String(item.viewCounter),
-                    comments : String(item.commentCounter),
-                    mylists  : String(item.mylistCounter)
-                )
-            }
+        return VideoAbstractView(
+            title         : item.title,
+            thumbnail     : item.thumbnailUrl,
+            uploaded      : item.startTime,
+            duration      : DateTimeFormat.shared.duration(item.lengthSeconds),
+            views         : String(item.viewCounter),
+            comments      : String(item.commentCounter),
+            mylists       : String(item.mylistCounter),
+            colorIndex    : index,
+            imageWidth    : 100,
+            imageHeight   : 75,
+            titleFontSize : 12,
+            attrFontSize  : 12
+        )
     }
 
     
