@@ -22,14 +22,67 @@ class RankingAPI{
         let duration  : String
     }
 
+    struct Genre{
+        let id          : Int
+        let name        : String
+        let description : String
+        
+        init(_ genreId: Int, _ genreName: String, _ genreDescription: String){
+            id          = genreId
+            name        = genreName
+            description = genreDescription
+        }
+    }
+
+    static let genres : [Genre] = [
+        Genre( 0, "genre/all",                   "全ジャンル"),
+        Genre( 1, "hot-topic",                   "話題"),
+        Genre( 2, "genre/entertainment",         "エンターテイメント"),
+        Genre( 3, "genre/radio",                 "ラジオ"),
+        Genre( 4, "genre/music_sound",           "音楽・サウンド"),
+        Genre( 5, "genre/dance",                 "ダンス"),
+        Genre( 6, "genre/animal",                "動物"),
+        Genre( 7, "genre/nature",                "自然"),
+        Genre( 8, "genre/cooking",               "料理"),
+        Genre( 9, "genre/traveling_outdoor",     "旅行・アウトドア"),
+        Genre(10, "genre/vehicle",               "乗り物"),
+        Genre(11, "genre/sports",                "スポーツ"),
+        Genre(12, "genre/society_politics_news", "社会・政治・時事"),
+        Genre(13, "genre/technology_craft",      "技術・工作"),
+        Genre(14, "genre/commentary_lecture",    "解説・講座"),
+        Genre(15, "genre/anime",                 "アニメ"),
+        Genre(16, "genre/game",                  "ゲーム"),
+        Genre(17, "genre/other",                 "その他")
+    ]
+
+    struct Term{
+        let id          : Int
+        let name        : String
+        let description : String
+        
+        init(_ termId: Int, _ termName: String, _ termDescription: String){
+            id          = termId
+            name        = termName
+            description = termDescription
+        }
+    }
+
+    static let terms : [Term] = [
+        Term( 0, "term=hour",  "1時間"),
+        Term( 1, "term=24h",   "24時間"),
+    ]
+    
     
     func url(genreId : Int, termId : Int) -> String {
-        NicoURL.ranking(genreId : genreId, termId : termId)
+        let genre = RankingAPI.genres[genreId]
+        let term  = RankingAPI.terms[termId]
+        
+        return NicoURL.ranking(genre : genre.name, term : term.name)
     }
 
 
     func genreDescription(genreId : Int) -> String{
-        let genre = NicoURL.rankingGenres[genreId]
+        let genre = RankingAPI.genres[genreId]
         return genre.description
     }
     

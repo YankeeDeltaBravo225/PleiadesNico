@@ -10,15 +10,17 @@ import Combine
 
 final class RankingViewModel: ObservableObject {
 
-    typealias Rank = RankingAPI.Item
+    typealias Genre = RankingAPI.Genre
+    typealias Term  = RankingAPI.Term
+    typealias Rank  = RankingAPI.Item
     
-    @Published var showSelector: Bool                   = false
-    @Published var genreId     : Int                    = 0
-    @Published var termId      : Int                    = 0
-    @Published var ranks       : [Rank]                 = []
-    @Published var genreText   : String                 = ""
-    @Published var genres      : [NicoURL.RankingGenre] = NicoURL.rankingGenres
-    @Published var terms       : [NicoURL.RankingTerm]  = NicoURL.rankingTerms
+    @Published var showSelector: Bool    = false
+    @Published var genreId     : Int     = 0
+    @Published var termId      : Int     = 0
+    @Published var ranks       : [Rank]  = []
+    @Published var genreText   : String  = ""
+    @Published var genres      : [Genre] = RankingAPI.genres
+    @Published var terms       : [Term]  = RankingAPI.terms
     
     private let rankingApi  : RankingAPI
     private let session     : NicoSession
