@@ -233,8 +233,8 @@ final class PlayerViewModel: ObservableObject {
         let intElapsedTime = Int(elapsedTime)
 
         if intElapsedTime != self.prevElapsedTime {
-            self.elapsedTimeText = DateTimeFormat.shared.time( elapsedTime,   duration )
-            self.remainTimeText  = DateTimeFormat.shared.time( remainingTime, duration )
+            self.elapsedTimeText = TextFormat.shared.time( elapsedTime,   duration )
+            self.remainTimeText  = TextFormat.shared.time( remainingTime, duration )
 
             self.prevElapsedTime = intElapsedTime
         }
@@ -248,7 +248,7 @@ final class PlayerViewModel: ObservableObject {
         }
 
         self.elapsedTime     = elapsedTime
-        self.currentTimeText = DateTimeFormat.shared.currentTime()
+        self.currentTimeText = TextFormat.shared.currentTime()
     }
 
     

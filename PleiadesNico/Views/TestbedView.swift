@@ -20,6 +20,9 @@ struct TestbedView: View {
                 }
             }
         }
+        .onAppear(){
+
+        }
     }
 }
 

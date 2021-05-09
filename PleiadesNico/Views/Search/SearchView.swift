@@ -83,8 +83,8 @@ extension SearchView {
         return VideoAbstractView(
             title         : item.title,
             thumbnail     : item.thumbnailUrl,
-            uploaded      : DateTimeFormat.shared.dateFromISO8601(item.startTime),
-            duration      : DateTimeFormat.shared.duration(item.lengthSeconds),
+            uploaded      : TextFormat.shared.dateFromISO8601(item.startTime),
+            duration      : TextFormat.shared.duration(item.lengthSeconds),
             views         : String(item.viewCounter),
             comments      : String(item.commentCounter),
             mylists       : String(item.mylistCounter),

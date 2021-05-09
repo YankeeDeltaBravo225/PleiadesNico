@@ -26,7 +26,7 @@
 		F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23C263D678600DFD69F /* DmcSessionResponse.swift */; };
 		F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23D263D678600DFD69F /* DmcSessionInfo.swift */; };
 		F748C250263D678600DFD69F /* NicoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23F263D678600DFD69F /* NicoSession.swift */; };
-		F748C251263D678600DFD69F /* DateTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C240263D678600DFD69F /* DateTimeFormat.swift */; };
+		F748C251263D678600DFD69F /* TextFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C240263D678600DFD69F /* TextFormat.swift */; };
 		F748C252263D678600DFD69F /* VideoInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C241263D678600DFD69F /* VideoInfoAPI.swift */; };
 		F748C253263D678600DFD69F /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C242263D678600DFD69F /* SearchAPI.swift */; };
 		F748C254263D678600DFD69F /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C244263D678600DFD69F /* CommentResponse.swift */; };
@@ -104,7 +104,7 @@
 		F748C23C263D678600DFD69F /* DmcSessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionResponse.swift; sourceTree = "<group>"; };
 		F748C23D263D678600DFD69F /* DmcSessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionInfo.swift; sourceTree = "<group>"; };
 		F748C23F263D678600DFD69F /* NicoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicoSession.swift; sourceTree = "<group>"; };
-		F748C240263D678600DFD69F /* DateTimeFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeFormat.swift; sourceTree = "<group>"; };
+		F748C240263D678600DFD69F /* TextFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFormat.swift; sourceTree = "<group>"; };
 		F748C241263D678600DFD69F /* VideoInfoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInfoAPI.swift; sourceTree = "<group>"; };
 		F748C242263D678600DFD69F /* SearchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		F748C244263D678600DFD69F /* CommentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 				F748C23F263D678600DFD69F /* NicoSession.swift */,
 				F733AF2B26477C0A00CF7023 /* NicoJson.swift */,
 				F7D72FE3263FF24800836A71 /* ConfigStorage.swift */,
-				F748C240263D678600DFD69F /* DateTimeFormat.swift */,
+				F748C240263D678600DFD69F /* TextFormat.swift */,
 				F748C235263D678600DFD69F /* DebugLog.swift */,
 			);
 			path = Models;
@@ -532,7 +532,7 @@
 				F748C252263D678600DFD69F /* VideoInfoAPI.swift in Sources */,
 				F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */,
 				F748C27F263D67AF00DFD69F /* RankingViewModel.swift in Sources */,
-				F748C251263D678600DFD69F /* DateTimeFormat.swift in Sources */,
+				F748C251263D678600DFD69F /* TextFormat.swift in Sources */,
 				F748C24B263D678600DFD69F /* MockSearchResult.swift in Sources */,
 				F748C27D263D67AF00DFD69F /* SearchViewModel.swift in Sources */,
 				F748C24A263D678600DFD69F /* MockRanking.swift in Sources */,

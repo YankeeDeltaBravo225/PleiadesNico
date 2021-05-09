@@ -94,17 +94,17 @@ extension VideoAbstractView {
                 .frame(width:4)
             PropertyLabelView(
                 symbol: "play",
-                text  : views,
+                text  : TextFormat.shared.largeCount(views),
                 size  : attrFontSize
             )
             PropertyLabelView(
                 symbol: "text.bubble",
-                text  : comments,
+                text  : TextFormat.shared.largeCount(comments),
                 size  : attrFontSize
             )
             PropertyLabelView(
                 symbol: "star",
-                text  : mylists,
+                text  : TextFormat.shared.largeCount(mylists),
                 size  : attrFontSize
             )
             Spacer()

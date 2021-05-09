@@ -10,23 +10,21 @@ import UIKit
 
 final class VideoDetailViewModel: ObservableObject {
 
+    typealias Prop = VideoInfoAPI.Prop
+
+    @Published var prop     : Prop = VideoInfoAPI.defaultProp
+    @Published var hasProp  : Bool = false
+    @Published var showPlay : Bool = false
+    
     private    let session     : NicoSession
     private    let detailModel : VideoInfoAPI
     private    let videoId     : String
 
-    @Published var prop     : VideoInfoAPI.Prop
-    @Published var hasProp  : Bool
-    @Published var showPlay : Bool
 
-
-    
     init(videoId : String){
         self.session     = NicoSession()
         self.detailModel = VideoInfoAPI( videoId:videoId )
         self.videoId     = videoId
-        self.hasProp     = false
-        self.showPlay    = false
-        self.prop        = VideoInfoAPI.defaultProp
     }
 
 
@@ -37,11 +35,10 @@ final class VideoDetailViewModel: ObservableObject {
                 self.hasProp = true
                 self.prop    = self.detailModel.decodeXml(text)
                 
-                // FLV videos are not supported,
                 // Channel video will be supported in the future
-//                if self.prop.videoId.hasPrefix("sm") && self.prop.fileType == "mp4" {
+                if self.prop.videoId.hasPrefix("sm") {
                     self.showPlay = true
-//                }
+                }
             },
             onError: { error in
                 print(error)

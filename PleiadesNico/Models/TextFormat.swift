@@ -7,14 +7,15 @@
 import Foundation
 
 
-class DateTimeFormat {
+class TextFormat {
 
     let iso8601Formatter : ISO8601DateFormatter
     let dateFormatter    : DateFormatter
     let timeFormatter    : DateFormatter
+    let numberFormatter  : NumberFormatter
     
     // Singleton instance
-    static let shared    = DateTimeFormat()
+    static let shared    = TextFormat()
 
     
     // Creating indivisual instance is prohibited
@@ -32,6 +33,11 @@ class DateTimeFormat {
         self.timeFormatter = timeFormatter
 
         self.iso8601Formatter = ISO8601DateFormatter()
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.locale = Locale(identifier: "ja_JP")
+        self.numberFormatter = numberFormatter
     }
 
 
@@ -104,4 +110,28 @@ class DateTimeFormat {
         return self.timeFormatter.string(from: Date())
     }
 
+
+    func largeCount(_ text : String) -> String{
+        guard let nsCount : NSNumber = self.numberFormatter.number(from: text)
+        else {
+            return text
+        }
+        
+        let count : Int = Int(truncating: nsCount)
+        
+        // over 1M
+        if count >= 1000000 {
+            let man = count / 10000
+            return "\(Int(man)) 万"
+        }
+
+        // over 10K
+        if count >= 10000 {
+            let man = count / 10000
+            let sen = (count % 10000) / 1000
+            return "\(Int(man)).\(sen) 万"
+        }
+
+        return self.numberFormatter.string(from: nsCount) ?? text
+    }
 }
