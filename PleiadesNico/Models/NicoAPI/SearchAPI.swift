@@ -62,8 +62,9 @@ class SearchAPI {
     ]
 
     static let unitNum = 10
-
-    func url(word : String, kind : Kind, offset : Int = 0 ) -> String{
+    
+    
+    func url(word : String, kind : Kind, offset : Int = 0, sortKeyId : Int, sortOrderId : Int ) -> String{
         let targets = (kind == .tag) ? "tags" : "title,description,tags"
         let fields  = "contentId,title,viewCounter,mylistCounter,lengthSeconds,commentCounter,startTime,lastCommentTime,thumbnailUrl"
         
@@ -71,7 +72,7 @@ class SearchAPI {
             Query( "q",        word.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" ),
             Query( "targets",  targets ),
             Query( "fields",   fields ),
-            Query( "_sort",    "-viewCounter" ),
+            Query( "_sort",    sortQueryValue(sortKeyId: sortKeyId, sortOrderId: sortOrderId) ),
             Query( "_context", "SwiftSampleApp" ),
             Query( "_offset",  String(offset))
         ]
@@ -79,6 +80,16 @@ class SearchAPI {
         let reduced = queries.reduce("") {$0 + $1.key + "=" + $1.value + "&"}
 
         return NicoURL.searchBase + reduced
+    }
+
+    
+    func sortQueryValue(sortKeyId : Int, sortOrderId : Int) -> String {
+        let prefix = (sortOrderId == SortOrder.minus.rawValue) ? #"-"# : #"%2B"# // %2B: percent encoded value of +
+        let value  = SearchAPI.sortKeys[sortKeyId].name
+
+        let queryValue = prefix + value
+//        return queryValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? queryValue
+        return queryValue
     }
 
 
@@ -104,7 +115,7 @@ class SearchAPI {
             var contentId       : String
             var title           : String
             var startTime       : String
-            var lastCommentTime : String
+            var lastCommentTime : String?
             var thumbnailUrl    : String
             var viewCounter     : Int
             var mylistCounter   : Int
@@ -113,21 +124,5 @@ class SearchAPI {
         }
         
         var data : [Item]
-    }
-    
-
-    struct Query{
-        var key   : String
-        var value : String
-        
-        init(_ key : String, _ value : String){
-            self.key   = key
-            self.value = value
-        }
-    }
-
-    enum Kind: String, CaseIterable {
-        case tag
-        case keyword
     }
 }

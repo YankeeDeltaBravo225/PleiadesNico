@@ -10,7 +10,9 @@ import SwiftUI
 struct SearchView: View {
 
     @ObservedObject var viewModel : SearchViewModel
-    
+    @State var isPresented: Bool = false
+
+
     init(_ tag : String = "" ){
         viewModel = SearchViewModel( tag )
     }
@@ -18,14 +20,15 @@ struct SearchView: View {
     
     var body: some View {
         VStack{
+            tagKeywordSelector()
             searchFieldView()
             
             List{
                 if viewModel.showNoHit {
                     Text("該当なし")
                 }
-                ForEach(viewModel.items.indices, id: \.self) { index in
-                    let item  = viewModel.items[index]
+                ForEach(viewModel.resultItems.indices, id: \.self) { index in
+                    let item  = viewModel.resultItems[index]
                     NavigationLink(
                         destination: VideoDetailView(item.contentId)
                     ){
@@ -45,7 +48,14 @@ struct SearchView: View {
         .navigationBarBackButtonHidden(false)
         .toolbar{
             ToolbarItem(placement:.principal ){
-                kindSelectView()
+                Button(action: { isPresented.toggle() }){
+                    Image(systemName: "slider.horizontal.3")
+                    Text(viewModel.sortText)
+                        .padding(4)
+                }
+                .sheet(isPresented: $isPresented) {
+                    SearchOrderSelectorView(viewModel: viewModel)
+                }
             }
         }
         .onAppear(){
@@ -56,8 +66,8 @@ struct SearchView: View {
 
 extension SearchView {
 
-    fileprivate func kindSelectView() -> some View {
-        return Picker("SearchKind", selection: $viewModel.kind) {
+    fileprivate func tagKeywordSelector() -> some View {
+        return Picker("SearchKind", selection: $viewModel.seachKind) {
             ForEach(SearchAPI.Kind.allCases, id: \.self) { (kind) in
                 Text(kind.rawValue)
             }
@@ -68,7 +78,7 @@ extension SearchView {
 
 
     fileprivate func videoAbstractView(_ index : Int) -> some View {
-        let item  = viewModel.items[index]
+        let item  = viewModel.resultItems[index]
         let color = ColorPalette.pastel( index )
         
         return HStack{

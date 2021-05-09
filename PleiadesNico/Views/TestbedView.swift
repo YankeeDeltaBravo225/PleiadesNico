@@ -7,19 +7,18 @@
 import SwiftUI
 
 struct TestbedView: View {
-    @State private var selection = 3    // 選択値と連携するプロパティ
-    
+    @State private var selectedStrength = "Mild"
+    let strengths = ["Mild", "Medium", "Mature"]
+
     var body: some View {
-        VStack {
-            Picker(selection: $selection, label: Text("フルーツ")) {
-                Text("みかん").tag(1)
-                Text("ぶどう").tag(2)
-                Text("りんご").tag(3)
-                Text("バナナ").tag(4)
-                Text("もも").tag(5)
+        Form {
+            Section {
+                Picker("Strength", selection: $selectedStrength) {
+                    ForEach(strengths, id: \.self) {
+                        Text($0)
+                    }
+                }
             }
-            
-            Text("選択値：\(selection)")
         }
     }
 }
