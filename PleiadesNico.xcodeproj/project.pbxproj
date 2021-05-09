@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
-		F73DCEE4264563920003E1F7 /* SearchOrderSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DCEE3264563920003E1F7 /* SearchOrderSelectorView.swift */; };
+		F73DCEE4264563920003E1F7 /* OrderSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DCEE3264563920003E1F7 /* OrderSelectView.swift */; };
 		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
 		F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FC263D656F00DFD69F /* Assets.xcassets */; };
 		F748C200263D656F00DFD69F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */; };
@@ -81,7 +81,7 @@
 
 /* Begin PBXFileReference section */
 		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
-		F73DCEE3264563920003E1F7 /* SearchOrderSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderSelectorView.swift; sourceTree = "<group>"; };
+		F73DCEE3264563920003E1F7 /* OrderSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSelectView.swift; sourceTree = "<group>"; };
 		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoApp.swift; sourceTree = "<group>"; };
 		F748C1FC263D656F00DFD69F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 			children = (
 				F748C271263D67AF00DFD69F /* SearchView.swift */,
 				F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */,
-				F73DCEE3264563920003E1F7 /* SearchOrderSelectorView.swift */,
+				F73DCEE3264563920003E1F7 /* OrderSelectView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -519,7 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F748C283263D67AF00DFD69F /* RankingTopView.swift in Sources */,
-				F73DCEE4264563920003E1F7 /* SearchOrderSelectorView.swift in Sources */,
+				F73DCEE4264563920003E1F7 /* OrderSelectView.swift in Sources */,
 				F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */,
 				F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */,
 				F748C28C263D67AF00DFD69F /* SwipeGesture.swift in Sources */,

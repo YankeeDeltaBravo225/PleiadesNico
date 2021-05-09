@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
 
     @ObservedObject var viewModel : SearchViewModel
-    @State var isPresented: Bool = false
+    @State var showSortSelector: Bool = false
 
 
     init(_ tag : String = "" ){
@@ -48,13 +48,13 @@ struct SearchView: View {
         .navigationBarBackButtonHidden(false)
         .toolbar{
             ToolbarItem(placement:.principal ){
-                Button(action: { isPresented.toggle() }){
+                Button(action: { showSortSelector.toggle() }){
                     Image(systemName: "slider.horizontal.3")
                     Text(viewModel.sortText)
                         .padding(4)
                 }
-                .sheet(isPresented: $isPresented) {
-                    SearchOrderSelectorView(viewModel: viewModel)
+                .sheet(isPresented: $showSortSelector) {
+                    OrderSelectView(viewModel: viewModel)
                 }
             }
         }

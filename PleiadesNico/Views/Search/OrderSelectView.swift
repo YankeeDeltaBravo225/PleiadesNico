@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-struct SearchOrderSelectorView: View {
+struct OrderSelectView: View {
     @ObservedObject var viewModel : SearchViewModel
     @State private var keyId      : Int? = 0
     @State private var orderId    : Int  = 0
@@ -55,6 +55,6 @@ struct SearchOrderSelectorView: View {
 
 struct OrderSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchOrderSelectorView( viewModel : SearchViewModel() )
+        OrderSelectView( viewModel : SearchViewModel() )
     }
 }
