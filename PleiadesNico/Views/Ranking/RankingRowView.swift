@@ -29,7 +29,8 @@ struct RankingRowView: View {
                         uploaded : item.uploaded,
                         duration : item.duration,
                         views    : item.views,
-                        comments : item.comments
+                        comments : item.comments,
+                        mylists  : item.mylists
                     )
                 }
                 rankPositionView()

@@ -15,6 +15,7 @@ struct VideoAbstractView: View {
     let duration  : String
     let views     : String
     let comments  : String
+    let mylists   : String
     
     var body: some View {
         VStack{
@@ -30,11 +31,24 @@ extension VideoAbstractView {
     
     fileprivate func titleAndThumbnailView() -> some View {
         return HStack {
-            OnlineImageIView(
-                urlText : thumbnail,
-                width   : 100,
-                height  : 75
-            )
+            ZStack{
+                OnlineImageIView(
+                    urlText : thumbnail,
+                    width   : 100,
+                    height  : 75
+                )
+                VStack{
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Text(duration)
+                            .font(.system(size: 12))
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                    }
+                }
+                .frame(width:100, height:75)
+            }
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.system(size: 12))
@@ -63,11 +77,13 @@ extension VideoAbstractView {
         return HStack{
             Spacer()
                 .frame(width:4)
+/*
             PropertyLabelView(
                 symbol: "clock",
                 text  : duration,
                 size  : 12
             )
+*/
             PropertyLabelView(
                 symbol: "play",
                 text  : views,
@@ -76,6 +92,11 @@ extension VideoAbstractView {
             PropertyLabelView(
                 symbol: "text.bubble",
                 text  : comments,
+                size  :12
+            )
+            PropertyLabelView(
+                symbol: "star",
+                text  : mylists,
                 size  :12
             )
             Spacer()
@@ -87,13 +108,25 @@ extension VideoAbstractView {
 
 struct VideoAbstractView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoAbstractView(
-            title    : "鎌倉幕府の成立から崩壊まで",
-            thumbnail: "https://nicovideo.cdn.nimg.jp/thumbnails/38496906/38496906.66501077",
-            uploaded : "2192/11/8 19:21:30",
-            duration : "11:92",
-            views    : "123456",
-            comments : "3421"
-        )
+        Group {
+            VideoAbstractView(
+                title    : "鎌倉幕府の成立から崩壊まで",
+                thumbnail: "https://nicovideo.cdn.nimg.jp/thumbnails/38496906/38496906.66501077",
+                uploaded : "2192/11/8 19:21:30",
+                duration : "11:92",
+                views    : "123456",
+                comments : "3421",
+                mylists  : "765"
+            )
+            VideoAbstractView(
+                title    : "鎌倉幕府の成立から崩壊まで",
+                thumbnail: "https://nicovideo.cdn.nimg.jp/thumbnails/38496906/38496906.66501077",
+                uploaded : "2192/11/8 19:21:30",
+                duration : "11:92",
+                views    : "123456",
+                comments : "3421",
+                mylists  : "765"
+            )
+        }
     }
 }
