@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
+		F73DCEE4264563920003E1F7 /* OrderSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73DCEE3264563920003E1F7 /* OrderSelectView.swift */; };
 		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
 		F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FC263D656F00DFD69F /* Assets.xcassets */; };
 		F748C200263D656F00DFD69F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */; };
@@ -78,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
+		F73DCEE3264563920003E1F7 /* OrderSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSelectView.swift; sourceTree = "<group>"; };
 		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoApp.swift; sourceTree = "<group>"; };
 		F748C1FC263D656F00DFD69F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				F7E361392642679B00347944 /* NicoAPI */,
 				F7D83C902640E29B00FC42D7 /* NicoURL.swift */,
 				F748C23F263D678600DFD69F /* NicoSession.swift */,
+				F733AF2B26477C0A00CF7023 /* NicoJson.swift */,
 				F7D72FE3263FF24800836A71 /* ConfigStorage.swift */,
 				F748C240263D678600DFD69F /* DateTimeFormat.swift */,
 				F748C235263D678600DFD69F /* DebugLog.swift */,
@@ -326,6 +331,7 @@
 			children = (
 				F748C271263D67AF00DFD69F /* SearchView.swift */,
 				F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */,
+				F73DCEE3264563920003E1F7 /* OrderSelectView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F748C283263D67AF00DFD69F /* RankingTopView.swift in Sources */,
+				F73DCEE4264563920003E1F7 /* OrderSelectView.swift in Sources */,
 				F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */,
 				F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */,
 				F748C28C263D67AF00DFD69F /* SwipeGesture.swift in Sources */,
@@ -528,6 +535,7 @@
 				F748C24A263D678600DFD69F /* MockRanking.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
 				F748C249263D678600DFD69F /* MockPage.swift in Sources */,
+				F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */,
 				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
 				F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */,

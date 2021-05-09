@@ -8,6 +8,59 @@ import Foundation
 
 class SearchAPI {
 
+    enum Kind: String, CaseIterable {
+        case tag
+        case keyword
+    }
+    
+    struct Query{
+        var key   : String
+        var value : String
+        
+        init(_ key : String, _ value : String){
+            self.key   = key
+            self.value = value
+        }
+    }
+
+    enum SortOrder: Int, CaseIterable {
+        case minus = 0
+        case plus  = 1
+    }
+    
+    struct SortDirection{
+        let order       : SortOrder
+        let description : String
+
+        init(_ order: SortOrder, _ description: String){
+            self.order             = order
+            self.description       = description
+        }
+    }
+    
+    struct SortKey{
+        let id          : Int
+        let name        : String
+        let description : String
+        let directions  : [SortDirection]
+        
+        init(_ keyId: Int, _ keyName: String, _ description: String, _ directions : [SortDirection]){
+            self.id          = keyId
+            self.name        = keyName
+            self.description = description
+            self.directions  = directions
+        }
+    }
+
+    static let sortKeys : [SortKey] = [
+        SortKey(0, "viewCounter",     "再生",       [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")] ),
+        SortKey(1, "commentCounter",  "コメント",    [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")] ),
+        SortKey(2, "mylistCounter",   "マイリスト",  [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")]) ,
+        SortKey(3, "startTime",       "投稿時間",    [SortDirection(.minus, "新しい順"), SortDirection(.plus, "古い順")] ),
+        SortKey(4, "lastCommentTime", "最新コメント", [SortDirection(.minus, "新しい順"), SortDirection(.plus, "古い順")] ),
+        SortKey(5, "lengthSeconds",   "再生時間",    [SortDirection(.minus, "長い順"),   SortDirection(.plus, "短い順")] ),
+    ]
+
     static let unitNum = 10
 
     func url(word : String, kind : Kind, offset : Int = 0 ) -> String{
@@ -30,14 +83,19 @@ class SearchAPI {
 
 
     func decode(_ text : String) -> [SearchAPI.Result.Item]{
-        let data     = text.data(using: .utf8)
-        let decorder = JSONDecoder()
-        guard let decodeResp = try? decorder.decode(SearchAPI.Result.self, from: data!) else {
-            DebugLog.shared.error("Json decode エラー")
+        
+        let json : NicoJson = NicoJson(text)
+
+        var resp : SearchAPI.Result
+        do{
+            resp = try json.decode(SearchAPI.Result.self)
+        } catch{
+            DebugLog.shared.error("error: \(error.localizedDescription)")
+            DebugLog.shared.error("raw Json: \(text)")
             return []
         }
-        
-        return decodeResp.data
+
+        return resp.data
     }
 
 
