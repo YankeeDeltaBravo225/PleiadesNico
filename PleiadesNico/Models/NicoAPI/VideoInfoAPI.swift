@@ -77,15 +77,12 @@ class VideoInfoAPI{
         let tags          : [String]
 
         init(attr : [String : String], tagList : [String]){
-            
-            let uploadDate = DateTimeFormat.shared.dateFromISO8601(attr["uploaded"] ?? "")
-            
             title         = attr["title",         default: "no title"]
             videoId       = attr["videoId",       default: ""]
             fileType      = attr["fileType",      default: ""]
             description   = attr["description",   default: "no description"]
             thumbnail     = attr["thumbnail",     default: ""].trimmingCharacters(in: .newlines)
-            uploaded      = uploadDate
+            uploaded      = attr["uploaded",      default: ""]
             duration      = attr["duration",      default: "0:0"]
             views         = attr["views",         default: "-1"]
             comments      = attr["comments",      default: "-1"]

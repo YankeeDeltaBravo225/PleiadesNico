@@ -98,7 +98,7 @@ extension VideoDetailView {
         return VideoAbstractView(
             title         : prop.title,
             thumbnail     : prop.thumbnail,
-            uploaded      : prop.uploaded,
+            uploaded      : DateTimeFormat.shared.dateFromISO8601(prop.uploaded),
             duration      : prop.duration,
             views         : prop.views,
             comments      : prop.comments,

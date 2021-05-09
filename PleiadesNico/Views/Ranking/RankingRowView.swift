@@ -20,7 +20,7 @@ struct RankingRowView: View {
             VideoAbstractView(
                 title         : item.title,
                 thumbnail     : item.thumbnail,
-                uploaded      : item.uploaded,
+                uploaded      : item.uploaded.replacingOccurrences(of: "：", with: ":"),
                 duration      : item.duration,
                 views         : item.views,
                 comments      : item.comments,
