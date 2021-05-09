@@ -46,9 +46,11 @@ struct SettingView: View {
 extension SettingView {
 
     fileprivate func loginPageButton() -> some View {
-        return Button("ログイン/ユーザ設定の確認(内蔵ブラウザが開きます)") {
-            self.showLogin.toggle()
-        }
+        return FloatingButton(
+            action     : { self.showLogin.toggle() },
+            systemIcon : "safari",
+            text       : "ログイン/ユーザ設定の確認"
+        )
         .sheet(
             isPresented: $showLogin,
             onDismiss: {}

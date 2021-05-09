@@ -53,6 +53,7 @@
 		F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FA98926441E9400D06430 /* TestbedView.swift */; };
 		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
+		F7920DAB2647927D00FD2D50 /* FloatingTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
 		F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C800B226402716005F76D0 /* MylistAPI.swift */; };
 		F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FD9263FE79400836A71 /* SettingView.swift */; };
@@ -130,6 +131,7 @@
 		F74FA98926441E9400D06430 /* TestbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestbedView.swift; sourceTree = "<group>"; };
 		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
 		F7C800B226402716005F76D0 /* MylistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistAPI.swift; sourceTree = "<group>"; };
 		F7D72FD9263FE79400836A71 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				F748C275263D67AF00DFD69F /* VideoAbstractView.swift */,
 				F748C276263D67AF00DFD69F /* ColorPalette.swift */,
 				F782BE44263FCCAD00EFB676 /* WebView.swift */,
+				F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				F748C288263D67AF00DFD69F /* PropertyLabelView.swift in Sources */,
 				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,
 				F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */,
+				F7920DAB2647927D00FD2D50 /* FloatingTextButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
