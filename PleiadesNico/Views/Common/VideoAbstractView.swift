@@ -68,7 +68,6 @@ extension VideoAbstractView {
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.system(size: titleFontSize))
-                    .lineLimit(3)
             }
             Spacer()
         }

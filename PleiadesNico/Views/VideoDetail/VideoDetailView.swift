@@ -106,7 +106,7 @@ extension VideoDetailView {
             colorIndex    : colorIndex,
             imageWidth    : 160,
             imageHeight   : 120,
-            titleFontSize : 18,
+            titleFontSize : 14,
             attrFontSize  : 14
         )
         .padding(10)
