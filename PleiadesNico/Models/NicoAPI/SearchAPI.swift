@@ -23,6 +23,22 @@ class SearchAPI {
         }
     }
 
+    struct Result : Codable, Hashable{
+        struct Item : Codable, Hashable {
+            var contentId       : String
+            var title           : String
+            var startTime       : String
+            var lastCommentTime : String?
+            var thumbnailUrl    : String
+            var viewCounter     : Int
+            var mylistCounter   : Int
+            var lengthSeconds   : Int
+            var commentCounter  : Int
+        }
+        
+        var data : [Item]
+    }
+
     enum SortOrder: Int, CaseIterable {
         case minus = 0
         case plus  = 1
@@ -61,6 +77,9 @@ class SearchAPI {
         SortKey(5, "lengthSeconds",   "再生時間",    [SortDirection(.minus, "長い順"),   SortDirection(.plus, "短い順")] ),
     ]
 
+    
+    
+    
     static let unitNum = 10
     
     
@@ -108,20 +127,4 @@ class SearchAPI {
         return resp.data
     }
 
-
-    struct Result : Codable, Hashable{
-        struct Item : Codable, Hashable {
-            var contentId       : String
-            var title           : String
-            var startTime       : String
-            var lastCommentTime : String?
-            var thumbnailUrl    : String
-            var viewCounter     : Int
-            var mylistCounter   : Int
-            var lengthSeconds   : Int
-            var commentCounter  : Int
-        }
-        
-        var data : [Item]
-    }
 }

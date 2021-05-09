@@ -25,7 +25,8 @@ class NicoURL {
     //
     // Search API URL
     //
-    // spec: https://site.nicovideo.jp/search-api-docs/snapshot
+    // detail:
+    // https://site.nicovideo.jp/search-api-docs/snapshot
     //
     static let searchBase = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search?"
 
@@ -33,7 +34,7 @@ class NicoURL {
     //
     // Ranking URL
     //
-    // API detail:
+    // detail:
     // https://dwango.github.io/niconico/genre_ranking/ranking_rss/
     //
     static func ranking(genre : String, term : String) -> String{
