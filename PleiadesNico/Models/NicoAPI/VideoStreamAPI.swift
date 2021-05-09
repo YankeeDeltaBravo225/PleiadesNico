@@ -83,15 +83,17 @@ class VideoStreamAPI {
 
 
     func storeDmcSessionInfo(_ dmcInfoText : String) -> State{
-        
-        let data     = dmcInfoText.data(using: .utf8)
+        let json : NicoJson = NicoJson(dmcInfoText)
 
-        guard let dmcInfo  : DmcSessionInfo.ApiData = decodeJson(DmcSessionInfo.ApiData.self, from: data!)
-        else {
+        var info : DmcSessionInfo.ApiData
+        do{
+            info = try json.decode(DmcSessionInfo.ApiData.self)
+        } catch{
+            registerError("error: \(error.localizedDescription)")
             return .error
         }
 
-        self.dmcApiInfo = dmcInfo
+        self.dmcApiInfo = info
         return .success
     }
 
@@ -122,15 +124,17 @@ class VideoStreamAPI {
     
 
     func storeDmcSessionResponse(_ responseText : String) -> State {
-        
-        let data       = responseText.data(using: .utf8)
+        let json : NicoJson = NicoJson(responseText)
 
-        guard let dmcResponse : DmcSessionResponse.Response = decodeJson(DmcSessionResponse.Response.self, from: data!)
-        else {
+        var resp : DmcSessionResponse.Response
+        do{
+            resp = try json.decode(DmcSessionResponse.Response.self)
+        } catch{
+            registerError("error: \(error.localizedDescription)")
             return .error
         }
 
-        self.dmcResponse = dmcResponse
+        self.dmcResponse = resp
         return .success
     }
 
@@ -177,16 +181,17 @@ class VideoStreamAPI {
 
 
     func storeCommentResponse(_ commentText : String) -> State{
-        
-        let converted = "{ \"elements\": \(commentText) }"
-        let data      = converted.data(using: .utf8)
+        let json : NicoJson = NicoJson("{ \"elements\": \(commentText) }")
 
-        guard let response : CommentResponse.Response = decodeJson(CommentResponse.Response.self, from: data!)
-        else {
+        var resp : CommentResponse.Response
+        do{
+            resp = try json.decode(CommentResponse.Response.self)
+        } catch{
+            registerError("error: \(error.localizedDescription)")
             return .error
         }
 
-        let chats = response.elements.map{ $0.chat }.filter{ $0?.content != nil }.compactMap{ $0 }
+        let chats = resp.elements.map{ $0.chat }.filter{ $0?.content != nil }.compactMap{ $0 }
 
         self.chats = chats.sorted(
             by: { (a, b) -> Bool in
@@ -198,37 +203,6 @@ class VideoStreamAPI {
     }
 
 
-    func decodeJson<T>(_ klass: T.Type, from data: Data) -> T? where T : Decodable
-    {
-        let decorder  = JSONDecoder()
-        let decoded  : T
-
-        do {
-            decoded = try decorder.decode(klass, from: data)
-        } catch let DecodingError.dataCorrupted(context) {
-            registerError("\(context)")
-            return nil
-        } catch let DecodingError.keyNotFound(key, context) {
-            registerError("Key '\(key)' not found: \(context.debugDescription))")
-            registerError("codingPath: \(context.codingPath)")
-            return nil
-        } catch let DecodingError.valueNotFound(value, context) {
-            registerError("Value '\(value)' not found: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return nil
-        } catch let DecodingError.typeMismatch(type, context)  {
-            registerError("Type '\(type)' mismatch: \(context.debugDescription)")
-            registerError("codingPath: \(context.codingPath)")
-            return nil
-        } catch {
-            registerError("error: \(error)")
-            return nil
-        }
-        
-        return decoded
-    }
-
-    
     func comments() -> [CommentResponse.Chat] {
         return self.chats
     }

@@ -88,7 +88,6 @@ class SearchAPI {
         let value  = SearchAPI.sortKeys[sortKeyId].name
 
         let queryValue = prefix + value
-//        return queryValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? queryValue
         return queryValue
     }
 
