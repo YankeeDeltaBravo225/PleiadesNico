@@ -30,7 +30,6 @@ struct VideoAbstractView: View {
                 uploadDateView()
                 videoStatsView()
             }
-            .frame(height : imageHeight + (titleFontSize + attrFontSize)*1.5 )
         }
     }
 }
@@ -43,33 +42,37 @@ extension VideoAbstractView {
         return Color(red: color.r, green: color.g, blue: color.b)
             .frame(height:4)
     }
-
+ 
 
     fileprivate func titleAndThumbnailView() -> some View {
         return HStack {
-            ZStack{
-                OnlineImageIView(
-                    urlText : thumbnail,
-                    width   : imageWidth,
-                    height  : imageHeight
-                )
-                VStack{
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Text(duration)
-                            .font(.system(size: attrFontSize))
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                    }
-                }
-                .frame(width:imageWidth, height:imageHeight)
-            }
+            thumbnailView()
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.system(size: titleFontSize))
             }
             Spacer()
+        }
+    }
+
+
+    fileprivate func thumbnailView() -> some View {
+        return ZStack{
+            OnlineImageIView(
+                urlText : thumbnail,
+                width   : imageWidth,
+                height  : imageHeight
+            )
+            VStack{
+                Spacer()
+                HStack{
+                    Spacer()
+                    Text(duration)
+                        .font(.system(size: attrFontSize))
+                        .foregroundColor(.white)
+                        .background(Color.black)
+                }
+            }
         }
     }
 
@@ -125,8 +128,8 @@ struct VideoAbstractView_Previews: PreviewProvider {
             comments    : "3421",
             mylists     : "765",
             colorIndex  : 3,
-            imageWidth  : 100,
-            imageHeight : 75,
+            imageWidth  : 160,
+            imageHeight : 90,
             titleFontSize: 16,
             attrFontSize: 12
         )

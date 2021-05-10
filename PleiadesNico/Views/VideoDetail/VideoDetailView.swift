@@ -104,8 +104,8 @@ extension VideoDetailView {
             comments      : prop.comments,
             mylists       : prop.mylists,
             colorIndex    : colorIndex,
-            imageWidth    : 160,
-            imageHeight   : 120,
+            imageWidth    : 128,
+            imageHeight   : 72,  // 16:9 aspact rate
             titleFontSize : 14,
             attrFontSize  : 14
         )

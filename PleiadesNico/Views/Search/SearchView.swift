@@ -89,8 +89,8 @@ extension SearchView {
             comments      : String(item.commentCounter),
             mylists       : String(item.mylistCounter),
             colorIndex    : index,
-            imageWidth    : 100,
-            imageHeight   : 75,
+            imageWidth    : 96,
+            imageHeight   : 54, // 16:9 aspact rate
             titleFontSize : 12,
             attrFontSize  : 12
         )

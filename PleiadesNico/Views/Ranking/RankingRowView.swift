@@ -26,8 +26,8 @@ struct RankingRowView: View {
                 comments      : item.comments,
                 mylists       : item.mylists,
                 colorIndex    : item.pos,
-                imageWidth    : 100,
-                imageHeight   : 75,
+                imageWidth    : 96,
+                imageHeight   : 54, // 16:9 aspact rate
                 titleFontSize : 12,
                 attrFontSize  : 12
             )
