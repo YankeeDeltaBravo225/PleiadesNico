@@ -74,6 +74,7 @@ extension VideoAbstractView {
                 }
             }
         }
+        .frame(width: imageWidth, height: imageHeight)
     }
 
 
