@@ -25,7 +25,7 @@ struct FloatingButton: View {
             }
         )
             .padding(10)
-            .background(Color.purple)
+            .background(Color.blue)
             .cornerRadius(20.0)
             .shadow(color: .gray, radius: 3, x: 3, y: 3)
             .padding(3)

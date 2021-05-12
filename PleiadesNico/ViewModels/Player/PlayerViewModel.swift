@@ -37,6 +37,7 @@ final class PlayerViewModel: ObservableObject {
     private    var isReady         : Bool
     private    var controlFadeTime : Double
     private    var doesControlFade : Bool
+    private    var appearCount     : Int
     private    var timer           : Cancellable?
 
 
@@ -54,10 +55,17 @@ final class PlayerViewModel: ObservableObject {
         self.isReady         = false
         self.controlFadeTime = -1.0
         self.doesControlFade = false
+        self.appearCount     = 0
     }
 
 
     func onAppear(){
+        if appearCount > 0 {
+            return
+        }
+
+        appearCount += 1
+        
         self.connect.onSuccess = { url in
             self.onConnectSuccess(streamUrl: url)
         }

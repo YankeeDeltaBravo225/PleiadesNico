@@ -51,6 +51,7 @@ extension VideoAbstractView {
                 Text(title)
                     .font(.system(size: titleFontSize))
             }
+            .frame(height: imageHeight)
             Spacer()
         }
     }

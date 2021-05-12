@@ -16,19 +16,21 @@ import AVKit
 struct PlayerTopView: View {
 
     @ObservedObject var viewModel : PlayerViewModel
-    let screen: VideoScreen
+    let screen     : VideoScreen
+    let colorIndex : Int
     
-    init(_ contentId : String){
-        screen = VideoScreen()
-        viewModel = PlayerViewModel(
+    init(_ contentId : String, colorIndex : Int){
+        self.screen = VideoScreen()
+        self.viewModel = PlayerViewModel(
             screen: screen,
             contentId: contentId
         )
+        self.colorIndex = colorIndex
     }
-       
+    
     var body: some View {
         ZStack {
-            Color.black
+            backGroundView()
             if( viewModel.showPlayer ){
                 screenView()
                 commentView()
@@ -70,6 +72,19 @@ struct PlayerTopView: View {
 // MARK: - Extension
 extension PlayerTopView {
 
+    fileprivate func backGroundView() -> RadialGradient {
+        let color = ColorPalette.pastel( colorIndex )
+        return RadialGradient(
+            gradient: Gradient(
+                colors: [Color(red: color.r, green: color.g, blue: color.b), .white, .black]
+            ),
+            center: .bottomTrailing,
+            startRadius: 60,
+            endRadius: 180
+        )
+    }
+    
+    
     fileprivate func progressTextsView() -> some View {
         return VStack{
             Spacer()
@@ -132,6 +147,6 @@ struct AvPlayerViewControllerWrap : UIViewControllerRepresentable {
 struct PlayerTopView_Previews: PreviewProvider {
     static var previews: some View {
 //        let url  = URL(fileURLWithPath: "/Users/tkato/Documents/XCode/VideoProto/VideoProto/sample.mp4")
-        PlayerTopView("sm1192")
+        PlayerTopView("sm1192", colorIndex: 3)
     }
 }

@@ -15,11 +15,14 @@ struct RankingTopView: View {
         viewModel = RankingViewModel()
     }
 
+    
     var body: some View {
-
         NavigationView {
             VStack{
                 List{
+                    HStack{
+                        genreSelectButton()
+                    }
                     ForEach(viewModel.ranks, id:\.pos) { rank in
                         NavigationLink(
                             destination: VideoDetailView(rank.videoId, colorIndex: rank.pos)
@@ -30,8 +33,9 @@ struct RankingTopView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    genreSelectionButton()
-                    reloadButton()
+                    ToolbarItem(placement: .principal){
+                        Text(viewModel.abstractText)
+                    }
                 }
             }
         }
@@ -46,24 +50,13 @@ struct RankingTopView: View {
 
 
 extension RankingTopView {
-
-    fileprivate func genreSelectionButton() -> ToolbarItem<Void, Button<TupleView<(Image, Text)>>> {
-        return ToolbarItem(placement: .navigationBarLeading){
-            Button(action: { viewModel.onSelectorEnabled() }) {
-                Image(systemName: "text.justify")
-                Text(viewModel.genreText)
-            }
-        }
+    fileprivate func genreSelectButton() -> FloatingButton {
+        return FloatingButton(
+            action: {viewModel.onSelectorEnabled()},
+            systemIcon: "text.justify",
+            text: viewModel.genreText
+        )
     }
-    
-    fileprivate func reloadButton() -> ToolbarItem<Void, Button<Image>> {
-        return ToolbarItem(placement: .navigationBarTrailing){
-            Button(action: { viewModel.loadRanking() } ){
-                Image(systemName: "arrow.clockwise")
-            }
-        }
-    }
-
 }
 
 

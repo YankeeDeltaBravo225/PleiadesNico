@@ -8,7 +8,7 @@ import Foundation
 
 class SearchAPI {
 
-    enum Kind: String, CaseIterable {
+    enum Kind: String, CaseIterable, Equatable {
         case tag
         case keyword
     }

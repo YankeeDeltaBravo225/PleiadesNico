@@ -86,6 +86,12 @@ class RankingAPI{
         return genre.description
     }
     
+    
+    func termDescription(termId : Int) -> String{
+        let term = RankingAPI.terms[termId]
+        return term.description
+    }
+
 
     func decodeXml(_ sourceText : String) -> [Item] {
         guard let xml = try? Kanna.XML(xml: sourceText, encoding: .utf8)

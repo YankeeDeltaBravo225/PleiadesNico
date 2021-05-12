@@ -21,10 +21,11 @@ struct VideoDetailView: View {
         self.viewModel  = VideoDetailViewModel(videoId: videoId)
     }
 
-    var body: some View {
 
-            List {
-                if(viewModel.hasProp){
+    var body: some View {
+        Group{
+            if(viewModel.hasProp){
+                List {
                     Section(header: Text(viewModel.prop.ownerType)){
                         ownerInfoView()
                     }
@@ -47,14 +48,17 @@ struct VideoDetailView: View {
                         tagsView()
                             .navigationBarTitleDisplayMode(.inline)
                     }
-                } else {
-                    Text("読み込み中")
                 }
+            } else if viewModel.didAppear {
+                ProgressView("Now Loading...")
+            } else {
+                // Temporal fix for a SwiftUI bug
+                reloadButton()
+            }
         }
         .onAppear(){
-            viewModel.loadVideoDetail(videoId: videoId)
+            viewModel.onAppearVideoDetail()
         }
-
     }
 
     struct DetailPropertyView: View {
@@ -77,6 +81,18 @@ struct VideoDetailView: View {
 }
 
 extension VideoDetailView {
+
+    fileprivate func reloadButton() -> some View {
+        return ZStack{
+            Color.white
+            Text("タップして画面をリロード")
+            .foregroundColor(.black)
+        }
+        .onTapGesture {
+            viewModel.onAppearVideoDetail()
+        }
+    }
+
 
     fileprivate func ownerInfoView() -> some View {
         return
@@ -170,7 +186,7 @@ extension VideoDetailView {
             }
         )
         .fullScreenCover(isPresented: $doesPlay){
-            PlayerTopView(videoId)
+            PlayerTopView(videoId, colorIndex: colorIndex)
         }
     }
 

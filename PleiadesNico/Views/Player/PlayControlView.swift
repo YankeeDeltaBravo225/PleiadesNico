@@ -16,8 +16,12 @@ struct PlayControlView: View {
         
     var body: some View {
         VStack {
+            Color.white
+                .frame(height : 20)
+                .ignoresSafeArea()
             upperControlView()
-            .padding(10)
+                .padding(10)
+                .ignoresSafeArea()
             Spacer()
             Color.clear
             lowerControlView()

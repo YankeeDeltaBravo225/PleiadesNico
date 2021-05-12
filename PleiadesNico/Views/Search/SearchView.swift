@@ -20,10 +20,11 @@ struct SearchView: View {
     
     var body: some View {
         VStack{
-            tagKeywordSelector()
-            searchFieldView()
-            
             List{
+                selectorLaunchButton()
+                tagKeywordSelector()
+                searchWordEditor()
+
                 if viewModel.showNoHit {
                     Text("該当なし")
                 }
@@ -35,27 +36,14 @@ struct SearchView: View {
                         videoAbstractView(index)
                     }
                 }
-                if viewModel.showAdd {
-                    Button(action: { viewModel.contSearch() }){
-                        Image(systemName: "chevron.compact.down")
-                        Text("タップしてさらに読み込み")
-                            .padding(4)
-                    }
-                }
+                contSearchButton()
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(false)
         .toolbar{
             ToolbarItem(placement:.principal ){
-                Button(action: { showSortSelector.toggle() }){
-                    Image(systemName: "slider.horizontal.3")
-                    Text(viewModel.sortText)
-                        .padding(4)
-                }
-                .sheet(isPresented: $showSortSelector) {
-                    OrderSelectView(viewModel: viewModel)
-                }
+                Text(viewModel.abstractText)
             }
         }
         .onAppear(){
@@ -66,8 +54,20 @@ struct SearchView: View {
 
 extension SearchView {
 
+    fileprivate func selectorLaunchButton() -> some View {
+        return FloatingButton(
+            action: { showSortSelector.toggle() },
+            systemIcon: "slider.horizontal.3",
+            text: viewModel.sortText
+        )
+        .sheet(isPresented: $showSortSelector) {
+            OrderSelectView(viewModel: viewModel)
+        }
+    }
+    
+    
     fileprivate func tagKeywordSelector() -> some View {
-        return Picker("SearchKind", selection: $viewModel.seachKind) {
+        return Picker("SearchKind", selection: $viewModel.searchKind) {
             ForEach(SearchAPI.Kind.allCases, id: \.self) { (kind) in
                 Text(kind.rawValue)
             }
@@ -97,7 +97,7 @@ extension SearchView {
     }
 
     
-    fileprivate func searchFieldView() -> some View {
+    fileprivate func searchWordEditor() -> some View {
         UITextField.appearance().clearButtonMode = .whileEditing
         return HStack{
             Image(systemName: "magnifyingglass")
@@ -109,6 +109,21 @@ extension SearchView {
             .textFieldStyle(RoundedBorderTextFieldStyle())
         }
         .padding(10)
+    }
+
+    
+    fileprivate func contSearchButton() -> some View {
+        return HStack{
+            Spacer()
+            if viewModel.showAdd {
+                Button(action: { viewModel.contSearch() }){
+                    Image(systemName: "chevron.compact.down")
+                    Text("タップしてさらに読み込み")
+                        .padding(20)
+                }
+            }
+            Spacer()
+        }
     }
     
 }

@@ -7,22 +7,20 @@
 import SwiftUI
 
 struct TestbedView: View {
-    @State private var selectedStrength = "Mild"
-    let strengths = ["Mild", "Medium", "Mature"]
+    @State var selection: String = "one"
+    
+    var array: [String] = ["one", "two", "three", "four", "five"]
 
     var body: some View {
-        Form {
-            Section {
-                Picker("Strength", selection: $selectedStrength) {
-                    ForEach(strengths, id: \.self) {
-                        Text($0)
-                    }
-                }
-            }
-        }
-        .onAppear(){
-
-        }
+        Picker(selection: $selection, label: Text(selection).frame(width: 100), content: {
+            ForEach(array, id: \.self, content: { word in
+                Text(word).tag(word)
+            })
+        })
+        .pickerStyle(MenuPickerStyle())
+        .padding()
+        .background(Color(.systemBackground).edgesIgnoringSafeArea(.all))
+        .cornerRadius(5)
     }
 }
 

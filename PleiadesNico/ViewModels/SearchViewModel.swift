@@ -17,12 +17,13 @@ final class SearchViewModel: ObservableObject {
     typealias ResultItem  = SearchAPI.Result.Item
 
     @Published var searchWord     : String       = ""
-    @Published var seachKind      : SearchKind   = .tag
+    @Published var searchKind      : SearchKind   = .tag
     @Published var resultItems    : [ResultItem] = []
     @Published var sortKeys       : [SortKey]    = SearchAPI.sortKeys
     @Published var keyId          : Int          = 0
     @Published var orderId        : Int          = 0
     @Published var sortText       : String       = ""
+    @Published var abstractText   : String       = ""
     @Published var showAdd        : Bool         = false
     @Published var showNoHit      : Bool         = false
     @Published var showSortSelect : Bool         = false
@@ -67,16 +68,22 @@ final class SearchViewModel: ObservableObject {
     
     
     func startSearch(){
+        if self.searchWord == ""{
+            return
+        }
+        
         self.isSearching = true
         self.showAdd     = false
         
         let searchUrl = searchApi.url(
             word        : self.searchWord,
-            kind        : self.seachKind,
+            kind        : self.searchKind,
             offset      : self.searchOffset,
             sortKeyId   : self.keyId,
             sortOrderId : self.orderId
         )
+        
+        self.abstractText = "\(self.searchWord) - \(self.searchKind)"
         
         DebugLog.shared.debug("searchUrl : \(searchUrl)")
 
@@ -92,12 +99,22 @@ final class SearchViewModel: ObservableObject {
     }
 
     func updateSort(newKeyId : Int, newOrderId : Int){
+        let isUpdated = (self.keyId != newKeyId) || (self.orderId != newOrderId)
+        
         self.keyId   = newKeyId
         self.orderId = newOrderId
 
+        if isUpdated {
+            startSearch()
+        }
         updateSortOrderDescription()
     }
     
+    
+    func onUpdateKind(){
+        startSearch()
+    }
+
 
     func onReceivedSearchResult(_ resultText : String ){
         let newItems = searchApi.decode(resultText)
@@ -115,7 +132,7 @@ final class SearchViewModel: ObservableObject {
 
 
     func onAppearSearch(){
-        if self.appearCount == 0 && self.searchWord != "" {
+        if self.appearCount == 0 {
             newSearch()
         }
         

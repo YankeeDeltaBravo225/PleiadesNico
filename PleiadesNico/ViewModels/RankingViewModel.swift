@@ -14,14 +14,15 @@ final class RankingViewModel: ObservableObject {
     typealias Term  = RankingAPI.Term
     typealias Rank  = RankingAPI.Item
     
-    @Published var showSelector: Bool    = false
-    @Published var genreId     : Int     = 0
-    @Published var termId      : Int     = 0
-    @Published var ranks       : [Rank]  = []
-    @Published var genreText   : String  = ""
-    @Published var genres      : [Genre] = RankingAPI.genres
-    @Published var terms       : [Term]  = RankingAPI.terms
-    
+    @Published var showSelector : Bool    = false
+    @Published var genreId      : Int     = 0
+    @Published var termId       : Int     = 0
+    @Published var ranks        : [Rank]  = []
+    @Published var genreText    : String  = ""
+    @Published var genres       : [Genre] = RankingAPI.genres
+    @Published var terms        : [Term]  = RankingAPI.terms
+    @Published var abstractText : String  = ""
+
     private let rankingApi  : RankingAPI
     private let session     : NicoSession
     private var appearCount : Int
@@ -44,7 +45,12 @@ final class RankingViewModel: ObservableObject {
 
     func loadRanking(){
         self.ranks       = []
-        self.genreText = rankingApi.genreDescription(genreId: self.genreId)
+
+        let genreDescription = rankingApi.genreDescription(genreId: self.genreId)
+        let termDescription  = rankingApi.termDescription(termId: self.termId)
+
+        self.genreText    = genreDescription
+        self.abstractText = "\(genreDescription) - \(termDescription)"
         
         self.session.get(
             urlText    : rankingApi.url(genreId: self.genreId, termId: self.termId),

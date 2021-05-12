@@ -25,7 +25,11 @@ struct SettingView: View {
         
         List {
             Section(header: Text("アカウント")){
-                loginPageButton()
+                HStack{
+                    Text("ログイン/ユーザ設定の確認")
+                    Spacer()
+                    loginPageButton()
+                }
                 loginStatusView()
             }
             
@@ -49,7 +53,7 @@ extension SettingView {
         return FloatingButton(
             action     : { self.showLogin.toggle() },
             systemIcon : "safari",
-            text       : "ログイン/ユーザ設定の確認"
+            text       : "開く"
         )
         .sheet(
             isPresented: $showLogin,
