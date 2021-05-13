@@ -38,8 +38,8 @@ struct PlayerTopView: View {
             } else {
                 progressTextsView()
             }
-            timeBatteryBarBackground()
             if( viewModel.showControl ){
+                timeBatteryBarBackground()
                 PlayControlView( viewModel : viewModel )
             }
         }
