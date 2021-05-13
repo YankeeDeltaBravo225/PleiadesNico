@@ -35,6 +35,8 @@ struct RankingTopView: View {
                 .toolbar {
                     ToolbarItem(placement: .principal){
                         Text(viewModel.abstractText)
+                            .frame(width: 240)
+                            .lineLimit(1)
                     }
                 }
             }

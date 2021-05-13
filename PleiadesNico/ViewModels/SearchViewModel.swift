@@ -154,7 +154,7 @@ final class SearchViewModel: ObservableObject {
         
         let searchKindDescription = self.searchKindTexts[ self.searchKindId ]
         
-        self.abstractText = "\(self.searchWord) / \(searchKindDescription)検索"
+        self.abstractText = "\(searchKindDescription)検索 / \(self.searchWord)"
     }
     
 }

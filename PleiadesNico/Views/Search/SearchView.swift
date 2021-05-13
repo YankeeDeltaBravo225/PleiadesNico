@@ -20,9 +20,9 @@ struct SearchView: View {
     var body: some View {
         VStack{
             HStack{
+                searchKindSelector()
                 sortKeySelector()
                 sortOrderSelector()
-                searchKindSelector()
             }
             searchWordEditor()
             
@@ -46,11 +46,12 @@ struct SearchView: View {
         .toolbar{
             ToolbarItem(placement:.principal ){
                 Text(viewModel.abstractText)
+                    .frame(width: 240)
+                    .lineLimit(1)
             }
         }
         .onAppear(){
             viewModel.onAppearSearch()
-            print(UIScreen.main.bounds.width)
         }
     }
 }
