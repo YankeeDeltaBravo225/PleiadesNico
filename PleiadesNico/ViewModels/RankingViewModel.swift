@@ -18,7 +18,6 @@ final class RankingViewModel: ObservableObject {
     @Published var genreId      : Int     = 0
     @Published var termId       : Int     = 0
     @Published var ranks        : [Rank]  = []
-    @Published var genreText    : String  = ""
     @Published var genres       : [Genre] = RankingAPI.genres
     @Published var terms        : [Term]  = RankingAPI.terms
     @Published var abstractText : String  = ""
@@ -48,10 +47,8 @@ final class RankingViewModel: ObservableObject {
 
         let genreDescription = rankingApi.genreDescription(genreId: self.genreId)
         let termDescription  = rankingApi.termDescription(termId: self.termId)
+        self.abstractText    = "\(genreDescription) - \(termDescription)"
 
-        self.genreText    = genreDescription
-        self.abstractText = "\(genreDescription) - \(termDescription)"
-        
         self.session.get(
             urlText    : rankingApi.url(genreId: self.genreId, termId: self.termId),
             onReceived : {text in
@@ -64,22 +61,16 @@ final class RankingViewModel: ObservableObject {
     }
 
 
-    func updateGenre(rawNewGenreId : Int?, newTermId : Int){
-        guard let newGenreId = rawNewGenreId
-        else {
-            return
-        }
-
-        let isUpdated = (self.genreId != newGenreId) || (self.termId != newTermId)
-
-        if isUpdated {
-            self.genreId  = newGenreId
-            self.termId   = newTermId
-
-            loadRanking()
-        }
+    func updateGenre(_ newGenreId : Int ){
+        self.genreId  = newGenreId
+        loadRanking()
     }
 
+    
+    func updateTerm(_ newTermId : Int ){
+        self.termId   = newTermId
+        loadRanking()
+    }
 
     func onSelectorEnabled(){
         self.showSelector = true

@@ -38,7 +38,6 @@
 		F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C268263D67AE00DFD69F /* PlayerViewModel.swift */; };
 		F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26B263D67AF00DFD69F /* RankingRowView.swift */; };
 		F748C283263D67AF00DFD69F /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26C263D67AF00DFD69F /* RankingTopView.swift */; };
-		F748C284263D67AF00DFD69F /* GenreSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26D263D67AF00DFD69F /* GenreSelectView.swift */; };
 		F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26F263D67AF00DFD69F /* VideoDetailView.swift */; };
 		F748C286263D67AF00DFD69F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C271263D67AF00DFD69F /* SearchView.swift */; };
 		F748C287263D67AF00DFD69F /* OnlineImageIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C273263D67AF00DFD69F /* OnlineImageIView.swift */; };
@@ -52,6 +51,7 @@
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
 		F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FA98926441E9400D06430 /* TestbedView.swift */; };
 		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
+		F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F7920DAB2647927D00FD2D50 /* FloatingTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
@@ -116,7 +116,6 @@
 		F748C268263D67AE00DFD69F /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		F748C26B263D67AF00DFD69F /* RankingRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingRowView.swift; sourceTree = "<group>"; };
 		F748C26C263D67AF00DFD69F /* RankingTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
-		F748C26D263D67AF00DFD69F /* GenreSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreSelectView.swift; sourceTree = "<group>"; };
 		F748C26F263D67AF00DFD69F /* VideoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		F748C271263D67AF00DFD69F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F748C273263D67AF00DFD69F /* OnlineImageIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineImageIView.swift; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		F74FA98926441E9400D06430 /* TestbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestbedView.swift; sourceTree = "<group>"; };
 		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
+		F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStylePicker.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
@@ -315,7 +315,6 @@
 			children = (
 				F748C26B263D67AF00DFD69F /* RankingRowView.swift */,
 				F748C26C263D67AF00DFD69F /* RankingTopView.swift */,
-				F748C26D263D67AF00DFD69F /* GenreSelectView.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -347,6 +346,7 @@
 				F748C276263D67AF00DFD69F /* ColorPalette.swift */,
 				F782BE44263FCCAD00EFB676 /* WebView.swift */,
 				F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */,
+				F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -543,7 +543,6 @@
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
 				F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */,
 				F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */,
-				F748C284263D67AF00DFD69F /* GenreSelectView.swift in Sources */,
 				F748C255263D678600DFD69F /* CommentRequest.swift in Sources */,
 				F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */,
 				F748C253263D678600DFD69F /* SearchAPI.swift in Sources */,
@@ -561,6 +560,7 @@
 				F748C286263D67AF00DFD69F /* SearchView.swift in Sources */,
 				F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */,
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
+				F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */,
 				F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */,
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,

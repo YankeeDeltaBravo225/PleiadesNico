@@ -15,14 +15,10 @@ struct RankingTopView: View {
         viewModel = RankingViewModel()
     }
 
-    
     var body: some View {
         NavigationView {
             VStack{
                 List{
-                    HStack{
-                        genreSelectButton()
-                    }
                     ForEach(viewModel.ranks, id:\.pos) { rank in
                         NavigationLink(
                             destination: VideoDetailView(rank.videoId, colorIndex: rank.pos)
@@ -34,7 +30,10 @@ struct RankingTopView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal){
-                        Text(viewModel.abstractText)
+                        HStack{
+                            genreSelector()
+                            termSelector()
+                        }
                     }
                 }
             }
@@ -42,21 +41,29 @@ struct RankingTopView: View {
         .onAppear(){
             viewModel.onAppearRanking()
         }
-        .sheet(isPresented: $viewModel.showSelector) {
-            GenreSelectView(viewModel: viewModel)
-        }
     }
 }
 
 
 extension RankingTopView {
-    fileprivate func genreSelectButton() -> FloatingButton {
-        return FloatingButton(
-            action: {viewModel.onSelectorEnabled()},
-            systemIcon: "text.justify",
-            text: viewModel.genreText
+
+    fileprivate func genreSelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.genres.map{ $0.description },
+            onChangeClosure: { genreId in viewModel.updateGenre(genreId) },
+            selected: viewModel.genreId
         )
     }
+    
+
+    fileprivate func termSelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.terms.map{ $0.description },
+            onChangeClosure: { termId in viewModel.updateTerm(termId) },
+            selected: viewModel.termId
+        )
+    }
+
 }
 
 
