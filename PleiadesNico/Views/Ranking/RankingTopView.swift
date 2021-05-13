@@ -18,6 +18,10 @@ struct RankingTopView: View {
     var body: some View {
         NavigationView {
             VStack{
+                HStack{
+                    genreSelector()
+                    termSelector()
+                }
                 List{
                     ForEach(viewModel.ranks, id:\.pos) { rank in
                         NavigationLink(
@@ -30,10 +34,7 @@ struct RankingTopView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal){
-                        HStack{
-                            genreSelector()
-                            termSelector()
-                        }
+                        Text(viewModel.abstractText)
                     }
                 }
             }

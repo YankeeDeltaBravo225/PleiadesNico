@@ -8,11 +8,11 @@ import Foundation
 
 class SearchAPI {
 
-    enum Kind: String, CaseIterable, Equatable {
-        case tag
-        case keyword
+    enum Kind: Int, CaseIterable, Equatable {
+        case tag     = 0
+        case keyword = 1
     }
-    
+
     struct Query{
         var key   : String
         var value : String
@@ -69,11 +69,11 @@ class SearchAPI {
     }
 
     static let sortKeys : [SortKey] = [
-        SortKey(0, "viewCounter",     "再生",       [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")] ),
+        SortKey(0, "viewCounter",     "再生数",      [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")] ),
         SortKey(1, "commentCounter",  "コメント",    [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")] ),
-        SortKey(2, "mylistCounter",   "マイリスト",  [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")]) ,
+        SortKey(2, "mylistCounter",   "マイリス",    [SortDirection(.minus, "多い順"),   SortDirection(.plus, "少ない順")]) ,
         SortKey(3, "startTime",       "投稿時間",    [SortDirection(.minus, "新しい順"), SortDirection(.plus, "古い順")] ),
-        SortKey(4, "lastCommentTime", "最新コメント", [SortDirection(.minus, "新しい順"), SortDirection(.plus, "古い順")] ),
+        SortKey(4, "lastCommentTime", "最新コメ",    [SortDirection(.minus, "新しい順"), SortDirection(.plus, "古い順")] ),
         SortKey(5, "lengthSeconds",   "再生時間",    [SortDirection(.minus, "長い順"),   SortDirection(.plus, "短い順")] ),
     ]
 

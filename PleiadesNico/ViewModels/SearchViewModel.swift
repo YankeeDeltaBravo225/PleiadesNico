@@ -12,21 +12,23 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
-    typealias SearchKind  = SearchAPI.Kind
-    typealias SortKey     = SearchAPI.SortKey
-    typealias ResultItem  = SearchAPI.Result.Item
+    typealias SearchKind    = SearchAPI.Kind
+    typealias SortKey       = SearchAPI.SortKey
+    typealias SortDirection = SearchAPI.SortDirection
+    typealias ResultItem    = SearchAPI.Result.Item
 
-    @Published var searchWord     : String       = ""
+    @Published var searchWord      : String       = ""
     @Published var searchKind      : SearchKind   = .tag
-    @Published var resultItems    : [ResultItem] = []
-    @Published var sortKeys       : [SortKey]    = SearchAPI.sortKeys
-    @Published var keyId          : Int          = 0
-    @Published var orderId        : Int          = 0
-    @Published var sortText       : String       = ""
-    @Published var abstractText   : String       = ""
-    @Published var showAdd        : Bool         = false
-    @Published var showNoHit      : Bool         = false
-    @Published var showSortSelect : Bool         = false
+    @Published var searchKindId    : Int          = SearchKind.tag.rawValue
+    @Published var searchKindTexts : [String]     = [ "タグ", "キーワード" ]
+    @Published var resultItems     : [ResultItem] = []
+    @Published var sortKeys        : [SortKey]    = SearchAPI.sortKeys
+    @Published var keyId           : Int          = 0
+    @Published var orderId         : Int          = 0
+    @Published var abstractText    : String       = ""
+    @Published var showAdd         : Bool         = false
+    @Published var showNoHit       : Bool         = false
+    @Published var showSortSelect  : Bool         = false
 
     private var isSearching   : Bool
     private var searchOffset  : Int
@@ -46,31 +48,29 @@ final class SearchViewModel: ObservableObject {
 
 
     func newSearch(){
-        if self.isSearching {
-            return
-        }
-
         self.searchOffset = 0
         self.showNoHit    = false
-        self.resultItems        = []
+        self.resultItems  = []
 
-        startSearch()
+        search()
     }
 
 
     func contSearch(){
+        search()
+    }
+
+
+    func search(){
         if self.isSearching {
             return
         }
 
-        startSearch()
-    }
-    
-    
-    func startSearch(){
         if self.searchWord == ""{
             return
         }
+        
+        updateAbstract()
         
         self.isSearching = true
         self.showAdd     = false
@@ -82,9 +82,7 @@ final class SearchViewModel: ObservableObject {
             sortKeyId   : self.keyId,
             sortOrderId : self.orderId
         )
-        
-        self.abstractText = "\(self.searchWord) - \(self.searchKind)"
-        
+
         DebugLog.shared.debug("searchUrl : \(searchUrl)")
 
         self.session.get(
@@ -98,23 +96,32 @@ final class SearchViewModel: ObservableObject {
         )
     }
 
-    func updateSort(newKeyId : Int, newOrderId : Int){
-        let isUpdated = (self.keyId != newKeyId) || (self.orderId != newOrderId)
-        
+
+    func sortOrders() -> [SortDirection] {
+        return self.sortKeys[ self.keyId ].directions
+    }
+    
+    
+    func updateSortKey(newKeyId : Int){
         self.keyId   = newKeyId
+
+        newSearch()
+    }
+
+
+    func updateSortOrder(newOrderId : Int){
         self.orderId = newOrderId
 
-        if isUpdated {
-            startSearch()
-        }
-        updateSortOrderDescription()
-    }
-    
-    
-    func onUpdateKind(){
-        startSearch()
+        newSearch()
     }
 
+    func updateSearchKind(newKindId : Int){
+        self.searchKindId = newKindId
+        self.searchKind   = (newKindId == SearchKind.tag.rawValue) ? .tag : .keyword
+    
+        newSearch()
+    }
+    
 
     func onReceivedSearchResult(_ resultText : String ){
         let newItems = searchApi.decode(resultText)
@@ -135,18 +142,19 @@ final class SearchViewModel: ObservableObject {
         if self.appearCount == 0 {
             newSearch()
         }
-        
-        updateSortOrderDescription()
+
         self.appearCount += 1
     }
 
     
-    func updateSortOrderDescription(){
-        let sortKey = self.sortKeys[self.keyId]
-        let keyDescription   = sortKey.description
-        let orderDescription = sortKey.directions[orderId].description
+    func updateAbstract(){
+//        let sortKey = self.sortKeys[self.keyId]
+//        let keyDescription   = sortKey.description
+//        let orderDescription = sortKey.directions[orderId].description
         
-        self.sortText = keyDescription + "(" + orderDescription + ")"
+        let searchKindDescription = self.searchKindTexts[ self.searchKindId ]
+        
+        self.abstractText = "\(self.searchWord) / \(searchKindDescription)検索"
     }
     
 }

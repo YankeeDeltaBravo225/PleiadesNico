@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchView: View {
 
     @ObservedObject var viewModel : SearchViewModel
-    @State var showSortSelector: Bool = false
 
 
     init(_ tag : String = "" ){
@@ -20,11 +19,14 @@ struct SearchView: View {
     
     var body: some View {
         VStack{
+            HStack{
+                sortKeySelector()
+                sortOrderSelector()
+                searchKindSelector()
+            }
+            searchWordEditor()
+            
             List{
-                selectorLaunchButton()
-                tagKeywordSelector()
-                searchWordEditor()
-
                 if viewModel.showNoHit {
                     Text("該当なし")
                 }
@@ -33,7 +35,7 @@ struct SearchView: View {
                     NavigationLink(
                         destination: VideoDetailView(item.contentId, colorIndex: index)
                     ){
-                        videoAbstractView(index)
+                        SearchResultRowView(item: item, index: index)
                     }
                 }
                 contSearchButton()
@@ -48,55 +50,40 @@ struct SearchView: View {
         }
         .onAppear(){
             viewModel.onAppearSearch()
+            print(UIScreen.main.bounds.width)
         }
     }
 }
 
 extension SearchView {
 
-    fileprivate func selectorLaunchButton() -> some View {
-        return FloatingButton(
-            action: { showSortSelector.toggle() },
-            systemIcon: "slider.horizontal.3",
-            text: viewModel.sortText
-        )
-        .sheet(isPresented: $showSortSelector) {
-            OrderSelectView(viewModel: viewModel)
-        }
-    }
-    
-    
-    fileprivate func tagKeywordSelector() -> some View {
-        return Picker("SearchKind", selection: $viewModel.searchKind) {
-            ForEach(SearchAPI.Kind.allCases, id: \.self) { (kind) in
-                Text(kind.rawValue)
-            }
-        }
-        .labelsHidden()
-        .pickerStyle(SegmentedPickerStyle())
-    }
-
-
-    fileprivate func videoAbstractView(_ index : Int) -> some View {
-        let item  = viewModel.resultItems[index]
-        
-        return VideoAbstractView(
-            title         : item.title,
-            thumbnail     : item.thumbnailUrl,
-            uploaded      : TextFormat.shared.dateFromISO8601(item.startTime),
-            duration      : TextFormat.shared.duration(item.lengthSeconds),
-            views         : String(item.viewCounter),
-            comments      : String(item.commentCounter),
-            mylists       : String(item.mylistCounter),
-            colorIndex    : index,
-            imageWidth    : 96,
-            imageHeight   : 54, // 16:9 aspact rate
-            titleFontSize : 12,
-            attrFontSize  : 12
+    fileprivate func sortKeySelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.sortKeys.map{ $0.description },
+            onChangeClosure: { keyId in viewModel.updateSortKey(newKeyId: keyId) },
+            selected: viewModel.keyId
         )
     }
 
-    
+
+    fileprivate func sortOrderSelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.sortOrders().map{ $0.description },
+            onChangeClosure: { orderId in viewModel.updateSortOrder(newOrderId: orderId) },
+            selected: viewModel.orderId
+        )
+    }
+
+
+    fileprivate func searchKindSelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.searchKindTexts,
+            onChangeClosure: { kindId in viewModel.updateSearchKind(newKindId: kindId) },
+            selected: viewModel.searchKindId
+        )
+    }
+ 
+
     fileprivate func searchWordEditor() -> some View {
         UITextField.appearance().clearButtonMode = .whileEditing
         return HStack{
