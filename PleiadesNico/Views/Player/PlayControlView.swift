@@ -16,16 +16,10 @@ struct PlayControlView: View {
         
     var body: some View {
         VStack {
-            Color.white
-                .frame(height : 20)
-                .ignoresSafeArea()
             upperControlView()
-                .padding(10)
-                .ignoresSafeArea()
             Spacer()
             Color.clear
             lowerControlView()
-            .padding(10)
         }
         .onAppear {
             viewModel.onTimerTick()
@@ -81,26 +75,28 @@ extension PlayControlView {
 
 
     fileprivate func upperControlView() -> some View {
-        let bg = ColorPalette.controlBackground
         return HStack{
             closeButton()
                 .padding(10)
             Spacer()
-            Text(viewModel.currentTimeText)
-                .foregroundColor(.white)
-                .font(.system(size: 18, design: .monospaced))
-                .padding(10)
         }
         .background(
-            Color(red:bg.r , green: bg.b, blue: bg.b)
+            ColorPalette.controlBackground
                 .opacity(0.6)
         )
         .cornerRadius(10)
+        .padding(
+            EdgeInsets(
+                top: 0,
+                leading  : 10,
+                bottom   : 0,
+                trailing : 10
+            )
+        )
     }
 
     
     fileprivate func lowerControlView() -> some View {
-        let bg = ColorPalette.controlBackground
         return VStack{
             Divider()
             timeSliderView()
@@ -113,10 +109,11 @@ extension PlayControlView {
             }
         }
         .background(
-            Color(red:bg.r , green: bg.b, blue: bg.b)
+            ColorPalette.controlBackground
                 .opacity(0.6)
         )
         .cornerRadius(10)
+        .padding(10)
     }
 
 

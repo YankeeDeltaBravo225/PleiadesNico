@@ -27,7 +27,8 @@ struct PlayerTopView: View {
         )
         self.colorIndex = colorIndex
     }
-    
+
+
     var body: some View {
         ZStack {
             backGroundView()
@@ -37,6 +38,7 @@ struct PlayerTopView: View {
             } else {
                 progressTextsView()
             }
+            timeBatteryBarBackground()
             if( viewModel.showControl ){
                 PlayControlView( viewModel : viewModel )
             }
@@ -73,18 +75,29 @@ struct PlayerTopView: View {
 extension PlayerTopView {
 
     fileprivate func backGroundView() -> RadialGradient {
-        let color = ColorPalette.pastel( colorIndex )
+        let planetColor = ColorPalette.pastelColor( colorIndex )
         return RadialGradient(
             gradient: Gradient(
-                colors: [Color(red: color.r, green: color.g, blue: color.b), .white, .black]
+                colors: [planetColor, .white, .black]
             ),
             center: .bottomTrailing,
             startRadius: 60,
             endRadius: 180
         )
     }
-    
-    
+
+
+    // time, wifi, 5G, battery will be blend in background without this layer
+    fileprivate func timeBatteryBarBackground() -> some View {
+        return VStack{
+            ColorPalette.labelBackground
+                .frame(height : 20)
+                .ignoresSafeArea()
+            Spacer()
+        }
+    }
+
+
     fileprivate func progressTextsView() -> some View {
         return VStack{
             Spacer()

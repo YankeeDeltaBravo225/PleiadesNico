@@ -5,6 +5,7 @@
 //  Created by katot on 2021/04/03.
 //
 
+import SwiftUI
 import Foundation
 
 class ColorPalette {
@@ -17,10 +18,13 @@ class ColorPalette {
         RGBColor(0xF17E64)
     ]
     
-    static let controlBackground = RGBColor(0x353535)
+    static let controlBackground = Color("controlBackground")
+    static let label             = Color("label")
+    static let labelBackground   = Color("labelBackground")
     
-    static func pastel(_ num : Int) -> RGBColor {
-        return _pastel[ num % _pastel.count ]
+    static func pastelColor(_ num : Int) -> Color {
+        let rgbColor = _pastel[ num % _pastel.count ]
+        return Color(red: rgbColor.r, green: rgbColor.g, blue: rgbColor.b)
     }
     
     struct RGBColor {

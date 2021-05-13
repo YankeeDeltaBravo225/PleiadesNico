@@ -37,9 +37,7 @@ struct VideoAbstractView: View {
 extension VideoAbstractView {
 
     fileprivate func indexColorView() -> some View {
-        let color = ColorPalette.pastel( colorIndex )
-        
-        return Color(red: color.r, green: color.g, blue: color.b)
+        return ColorPalette.pastelColor(colorIndex)
             .frame(height:4)
     }
  

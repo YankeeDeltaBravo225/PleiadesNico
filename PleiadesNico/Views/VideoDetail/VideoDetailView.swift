@@ -84,9 +84,9 @@ extension VideoDetailView {
 
     fileprivate func reloadButton() -> some View {
         return ZStack{
-            Color.white
+            ColorPalette.labelBackground
             Text("タップして画面をリロード")
-            .foregroundColor(.black)
+                .foregroundColor(ColorPalette.label)
         }
         .onTapGesture {
             viewModel.onAppearVideoDetail()
