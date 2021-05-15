@@ -19,14 +19,14 @@ struct SearchView: View {
 
     var body: some View {
         VStack{
-            HStack{
-                searchKindSelector()
-                sortKeySelector()
-                sortOrderSelector()
-            }
-            searchWordEditor()
-            
             List{
+                HStack{
+                    searchKindSelector()
+                    sortKeySelector()
+                    sortOrderSelector()
+                }
+                searchWordEditor()
+                
                 if viewModel.showNoHit {
                     Text("該当なし")
                 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7215A6B264FCA0900B25EEE /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7215A6A264FCA0900B25EEE /* RankingTopView.swift */; };
 		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
 		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
 		F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FC263D656F00DFD69F /* Assets.xcassets */; };
@@ -36,7 +37,7 @@
 		F748C280263D67AF00DFD69F /* VideoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C267263D67AE00DFD69F /* VideoScreen.swift */; };
 		F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C268263D67AE00DFD69F /* PlayerViewModel.swift */; };
 		F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26B263D67AF00DFD69F /* RankingRowView.swift */; };
-		F748C283263D67AF00DFD69F /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26C263D67AF00DFD69F /* RankingTopView.swift */; };
+		F748C283263D67AF00DFD69F /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26C263D67AF00DFD69F /* RankingView.swift */; };
 		F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26F263D67AF00DFD69F /* VideoDetailView.swift */; };
 		F748C286263D67AF00DFD69F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C271263D67AF00DFD69F /* SearchView.swift */; };
 		F748C287263D67AF00DFD69F /* OnlineImageIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C273263D67AF00DFD69F /* OnlineImageIView.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F7215A6A264FCA0900B25EEE /* RankingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
 		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
 		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoApp.swift; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 		F748C267263D67AE00DFD69F /* VideoScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoScreen.swift; sourceTree = "<group>"; };
 		F748C268263D67AE00DFD69F /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		F748C26B263D67AF00DFD69F /* RankingRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingRowView.swift; sourceTree = "<group>"; };
-		F748C26C263D67AF00DFD69F /* RankingTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
+		F748C26C263D67AF00DFD69F /* RankingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
 		F748C26F263D67AF00DFD69F /* VideoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		F748C271263D67AF00DFD69F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F748C273263D67AF00DFD69F /* OnlineImageIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineImageIView.swift; sourceTree = "<group>"; };
@@ -313,8 +315,9 @@
 		F748C26A263D67AF00DFD69F /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				F7215A6A264FCA0900B25EEE /* RankingTopView.swift */,
+				F748C26C263D67AF00DFD69F /* RankingView.swift */,
 				F748C26B263D67AF00DFD69F /* RankingRowView.swift */,
-				F748C26C263D67AF00DFD69F /* RankingTopView.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -521,11 +524,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F748C283263D67AF00DFD69F /* RankingTopView.swift in Sources */,
+				F748C283263D67AF00DFD69F /* RankingView.swift in Sources */,
 				F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */,
 				F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */,
 				F748C28C263D67AF00DFD69F /* SwipeGesture.swift in Sources */,
 				F748C280263D67AF00DFD69F /* VideoScreen.swift in Sources */,
+				F7215A6B264FCA0900B25EEE /* RankingTopView.swift in Sources */,
 				F7D83C912640E29B00FC42D7 /* NicoURL.swift in Sources */,
 				F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */,
 				F748C252263D678600DFD69F /* VideoInfoAPI.swift in Sources */,
