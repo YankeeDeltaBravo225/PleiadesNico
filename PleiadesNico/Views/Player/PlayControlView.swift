@@ -79,20 +79,19 @@ extension PlayControlView {
             closeButton()
                 .padding(10)
             Spacer()
+            Image(systemName:"clock")
+                .foregroundColor(.white)
+            Text(viewModel.currentTimeText)
+                .foregroundColor(.white)
+                .font(.system(size: 18, design: .monospaced))
+                .padding(10)
         }
         .background(
             ColorPalette.controlBackground
                 .opacity(0.6)
         )
         .cornerRadius(10)
-        .padding(
-            EdgeInsets(
-                top: 0,
-                leading  : 10,
-                bottom   : 0,
-                trailing : 10
-            )
-        )
+        .padding(10)
     }
 
     
