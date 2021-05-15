@@ -28,8 +28,8 @@ struct RankingRowView: View {
                 colorIndex    : item.pos,
                 imageWidth    : 96,
                 imageHeight   : 54, // 16:9 aspact rate
-                titleFontSize : 12,
-                attrFontSize  : 12
+                titleFontSize : 14,
+                attrFontSize  : 14
             )
             rankPositionView()
         }

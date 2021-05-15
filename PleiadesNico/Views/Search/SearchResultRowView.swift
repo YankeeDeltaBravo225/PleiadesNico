@@ -23,8 +23,8 @@ struct SearchResultRowView: View {
             colorIndex    : index,
             imageWidth    : 96,
             imageHeight   : 54, // 16:9 aspact rate
-            titleFontSize : 12,
-            attrFontSize  : 12
+            titleFontSize : 14,
+            attrFontSize  : 14
         )
     }
 }

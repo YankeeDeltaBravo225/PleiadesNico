@@ -18,14 +18,16 @@ struct SearchView: View {
 
 
     var body: some View {
-        VStack{
+        GeometryReader { geometry in
             List{
-                HStack{
-                    searchKindSelector()
-                    sortKeySelector()
-                    sortOrderSelector()
+                VStack{
+                    HStack{
+                        searchKindSelector()
+                        sortKeySelector()
+                        sortOrderSelector()
+                    }
+                    searchWordEditor()
                 }
-                searchWordEditor()
                 
                 if viewModel.showNoHit {
                     Text("該当なし")
@@ -44,21 +46,22 @@ struct SearchView: View {
                 if viewModel.showAdd {
                     contSearchButton()
                 }
+            } // List
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(false)
+            .toolbar{
+                ToolbarItem(placement:.navigationBarLeading ){
+                    Text(viewModel.abstractText)
+                        .frame(maxWidth: geometry.size.width - 120)
+                        .lineLimit(1)
+                }
             }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(false)
-        .toolbar{
-            ToolbarItem(placement:.principal ){
-                Text(viewModel.abstractText)
-                    .frame(width: 240)
-                    .lineLimit(1)
+            .onAppear(){
+                print(geometry.size.width)
+                viewModel.onAppearSearch()
             }
-        }
-        .onAppear(){
-            viewModel.onAppearSearch()
-        }
-    }
+        } // GeometryReader
+    } // View
 }
 
 extension SearchView {
