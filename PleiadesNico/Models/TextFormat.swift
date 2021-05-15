@@ -134,4 +134,16 @@ class TextFormat {
 
         return self.numberFormatter.string(from: nsCount) ?? text
     }
+    
+
+    func extractByRegex(text: String, pattern: String) -> String? {
+        guard let regex = try? NSRegularExpression(pattern: pattern),
+              let matches = regex.firstMatch(in: text, range: NSRange(location: 0, length: text.count))
+        else {
+            return nil
+        }
+
+        return NSString(string: text).substring(with: matches.range(at: 0))
+    }
+
 }

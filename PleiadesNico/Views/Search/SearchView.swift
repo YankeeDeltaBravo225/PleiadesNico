@@ -29,8 +29,17 @@ struct SearchView: View {
                     searchWordEditor()
                 }
                 
+                if viewModel.showDirectOpen {
+                    NavigationLink(
+                        destination: VideoDetailView(viewModel.directVideoId, colorIndex: 0)
+                    ){
+                        Text("\(viewModel.directVideoId) を直接開く")
+                            .padding(20)
+                    }
+                }
+                
                 if viewModel.showNoHit {
-                    Text("該当なし")
+                    Text("検索結果なし")
                 }
                 ForEach(viewModel.resultItems.indices, id: \.self) { index in
                     let item  = viewModel.resultItems[index]
@@ -98,7 +107,7 @@ extension SearchView {
         return HStack{
             Image(systemName: "magnifyingglass")
             TextField(
-                "タグ or キーワード を入力",
+                "タグ or キーワード or 動画ID",
                 text: $viewModel.searchWord,
                 onCommit: { viewModel.newSearch() }
             )

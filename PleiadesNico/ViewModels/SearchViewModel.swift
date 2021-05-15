@@ -26,6 +26,8 @@ final class SearchViewModel: ObservableObject {
     @Published var keyId           : Int          = 0
     @Published var orderId         : Int          = 0
     @Published var abstractText    : String       = ""
+    @Published var directVideoId   : String       = ""
+    @Published var showDirectOpen  : Bool         = false
     @Published var showLoading     : Bool         = false
     @Published var showAdd         : Bool         = false
     @Published var showNoHit       : Bool         = false
@@ -83,7 +85,17 @@ final class SearchViewModel: ObservableObject {
         self.isSearching = true
         self.showLoading = true
         self.showAdd     = false
-        
+
+        if let videoId = TextFormat.shared.extractByRegex(
+            text    : self.searchWord,
+            pattern : "s[mo][0-9]+"
+        ){
+            self.directVideoId  = videoId
+            self.showDirectOpen = true
+        } else {
+            self.showDirectOpen = false
+        }
+
         let searchUrl = searchApi.url(
             word        : self.searchWord,
             kind        : self.searchKind,

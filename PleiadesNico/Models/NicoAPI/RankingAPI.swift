@@ -116,10 +116,10 @@ class RankingAPI{
                 comments  : attr["comments",  default: "no comment"],
                 mylists   : attr["mylists",   default: "no mylist"],
                 views     : attr["views",     default: "not view"],
-                videoId   : extractUsingRegex(
+                videoId   : TextFormat.shared.extractByRegex(
                                 text    : attr["link",default: "no link"],
                                 pattern : "s[mo][0-9]+"
-                            ),
+                            ) ?? "",
                 thumbnail : attr["thumbnail", default: ""],
                 title     : attr["title",     default: "No title"],
                 uploaded  : attr["uploaded",  default: "No date"],
@@ -150,17 +150,6 @@ class RankingAPI{
         ]
 
         return xpathes.mapValues{ (doc.xpath($0).first?.text ?? "") }
-    }
-
-
-    private func extractUsingRegex(text: String, pattern: String) -> String {
-        guard let regex = try? NSRegularExpression(pattern: pattern),
-              let matches = regex.firstMatch(in: text, range: NSRange(location: 0, length: text.count))
-        else {
-            return ""
-        }
-
-        return NSString(string: text).substring(with: matches.range(at: 0))
     }
 
 }
