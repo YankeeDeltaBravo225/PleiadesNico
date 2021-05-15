@@ -150,7 +150,7 @@ extension VideoDetailView {
     fileprivate func tagsView() -> some View {
         return ForEach(viewModel.prop.tags, id: \.self) { tag in
             NavigationLink(
-                destination: SearchView(tag)
+                destination: SearchView(tag, isImmediate: true)
             ){
                 Text(tag)
             }

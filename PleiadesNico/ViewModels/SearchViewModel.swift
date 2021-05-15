@@ -26,6 +26,7 @@ final class SearchViewModel: ObservableObject {
     @Published var keyId           : Int          = 0
     @Published var orderId         : Int          = 0
     @Published var abstractText    : String       = ""
+    @Published var showLoading     : Bool         = false
     @Published var showAdd         : Bool         = false
     @Published var showNoHit       : Bool         = false
     @Published var showSortSelect  : Bool         = false
@@ -35,15 +36,22 @@ final class SearchViewModel: ObservableObject {
     private var appearCount   : Int
     private var searchApi     : SearchAPI
     private let session       : NicoSession
+    private let isImmediate   : Bool
 
-    init(_ keyword : String = ""){
-        self.searchWord   = keyword
+
+    init(_ word : String = "", isImmediate : Bool ){
+        self.searchWord   = word
 
         self.isSearching  = false
         self.searchOffset = 0
         self.appearCount  = 0
         self.searchApi    = SearchAPI()
         self.session      = NicoSession()
+        self.isImmediate  = isImmediate
+        
+        if isImmediate {
+            self.searchKind = .tag
+        }
     }
 
 
@@ -73,6 +81,7 @@ final class SearchViewModel: ObservableObject {
         updateAbstract()
         
         self.isSearching = true
+        self.showLoading = true
         self.showAdd     = false
         
         let searchUrl = searchApi.url(
@@ -128,6 +137,8 @@ final class SearchViewModel: ObservableObject {
 
         self.resultItems += newItems
         self.isSearching = false
+        self.showLoading = false
+        
         self.searchOffset += newItems.count
         if (newItems.count > 0) && (newItems.count == SearchAPI.unitNum)  {
             self.showAdd = true
@@ -140,7 +151,9 @@ final class SearchViewModel: ObservableObject {
 
     func onAppearSearch(){
         if self.appearCount == 0 {
-            newSearch()
+            if self.isImmediate {
+                newSearch()
+            }
         }
 
         self.appearCount += 1

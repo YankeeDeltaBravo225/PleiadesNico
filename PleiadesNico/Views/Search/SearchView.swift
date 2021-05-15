@@ -12,11 +12,11 @@ struct SearchView: View {
     @ObservedObject var viewModel : SearchViewModel
 
 
-    init(_ tag : String = "" ){
-        viewModel = SearchViewModel( tag )
+    init(_ word : String = "", isImmediate : Bool ){
+        viewModel = SearchViewModel( word, isImmediate: isImmediate )
     }
 
-    
+
     var body: some View {
         VStack{
             HStack{
@@ -38,7 +38,12 @@ struct SearchView: View {
                         SearchResultRowView(item: item, index: index)
                     }
                 }
-                contSearchButton()
+                if viewModel.showLoading {
+                    loadingView()
+                }
+                if viewModel.showAdd {
+                    contSearchButton()
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -100,15 +105,22 @@ extension SearchView {
     }
 
     
+    fileprivate func loadingView() -> some View {
+        return HStack{
+            Spacer()
+            ProgressView("Now Loading...")
+            Spacer()
+        }
+    }
+    
+    
     fileprivate func contSearchButton() -> some View {
         return HStack{
             Spacer()
-            if viewModel.showAdd {
-                Button(action: { viewModel.contSearch() }){
-                    Image(systemName: "chevron.compact.down")
-                    Text("タップしてさらに読み込み")
-                        .padding(20)
-                }
+            Button(action: { viewModel.contSearch() }){
+                Image(systemName: "chevron.compact.down")
+                Text("タップしてさらに読み込み")
+                    .padding(20)
             }
             Spacer()
         }
@@ -119,6 +131,6 @@ extension SearchView {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView("TDN")
+        SearchView("大迫", isImmediate: false)
     }
 }

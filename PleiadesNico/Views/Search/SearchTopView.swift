@@ -9,7 +9,7 @@ import SwiftUI
 struct SearchTopView: View {
     var body: some View {
         NavigationView {
-            SearchView("")
+            SearchView("", isImmediate: false)
         }
     }
 }
