@@ -10,15 +10,17 @@ import WebKit
 final class SettingViewModel: ObservableObject {
 
     let loginPageUrl = NicoURL.loginPage
-    @Published var isLoggedIn      : Bool
-    @Published var commentFontSize : Int
-    @Published var controlFadeTime : Int
-    
+    @Published var isLoggedIn        : Bool
+    @Published var commentFontSize   : Int
+    @Published var commentStrokeSize : Int
+    @Published var controlFadeTime   : Int
+
 
     init(){
-        self.isLoggedIn      = ConfigStorage.shared.loginStatus
-        self.commentFontSize = ConfigStorage.shared.commentFontSize
-        self.controlFadeTime = ConfigStorage.shared.controlFadeTime
+        self.isLoggedIn        = ConfigStorage.shared.loginStatus
+        self.commentFontSize   = ConfigStorage.shared.commentFontSize
+        self.commentStrokeSize = ConfigStorage.shared.commentFontSize
+        self.controlFadeTime   = ConfigStorage.shared.controlFadeTime
     }
 
 
@@ -45,6 +47,15 @@ final class SettingViewModel: ObservableObject {
     }
 
     
+    func onCommentStrokeSizeChanged(_ isPressed : Bool){
+        if isPressed {
+            return
+        }
+
+        ConfigStorage.shared.commentStrokeSize = self.commentStrokeSize
+    }
+
+
     func onControlFadeTimeChanged(_ isPressed : Bool){
         if isPressed {
             return

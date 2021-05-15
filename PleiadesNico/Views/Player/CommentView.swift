@@ -59,6 +59,7 @@ class CommentViewController: UIViewController {
     var isPlaying       = false
     var activeChats     = [ Int : ChatLabel]()
     var fontSize        = 10
+    var strokeSize      = 1
     var yCoords         = [CGFloat]()
     var commentIndex    = 0
     var lastElapsedTime = 0.0
@@ -95,7 +96,8 @@ class CommentViewController: UIViewController {
         }
 
         self.fontSize      = viewModel.commentFontSize
-
+        self.strokeSize    = viewModel.commentStrokeSize
+        
         let chatHeight    = CGFloat(self.fontSize)
         let heightMargin  = chatHeight * 2.0
         let screenHeight  = self.view.bounds.height - heightMargin
@@ -216,6 +218,7 @@ class CommentViewController: UIViewController {
         chatLabel.textAlignment  = NSTextAlignment.center
         chatLabel.font           = UIFont.boldSystemFont(ofSize: CGFloat(self.fontSize))
         chatLabel.layer.position = CGPoint( x : xPos, y: yPos )
+        chatLabel.strokeSize     = CGFloat( self.strokeSize )
 
         return chatLabel
     }

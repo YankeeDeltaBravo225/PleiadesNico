@@ -36,12 +36,12 @@ struct SettingView: View {
             Section(header: Text("プレイヤー")){
                 Text("コメントのフォント")
                 commentFontSizeStepper()
+                Text("コメントの線の太さ")
+                commentStrokeSizeStepper()
                 Text("再生コントロールが閉じるまで")
                 controlFadeTimeStepper()
             }
         }
-
-        
 
     }
 }
@@ -101,6 +101,24 @@ extension SettingView {
         }
     }
 
+    
+    fileprivate func commentStrokeSizeStepper() -> some View {
+        return HStack{
+            Stepper(
+                value : $viewModel.commentStrokeSize,
+                in : 1...10,
+                step : 1,
+                onEditingChanged: {viewModel.onCommentStrokeSizeChanged($0)}
+            ){
+                Text("線の太さ")
+                Divider()
+                Text("\(viewModel.commentStrokeSize)")
+            }
+            Spacer()
+        }
+    }
+    
+    
     fileprivate func controlFadeTimeStepper() -> some View {
         return HStack{
             Stepper(
@@ -108,8 +126,7 @@ extension SettingView {
                 in : 1...99,
                 step : 1,
                 onEditingChanged: {viewModel.onControlFadeTimeChanged($0)}
-            )
-            {
+            ){
                 Text("秒数")
                 Divider()
                 Text("\(viewModel.controlFadeTime)")

@@ -10,10 +10,11 @@ import Foundation
 class ConfigStorage {
     
     enum Key: String {
-        case login           = "isLoggedIn"
-        case cookie          = "stringCookie"
-        case commentSize     = "commentFontSize"
-        case controlFadeTime = "controlFadeTime"
+        case login             = "isLoggedIn"
+        case cookie            = "stringCookie"
+        case commentFontSize   = "commentFontSize"
+        case commentStrokeSize = "commentStrokeSize"
+        case controlFadeTime   = "controlFadeTime"
     }
     
     static  let shared       = ConfigStorage()
@@ -26,10 +27,11 @@ class ConfigStorage {
 
         userDefaults.register(
             defaults: [
-                Key.login.rawValue           : false,
-                Key.cookie.rawValue          : "",
-                Key.commentSize.rawValue     : 20,
-                Key.controlFadeTime.rawValue : 6,
+                Key.login.rawValue             : false,
+                Key.cookie.rawValue            : "",
+                Key.commentFontSize.rawValue   : 20,
+                Key.commentStrokeSize.rawValue : 1,
+                Key.controlFadeTime.rawValue   : 6,
             ]
         )
 
@@ -38,42 +40,77 @@ class ConfigStorage {
 
     var stringCookie : String? {
         set(stringCookie){
-            self.userDefaults.set(stringCookie,forKey: Key.cookie.rawValue)
-            self.userDefaults.synchronize()
+            setString(stringCookie, key: .cookie)
         }
         get{
-            return self.userDefaults.string(forKey: Key.cookie.rawValue)
+            return getString(key: .cookie)
         }
     }
 
     var loginStatus : Bool {
         set(isLoggedIn){
-            self.userDefaults.set(isLoggedIn,forKey: Key.login.rawValue)
-            self.userDefaults.synchronize()
+            setBool(isLoggedIn, key: .login)
         }
         get{
-            return self.userDefaults.bool(forKey: Key.login.rawValue)
+            getBool(key: .login)
         }
     }
 
     var commentFontSize : Int {
         set(size){
-            self.userDefaults.set(size,forKey: Key.commentSize.rawValue)
-            self.userDefaults.synchronize()
+            setInt(size, key: .commentFontSize)
         }
         get{
-            self.userDefaults.integer(forKey: Key.commentSize.rawValue)
+            getInt(key: .commentFontSize)
         }
     }
 
-    var controlFadeTime : Int {
-        set(sec){
-            self.userDefaults.set(sec,forKey: Key.controlFadeTime.rawValue)
-            self.userDefaults.synchronize()
+    var commentStrokeSize : Int {
+        set(size){
+            setInt(size, key: .commentStrokeSize)
         }
         get{
-            self.userDefaults.integer(forKey: Key.controlFadeTime.rawValue)
+            getInt(key: .commentStrokeSize)
         }
     }
+
     
+    var controlFadeTime : Int {
+        set(sec){
+            setInt(sec, key: .controlFadeTime)
+        }
+        get{
+            getInt(key: .controlFadeTime)
+        }
+    }
+
+
+    private func setString(_ value : String?, key : Key){
+        self.userDefaults.set(value, forKey: key.rawValue)
+        self.userDefaults.synchronize()
+    }
+    
+    private func setInt(_ value : Int, key : Key){
+        self.userDefaults.set(value, forKey: key.rawValue)
+        self.userDefaults.synchronize()
+    }
+    
+    private func setBool(_ value : Bool, key : Key){
+        self.userDefaults.set(value, forKey: key.rawValue)
+        self.userDefaults.synchronize()
+    }
+    
+
+    private func getString(key : Key) -> String? {
+        return self.userDefaults.string(forKey: key.rawValue)
+    }
+    
+    private func getInt(key : Key) -> Int {
+        return self.userDefaults.integer(forKey: key.rawValue)
+    }
+    
+    private func getBool(key : Key) -> Bool {
+        return self.userDefaults.bool(forKey: key.rawValue)
+    }
+
 }
