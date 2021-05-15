@@ -9,18 +9,24 @@ import WebKit
 
 final class SettingViewModel: ObservableObject {
 
-    let loginPageUrl = NicoURL.loginPage
+    typealias Orientation = ConfigStorage.PlayerOrientation
+    
+    let loginPageUrl : String    = NicoURL.loginPage
+    let orientations : [String ] = ConfigStorage.playerOrientationDescriptions
+
     @Published var isLoggedIn        : Bool
     @Published var commentFontSize   : Int
     @Published var commentStrokeSize : Int
     @Published var controlFadeTime   : Int
-
+    @Published var playerOrientation : Int
+    
 
     init(){
         self.isLoggedIn        = ConfigStorage.shared.loginStatus
         self.commentFontSize   = ConfigStorage.shared.commentFontSize
-        self.commentStrokeSize = ConfigStorage.shared.commentFontSize
+        self.commentStrokeSize = ConfigStorage.shared.commentStrokeSize
         self.controlFadeTime   = ConfigStorage.shared.controlFadeTime
+        self.playerOrientation = ConfigStorage.shared.playerOrientation
     }
 
 
@@ -62,6 +68,11 @@ final class SettingViewModel: ObservableObject {
         }
 
         ConfigStorage.shared.controlFadeTime = self.controlFadeTime
+    }
+
+    func onOrietationChanged(_ newOrientation : Int){
+        self.playerOrientation                 = newOrientation
+        ConfigStorage.shared.playerOrientation = newOrientation
     }
 
 }

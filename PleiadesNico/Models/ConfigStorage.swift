@@ -9,11 +9,24 @@ import Foundation
 
 class ConfigStorage {
     
+    enum PlayerOrientation: Int {
+        case portrait           = 0
+        case landscapeRight     = 1
+        case landscapeLeft      = 2
+    }
+
+    static let playerOrientationDescriptions : [String ] = [
+        "たて(homeボタン下)",
+        "よこ(homeボタン左)",
+        "よこ(homeボタン右)"
+    ]
+    
     enum Key: String {
         case login             = "isLoggedIn"
         case cookie            = "stringCookie"
         case commentFontSize   = "commentFontSize"
         case commentStrokeSize = "commentStrokeSize"
+        case playerOrientation = "playerOrientation"
         case controlFadeTime   = "controlFadeTime"
     }
     
@@ -31,6 +44,7 @@ class ConfigStorage {
                 Key.cookie.rawValue            : "",
                 Key.commentFontSize.rawValue   : 20,
                 Key.commentStrokeSize.rawValue : 1,
+                Key.playerOrientation.rawValue : PlayerOrientation.landscapeLeft.rawValue,
                 Key.controlFadeTime.rawValue   : 6,
             ]
         )
@@ -40,7 +54,7 @@ class ConfigStorage {
 
     var stringCookie : String? {
         set(stringCookie){
-            setString(stringCookie, key: .cookie)
+            setOptionalString(stringCookie, key: .cookie)
         }
         get{
             return getString(key: .cookie)
@@ -85,7 +99,22 @@ class ConfigStorage {
     }
 
 
-    private func setString(_ value : String?, key : Key){
+    var playerOrientation : Int {
+        set(orientation){
+            setInt(orientation, key: .playerOrientation)
+        }
+        get{
+            getInt(key: .playerOrientation)
+        }
+    }
+    
+
+    private func setOptionalString(_ value : String?, key : Key){
+        self.userDefaults.set(value, forKey: key.rawValue)
+        self.userDefaults.synchronize()
+    }
+
+    private func setString(_ value : String, key : Key){
         self.userDefaults.set(value, forKey: key.rawValue)
         self.userDefaults.synchronize()
     }

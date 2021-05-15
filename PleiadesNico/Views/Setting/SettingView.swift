@@ -32,14 +32,20 @@ struct SettingView: View {
                 }
                 loginStatusView()
             }
-            
             Section(header: Text("プレイヤー")){
-                Text("コメントのフォント")
-                commentFontSizeStepper()
-                Text("コメントの線の太さ")
-                commentStrokeSizeStepper()
-                Text("再生コントロールが閉じるまで")
+                HStack{
+                    Text("再生時の向き")
+                    Spacer()
+                    orientationSelector()
+                }
+                Text("コントロールが自動で隠れるまで(秒)")
                 controlFadeTimeStepper()
+            }
+            Section(header: Text("コメント")){
+                Text("フォントサイズ")
+                commentFontSizeStepper()
+                Text("線の太さ")
+                commentStrokeSizeStepper()
             }
         }
 
@@ -93,8 +99,6 @@ extension SettingView {
                 onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
             )
             {
-                Text("サイズ")
-                Divider()
                 Text("\(viewModel.commentFontSize)")
             }
             Spacer()
@@ -110,8 +114,6 @@ extension SettingView {
                 step : 1,
                 onEditingChanged: {viewModel.onCommentStrokeSizeChanged($0)}
             ){
-                Text("線の太さ")
-                Divider()
                 Text("\(viewModel.commentStrokeSize)")
             }
             Spacer()
@@ -127,14 +129,21 @@ extension SettingView {
                 step : 1,
                 onEditingChanged: {viewModel.onControlFadeTimeChanged($0)}
             ){
-                Text("秒数")
-                Divider()
                 Text("\(viewModel.controlFadeTime)")
             }
             Spacer()
         }
     }
 
+    fileprivate func orientationSelector() -> MenuStylePicker {
+        return MenuStylePicker(
+            options: viewModel.orientations,
+            onChangeClosure: { viewModel.onOrietationChanged($0) },
+            selected: viewModel.playerOrientation
+        )
+    }
+    
+    
 }
 
 

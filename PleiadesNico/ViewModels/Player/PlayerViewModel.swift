@@ -12,6 +12,8 @@ import Combine
 
 final class PlayerViewModel: ObservableObject {
 
+    typealias Orientation = ConfigStorage.PlayerOrientation
+    
     @Published var isPlaying         : Bool   = false
     @Published var showControl       : Bool   = false
     @Published var showPlayer        : Bool   = false
@@ -27,6 +29,7 @@ final class PlayerViewModel: ObservableObject {
     @Published var commentFontSize   : Int    = 10
     @Published var commentStrokeSize : Int    = 1
     @Published var elapsedTime       : Double = 0.0
+    @Published var configOrientation : Int
 
     private    let contentId       : String
     private    let screen          : VideoScreen
@@ -45,6 +48,7 @@ final class PlayerViewModel: ObservableObject {
     init(screen : VideoScreen, contentId : String) {
         self.commentFontSize   = ConfigStorage.shared.commentFontSize
         self.commentStrokeSize = ConfigStorage.shared.commentStrokeSize
+        self.configOrientation  = ConfigStorage.shared.playerOrientation
         
         self.contentId       = contentId
         self.screen          = screen

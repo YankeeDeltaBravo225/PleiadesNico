@@ -32,8 +32,9 @@ struct MenuStylePicker: View {
 extension MenuStylePicker {
     fileprivate func currentSelectionView() -> some View {
         let gradient = LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        let selectedOption = (selected < options.count) ? options[selected] : "???"
         
-        return Text(options[selected])
+        return Text(selectedOption)
             .foregroundColor(.white)
             .padding(10)
             .background( gradient )

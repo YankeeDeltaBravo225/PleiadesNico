@@ -39,7 +39,7 @@ struct PlayerTopView: View {
                 progressTextsView()
             }
             if( viewModel.showControl ){
-                timeBatteryBarBackground()
+//                timeBatteryBarBackground()
                 PlayControlView( viewModel : viewModel )
             }
         }
@@ -55,7 +55,8 @@ struct PlayerTopView: View {
         .onAppear(){
             viewModel.onAppear()
             DispatchQueue.main.async {
-                AppDelegate.lockOrientationLandscape()
+                let (mask, rotation) = getPlayerOrientation()
+                AppDelegate.lockOrientation(mask: mask, rotation: rotation)
             }
 
         }
@@ -130,6 +131,18 @@ extension PlayerTopView {
             .allowsHitTesting(false)
     }
 
+    
+    fileprivate func getPlayerOrientation() -> (UIInterfaceOrientationMask, UIDeviceOrientation) {
+        let orientations : [Int: (UIInterfaceOrientationMask, UIDeviceOrientation) ] = [
+            PlayerViewModel.Orientation.portrait.rawValue           : (.portrait,  .portrait),
+//            PlayerViewModel.Orientation.portraitUpsideDown.rawValue : (.portrait,  .portraitUpsideDown),
+            PlayerViewModel.Orientation.landscapeRight.rawValue     : (.landscape, .landscapeRight),
+            PlayerViewModel.Orientation.landscapeLeft.rawValue      : (.landscape, .landscapeLeft),
+        ]
+
+        return orientations[viewModel.configOrientation] ?? (.landscape, .landscapeLeft)
+    }
+    
 }
 
 

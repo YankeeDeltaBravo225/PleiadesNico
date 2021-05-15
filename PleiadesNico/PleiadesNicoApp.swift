@@ -26,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppDelegate.orientationMask
     }
 
-    static func lockOrientationLandscape(){
-        AppDelegate.orientationMask  = .landscape
+    
+    static func lockOrientation(mask : UIInterfaceOrientationMask, rotation : UIDeviceOrientation){
+        AppDelegate.orientationMask  = mask
         AppDelegate.savedOrientation = UIDevice.current.orientation
 
         // Failed to get current orientation
@@ -35,28 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let isPortrait = UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height
             AppDelegate.savedOrientation = isPortrait ? .portrait : .landscapeLeft
         }
-        
-        var rotateOrientation = UIDeviceOrientation.unknown
 
-        switch AppDelegate.savedOrientation {
-        case .portrait:
-            rotateOrientation = .landscapeLeft
-        case .portraitUpsideDown:
-            rotateOrientation = .landscapeRight
-        case .landscapeLeft:
-            // Already landscape
-            return
-        case .landscapeRight:
-            // Already landscape
-            return
-        default:
-            // Failed to get the current rotation, force rotate
-            rotateOrientation = .landscapeLeft
-        }
-
-        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+        UIDevice.current.setValue(rotation.rawValue, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
     }
+
 
     static func unlockOrientation(){
         AppDelegate.orientationMask = UIInterfaceOrientationMask.all
