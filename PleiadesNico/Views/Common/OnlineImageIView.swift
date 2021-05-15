@@ -46,19 +46,14 @@ extension OnlineImageIView {
         return LazyHStack {
             WebImage(url: _imageUrl)
                 .resizable()
-                .frame(width: _width, height: _width * 0.75)
-                .mask(
-                    RoundedRectangle(cornerRadius: 4)
-                        .frame(width:_width, height: _height)
-                )
-                .frame(width:_width, height: _height)
+                .frame(width: _width, height: _height)
         }
     }
     
     fileprivate func defaultImage() -> some View {
         return Image(systemName: "questionmark.square")
             .resizable()
-            .frame(width: _width, height: _height * 0.72)
+            .frame(width: _width, height: _height)
     }
 
 }

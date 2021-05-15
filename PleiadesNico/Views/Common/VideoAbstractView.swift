@@ -57,11 +57,12 @@ extension VideoAbstractView {
 
     fileprivate func thumbnailView() -> some View {
         return ZStack{
-            OnlineImageIView(
-                urlText : thumbnail,
-                width   : imageWidth,
-                height  : imageHeight
-            )
+            OnlineImageIView( urlText : thumbnail, width : imageWidth, height : imageWidth * 0.75 )
+                .mask(
+                    RoundedRectangle(cornerRadius: 4)
+                        .frame(width : imageWidth, height: imageHeight)
+                )
+                .frame(width: imageWidth, height: imageHeight)        
             VStack{
                 Spacer()
                 HStack{
