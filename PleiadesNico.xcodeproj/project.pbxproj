@@ -19,9 +19,7 @@
 		F748C246263D678600DFD69F /* RankingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C233263D678600DFD69F /* RankingAPI.swift */; };
 		F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C234263D678600DFD69F /* VideoStreamAPI.swift */; };
 		F748C248263D678600DFD69F /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C235263D678600DFD69F /* DebugLog.swift */; };
-		F748C249263D678600DFD69F /* MockPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C237263D678600DFD69F /* MockPage.swift */; };
 		F748C24A263D678600DFD69F /* MockRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C238263D678600DFD69F /* MockRanking.swift */; };
-		F748C24B263D678600DFD69F /* MockSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C239263D678600DFD69F /* MockSearchResult.swift */; };
 		F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23B263D678600DFD69F /* DmcSessionRequest.swift */; };
 		F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23C263D678600DFD69F /* DmcSessionResponse.swift */; };
 		F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23D263D678600DFD69F /* DmcSessionInfo.swift */; };
@@ -49,8 +47,6 @@
 		F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27A263D67AF00DFD69F /* PlayerTopView.swift */; };
 		F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27B263D67AF00DFD69F /* PlayControlView.swift */; };
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
-		F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FA98926441E9400D06430 /* TestbedView.swift */; };
-		F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */; };
 		F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */; };
 		F767D7FF264D5DAC00111FBF /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
@@ -98,9 +94,7 @@
 		F748C233263D678600DFD69F /* RankingAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingAPI.swift; sourceTree = "<group>"; };
 		F748C234263D678600DFD69F /* VideoStreamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamAPI.swift; sourceTree = "<group>"; };
 		F748C235263D678600DFD69F /* DebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
-		F748C237263D678600DFD69F /* MockPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPage.swift; sourceTree = "<group>"; };
 		F748C238263D678600DFD69F /* MockRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRanking.swift; sourceTree = "<group>"; };
-		F748C239263D678600DFD69F /* MockSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSearchResult.swift; sourceTree = "<group>"; };
 		F748C23B263D678600DFD69F /* DmcSessionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionRequest.swift; sourceTree = "<group>"; };
 		F748C23C263D678600DFD69F /* DmcSessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionResponse.swift; sourceTree = "<group>"; };
 		F748C23D263D678600DFD69F /* DmcSessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionInfo.swift; sourceTree = "<group>"; };
@@ -128,8 +122,6 @@
 		F748C27A263D67AF00DFD69F /* PlayerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTopView.swift; sourceTree = "<group>"; };
 		F748C27B263D67AF00DFD69F /* PlayControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControlView.swift; sourceTree = "<group>"; };
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
-		F74FA98926441E9400D06430 /* TestbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestbedView.swift; sourceTree = "<group>"; };
-		F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserPassword.swift; sourceTree = "<group>"; };
 		F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStylePicker.swift; sourceTree = "<group>"; };
 		F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -207,6 +199,7 @@
 		F748C1FE263D656F00DFD69F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				F748C236263D678600DFD69F /* Mock */,
 				F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -233,7 +226,6 @@
 		F748C232263D678600DFD69F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F748C236263D678600DFD69F /* Mock */,
 				F7E361392642679B00347944 /* NicoAPI */,
 				F7D83C902640E29B00FC42D7 /* NicoURL.swift */,
 				F748C23F263D678600DFD69F /* NicoSession.swift */,
@@ -248,10 +240,7 @@
 		F748C236263D678600DFD69F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				F756F5AF263D6AE500648DE2 /* MockUserPassword.swift */,
-				F748C237263D678600DFD69F /* MockPage.swift */,
 				F748C238263D678600DFD69F /* MockRanking.swift */,
-				F748C239263D678600DFD69F /* MockSearchResult.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -301,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				F748C277263D67AF00DFD69F /* ContentView.swift */,
-				F74FA98926441E9400D06430 /* TestbedView.swift */,
 				F748C272263D67AF00DFD69F /* Common */,
 				F748C26A263D67AF00DFD69F /* Ranking */,
 				F748C270263D67AF00DFD69F /* Search */,
@@ -533,14 +521,11 @@
 				F7D83C912640E29B00FC42D7 /* NicoURL.swift in Sources */,
 				F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */,
 				F748C252263D678600DFD69F /* VideoInfoAPI.swift in Sources */,
-				F74FA98A26441E9400D06430 /* TestbedView.swift in Sources */,
 				F748C27F263D67AF00DFD69F /* RankingViewModel.swift in Sources */,
 				F748C251263D678600DFD69F /* TextFormat.swift in Sources */,
-				F748C24B263D678600DFD69F /* MockSearchResult.swift in Sources */,
 				F748C27D263D67AF00DFD69F /* SearchViewModel.swift in Sources */,
 				F748C24A263D678600DFD69F /* MockRanking.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
-				F748C249263D678600DFD69F /* MockPage.swift in Sources */,
 				F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */,
 				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
@@ -556,7 +541,6 @@
 				F748C27E263D67AF00DFD69F /* VideoDetailViewModel.swift in Sources */,
 				F748C289263D67AF00DFD69F /* VideoAbstractView.swift in Sources */,
 				F748C28B263D67AF00DFD69F /* ContentView.swift in Sources */,
-				F756F5B0263D6AE500648DE2 /* MockUserPassword.swift in Sources */,
 				F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */,
 				F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */,
 				F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */,
