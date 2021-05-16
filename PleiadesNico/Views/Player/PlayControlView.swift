@@ -13,12 +13,13 @@ import SwiftUI
 struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
     @Environment(\.presentationMode) var presentation
-        
+    
     var body: some View {
         VStack {
             upperControlView()
             Spacer()
-            Color.clear
+            closingView()
+            Spacer()
             lowerControlView()
         }
         .onAppear {
@@ -58,8 +59,8 @@ extension PlayControlView {
         return HStack{
             Button(
                 action: {
-                    self.presentation.wrappedValue.dismiss()
                     viewModel.onClose()
+                    self.presentation.wrappedValue.dismiss()
                 },
                 label: {
                     Image(systemName:"chevron.down.circle")
@@ -152,6 +153,21 @@ extension PlayControlView {
             in: 0...1,
             onEditingChanged: onSliderChanged
         )
+    }
+
+    
+    fileprivate func closingView() -> some View {
+        return Group{
+            if viewModel.isClosing {
+                Text("終了します")
+                    .foregroundColor(.white)
+                    .onAppear(){
+                        self.presentation.wrappedValue.dismiss()
+                    }
+            } else {
+                EmptyView()
+            }
+        }
     }
 
 }

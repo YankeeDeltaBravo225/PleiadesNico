@@ -15,6 +15,7 @@ final class PlayerViewModel: ObservableObject {
     typealias Orientation = ConfigStorage.PlayerOrientation
     
     @Published var isPlaying         : Bool   = false
+    @Published var isClosing         : Bool   = false
     @Published var showControl       : Bool   = false
     @Published var showPlayer        : Bool   = false
     @Published var showAlert         : Bool   = false
@@ -170,28 +171,45 @@ final class PlayerViewModel: ObservableObject {
 
 
     func onSwipeLeft(){
-        screen.seek(deltaSec : -5)
-        
-        showControl = true
-        restartControlFade()
+        handleGesture( gestureType : ConfigStorage.GestureType.swipeLeft )
     }
 
 
     func onSwipeRight(){
-        screen.seek(deltaSec : +5)
-
-        showControl = true
-        restartControlFade()
+        handleGesture( gestureType : ConfigStorage.GestureType.swipeRight )
     }
 
 
     func onSwipeUp(){
-        
+        handleGesture( gestureType : ConfigStorage.GestureType.swipeUp )
     }
 
-    
+
     func onSwipeDown(){
+        handleGesture( gestureType : ConfigStorage.GestureType.swipeDown )
+    }
+    
+    
+    private func handleGesture( gestureType : ConfigStorage.GestureType ) {
+        let operation = ConfigStorage.shared.getGestureOperation(gestureType: gestureType.rawValue)
         
+        switch(operation){
+        case ConfigStorage.GestureOperation.plus10Sec.rawValue:
+            screen.seek(deltaSec : +10)
+            showControl = true
+            restartControlFade()
+        case ConfigStorage.GestureOperation.minus10Sec.rawValue:
+            screen.seek(deltaSec : -10)
+            showControl = true
+            restartControlFade()
+        case ConfigStorage.GestureOperation.close.rawValue:
+            self.onClose()
+            self.isClosing = true
+        case ConfigStorage.GestureOperation.none.rawValue:
+            break
+        default:
+            break
+        }
     }
 
 

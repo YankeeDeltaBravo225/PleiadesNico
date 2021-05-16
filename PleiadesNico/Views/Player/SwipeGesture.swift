@@ -11,9 +11,13 @@ import SwiftUI
 
 struct SwipeGestureModifier: ViewModifier {
 
-    let onLeft  : () -> Void
-    let onRight : () -> Void
-
+    typealias OnSwipe = () -> Void
+    
+    let onLeft  : OnSwipe?
+    let onRight : OnSwipe?
+    let onUp    : OnSwipe?
+    let onDown  : OnSwipe?
+    
     @State var isKnownDrag : Bool = false
     
     func body( content: Content ) -> some View {
@@ -27,22 +31,28 @@ struct SwipeGestureModifier: ViewModifier {
         let gesture = DragGesture()
             .onChanged(
                 { value in
-                    let deltaX = value.translation.width
-
-                    if abs(deltaX) < 50 {
-                        return
-                    }
-
                     if self.isKnownDrag {
                         return
                     }
+
+                    let deltaX = value.translation.width
+                    let deltaY = value.translation.height
                     
-                    if deltaX > 0 {
-                        onRight()
-                    } else {
-                        onLeft()
+                    if abs(deltaX) >= 50 {
+                        if deltaX > 0 {
+                            onRight?()
+                        } else {
+                            onLeft?()
+                        }
+                        self.isKnownDrag = true
+                    } else if abs(deltaY) >= 50 {
+                        if deltaX > 0 {
+                            onUp?()
+                        } else {
+                            onDown?()
+                        }
+                        self.isKnownDrag = true
                     }
-                    self.isKnownDrag = true
                 }
             )
             .onEnded(
