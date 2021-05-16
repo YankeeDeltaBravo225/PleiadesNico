@@ -15,6 +15,8 @@ import AVKit
 
 struct PlayerTopView: View {
     
+    @Environment(\.presentationMode) var presentation
+    
     @ObservedObject var viewModel : PlayerViewModel
     let screen     : VideoScreen
     let colorIndex : Int
@@ -42,6 +44,7 @@ struct PlayerTopView: View {
 //                timeBatteryBarBackground()
                 PlayControlView( viewModel : viewModel )
             }
+            closingView()
         }
         .alert(
             isPresented: $viewModel.showAlert,
@@ -153,7 +156,21 @@ extension PlayerTopView {
 
         return orientations[viewModel.configOrientation] ?? (.landscape, .landscapeLeft)
     }
-    
+
+    fileprivate func closingView() -> some View {
+        return Group{
+            if viewModel.isClosing {
+                Text("終了します")
+                    .foregroundColor(.white)
+                    .onAppear(){
+                        self.presentation.wrappedValue.dismiss()
+                    }
+            } else {
+                EmptyView()
+            }
+        }
+    }
+
 }
 
 

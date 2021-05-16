@@ -18,8 +18,6 @@ struct PlayControlView: View {
         VStack {
             upperControlView()
             Spacer()
-            closingView()
-            Spacer()
             lowerControlView()
         }
         .onAppear {
@@ -153,21 +151,6 @@ extension PlayControlView {
             in: 0...1,
             onEditingChanged: onSliderChanged
         )
-    }
-
-    
-    fileprivate func closingView() -> some View {
-        return Group{
-            if viewModel.isClosing {
-                Text("終了します")
-                    .foregroundColor(.white)
-                    .onAppear(){
-                        self.presentation.wrappedValue.dismiss()
-                    }
-            } else {
-                EmptyView()
-            }
-        }
     }
 
 }
