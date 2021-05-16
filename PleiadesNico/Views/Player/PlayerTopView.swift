@@ -14,7 +14,7 @@ import AVKit
 // MARK: - Top View
 
 struct PlayerTopView: View {
-
+    
     @ObservedObject var viewModel : PlayerViewModel
     let screen     : VideoScreen
     let colorIndex : Int
@@ -53,17 +53,26 @@ struct PlayerTopView: View {
             }
         )
         .onAppear(){
-            viewModel.onAppear()
+            if viewModel.didAppear {
+                return
+            }
             DispatchQueue.main.async {
+                viewModel.onAppear()
                 let (mask, rotation) = getPlayerOrientation()
                 AppDelegate.lockOrientation(mask: mask, rotation: rotation)
             }
-
         }
         .onDisappear {
-            viewModel.onDisappear()
             DispatchQueue.main.async {
+                viewModel.onDisappear()
                 AppDelegate.unlockOrientation()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { (_) in
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { (_) in
+            DispatchQueue.main.async {
+                viewModel.onInactive()
             }
         }
         

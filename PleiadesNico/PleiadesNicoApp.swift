@@ -45,13 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static func unlockOrientation(){
         AppDelegate.orientationMask = UIInterfaceOrientationMask.all
 
-        if AppDelegate.savedOrientation == UIDevice.current.orientation {
-            // UI orientation is not rotated
-            return
-        }
-
         UIDevice.current.setValue(AppDelegate.savedOrientation.rawValue, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
     }
-
+    
 }

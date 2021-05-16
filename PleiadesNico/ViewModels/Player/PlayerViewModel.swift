@@ -19,6 +19,7 @@ final class PlayerViewModel: ObservableObject {
     @Published var showControl       : Bool   = false
     @Published var showPlayer        : Bool   = false
     @Published var showAlert         : Bool   = false
+    @Published var didAppear         : Bool   = false
 
     @Published var alertTitle        : String = ""
     @Published var alertMessage      : String = ""
@@ -42,7 +43,6 @@ final class PlayerViewModel: ObservableObject {
     private    var isReady         : Bool
     private    var controlFadeTime : Double
     private    var doesControlFade : Bool
-    private    var appearCount     : Int
     private    var timer           : Cancellable?
 
 
@@ -62,16 +62,15 @@ final class PlayerViewModel: ObservableObject {
         self.isReady         = false
         self.controlFadeTime = -1.0
         self.doesControlFade = false
-        self.appearCount     = 0
     }
 
 
     func onAppear(){
-        if appearCount > 0 {
+        if self.didAppear {
             return
         }
 
-        appearCount += 1
+        self.didAppear = true
         
         self.connect.onSuccess = { url in
             self.onConnectSuccess(streamUrl: url)
@@ -89,6 +88,16 @@ final class PlayerViewModel: ObservableObject {
                     self.progressText = self.connect.progress
                 }
             )
+    }
+
+
+    func onActive(){
+    }
+    
+    
+    func onInactive(){
+        screen.pause()
+        onPause()
     }
 
 
@@ -204,7 +213,8 @@ final class PlayerViewModel: ObservableObject {
             restartControlFade()
         case ConfigStorage.GestureOperation.close.rawValue:
             self.onClose()
-            self.isClosing = true
+            self.isClosing   = true
+            self.showControl = true
         case ConfigStorage.GestureOperation.none.rawValue:
             break
         default:
