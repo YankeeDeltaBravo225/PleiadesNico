@@ -8,6 +8,20 @@ import Foundation
 
 
 class ConfigStorage {
+
+    enum Key: String {
+        case login             = "isLoggedIn"
+        case cookie            = "stringCookie"
+        case commentFontSize   = "commentFontSize"
+        case commentStrokeSize = "commentStrokeSize"
+        case playerOrientation = "playerOrientation"
+        case leftSwipeGesture  = "leftSwipeGesture"
+        case rightSwipeGesture = "rightSwipeGesture"
+        case upSwipeGesture    = "upSwipeGesture"
+        case downSwipeGesture  = "downSwipeGesture"
+        case swipeThreshold    = "swipeThreshold"
+        case controlFadeTime   = "controlFadeTime"
+    }
     
     enum PlayerOrientation: Int {
         case portrait           = 0
@@ -20,15 +34,44 @@ class ConfigStorage {
         "よこ(homeボタン左)",
         "よこ(homeボタン右)"
     ]
-    
-    enum Key: String {
-        case login             = "isLoggedIn"
-        case cookie            = "stringCookie"
-        case commentFontSize   = "commentFontSize"
-        case commentStrokeSize = "commentStrokeSize"
-        case playerOrientation = "playerOrientation"
-        case controlFadeTime   = "controlFadeTime"
+
+    enum GestureType: Int, CaseIterable {
+        case swipeLeft          = 0
+        case swipeRight         = 1
+        case swipeUp            = 2
+        case swipeDown          = 3
+        
+        static let allValues : [GestureType] = [.swipeLeft, .swipeRight, .swipeUp, .swipeDown]
     }
+
+    static let gestureTypeDescriptions : [String ] = [
+        "左スワイプ",
+        "右スワイプ",
+        "上スワイプ",
+        "下スワイプ",
+    ]
+    
+    static let gestureTypeKeyMap : [Int : Key] = [
+        GestureType.swipeLeft.rawValue  : .leftSwipeGesture,
+        GestureType.swipeRight.rawValue : .rightSwipeGesture,
+        GestureType.swipeUp.rawValue    : .upSwipeGesture,
+        GestureType.swipeDown.rawValue  : .downSwipeGesture
+    ]
+    
+    enum GestureOperation: Int, CaseIterable {
+        case none               = 0
+        case close              = 1
+        case plus10Sec          = 2
+        case minus10Sec         = 3
+    }
+
+    static let gestureOperationDescriptions : [String ] = [
+        "なし",
+        "閉じる",
+        "10秒進む",
+        "10秒戻る",
+    ]
+    
     
     static  let shared       = ConfigStorage()
     private let userDefaults : UserDefaults
@@ -45,6 +88,11 @@ class ConfigStorage {
                 Key.commentFontSize.rawValue   : 20,
                 Key.commentStrokeSize.rawValue : 1,
                 Key.playerOrientation.rawValue : PlayerOrientation.landscapeLeft.rawValue,
+                Key.leftSwipeGesture.rawValue  : GestureOperation.none.rawValue,
+                Key.rightSwipeGesture.rawValue : GestureOperation.none.rawValue,
+                Key.upSwipeGesture.rawValue    : GestureOperation.none.rawValue,
+                Key.downSwipeGesture.rawValue  : GestureOperation.none.rawValue,
+                Key.swipeThreshold.rawValue    : 50,
                 Key.controlFadeTime.rawValue   : 6,
             ]
         )
@@ -107,7 +155,35 @@ class ConfigStorage {
             getInt(key: .playerOrientation)
         }
     }
-    
+
+
+    func setGestureOperation( gestureType : Int, operation : Int ){
+        guard let key = ConfigStorage.gestureTypeKeyMap[gestureType]
+        else {
+            return
+        }
+        setInt(operation, key: key)
+    }
+
+    func getGestureOperation( gestureType : Int ) -> Int {
+        guard let key = ConfigStorage.gestureTypeKeyMap[gestureType]
+        else {
+            return GestureOperation.none.rawValue
+        }
+        
+        return getInt(key: key)
+    }
+
+
+    var swipeThreshold : Int {
+        set(threshold){
+            setInt(threshold, key: .swipeThreshold)
+        }
+        get{
+            getInt(key: .swipeThreshold)
+        }
+    }
+
 
     private func setOptionalString(_ value : String?, key : Key){
         self.userDefaults.set(value, forKey: key.rawValue)

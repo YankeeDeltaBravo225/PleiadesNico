@@ -47,9 +47,15 @@ struct SettingView: View {
                 Text("線の太さ")
                 commentStrokeSizeStepper()
             }
-        }
+            Section(header: Text("ジェスチャー")){
+                ForEach(viewModel.gestureTypes.indices, id: \.self) { gestureType in
+                    gestureSelector(gestureType)
+                }
+            }
 
-    }
+        } //List
+    } // body
+
 }
 
 
@@ -142,8 +148,23 @@ extension SettingView {
             selected: viewModel.playerOrientation
         )
     }
+
     
-    
+    fileprivate func gestureSelector(_ gestureType: Int) -> some View {
+        let typeDescription = viewModel.gestureTypes[gestureType]
+        return HStack{
+            Text(typeDescription)
+            Spacer()
+            MenuStylePicker(
+                options: viewModel.gestureOperations,
+                onChangeClosure: {
+                    viewModel.onGestureChanged(gestureType: gestureType, newOperation: $0)
+                },
+                selected: viewModel.gestureOperationSelects[gestureType]
+            )
+        }
+    }
+
 }
 
 

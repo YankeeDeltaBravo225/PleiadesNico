@@ -10,26 +10,31 @@ import WebKit
 final class SettingViewModel: ObservableObject {
 
     typealias Orientation = ConfigStorage.PlayerOrientation
-    
-    let loginPageUrl : String    = NicoURL.loginPage
-    let orientations : [String ] = ConfigStorage.playerOrientationDescriptions
+    typealias GestureType = ConfigStorage.GestureType
+
+    let loginPageUrl      : String   = NicoURL.loginPage
+    let orientations      : [String] = ConfigStorage.playerOrientationDescriptions
+    let gestureTypes      : [String] = ConfigStorage.gestureTypeDescriptions
+    let gestureOperations : [String] = ConfigStorage.gestureOperationDescriptions
 
     @Published var isLoggedIn        : Bool
     @Published var commentFontSize   : Int
     @Published var commentStrokeSize : Int
     @Published var controlFadeTime   : Int
     @Published var playerOrientation : Int
-    
+    @Published var gestureOperationSelects : [Int]
 
     init(){
-        self.isLoggedIn        = ConfigStorage.shared.loginStatus
-        self.commentFontSize   = ConfigStorage.shared.commentFontSize
-        self.commentStrokeSize = ConfigStorage.shared.commentStrokeSize
-        self.controlFadeTime   = ConfigStorage.shared.controlFadeTime
-        self.playerOrientation = ConfigStorage.shared.playerOrientation
+        self.isLoggedIn              = ConfigStorage.shared.loginStatus
+        self.commentFontSize         = ConfigStorage.shared.commentFontSize
+        self.commentStrokeSize       = ConfigStorage.shared.commentStrokeSize
+        self.controlFadeTime         = ConfigStorage.shared.controlFadeTime
+        self.playerOrientation       = ConfigStorage.shared.playerOrientation
+        self.gestureOperationSelects = GestureType.allValues
+            .map{ ConfigStorage.shared.getGestureOperation(gestureType: $0.rawValue) }
     }
 
-
+    
     func onLogginDisappear(webView : WKWebView) {
         webView.configuration.websiteDataStore.httpCookieStore.getAllCookies() { (cookies) in
             let stringCookie = cookies
@@ -75,4 +80,10 @@ final class SettingViewModel: ObservableObject {
         ConfigStorage.shared.playerOrientation = newOrientation
     }
 
+    func onGestureChanged(gestureType : Int, newOperation : Int){
+        self.gestureOperationSelects[gestureType] = newOperation
+        ConfigStorage.shared.setGestureOperation(gestureType: gestureType, operation: newOperation)
+    }
+    
+    
 }
