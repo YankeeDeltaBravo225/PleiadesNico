@@ -22,9 +22,13 @@ iNicoやSmilePlayerといった偉大なアプリと比べると安定性や機�
 ### サポート機能
 
 * ランキング表示
-* 動画検索
-  * 動画ID or URL直貼り付けも対応
+  * ![ScreenShot1](https://user-images.githubusercontent.com/31369295/118658430-5426db00-b827-11eb-8e01-ed72156f1422.jpg)
+
+* 動画検索(動画ID or URL直貼り付けも対応)
+  * ![ScreenShot3](https://user-images.githubusercontent.com/31369295/118658440-5721cb80-b827-11eb-8276-1aa3806e9b28.jpg)
+
 * ユーザ動画の再生/コメント表示
+  * ![ScreenShot2](https://user-images.githubusercontent.com/31369295/118658414-50935400-b827-11eb-8cd1-5d6165b42529.jpg)
 
 ### 将来サポート予定
 
