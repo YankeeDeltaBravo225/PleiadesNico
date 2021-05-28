@@ -79,7 +79,7 @@ extension SearchView {
         return MenuStylePicker(
             options: viewModel.sortKeyOptions(),
             onChangeClosure: { keyId in viewModel.updateSortKey(newKeyId: keyId) },
-            selected: viewModel.keyId
+            selected: viewModel.orderKeyId
         )
     }
 
@@ -87,8 +87,10 @@ extension SearchView {
     fileprivate func sortOrderSelector() -> MenuStylePicker {
         return MenuStylePicker(
             options: viewModel.sortDirectionOptions(),
-            onChangeClosure: { orderId in viewModel.updateSortDirection(newOrderId: orderId) },
-            selected: viewModel.orderId
+            onChangeClosure: { directionId in
+                viewModel.updateSortDirection(newDirectionId: directionId)
+            },
+            selected: viewModel.orderDirectionId
         )
     }
 

@@ -17,9 +17,9 @@ final class SearchViewModel: ObservableObject {
     @Published var searchWord      : String       = ""
 
     // @todo restore the latest value from ConfigStorage
-    @Published var searchKindId    : Int          = 0
-    @Published var keyId           : Int          = 0
-    @Published var orderId         : Int          = 0
+    @Published var searchKindId     : Int         = ConfigStorage.shared.searchKind
+    @Published var orderKeyId       : Int         = ConfigStorage.shared.searchOrderKey
+    @Published var orderDirectionId : Int         = ConfigStorage.shared.searchOrderDirection
 
     @Published var resultItems     : [ResultItem] = []
     @Published var abstractText    : String       = ""
@@ -98,8 +98,8 @@ final class SearchViewModel: ObservableObject {
             word        : self.searchWord,
             kind        : searchKind,
             offset      : self.searchOffset,
-            sortKeyId   : self.keyId,
-            sortOrderId : self.orderId
+            sortKeyId   : self.orderKeyId,
+            sortOrderId : self.orderDirectionId
         )
 
         DebugLog.shared.debug("searchUrl : \(searchUrl)")
@@ -126,14 +126,15 @@ final class SearchViewModel: ObservableObject {
     
     
     func updateSortKey(newKeyId : Int){
-        self.keyId   = newKeyId
+        self.orderKeyId   = newKeyId
+        ConfigStorage.shared.searchOrderKey = newKeyId
 
         newSearch()
     }
 
 
     func sortDirectionOptions()  -> [Int : String] {
-        let options : [Int : String] = SearchAPI.sortKeys[ self.keyId ].directions
+        let options : [Int : String] = SearchAPI.sortKeys[ self.orderKeyId ].directions
             .map{ [$0.order.rawValue : $0.description] }
             .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
 
@@ -141,8 +142,9 @@ final class SearchViewModel: ObservableObject {
     }
 
     
-    func updateSortDirection(newOrderId : Int){
-        self.orderId = newOrderId
+    func updateSortDirection(newDirectionId : Int){
+        self.orderDirectionId = newDirectionId
+        ConfigStorage.shared.searchOrderDirection = newDirectionId
 
         newSearch()
     }
@@ -159,6 +161,7 @@ final class SearchViewModel: ObservableObject {
 
     func updateSearchKind(newKindId : Int){
         self.searchKindId = newKindId
+        ConfigStorage.shared.searchKind = newKindId
         
         newSearch()
     }
@@ -197,7 +200,7 @@ final class SearchViewModel: ObservableObject {
 //        let keyDescription   = sortKey.description
 //        let orderDescription = sortKey.directions[orderId].description
 
-        let searchKindDescription = searchKindOptions()[ self.searchKindId ] ?? "?"        
+        let searchKindDescription = searchKindOptions()[ self.searchKindId ] ?? "?"
         self.abstractText = "\(searchKindDescription)検索 / \(self.searchWord)"
     }
     

@@ -8,27 +8,6 @@ import Foundation
 
 
 class ConfigStorage {
-
-    enum Key: String {
-        case login             = "isLoggedIn"
-        case cookie            = "stringCookie"
-        case commentFontSize   = "commentFontSize"
-        case commentStrokeSize = "commentStrokeSize"
-        case playerOrientation = "playerOrientation"
-        case leftSwipeGesture  = "leftSwipeGesture"
-        case rightSwipeGesture = "rightSwipeGesture"
-        case upSwipeGesture    = "upSwipeGesture"
-        case downSwipeGesture  = "downSwipeGesture"
-        case swipeThreshold    = "swipeThreshold"
-        case controlFadeTime   = "controlFadeTime"
-
-
-        case rankingGenre      = "rankingGenre"
-        case rankingTerm       = "rankingTerm"
-
-
-
-    }
     
     enum PlayerOrientation: Int {
         case portrait           = 0
@@ -59,9 +38,24 @@ class ConfigStorage {
         case minus10Sec         = 3
     }
 
-    static  let shared       = ConfigStorage()
-    private let userDefaults : UserDefaults
-
+    enum Key: String {
+        case login                = "isLoggedIn"
+        case cookie               = "stringCookie"
+        case commentFontSize      = "commentFontSize"
+        case commentStrokeSize    = "commentStrokeSize"
+        case playerOrientation    = "playerOrientation"
+        case leftSwipeGesture     = "leftSwipeGesture"
+        case rightSwipeGesture    = "rightSwipeGesture"
+        case upSwipeGesture       = "upSwipeGesture"
+        case downSwipeGesture     = "downSwipeGesture"
+        case swipeThreshold       = "swipeThreshold"
+        case controlFadeTime      = "controlFadeTime"
+        case rankingGenre         = "rankingGenre"
+        case rankingTerm          = "rankingTerm"
+        case searchKind           = "searchKind"
+        case searchOrderKey       = "searchOrderKey"
+        case searchOrderDirection = "searchOrderDirection"
+    }
 
     // Creating indivisual instance is prohibited
     private init(){
@@ -69,24 +63,32 @@ class ConfigStorage {
 
         userDefaults.register(
             defaults: [
-                Key.login.rawValue             : false,
-                Key.cookie.rawValue            : "",
-                Key.commentFontSize.rawValue   : 20,
-                Key.commentStrokeSize.rawValue : 1,
-                Key.playerOrientation.rawValue : PlayerOrientation.landscapeLeft.rawValue,
-                Key.leftSwipeGesture.rawValue  : GestureOperation.none.rawValue,
-                Key.rightSwipeGesture.rawValue : GestureOperation.none.rawValue,
-                Key.upSwipeGesture.rawValue    : GestureOperation.none.rawValue,
-                Key.downSwipeGesture.rawValue  : GestureOperation.none.rawValue,
-                Key.swipeThreshold.rawValue    : 50,
-                Key.controlFadeTime.rawValue   : 6,
-                Key.rankingGenre.rawValue      : 0,
-                Key.rankingTerm.rawValue       : 0,
+                Key.login.rawValue                : false,
+                Key.cookie.rawValue               : "",
+                Key.commentFontSize.rawValue      : 20,
+                Key.commentStrokeSize.rawValue    : 1,
+                Key.playerOrientation.rawValue    : PlayerOrientation.landscapeLeft.rawValue,
+                Key.leftSwipeGesture.rawValue     : GestureOperation.none.rawValue,
+                Key.rightSwipeGesture.rawValue    : GestureOperation.none.rawValue,
+                Key.upSwipeGesture.rawValue       : GestureOperation.none.rawValue,
+                Key.downSwipeGesture.rawValue     : GestureOperation.none.rawValue,
+                Key.swipeThreshold.rawValue       : 50,
+                Key.controlFadeTime.rawValue      : 6,
+                Key.rankingGenre.rawValue         : 0,
+                Key.rankingTerm.rawValue          : 0,
+                Key.searchKind.rawValue           : 0,
+                Key.searchOrderKey.rawValue       : 0,
+                Key.searchOrderDirection.rawValue : 0,
+                
             ]
         )
 
         self.userDefaults = userDefaults
     }
+
+    static  let shared       = ConfigStorage()
+    private let userDefaults : UserDefaults
+    
 
     var stringCookie : String? {
         set(stringCookie){
@@ -192,7 +194,37 @@ class ConfigStorage {
         }
     }
 
+    
+    var searchKind : Int {
+        set(kind){
+            setInt(kind, key: .searchKind)
+        }
+        get{
+            getInt(key: .searchKind)
+        }
+    }
 
+    
+    var searchOrderKey : Int {
+        set(orderKey){
+            setInt(orderKey, key: .searchOrderKey)
+        }
+        get{
+            getInt(key: .searchOrderKey)
+        }
+    }
+ 
+    
+    var searchOrderDirection : Int {
+        set(orderDirection){
+            setInt(orderDirection, key: .searchOrderDirection)
+        }
+        get{
+            getInt(key: .searchOrderDirection)
+        }
+    }
+
+    
     private func setOptionalString(_ value : String?, key : Key){
         self.userDefaults.set(value, forKey: key.rawValue)
         self.userDefaults.synchronize()
