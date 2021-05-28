@@ -29,12 +29,6 @@ class ConfigStorage {
         case landscapeLeft      = 2
     }
 
-    static let playerOrientationDescriptions : [String ] = [
-        "たて(homeボタン下)",
-        "よこ(homeボタン左)",
-        "よこ(homeボタン右)"
-    ]
-
     enum GestureType: Int, CaseIterable {
         case swipeLeft          = 0
         case swipeRight         = 1
@@ -43,13 +37,6 @@ class ConfigStorage {
         
         static let allValues : [GestureType] = [.swipeLeft, .swipeRight, .swipeUp, .swipeDown]
     }
-
-    static let gestureTypeDescriptions : [String ] = [
-        "左スワイプ",
-        "右スワイプ",
-        "上スワイプ",
-        "下スワイプ",
-    ]
     
     static let gestureTypeKeyMap : [Int : Key] = [
         GestureType.swipeLeft.rawValue  : .leftSwipeGesture,
@@ -65,14 +52,6 @@ class ConfigStorage {
         case minus10Sec         = 3
     }
 
-    static let gestureOperationDescriptions : [String ] = [
-        "なし",
-        "閉じる",
-        "10秒進む",
-        "10秒戻る",
-    ]
-    
-    
     static  let shared       = ConfigStorage()
     private let userDefaults : UserDefaults
 

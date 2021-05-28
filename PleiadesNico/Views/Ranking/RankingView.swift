@@ -53,7 +53,7 @@ extension RankingView {
 
     fileprivate func genreSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.genres.map{ $0.description },
+            options: viewModel.genreOptions(),
             onChangeClosure: { genreId in viewModel.updateGenre(genreId) },
             selected: viewModel.genreId
         )
@@ -62,7 +62,7 @@ extension RankingView {
 
     fileprivate func termSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.terms.map{ $0.description },
+            options: viewModel.termOptions(),
             onChangeClosure: { termId in viewModel.updateTerm(termId) },
             selected: viewModel.termId
         )

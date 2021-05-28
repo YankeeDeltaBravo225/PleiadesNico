@@ -48,7 +48,7 @@ struct SettingView: View {
                 commentStrokeSizeStepper()
             }
             Section(header: Text("ジェスチャー")){
-                ForEach(viewModel.gestureTypes.indices, id: \.self) { gestureType in
+                ForEach(viewModel.gestureTypeOptions().keys.sorted(), id: \.self) { gestureType in
                     gestureSelector(gestureType)
                 }
 
@@ -146,7 +146,7 @@ extension SettingView {
 
     fileprivate func orientationSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.orientations,
+            options: viewModel.orientationOptions(),
             onChangeClosure: { viewModel.onOrietationChanged($0) },
             selected: viewModel.playerOrientation
         )
@@ -154,12 +154,12 @@ extension SettingView {
 
     
     fileprivate func gestureSelector(_ gestureType: Int) -> some View {
-        let typeDescription = viewModel.gestureTypes[gestureType]
+        let typeDescription = viewModel.gestureTypeOptions()[gestureType] ?? "?"
         return HStack{
             Text(typeDescription)
             Spacer()
             MenuStylePicker(
-                options: viewModel.gestureOperations,
+                options: viewModel.gestureOperationOptions(),
                 onChangeClosure: {
                     viewModel.onGestureChanged(gestureType: gestureType, newOperation: $0)
                 },

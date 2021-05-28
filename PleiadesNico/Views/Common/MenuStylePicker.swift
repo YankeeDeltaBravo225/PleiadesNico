@@ -10,7 +10,7 @@ struct MenuStylePicker: View {
     
     typealias OnChanged = (_ index : Int) -> Void
 
-    let options         : [String]
+    let options         : [Int : String]
     let onChangeClosure : OnChanged
 
     @State var selected: Int
@@ -18,8 +18,8 @@ struct MenuStylePicker: View {
 
     var body: some View {
         Picker( selection: $selected, label: currentSelectionView() ) {
-            ForEach(options.indices, id: \.self) { index in
-                Text(options[index]).tag(index)
+            ForEach(options.keys.sorted(), id: \.self) { key in
+                Text(options[key] ?? "?").tag(key)
             }
         }
         .pickerStyle(MenuPickerStyle())
@@ -32,7 +32,7 @@ struct MenuStylePicker: View {
 extension MenuStylePicker {
     fileprivate func currentSelectionView() -> some View {
         let gradient = LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
-        let selectedOption = (selected < options.count) ? options[selected] : "???"
+        let selectedOption = options[selected] ?? "???"
         
         return Text(selectedOption)
             .foregroundColor(.white)
@@ -48,7 +48,7 @@ extension MenuStylePicker {
 struct MenuStylePicker_Previews: PreviewProvider {
     static var previews: some View {
         MenuStylePicker(
-            options: ["one", "two", "three", "four", "five"],
+            options: [0:"zero", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five"],
             onChangeClosure: {index in print(index)},
             selected: 0
         )

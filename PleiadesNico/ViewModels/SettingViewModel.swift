@@ -13,9 +13,6 @@ final class SettingViewModel: ObservableObject {
     typealias GestureType = ConfigStorage.GestureType
 
     let loginPageUrl      : String   = NicoURL.loginPage
-    let orientations      : [String] = ConfigStorage.playerOrientationDescriptions
-    let gestureTypes      : [String] = ConfigStorage.gestureTypeDescriptions
-    let gestureOperations : [String] = ConfigStorage.gestureOperationDescriptions
 
     @Published var isLoggedIn        : Bool
     @Published var commentFontSize   : Int
@@ -36,7 +33,7 @@ final class SettingViewModel: ObservableObject {
         self.swipeThreshold          = ConfigStorage.shared.swipeThreshold
     }
 
-    
+
     func onLogginDisappear(webView : WKWebView) {
         webView.configuration.websiteDataStore.httpCookieStore.getAllCookies() { (cookies) in
             let stringCookie = cookies
@@ -78,9 +75,41 @@ final class SettingViewModel: ObservableObject {
     }
 
 
+    func orientationOptions() -> [Int : String] {
+        let options : [Int : String] = [
+            ConfigStorage.PlayerOrientation.portrait.rawValue       : "たて(homeボタン下)",
+            ConfigStorage.PlayerOrientation.landscapeRight.rawValue : "よこ(homeボタン左)",
+            ConfigStorage.PlayerOrientation.landscapeLeft.rawValue  : "よこ(homeボタン右)"
+        ]
+        return options
+    }
+
+
     func onOrietationChanged(_ newOrientation : Int){
         self.playerOrientation                 = newOrientation
         ConfigStorage.shared.playerOrientation = newOrientation
+    }
+
+
+    func gestureTypeOptions() -> [Int : String] {
+        let options : [Int : String] = [
+            ConfigStorage.GestureType.swipeLeft.rawValue  : "左スワイプ",
+            ConfigStorage.GestureType.swipeRight.rawValue : "右スワイプ",
+            ConfigStorage.GestureType.swipeUp.rawValue    : "上スワイプ",
+            ConfigStorage.GestureType.swipeDown.rawValue  : "下スワイプ",
+        ]
+        return options
+    }
+
+
+    func gestureOperationOptions() -> [Int : String] {
+        let options : [Int : String] = [
+            ConfigStorage.GestureOperation.none.rawValue       : "なし",
+            ConfigStorage.GestureOperation.close.rawValue      : "閉じる",
+            ConfigStorage.GestureOperation.plus10Sec.rawValue  : "10秒進む",
+            ConfigStorage.GestureOperation.minus10Sec.rawValue : "10秒戻る",
+        ]
+        return options
     }
 
 

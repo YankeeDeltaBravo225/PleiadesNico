@@ -77,7 +77,7 @@ extension SearchView {
 
     fileprivate func sortKeySelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.sortKeys.map{ $0.description },
+            options: viewModel.sortKeyOptions(),
             onChangeClosure: { keyId in viewModel.updateSortKey(newKeyId: keyId) },
             selected: viewModel.keyId
         )
@@ -86,8 +86,8 @@ extension SearchView {
 
     fileprivate func sortOrderSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.sortOrders().map{ $0.description },
-            onChangeClosure: { orderId in viewModel.updateSortOrder(newOrderId: orderId) },
+            options: viewModel.sortDirectionOptions(),
+            onChangeClosure: { orderId in viewModel.updateSortDirection(newOrderId: orderId) },
             selected: viewModel.orderId
         )
     }
@@ -95,7 +95,7 @@ extension SearchView {
 
     fileprivate func searchKindSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.searchKindTexts,
+            options: viewModel.searchKindOptions(),
             onChangeClosure: { kindId in viewModel.updateSearchKind(newKindId: kindId) },
             selected: viewModel.searchKindId
         )

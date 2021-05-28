@@ -12,19 +12,16 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
-    typealias SearchKind    = SearchAPI.Kind
-    typealias SortKey       = SearchAPI.SortKey
-    typealias SortDirection = SearchAPI.SortDirection
     typealias ResultItem    = SearchAPI.Result.Item
 
     @Published var searchWord      : String       = ""
-    @Published var searchKind      : SearchKind   = .tag
-    @Published var searchKindId    : Int          = SearchKind.tag.rawValue
-    @Published var searchKindTexts : [String]     = [ "タグ", "キーワード" ]
-    @Published var resultItems     : [ResultItem] = []
-    @Published var sortKeys        : [SortKey]    = SearchAPI.sortKeys
+
+    // @todo restore the latest value from ConfigStorage
+    @Published var searchKindId    : Int          = 0
     @Published var keyId           : Int          = 0
     @Published var orderId         : Int          = 0
+
+    @Published var resultItems     : [ResultItem] = []
     @Published var abstractText    : String       = ""
     @Published var directVideoId   : String       = ""
     @Published var showDirectOpen  : Bool         = false
@@ -52,7 +49,7 @@ final class SearchViewModel: ObservableObject {
         self.isImmediate  = isImmediate
         
         if isImmediate {
-            self.searchKind = .tag
+            self.searchKindId = SearchAPI.Kind.tag.rawValue
         }
     }
 
@@ -96,9 +93,10 @@ final class SearchViewModel: ObservableObject {
             self.showDirectOpen = false
         }
 
+        let searchKind  : SearchAPI.Kind = (self.searchKindId == SearchAPI.Kind.tag.rawValue) ? .tag : .keyword
         let searchUrl = searchApi.url(
             word        : self.searchWord,
-            kind        : self.searchKind,
+            kind        : searchKind,
             offset      : self.searchOffset,
             sortKeyId   : self.keyId,
             sortOrderId : self.orderId
@@ -118,8 +116,12 @@ final class SearchViewModel: ObservableObject {
     }
 
 
-    func sortOrders() -> [SortDirection] {
-        return self.sortKeys[ self.keyId ].directions
+    func sortKeyOptions()  -> [Int : String] {
+        let options : [Int : String] = SearchAPI.sortKeys
+            .map{ [$0.id : $0.description] }
+            .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
+
+        return options
     }
     
     
@@ -130,16 +132,34 @@ final class SearchViewModel: ObservableObject {
     }
 
 
-    func updateSortOrder(newOrderId : Int){
+    func sortDirectionOptions()  -> [Int : String] {
+        let options : [Int : String] = SearchAPI.sortKeys[ self.keyId ].directions
+            .map{ [$0.order.rawValue : $0.description] }
+            .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
+
+        return options
+    }
+
+    
+    func updateSortDirection(newOrderId : Int){
         self.orderId = newOrderId
 
         newSearch()
     }
 
+
+    func searchKindOptions()  -> [Int : String] {
+        let options : [Int : String] = [
+            SearchAPI.Kind.tag.rawValue     : "タグ",
+            SearchAPI.Kind.keyword.rawValue : "キーワード",
+        ]
+        return options
+    }
+
+
     func updateSearchKind(newKindId : Int){
         self.searchKindId = newKindId
-        self.searchKind   = (newKindId == SearchKind.tag.rawValue) ? .tag : .keyword
-    
+        
         newSearch()
     }
     
@@ -176,9 +196,8 @@ final class SearchViewModel: ObservableObject {
 //        let sortKey = self.sortKeys[self.keyId]
 //        let keyDescription   = sortKey.description
 //        let orderDescription = sortKey.directions[orderId].description
-        
-        let searchKindDescription = self.searchKindTexts[ self.searchKindId ]
-        
+
+        let searchKindDescription = searchKindOptions()[ self.searchKindId ] ?? "?"        
         self.abstractText = "\(searchKindDescription)検索 / \(self.searchWord)"
     }
     

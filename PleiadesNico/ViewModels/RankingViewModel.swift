@@ -10,16 +10,12 @@ import Combine
 
 final class RankingViewModel: ObservableObject {
 
-    typealias Genre = RankingAPI.Genre
-    typealias Term  = RankingAPI.Term
     typealias Rank  = RankingAPI.Item
     
     @Published var showSelector : Bool    = false
     @Published var genreId      : Int     = 0
     @Published var termId       : Int     = 0
     @Published var ranks        : [Rank]  = []
-    @Published var genres       : [Genre] = RankingAPI.genres
-    @Published var terms        : [Term]  = RankingAPI.terms
     @Published var abstractText : String  = ""
 
     private let rankingApi  : RankingAPI
@@ -72,8 +68,27 @@ final class RankingViewModel: ObservableObject {
         loadRanking()
     }
 
+
     func onSelectorEnabled(){
         self.showSelector = true
+    }
+
+
+    func genreOptions() -> [Int : String] {
+        let options : [Int : String] = RankingAPI.genres
+            .map{ [$0.id : $0.description] }
+            .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
+
+        return options
+    }
+    
+    
+    func termOptions() -> [Int : String] {
+        let options : [Int : String] = RankingAPI.terms
+            .map{ [$0.id : $0.description] }
+            .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
+
+        return options
     }
 
 }
