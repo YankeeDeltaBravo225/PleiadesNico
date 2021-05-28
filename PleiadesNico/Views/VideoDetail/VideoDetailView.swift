@@ -131,20 +131,18 @@ extension VideoDetailView {
 
     
     fileprivate func descriptionView() -> some View {
-        return ScrollView(){
+        return VStack(){
             Text(viewModel.prop.description)
                     .font(.system(size: 14))
             }
-            .frame(height:100)
     }
     
     
     fileprivate func lastCommentView() -> some View {
-        return ScrollView(){
+        return VStack(){
                 Text(viewModel.prop.lastComment)
                     .font(.system(size: 14))
             }
-            .frame(height:50)
     }
     
 
