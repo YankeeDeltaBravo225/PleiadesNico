@@ -23,7 +23,8 @@ final class SettingViewModel: ObservableObject {
     @Published var controlFadeTime   : Int
     @Published var playerOrientation : Int
     @Published var gestureOperationSelects : [Int]
-
+    @Published var swipeThreshold          : Int
+    
     init(){
         self.isLoggedIn              = ConfigStorage.shared.loginStatus
         self.commentFontSize         = ConfigStorage.shared.commentFontSize
@@ -32,6 +33,7 @@ final class SettingViewModel: ObservableObject {
         self.playerOrientation       = ConfigStorage.shared.playerOrientation
         self.gestureOperationSelects = GestureType.allValues
             .map{ ConfigStorage.shared.getGestureOperation(gestureType: $0.rawValue) }
+        self.swipeThreshold          = ConfigStorage.shared.swipeThreshold
     }
 
     
@@ -75,15 +77,25 @@ final class SettingViewModel: ObservableObject {
         ConfigStorage.shared.controlFadeTime = self.controlFadeTime
     }
 
+
     func onOrietationChanged(_ newOrientation : Int){
         self.playerOrientation                 = newOrientation
         ConfigStorage.shared.playerOrientation = newOrientation
     }
+
 
     func onGestureChanged(gestureType : Int, newOperation : Int){
         self.gestureOperationSelects[gestureType] = newOperation
         ConfigStorage.shared.setGestureOperation(gestureType: gestureType, operation: newOperation)
     }
     
-    
+
+    func onSwipeThresholdChanged(_ isPressed : Bool){
+        if isPressed {
+            return
+        }
+
+        ConfigStorage.shared.swipeThreshold = self.swipeThreshold
+    }
+
 }

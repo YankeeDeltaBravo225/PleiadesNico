@@ -51,6 +51,9 @@ struct SettingView: View {
                 ForEach(viewModel.gestureTypes.indices, id: \.self) { gestureType in
                     gestureSelector(gestureType)
                 }
+
+                Text("スワイプ認識する移動量")
+                swipeThresholdStepper()
             }
 
         } //List
@@ -162,6 +165,21 @@ extension SettingView {
                 },
                 selected: viewModel.gestureOperationSelects[gestureType]
             )
+        }
+    }
+
+    
+    fileprivate func swipeThresholdStepper() -> some View {
+        return HStack{
+            Stepper(
+                value : $viewModel.swipeThreshold,
+                in : 10...300,
+                step : 10,
+                onEditingChanged: {viewModel.onSwipeThresholdChanged($0)}
+            ){
+                Text("\(viewModel.swipeThreshold)")
+            }
+            Spacer()
         }
     }
 
