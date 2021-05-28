@@ -19,8 +19,10 @@ struct RankingView: View {
         VStack{
             List{
                 HStack{
+                    Spacer()
                     genreSelector()
                     termSelector()
+                    Spacer()
                 }
 
                 ForEach(viewModel.ranks, id:\.pos) { rank in
