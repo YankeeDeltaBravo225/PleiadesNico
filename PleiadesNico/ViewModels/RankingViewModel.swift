@@ -13,8 +13,8 @@ final class RankingViewModel: ObservableObject {
     typealias Rank  = RankingAPI.Item
     
     @Published var showSelector : Bool    = false
-    @Published var genreId      : Int     = 0
-    @Published var termId       : Int     = 0
+    @Published var genreId      : Int     = ConfigStorage.shared.rankingGenre
+    @Published var termId       : Int     = ConfigStorage.shared.rankingTerm
     @Published var ranks        : [Rank]  = []
     @Published var abstractText : String  = ""
 
@@ -57,18 +57,6 @@ final class RankingViewModel: ObservableObject {
     }
 
 
-    func updateGenre(_ newGenreId : Int ){
-        self.genreId  = newGenreId
-        loadRanking()
-    }
-
-    
-    func updateTerm(_ newTermId : Int ){
-        self.termId   = newTermId
-        loadRanking()
-    }
-
-
     func onSelectorEnabled(){
         self.showSelector = true
     }
@@ -81,7 +69,13 @@ final class RankingViewModel: ObservableObject {
 
         return options
     }
+
     
+    func updateGenre(_ newGenreId : Int ){
+        self.genreId  = newGenreId
+        ConfigStorage.shared.rankingGenre = newGenreId
+        loadRanking()
+    }
     
     func termOptions() -> [Int : String] {
         let options : [Int : String] = RankingAPI.terms
@@ -89,6 +83,14 @@ final class RankingViewModel: ObservableObject {
             .reduce([Int:String]()){ $0.merging($1, uniquingKeysWith: +) }
 
         return options
+    }
+
+
+    func updateTerm(_ newTermId : Int ){
+        self.termId   = newTermId
+        ConfigStorage.shared.rankingTerm = newTermId
+
+        loadRanking()
     }
 
 }

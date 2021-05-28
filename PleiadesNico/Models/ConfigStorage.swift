@@ -21,6 +21,13 @@ class ConfigStorage {
         case downSwipeGesture  = "downSwipeGesture"
         case swipeThreshold    = "swipeThreshold"
         case controlFadeTime   = "controlFadeTime"
+
+
+        case rankingGenre      = "rankingGenre"
+        case rankingTerm       = "rankingTerm"
+
+
+
     }
     
     enum PlayerOrientation: Int {
@@ -73,6 +80,8 @@ class ConfigStorage {
                 Key.downSwipeGesture.rawValue  : GestureOperation.none.rawValue,
                 Key.swipeThreshold.rawValue    : 50,
                 Key.controlFadeTime.rawValue   : 6,
+                Key.rankingGenre.rawValue      : 0,
+                Key.rankingTerm.rawValue       : 0,
             ]
         )
 
@@ -160,6 +169,26 @@ class ConfigStorage {
         }
         get{
             getInt(key: .swipeThreshold)
+        }
+    }
+
+    
+    var rankingGenre : Int {
+        set(genre){
+            setInt(genre, key: .rankingGenre)
+        }
+        get{
+            getInt(key: .rankingGenre)
+        }
+    }
+    
+    
+    var rankingTerm : Int {
+        set(term){
+            setInt(term, key: .rankingTerm)
+        }
+        get{
+            getInt(key: .rankingTerm)
         }
     }
 
