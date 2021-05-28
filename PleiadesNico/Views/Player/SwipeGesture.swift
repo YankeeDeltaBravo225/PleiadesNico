@@ -13,10 +13,11 @@ struct SwipeGestureModifier: ViewModifier {
 
     typealias OnSwipe = () -> Void
     
-    let onLeft  : OnSwipe?
-    let onRight : OnSwipe?
-    let onUp    : OnSwipe?
-    let onDown  : OnSwipe?
+    let onLeft    : OnSwipe?
+    let onRight   : OnSwipe?
+    let onUp      : OnSwipe?
+    let onDown    : OnSwipe?
+    let threshold : CGFloat
     
     @State var isKnownDrag : Bool = false
     
@@ -38,18 +39,18 @@ struct SwipeGestureModifier: ViewModifier {
                     let deltaX = value.translation.width
                     let deltaY = value.translation.height
                     
-                    if abs(deltaX) >= 50 {
+                    if abs(deltaX) >= self.threshold {
                         if deltaX > 0 {
                             onRight?()
                         } else {
                             onLeft?()
                         }
                         self.isKnownDrag = true
-                    } else if abs(deltaY) >= 50 {
+                    } else if abs(deltaY) >= self.threshold {
                         if deltaX > 0 {
-                            onUp?()
-                        } else {
                             onDown?()
+                        } else {
+                            onUp?()
                         }
                         self.isKnownDrag = true
                     }

@@ -127,10 +127,11 @@ extension PlayerTopView {
         )
         .modifier(
             SwipeGestureModifier(
-                onLeft  : { viewModel.onSwipeLeft() },
-                onRight : { viewModel.onSwipeRight() },
-                onUp    : { viewModel.onSwipeUp() },
-                onDown  : { viewModel.onSwipeDown() }
+                onLeft    : { viewModel.onSwipeLeft() },
+                onRight   : { viewModel.onSwipeRight() },
+                onUp      : { viewModel.onSwipeUp() },
+                onDown    : { viewModel.onSwipeDown() },
+                threshold : CGFloat(viewModel.swipeThreshold)
             )
         )
         .onTapGesture {

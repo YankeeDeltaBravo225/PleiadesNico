@@ -32,7 +32,8 @@ final class PlayerViewModel: ObservableObject {
     @Published var commentStrokeSize : Int    = 1
     @Published var elapsedTime       : Double = 0.0
     @Published var configOrientation : Int
-
+    @Published var swipeThreshold    : Int
+    
     private    let contentId       : String
     private    let screen          : VideoScreen
     private    let connect         : StreamConnection
@@ -49,7 +50,8 @@ final class PlayerViewModel: ObservableObject {
     init(screen : VideoScreen, contentId : String) {
         self.commentFontSize   = ConfigStorage.shared.commentFontSize
         self.commentStrokeSize = ConfigStorage.shared.commentStrokeSize
-        self.configOrientation  = ConfigStorage.shared.playerOrientation
+        self.configOrientation = ConfigStorage.shared.playerOrientation
+        self.swipeThreshold    = ConfigStorage.shared.swipeThreshold
         
         self.contentId       = contentId
         self.screen          = screen
