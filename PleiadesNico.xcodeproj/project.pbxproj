@@ -39,7 +39,6 @@
 		F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C26F263D67AF00DFD69F /* VideoDetailView.swift */; };
 		F748C286263D67AF00DFD69F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C271263D67AF00DFD69F /* SearchView.swift */; };
 		F748C287263D67AF00DFD69F /* OnlineImageIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C273263D67AF00DFD69F /* OnlineImageIView.swift */; };
-		F748C288263D67AF00DFD69F /* PropertyLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C274263D67AF00DFD69F /* PropertyLabelView.swift */; };
 		F748C289263D67AF00DFD69F /* VideoAbstractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C275263D67AF00DFD69F /* VideoAbstractView.swift */; };
 		F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C276263D67AF00DFD69F /* ColorPalette.swift */; };
 		F748C28B263D67AF00DFD69F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C277263D67AF00DFD69F /* ContentView.swift */; };
@@ -114,7 +113,6 @@
 		F748C26F263D67AF00DFD69F /* VideoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		F748C271263D67AF00DFD69F /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F748C273263D67AF00DFD69F /* OnlineImageIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineImageIView.swift; sourceTree = "<group>"; };
-		F748C274263D67AF00DFD69F /* PropertyLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLabelView.swift; sourceTree = "<group>"; };
 		F748C275263D67AF00DFD69F /* VideoAbstractView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAbstractView.swift; sourceTree = "<group>"; };
 		F748C276263D67AF00DFD69F /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		F748C277263D67AF00DFD69F /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				F748C273263D67AF00DFD69F /* OnlineImageIView.swift */,
-				F748C274263D67AF00DFD69F /* PropertyLabelView.swift */,
 				F748C275263D67AF00DFD69F /* VideoAbstractView.swift */,
 				F748C276263D67AF00DFD69F /* ColorPalette.swift */,
 				F782BE44263FCCAD00EFB676 /* WebView.swift */,
@@ -553,7 +550,6 @@
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
-				F748C288263D67AF00DFD69F /* PropertyLabelView.swift in Sources */,
 				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,
 				F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */,
 				F7920DAB2647927D00FD2D50 /* FloatingTextButton.swift in Sources */,

@@ -82,7 +82,7 @@ extension VideoAbstractView {
         return HStack{
             Spacer()
                 .frame(width:4)
-            PropertyLabelView(
+            propertyLabelView(
                 symbol: "calendar",
                 text  : uploaded,
                 size  : attrFontSize
@@ -96,21 +96,32 @@ extension VideoAbstractView {
         return HStack{
             Spacer()
                 .frame(width:4)
-            PropertyLabelView(
+            propertyLabelView(
                 symbol: "play",
                 text  : TextFormat.shared.largeCount(views),
                 size  : attrFontSize
             )
-            PropertyLabelView(
+            propertyLabelView(
                 symbol: "text.bubble",
                 text  : TextFormat.shared.largeCount(comments),
                 size  : attrFontSize
             )
-            PropertyLabelView(
+            propertyLabelView(
                 symbol: "star",
                 text  : TextFormat.shared.largeCount(mylists),
                 size  : attrFontSize
             )
+            Spacer()
+        }
+    }
+    
+    fileprivate func propertyLabelView(symbol : String, text : String, size : CGFloat) -> some View {
+        return HStack{
+            Image(systemName: symbol)
+                .resizable()
+                .frame(width:size, height:size)
+            Text(text)
+                .font(.system(size: size))
             Spacer()
         }
     }
