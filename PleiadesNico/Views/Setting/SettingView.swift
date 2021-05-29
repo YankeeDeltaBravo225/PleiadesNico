@@ -33,10 +33,12 @@ struct SettingView: View {
                 loginStatusView()
             }
             Section(header: Text("プレイヤー")){
-                HStack{
-                    Text("再生時の向き")
-                    Spacer()
-                    orientationSelector()
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    HStack{
+                        Text("再生時の向き")
+                        Spacer()
+                        orientationSelector()
+                    }
                 }
                 Text("コントロールが自動で隠れるまで(秒)")
                 controlFadeTimeStepper()

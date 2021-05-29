@@ -77,6 +77,7 @@ final class SettingViewModel: ObservableObject {
 
     func orientationOptions() -> [Int : String] {
         let options : [Int : String] = [
+            ConfigStorage.PlayerOrientation.none.rawValue           : "そのまま",
             ConfigStorage.PlayerOrientation.portrait.rawValue       : "たて(homeボタン下)",
             ConfigStorage.PlayerOrientation.landscapeRight.rawValue : "よこ(homeボタン左)",
             ConfigStorage.PlayerOrientation.landscapeLeft.rawValue  : "よこ(homeボタン右)"

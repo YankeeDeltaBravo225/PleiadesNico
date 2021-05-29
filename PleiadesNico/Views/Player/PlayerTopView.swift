@@ -59,16 +59,21 @@ struct PlayerTopView: View {
             if viewModel.didAppear {
                 return
             }
+            
             DispatchQueue.main.async {
                 viewModel.onAppear()
-                let (mask, rotation) = getPlayerOrientation()
-                AppDelegate.lockOrientation(mask: mask, rotation: rotation)
+                if viewModel.isRotateEnabled {
+                    let (mask, rotation) = getPlayerOrientation()
+                    AppDelegate.lockOrientation(mask: mask, rotation: rotation)
+                }
             }
         }
         .onDisappear {
             DispatchQueue.main.async {
                 viewModel.onDisappear()
-                AppDelegate.unlockOrientation()
+                if viewModel.isRotateEnabled {
+                    AppDelegate.unlockOrientation()
+                }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { (_) in

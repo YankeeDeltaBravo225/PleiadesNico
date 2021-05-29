@@ -10,9 +10,10 @@ import Foundation
 class ConfigStorage {
     
     enum PlayerOrientation: Int {
-        case portrait           = 0
-        case landscapeRight     = 1
-        case landscapeLeft      = 2
+        case none               = 0
+        case portrait           = 1
+        case landscapeRight     = 2
+        case landscapeLeft      = 3
     }
 
     enum GestureType: Int, CaseIterable {
@@ -67,7 +68,7 @@ class ConfigStorage {
                 Key.cookie.rawValue               : "",
                 Key.commentFontSize.rawValue      : 20,
                 Key.commentStrokeSize.rawValue    : 1,
-                Key.playerOrientation.rawValue    : PlayerOrientation.landscapeLeft.rawValue,
+                Key.playerOrientation.rawValue    : PlayerOrientation.none.rawValue,
                 Key.leftSwipeGesture.rawValue     : GestureOperation.none.rawValue,
                 Key.rightSwipeGesture.rawValue    : GestureOperation.none.rawValue,
                 Key.upSwipeGesture.rawValue       : GestureOperation.none.rawValue,

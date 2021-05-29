@@ -28,11 +28,13 @@ final class PlayerViewModel: ObservableObject {
     @Published var currentTimeText   : String = ""
     @Published var progressText      : String = ""
     @Published var timeSliderPos     : Double = 0.0
-    @Published var commentFontSize   : Int    = 10
-    @Published var commentStrokeSize : Int    = 1
     @Published var elapsedTime       : Double = 0.0
-    @Published var configOrientation : Int
-    @Published var swipeThreshold    : Int
+    @Published var commentFontSize   : Int    = ConfigStorage.shared.commentFontSize
+    @Published var commentStrokeSize : Int    = ConfigStorage.shared.commentStrokeSize
+    @Published var swipeThreshold    : Int    = ConfigStorage.shared.swipeThreshold
+    @Published var configOrientation : Int    = ConfigStorage.shared.playerOrientation
+    @Published var isRotateEnabled   : Bool   = ConfigStorage.shared.playerOrientation != PlayerViewModel.Orientation.none.rawValue
+    
     
     private    let contentId       : String
     private    let screen          : VideoScreen
@@ -48,11 +50,6 @@ final class PlayerViewModel: ObservableObject {
 
 
     init(screen : VideoScreen, contentId : String) {
-        self.commentFontSize   = ConfigStorage.shared.commentFontSize
-        self.commentStrokeSize = ConfigStorage.shared.commentStrokeSize
-        self.configOrientation = ConfigStorage.shared.playerOrientation
-        self.swipeThreshold    = ConfigStorage.shared.swipeThreshold
-        
         self.contentId       = contentId
         self.screen          = screen
         self.connect         = StreamConnection(contentId: contentId)
