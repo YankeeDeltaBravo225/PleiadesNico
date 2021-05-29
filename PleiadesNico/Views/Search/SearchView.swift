@@ -66,7 +66,6 @@ struct SearchView: View {
                 }
             }
             .onAppear(){
-                print(geometry.size.width)
                 viewModel.onAppearSearch()
             }
         } // GeometryReader
