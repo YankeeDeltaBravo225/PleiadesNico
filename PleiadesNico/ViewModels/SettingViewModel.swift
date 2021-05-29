@@ -14,23 +14,17 @@ final class SettingViewModel: ObservableObject {
 
     let loginPageUrl      : String   = NicoURL.loginPage
 
-    @Published var isLoggedIn        : Bool
-    @Published var commentFontSize   : Int
-    @Published var commentStrokeSize : Int
-    @Published var controlFadeTime   : Int
-    @Published var playerOrientation : Int
-    @Published var gestureOperationSelects : [Int]
-    @Published var swipeThreshold          : Int
+    @Published var isLoggedIn              : Bool  = ConfigStorage.shared.loginStatus
+    @Published var commentFontSize         : Int   = ConfigStorage.shared.commentFontSize
+    @Published var commentStrokeSize       : Int   = ConfigStorage.shared.commentStrokeSize
+    @Published var commentMaxDispNum       : Int   = ConfigStorage.shared.commentMaxDispNum
+    @Published var controlFadeTime         : Int   = ConfigStorage.shared.controlFadeTime
+    @Published var playerOrientation       : Int   = ConfigStorage.shared.playerOrientation
+    @Published var swipeThreshold          : Int   = ConfigStorage.shared.swipeThreshold
+    @Published var gestureOperationSelects : [Int] = GestureType.allValues
+        .map{ ConfigStorage.shared.getGestureOperation(gestureType: $0.rawValue) }
     
     init(){
-        self.isLoggedIn              = ConfigStorage.shared.loginStatus
-        self.commentFontSize         = ConfigStorage.shared.commentFontSize
-        self.commentStrokeSize       = ConfigStorage.shared.commentStrokeSize
-        self.controlFadeTime         = ConfigStorage.shared.controlFadeTime
-        self.playerOrientation       = ConfigStorage.shared.playerOrientation
-        self.gestureOperationSelects = GestureType.allValues
-            .map{ ConfigStorage.shared.getGestureOperation(gestureType: $0.rawValue) }
-        self.swipeThreshold          = ConfigStorage.shared.swipeThreshold
     }
 
 
@@ -65,6 +59,15 @@ final class SettingViewModel: ObservableObject {
         ConfigStorage.shared.commentStrokeSize = self.commentStrokeSize
     }
 
+    
+    func onCommentMaxDispNumChanged(_ isPressed : Bool){
+        if isPressed {
+            return
+        }
+
+        ConfigStorage.shared.commentMaxDispNum = self.commentMaxDispNum
+    }
+    
 
     func onControlFadeTimeChanged(_ isPressed : Bool){
         if isPressed {

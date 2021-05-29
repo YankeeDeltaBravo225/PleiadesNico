@@ -48,6 +48,8 @@ struct SettingView: View {
                 commentFontSizeStepper()
                 Text("線の太さ")
                 commentStrokeSizeStepper()
+                Text("同時表示する最大数")
+                commentMaxDispNumStepper()
             }
             Section(header: Text("ジェスチャー")){
                 ForEach(viewModel.gestureTypeOptions().keys.sorted(), id: \.self) { gestureType in
@@ -130,7 +132,22 @@ extension SettingView {
             Spacer()
         }
     }
+
     
+    fileprivate func commentMaxDispNumStepper() -> some View {
+        return HStack{
+            Stepper(
+                value : $viewModel.commentMaxDispNum,
+                in : 10...1000,
+                step : 10,
+                onEditingChanged: {viewModel.onCommentMaxDispNumChanged($0)}
+            ){
+                Text("\(viewModel.commentMaxDispNum)")
+            }
+            Spacer()
+        }
+    }
+
     
     fileprivate func controlFadeTimeStepper() -> some View {
         return HStack{
@@ -145,6 +162,7 @@ extension SettingView {
             Spacer()
         }
     }
+
 
     fileprivate func orientationSelector() -> MenuStylePicker {
         return MenuStylePicker(

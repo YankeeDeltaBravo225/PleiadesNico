@@ -44,6 +44,7 @@ class ConfigStorage {
         case cookie               = "stringCookie"
         case commentFontSize      = "commentFontSize"
         case commentStrokeSize    = "commentStrokeSize"
+        case commentMaxDispNum    = "commentMaxDispNum"
         case playerOrientation    = "playerOrientation"
         case leftSwipeGesture     = "leftSwipeGesture"
         case rightSwipeGesture    = "rightSwipeGesture"
@@ -68,6 +69,7 @@ class ConfigStorage {
                 Key.cookie.rawValue               : "",
                 Key.commentFontSize.rawValue      : 20,
                 Key.commentStrokeSize.rawValue    : 1,
+                Key.commentMaxDispNum.rawValue    : 100,
                 Key.playerOrientation.rawValue    : PlayerOrientation.none.rawValue,
                 Key.leftSwipeGesture.rawValue     : GestureOperation.none.rawValue,
                 Key.rightSwipeGesture.rawValue    : GestureOperation.none.rawValue,
@@ -124,6 +126,16 @@ class ConfigStorage {
         }
         get{
             getInt(key: .commentStrokeSize)
+        }
+    }
+
+    
+    var commentMaxDispNum : Int {
+        set(size){
+            setInt(size, key: .commentMaxDispNum)
+        }
+        get{
+            getInt(key: .commentMaxDispNum)
         }
     }
 
