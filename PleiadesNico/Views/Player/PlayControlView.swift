@@ -12,6 +12,8 @@ import SwiftUI
 
 struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
+    let title : String
+    
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -44,7 +46,7 @@ struct PlayControlView_Previews: PreviewProvider {
             contentId : "sm1192"
         )
 
-        PlayControlView(viewModel: viewModel)
+        PlayControlView(viewModel: viewModel, title: "My video 1192")
     }
 }
 
@@ -68,7 +70,6 @@ extension PlayControlView {
                         .frame(width: 40, height: 40)
                 }
             )
-            Spacer()
         }
     }
 
@@ -77,9 +78,10 @@ extension PlayControlView {
         return HStack{
             closeButton()
                 .padding(10)
-            Spacer()
-            Image(systemName:"clock")
+            Text(title)
                 .foregroundColor(.white)
+                .lineLimit(1)
+            Spacer()
             Text(viewModel.currentTimeText)
                 .foregroundColor(.white)
                 .font(.system(size: 18, design: .monospaced))

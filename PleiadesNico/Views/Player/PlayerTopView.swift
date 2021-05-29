@@ -20,14 +20,16 @@ struct PlayerTopView: View {
     @ObservedObject var viewModel : PlayerViewModel
     let screen     : VideoScreen
     let colorIndex : Int
+    let title      : String
     
-    init(_ contentId : String, colorIndex : Int){
+    init(_ contentId : String, colorIndex : Int, title : String){
         self.screen = VideoScreen()
         self.viewModel = PlayerViewModel(
             screen: screen,
             contentId: contentId
         )
         self.colorIndex = colorIndex
+        self.title      = title
     }
 
 
@@ -42,7 +44,7 @@ struct PlayerTopView: View {
             }
             if( viewModel.showControl ){
 //                timeBatteryBarBackground()
-                PlayControlView( viewModel : viewModel )
+                PlayControlView( viewModel : viewModel, title : title )
             }
             closingView()
         }
@@ -207,6 +209,6 @@ struct AvPlayerViewControllerWrap : UIViewControllerRepresentable {
 struct PlayerTopView_Previews: PreviewProvider {
     static var previews: some View {
 //        let url  = URL(fileURLWithPath: "/Users/tkato/Documents/XCode/VideoProto/VideoProto/sample.mp4")
-        PlayerTopView("sm1192", colorIndex: 3)
+        PlayerTopView("sm1192", colorIndex: 3, title : "Preview video 1192")
     }
 }
