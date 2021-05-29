@@ -31,6 +31,7 @@ final class PlayerViewModel: ObservableObject {
     @Published var elapsedTime       : Double = 0.0
     @Published var commentFontSize   : Int    = ConfigStorage.shared.commentFontSize
     @Published var commentStrokeSize : Int    = ConfigStorage.shared.commentStrokeSize
+    @Published var commentMaxDispNum : Int    = ConfigStorage.shared.commentMaxDispNum
     @Published var swipeThreshold    : Int    = ConfigStorage.shared.swipeThreshold
     @Published var configOrientation : Int    = ConfigStorage.shared.playerOrientation
     @Published var isRotateEnabled   : Bool   = ConfigStorage.shared.playerOrientation != PlayerViewModel.Orientation.none.rawValue

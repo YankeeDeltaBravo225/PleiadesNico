@@ -57,7 +57,7 @@ class CommentViewController: UIViewController {
     let dispSec         = 4.0
 
     var isPlaying       = false
-    var activeChats     = [ Int : ChatLabel]()
+    var activeChats     = [ChatLabel]()
     var fontSize        = 10
     var strokeSize      = 1
     var yCoords         = [CGFloat]()
@@ -129,7 +129,7 @@ class CommentViewController: UIViewController {
         
         // Pause -> Play
         if !self.isPlaying && !isVideoPaused{
-            for chat in self.activeChats.values {
+            for chat in self.activeChats {
                 chat.resume()
             }
             isPlaying = true
@@ -137,7 +137,7 @@ class CommentViewController: UIViewController {
 
         // Play -> Pause
         if self.isPlaying && isVideoPaused{
-            for chat in self.activeChats.values {
+            for chat in self.activeChats {
                 chat.pause()
             }
             isPlaying = false
@@ -149,10 +149,10 @@ class CommentViewController: UIViewController {
 
         // First time after seek
         if abs( viewModel.elapsedTime - self.lastElapsedTime ) > 1.0 {
-            for chat in self.activeChats.values {
+            for chat in self.activeChats {
                 chat.removeFromSuperview()
             }
-            self.activeChats  = [:]
+            self.activeChats  = []
             self.commentIndex = 0
         }
 
@@ -175,6 +175,13 @@ class CommentViewController: UIViewController {
             if time > comment.sec + self.dispSec {
                 continue
             }
+            
+            // Number of comment on the screen exceeds the limit
+            if self.activeChats.count >= viewModel.commentMaxDispNum {
+                let chat = self.activeChats[0]
+                chat.removeFromSuperview()
+                self.activeChats.remove(at: 0)
+            }
 
             // Estimate X coordinates and duration
             let textWidth  = self.fontSize * comment.body.count
@@ -189,7 +196,7 @@ class CommentViewController: UIViewController {
             let startY     = self.yCoords[lane]
 
             let label = instantiateLabel(
-                text: comment.body,
+                comment  : comment,
                 textWidth: textWidth,
                 xPos: startX,
                 yPos: startY
@@ -203,28 +210,29 @@ class CommentViewController: UIViewController {
                 index: comment.index
             )
 
-            activeChats[comment.index] = label
+            self.activeChats.append(label)
         }
     }
 
 
-    func instantiateLabel(text: String, textWidth : Int, xPos : CGFloat, yPos : CGFloat) -> ChatLabel{
+    func instantiateLabel(comment : StreamConnection.Comment, textWidth : Int, xPos : CGFloat, yPos : CGFloat) -> ChatLabel{
 
         let chatLabel = ChatLabel(
             frame: CGRect(x: 0,y: 0,width: textWidth, height: self.fontSize)
         )
-        chatLabel.text           = text
+        chatLabel.text           = comment.body
         chatLabel.textColor      = UIColor.white
         chatLabel.textAlignment  = NSTextAlignment.center
         chatLabel.font           = UIFont.boldSystemFont(ofSize: CGFloat(self.fontSize))
         chatLabel.layer.position = CGPoint( x : xPos, y: yPos )
         chatLabel.strokeSize     = CGFloat( self.strokeSize )
+        chatLabel.index          = comment.index
 
         return chatLabel
     }
 
 
-    func animateLabel(label: UILabel, endX : CGFloat, duration : Double, index: Int){
+    func animateLabel(label: ChatLabel, endX : CGFloat, duration : Double, index: Int){
 
         UIView.animate(
             withDuration: duration,
@@ -234,7 +242,9 @@ class CommentViewController: UIViewController {
                 label.center.x = endX
             },
             completion: {(Bool) -> Void in
-                self.activeChats[index] = nil
+                if let loc = self.activeChats.firstIndex(of: label) {
+                    self.activeChats.remove(at: loc)
+                }
                 label.removeFromSuperview()
             }
         )
@@ -251,6 +261,7 @@ class CommentViewController: UIViewController {
 // MARK: - ChatLabel
 class ChatLabel: UILabel {
 
+    var index       : Int     = 0
     var strokeColor : UIColor = UIColor.black
     var strokeSize  : CGFloat = 1.0
     var isPaused    : Bool    = false
