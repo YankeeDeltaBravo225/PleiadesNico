@@ -13,13 +13,7 @@ struct SearchResultRowView: View {
     
     var body: some View {
         VideoAbstractView(
-            title         : item.title,
-            thumbnail     : item.thumbnailUrl,
-            uploaded      : TextFormat.shared.dateFromISO8601(item.startTime),
-            duration      : TextFormat.shared.duration(item.lengthSeconds),
-            views         : String(item.viewCounter),
-            comments      : String(item.commentCounter),
-            mylists       : String(item.mylistCounter),
+            attribute     : item,
             colorIndex    : index,
             imageWidth    : 96,
             imageHeight   : 54, // 16:9 aspact rate
@@ -31,16 +25,18 @@ struct SearchResultRowView: View {
 
 struct SearchResultRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let item = SearchViewModel.ResultItem(
+        let attr = CommonType.VideoAttribute(
+            number          : 1192,
             contentId       : "sm1192296",
             title           : "北条家の興亡と馬謖の熱い夜",
-            startTime       : "2018-12-03T23:59:02+09:00",
-            lastCommentTime : "2020-12-04T23:30:56+09:00",
-            thumbnailUrl    : "https://nicovideo.cdn.nimg.jp/thumbnails/34263709/34263709",
-            viewCounter     : 5296,
-            mylistCounter   : 7,
-            lengthSeconds   : 30,
-            commentCounter  : 40)
-        SearchResultRowView(item: item, index: 6)
+            thumbnail       : "https://nicovideo.cdn.nimg.jp/thumbnails/34263709/34263709",
+            uploaded        : "1192/08/11",
+            duration        : "11:9.2",
+            views           : "1192",
+            comments        : "9211",
+            mylists         : "1192296"
+        )
+
+        SearchResultRowView(item: attr, index: 6)
     }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RankingRowView: View {
-    let item      : RankingAPI.Item
+    let item      : RankingViewModel.Rank
     
-    init( rankItem : RankingAPI.Item){
+    init( rankItem : RankingViewModel.Rank){
         item      = rankItem
     }
 
@@ -18,14 +18,8 @@ struct RankingRowView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             VideoAbstractView(
-                title         : item.title,
-                thumbnail     : item.thumbnail,
-                uploaded      : item.uploaded.replacingOccurrences(of: "：", with: ":"),
-                duration      : item.duration,
-                views         : item.views,
-                comments      : item.comments,
-                mylists       : item.mylists,
-                colorIndex    : item.pos,
+                attribute     : item,
+                colorIndex    : item.number,
                 imageWidth    : 96,
                 imageHeight   : 54, // 16:9 aspact rate
                 titleFontSize : 14,
@@ -47,7 +41,7 @@ extension RankingRowView {
             VStack{
                 Spacer()
                     .frame(height : 4)
-                Text(String(item.pos))
+                Text(String(item.number))
                     .foregroundColor(.white)
                     
                     .font(.system(size: 28))
@@ -65,6 +59,6 @@ extension RankingRowView {
 
 struct RankingRowView_Previews: PreviewProvider {
     static var previews: some View {
-        RankingRowView(rankItem: mockRank)
+        RankingRowView(rankItem: mockVideoAttribte)
     }
 }

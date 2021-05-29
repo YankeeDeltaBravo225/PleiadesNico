@@ -47,7 +47,7 @@ class TextFormat {
 
 
     func duration(_ sec : Double) -> String {
-        if isInvalid(sec){
+        if isInvalidTime(sec){
             return "--:--"
         }
 
@@ -60,7 +60,7 @@ class TextFormat {
 
 
     func time(_ elapsedSec : Double, _ durationSec : Double) -> String {
-        if isInvalid(elapsedSec) || isInvalid(durationSec) {
+        if isInvalidTime(elapsedSec) || isInvalidTime(durationSec) {
             return "--:--"
         }
 
@@ -72,7 +72,7 @@ class TextFormat {
     }
 
 
-    func isInvalid(_ rawSec : Double) -> Bool {
+    func isInvalidTime(_ rawSec : Double) -> Bool {
         return (rawSec.isNaN || rawSec < 0)
     }
     
@@ -146,4 +146,22 @@ class TextFormat {
         return NSString(string: text).substring(with: matches.range(at: 0))
     }
 
+    
+    func htmlEntityDecoded(_ rawText : String ) -> String {
+        guard let data = rawText.data(using: .utf8) else {
+            return rawText
+        }
+
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+
+        guard let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) else {
+            return rawText
+        }
+
+        return attributedString.string
+    }
+    
 }

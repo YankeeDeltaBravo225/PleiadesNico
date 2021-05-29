@@ -25,9 +25,9 @@ struct RankingView: View {
                     Spacer()
                 }
 
-                ForEach(viewModel.ranks, id:\.pos) { rank in
+                ForEach(viewModel.ranks, id:\.number) { rank in
                     NavigationLink(
-                        destination: VideoDetailView(rank.videoId, colorIndex: rank.pos)
+                        destination: VideoDetailView(rank.contentId, colorIndex: rank.number)
                     ){
                         RankingRowView( rankItem:rank )
                     }

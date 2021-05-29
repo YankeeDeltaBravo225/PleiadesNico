@@ -9,13 +9,7 @@ import SwiftUI
 
 struct VideoAbstractView: View {
 
-    let title         : String
-    let thumbnail     : String
-    let uploaded      : String
-    let duration      : String
-    let views         : String
-    let comments      : String
-    let mylists       : String
+    let attribute     : CommonType.VideoAttribute
     let colorIndex    : Int
     let imageWidth    : CGFloat
     let imageHeight   : CGFloat
@@ -46,7 +40,7 @@ extension VideoAbstractView {
         return HStack {
             thumbnailView()
             VStack(alignment: .leading) {
-                Text(title)
+                Text(attribute.title)
                     .font(.system(size: titleFontSize))
             }
             .frame(height: imageHeight)
@@ -57,7 +51,7 @@ extension VideoAbstractView {
 
     fileprivate func thumbnailView() -> some View {
         return ZStack{
-            OnlineImageIView( urlText : thumbnail, width : imageWidth, height : imageWidth * 0.75 )
+            OnlineImageIView( urlText : attribute.thumbnail, width : imageWidth, height : imageWidth * 0.75 )
                 .mask(
                     RoundedRectangle(cornerRadius: 4)
                         .frame(width : imageWidth, height: imageHeight)
@@ -67,7 +61,7 @@ extension VideoAbstractView {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text(duration)
+                    Text(attribute.duration)
                         .font(.system(size: attrFontSize))
                         .foregroundColor(.white)
                         .background(Color.black)
@@ -84,7 +78,7 @@ extension VideoAbstractView {
                 .frame(width:4)
             propertyLabelView(
                 symbol: "calendar",
-                text  : uploaded,
+                text  : attribute.uploaded,
                 size  : attrFontSize
             )
             Spacer()
@@ -98,17 +92,17 @@ extension VideoAbstractView {
                 .frame(width:4)
             propertyLabelView(
                 symbol: "play",
-                text  : TextFormat.shared.largeCount(views),
+                text  : TextFormat.shared.largeCount(attribute.views),
                 size  : attrFontSize
             )
             propertyLabelView(
                 symbol: "text.bubble",
-                text  : TextFormat.shared.largeCount(comments),
+                text  : TextFormat.shared.largeCount(attribute.comments),
                 size  : attrFontSize
             )
             propertyLabelView(
                 symbol: "star",
-                text  : TextFormat.shared.largeCount(mylists),
+                text  : TextFormat.shared.largeCount(attribute.mylists),
                 size  : attrFontSize
             )
             Spacer()
@@ -132,13 +126,7 @@ extension VideoAbstractView {
 struct VideoAbstractView_Previews: PreviewProvider {
     static var previews: some View {
         VideoAbstractView(
-            title       : "鎌倉幕府の成立から崩壊まで",
-            thumbnail   : "https://nicovideo.cdn.nimg.jp/thumbnails/38496906/38496906.66501077",
-            uploaded    : "2192/11/8 19:21:30",
-            duration    : "11:92",
-            views       : "123456",
-            comments    : "3421",
-            mylists     : "765",
+            attribute   : mockVideoAttribte,
             colorIndex  : 3,
             imageWidth  : 160,
             imageHeight : 90,

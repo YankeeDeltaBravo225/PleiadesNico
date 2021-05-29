@@ -10,7 +10,7 @@ import Combine
 
 final class RankingViewModel: ObservableObject {
 
-    typealias Rank  = RankingAPI.Item
+    typealias Rank  = CommonType.VideoAttribute
     
     @Published var showSelector : Bool    = false
     @Published var genreId      : Int     = ConfigStorage.shared.rankingGenre
@@ -48,7 +48,7 @@ final class RankingViewModel: ObservableObject {
         self.session.get(
             urlText    : rankingApi.url(genreId: self.genreId, termId: self.termId),
             onReceived : {text in
-                self.ranks = self.rankingApi.decodeXml(text)
+                self.onReceivedRankItems(text)
             },
             onError: { error in
                 print(error)
@@ -56,6 +56,25 @@ final class RankingViewModel: ObservableObject {
         )
     }
 
+    
+    func onReceivedRankItems(_ xmlText : String){
+        let rankItems = self.rankingApi.decodeXml(xmlText)
+
+        self.ranks = rankItems.map{ item in
+            CommonType.VideoAttribute(
+                number        : item.pos,
+                contentId     : item.videoId,
+                title         : item.title,
+                thumbnail     : item.thumbnail,
+                uploaded      : item.uploaded.replacingOccurrences(of: "：", with: ":"),
+                duration      : item.duration,
+                views         : item.views,
+                comments      : item.comments,
+                mylists       : item.mylists
+            )
+        }
+    }
+    
 
     func onSelectorEnabled(){
         self.showSelector = true

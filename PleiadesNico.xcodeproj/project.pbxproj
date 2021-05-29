@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F70A117126620E410078183F /* CommonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70A117026620E410078183F /* CommonType.swift */; };
 		F7215A6B264FCA0900B25EEE /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7215A6A264FCA0900B25EEE /* RankingTopView.swift */; };
 		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
 		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
@@ -19,7 +20,7 @@
 		F748C246263D678600DFD69F /* RankingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C233263D678600DFD69F /* RankingAPI.swift */; };
 		F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C234263D678600DFD69F /* VideoStreamAPI.swift */; };
 		F748C248263D678600DFD69F /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C235263D678600DFD69F /* DebugLog.swift */; };
-		F748C24A263D678600DFD69F /* MockRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C238263D678600DFD69F /* MockRanking.swift */; };
+		F748C24A263D678600DFD69F /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C238263D678600DFD69F /* MockData.swift */; };
 		F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23B263D678600DFD69F /* DmcSessionRequest.swift */; };
 		F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23C263D678600DFD69F /* DmcSessionResponse.swift */; };
 		F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C23D263D678600DFD69F /* DmcSessionInfo.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F70A117026620E410078183F /* CommonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonType.swift; sourceTree = "<group>"; };
 		F7215A6A264FCA0900B25EEE /* RankingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
 		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
 		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +95,7 @@
 		F748C233263D678600DFD69F /* RankingAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingAPI.swift; sourceTree = "<group>"; };
 		F748C234263D678600DFD69F /* VideoStreamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamAPI.swift; sourceTree = "<group>"; };
 		F748C235263D678600DFD69F /* DebugLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
-		F748C238263D678600DFD69F /* MockRanking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRanking.swift; sourceTree = "<group>"; };
+		F748C238263D678600DFD69F /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		F748C23B263D678600DFD69F /* DmcSessionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionRequest.swift; sourceTree = "<group>"; };
 		F748C23C263D678600DFD69F /* DmcSessionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionResponse.swift; sourceTree = "<group>"; };
 		F748C23D263D678600DFD69F /* DmcSessionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DmcSessionInfo.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				F7D72FE3263FF24800836A71 /* ConfigStorage.swift */,
 				F748C240263D678600DFD69F /* TextFormat.swift */,
 				F748C235263D678600DFD69F /* DebugLog.swift */,
+				F70A117026620E410078183F /* CommonType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 		F748C236263D678600DFD69F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				F748C238263D678600DFD69F /* MockRanking.swift */,
+				F748C238263D678600DFD69F /* MockData.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -521,7 +524,7 @@
 				F748C27F263D67AF00DFD69F /* RankingViewModel.swift in Sources */,
 				F748C251263D678600DFD69F /* TextFormat.swift in Sources */,
 				F748C27D263D67AF00DFD69F /* SearchViewModel.swift in Sources */,
-				F748C24A263D678600DFD69F /* MockRanking.swift in Sources */,
+				F748C24A263D678600DFD69F /* MockData.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
 				F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */,
 				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
@@ -548,6 +551,7 @@
 				F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */,
 				F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */,
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
+				F70A117126620E410078183F /* CommonType.swift in Sources */,
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
 				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,

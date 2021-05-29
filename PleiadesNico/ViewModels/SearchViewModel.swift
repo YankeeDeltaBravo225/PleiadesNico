@@ -12,7 +12,7 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
-    typealias ResultItem    = SearchAPI.Result.Item
+    typealias ResultItem    = CommonType.VideoAttribute
 
     @Published var searchWord      : String       = ""
 
@@ -168,7 +168,21 @@ final class SearchViewModel: ObservableObject {
     
 
     func onReceivedSearchResult(_ resultText : String ){
-        let newItems = searchApi.decode(resultText)
+        let newResults = searchApi.decode(resultText)
+
+        let newItems = newResults.indices.map{ index in
+            CommonType.VideoAttribute(
+                number        : index + self.resultItems.count,
+                contentId     : newResults[index].contentId,
+                title         : TextFormat.shared.htmlEntityDecoded( newResults[index].title ),
+                thumbnail     : newResults[index].thumbnailUrl,
+                uploaded      : TextFormat.shared.dateFromISO8601(newResults[index].startTime),
+                duration      : TextFormat.shared.duration(newResults[index].lengthSeconds),
+                views         : String(newResults[index].viewCounter),
+                comments      : String(newResults[index].commentCounter),
+                mylists       : String(newResults[index].mylistCounter)
+            )
+        }
 
         self.resultItems += newItems
         self.isSearching = false

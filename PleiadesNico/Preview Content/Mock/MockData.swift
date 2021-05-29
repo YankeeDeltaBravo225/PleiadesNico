@@ -19,6 +19,18 @@ let mockRank = RankingAPI.Item(
     duration  : "23:40"
 )
 
+let mockVideoAttribte = CommonType.VideoAttribute(
+    number      : 1192,
+    contentId   : "sm1192296",
+    title       : "鎌倉幕府の成立から崩壊まで",
+    thumbnail   : "https://nicovideo.cdn.nimg.jp/thumbnails/38496906/38496906.66501077",
+    uploaded    : "2192/11/8 19:21:30",
+    duration    : "11:92",
+    views       : "123456",
+    comments    : "3421",
+    mylists     : "765"
+)
+
 
 let mockSourceXML = #"""
 <?xml version="1.0" encoding="utf-8"?>
