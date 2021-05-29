@@ -47,7 +47,7 @@ struct SwipeGestureModifier: ViewModifier {
                         }
                         self.isKnownDrag = true
                     } else if abs(deltaY) >= self.threshold {
-                        if deltaX > 0 {
+                        if deltaY > 0 {
                             onDown?()
                         } else {
                             onUp?()
