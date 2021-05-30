@@ -42,13 +42,11 @@ struct SettingView: View {
                 }
                 Text("コントロールが自動で隠れるまで(秒)")
                 controlFadeTimeStepper()
-            }
-            Section(header: Text("コメント")){
-                Text("フォントサイズ")
+                Text("コメントのサイズ")
                 commentFontSizeStepper()
-                Text("線の太さ")
+                Text("コメントの線の太さ")
                 commentStrokeSizeStepper()
-                Text("同時表示する最大数")
+                Text("同時に表示する最大コメント数")
                 commentMaxDispNumStepper()
             }
             Section(header: Text("ジェスチャー")){
