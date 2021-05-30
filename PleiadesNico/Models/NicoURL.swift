@@ -7,12 +7,18 @@
 import Foundation
 
 class NicoURL {
+
+    //
+    // Support page
+    //
+    static let supportPage = "https://twitter.com/AppsPleiades"
     
+
     //
     // User Agent for HTTP request
     //
-    static let userAgent = "PleiadesNico/\(CommonData.appVersion) (https://twitter.com/AppsPleiades)"
-    
+    static let userAgent = "PleiadesNico/\(CommonData.appVersion) (\(supportPage)"
+
     //
     // General (for HTTP request)
     //

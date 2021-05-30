@@ -49,6 +49,7 @@
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
 		F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */; };
 		F767D7FF264D5DAC00111FBF /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */; };
+		F7797FFB2663AE3300874E2B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7797FFA2663AE3300874E2B /* SettingTopView.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F7920DAB2647927D00FD2D50 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
@@ -125,6 +126,7 @@
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStylePicker.swift; sourceTree = "<group>"; };
 		F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
+		F7797FFA2663AE3300874E2B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F7920DAA2647927D00FD2D50 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 		F7D72FD8263FE76600836A71 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				F7797FFA2663AE3300874E2B /* SettingTopView.swift */,
 				F7D72FD9263FE79400836A71 /* SettingView.swift */,
 			);
 			path = Setting;
@@ -550,6 +553,7 @@
 				F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */,
 				F767D7FF264D5DAC00111FBF /* SearchResultRowView.swift in Sources */,
 				F748C286263D67AF00DFD69F /* SearchView.swift in Sources */,
+				F7797FFB2663AE3300874E2B /* SettingTopView.swift in Sources */,
 				F748C28D263D67AF00DFD69F /* PlayerTopView.swift in Sources */,
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
 				F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */,

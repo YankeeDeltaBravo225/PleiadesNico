@@ -19,7 +19,6 @@ struct SettingView: View {
     init(){
         viewModel = SettingViewModel()
     }
-
     
     var body: some View {
         
@@ -57,7 +56,16 @@ struct SettingView: View {
                 Text("スワイプ認識する移動量")
                 swipeThresholdStepper()
             }
-
+            Section(header: Text("このアプリについて")){
+                appVersionView()
+                bugReportView()
+            }
+            Section(header: Text("OSSライセンス")){
+                ForEach(CommonData.ossLicenses.sorted(by: >), id: \.key) { key, value in
+                    licenseView(key, value)
+                }
+            }
+            
         } //List
     } // body
 
@@ -204,6 +212,51 @@ extension SettingView {
                 Text("\(viewModel.swipeThreshold)")
             }
             Spacer()
+        }
+    }
+
+    
+    fileprivate func reportBugButton() -> some View {
+        return FloatingButton(
+            action     : { viewModel.onOpenSupportTwitter() },
+            systemIcon : "paperplane",
+            text       : "作者Twitter",
+            color1     : .blue,
+            color2     : .blue
+        )
+    }
+
+
+    fileprivate func bugReportView() -> some View {
+        return HStack{
+            Text("バグを報告する")
+            Spacer()
+            reportBugButton()
+        }
+    }
+    
+
+    fileprivate func appVersionView() -> some View {
+        return HStack{
+            Text("バージョン")
+            Spacer()
+            Text(CommonData.appVersion)
+        }
+    }
+
+    
+    fileprivate func licenseView(_ key: String, _ value: String) -> some View {
+        return Group(){
+            NavigationLink(
+                destination:
+                    VStack{
+                        Text(key)
+                            .font(.title)
+                        ScrollView(){ Text(value)}
+                    }
+            ){
+                Text(key)
+            }
         }
     }
 

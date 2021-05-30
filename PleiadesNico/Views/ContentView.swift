@@ -33,7 +33,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.search)
 
-            SettingView()
+            SettingTopView()
                 .tabItem {
                     Label("設定", systemImage: "gear")
                 }

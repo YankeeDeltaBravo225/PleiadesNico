@@ -42,6 +42,14 @@ final class SettingViewModel: ObservableObject {
     }
     
     
+    func onOpenSupportTwitter() {
+        guard let url = URL(string: NicoURL.supportPage) else {return}
+        UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
+            print(completed)
+        })
+    }
+
+    
     func onCommentFontSizeChanged(_ isPressed : Bool){
         if isPressed {
             return
