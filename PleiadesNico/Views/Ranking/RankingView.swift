@@ -35,7 +35,7 @@ struct RankingView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .principal){
+                ToolbarItem(placement: .navigationBarLeading){
                     Text(viewModel.abstractText)
                         .frame(width: 240)
                         .lineLimit(1)

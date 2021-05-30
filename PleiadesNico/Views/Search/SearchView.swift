@@ -59,7 +59,7 @@ struct SearchView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(false)
             .toolbar{
-                ToolbarItem(placement : .principal ){
+                ToolbarItem(placement : .navigationBarLeading ){
                     Text(viewModel.abstractText)
                         .frame(maxWidth: geometry.size.width - 120)
                         .lineLimit(1)
