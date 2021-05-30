@@ -57,6 +57,11 @@ class VideoStreamAPI {
         return NicoURL.commentRequest()
     }
     
+
+    func videoDescription() -> String {
+        return dmcApiInfo?.video.videoDescription ?? ""
+    }
+    
     
     func contentUri() -> String {
         return dmcResponse?.data.session.contentURI ?? ""

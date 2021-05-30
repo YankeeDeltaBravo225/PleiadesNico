@@ -123,9 +123,25 @@ extension VideoDetailView {
 
     
     fileprivate func descriptionView() -> some View {
+        return Group(){
+            if viewModel.dmcDescription != "" {
+                NavigationLink(
+                    destination: DescriptionPageView(page: viewModel.dmcDescription )
+                ){
+                    simpleDescriptionView()
+                }
+            } else {
+                simpleDescriptionView()
+            }
+        }
+    }
+
+    
+    fileprivate func simpleDescriptionView() -> some View {
         return VStack(){
             Text(viewModel.prop.description)
-                    .font(.system(size: 14))
+                .lineLimit(3)
+                .font(.system(size: 14))
             }
     }
     
@@ -148,33 +164,21 @@ extension VideoDetailView {
         }
     }
     
+
     fileprivate func openBrowserButton() -> some View {
-        return Button(
-            action: {
-                viewModel.onOpenWithBrowser()
-            },
-            label: {
-                HStack(){
-                    Image(systemName:"safari")
-                    Text("外部ブラウザで開く")
-                    Spacer()
-                }
-            }
+        return FloatingButton(
+            action: { viewModel.onOpenWithBrowser() },
+            systemIcon: "safari",
+            text: "外部ブラウザで開く"
         )
     }
+
     
     fileprivate func playVideoButton() -> some View {
-        return Button(
-            action: {
-                doesPlay.toggle()
-            },
-            label: {
-                HStack(){
-                    Image(systemName:"play.circle")
-                    Text("内蔵プレイヤーで再生")
-                    Spacer()
-                }
-            }
+        return FloatingButton(
+            action: { doesPlay.toggle() },
+            systemIcon: "play.circle",
+            text: "内蔵プレイヤーで再生"
         )
         .fullScreenCover(isPresented: $doesPlay){
             PlayerTopView(videoId, colorIndex: colorIndex, title : viewModel.prop.title)

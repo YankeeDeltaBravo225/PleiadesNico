@@ -53,6 +53,7 @@
 		F7920DAB2647927D00FD2D50 /* FloatingTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
 		F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C800B226402716005F76D0 /* MylistAPI.swift */; };
+		F7C849E7266260500013CCB8 /* DescriptionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C849E6266260500013CCB8 /* DescriptionPageView.swift */; };
 		F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FD9263FE79400836A71 /* SettingView.swift */; };
 		F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */; };
 		F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FE3263FF24800836A71 /* ConfigStorage.swift */; };
@@ -128,6 +129,7 @@
 		F7920DAA2647927D00FD2D50 /* FloatingTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
 		F7C800B226402716005F76D0 /* MylistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistAPI.swift; sourceTree = "<group>"; };
+		F7C849E6266260500013CCB8 /* DescriptionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPageView.swift; sourceTree = "<group>"; };
 		F7D72FD9263FE79400836A71 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		F7D72FE3263FF24800836A71 /* ConfigStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStorage.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				F748C26F263D67AF00DFD69F /* VideoDetailView.swift */,
+				F7C849E6266260500013CCB8 /* DescriptionPageView.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C849E7266260500013CCB8 /* DescriptionPageView.swift in Sources */,
 				F748C283263D67AF00DFD69F /* RankingView.swift in Sources */,
 				F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */,
 				F748C24E263D678600DFD69F /* DmcSessionInfo.swift in Sources */,
