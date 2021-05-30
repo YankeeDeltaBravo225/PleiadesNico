@@ -11,6 +11,7 @@ struct SettingTopView: View {
         NavigationView {
             SettingView()
         }
+            .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
