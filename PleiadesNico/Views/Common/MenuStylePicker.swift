@@ -12,7 +12,9 @@ struct MenuStylePicker: View {
 
     let options         : [Int : String]
     let onChangeClosure : OnChanged
-
+    let color1          : Color
+    let color2          : Color
+    
     @State var selected: Int
 
 
@@ -31,7 +33,7 @@ struct MenuStylePicker: View {
 
 extension MenuStylePicker {
     fileprivate func currentSelectionView() -> some View {
-        let gradient = LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        let gradient = LinearGradient(gradient: Gradient(colors: [color1, color2]), startPoint: .topLeading, endPoint: .bottomTrailing)
         let selectedOption = options[selected] ?? "???"
         
         return Text(selectedOption)
@@ -50,6 +52,8 @@ struct MenuStylePicker_Previews: PreviewProvider {
         MenuStylePicker(
             options: [0:"zero", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five"],
             onChangeClosure: {index in print(index)},
+            color1 : .blue,
+            color2 : .green,
             selected: 0
         )
     }

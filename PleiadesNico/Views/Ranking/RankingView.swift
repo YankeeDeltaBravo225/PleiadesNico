@@ -55,6 +55,8 @@ extension RankingView {
         return MenuStylePicker(
             options: viewModel.genreOptions(),
             onChangeClosure: { genreId in viewModel.updateGenre(genreId) },
+            color1 : .red,
+            color2 : .purple,
             selected: viewModel.genreId
         )
     }
@@ -64,6 +66,8 @@ extension RankingView {
         return MenuStylePicker(
             options: viewModel.termOptions(),
             onChangeClosure: { termId in viewModel.updateTerm(termId) },
+            color1 : .blue,
+            color2 : .green,
             selected: viewModel.termId
         )
     }

@@ -167,18 +167,22 @@ extension VideoDetailView {
 
     fileprivate func openBrowserButton() -> some View {
         return FloatingButton(
-            action: { viewModel.onOpenWithBrowser() },
-            systemIcon: "safari",
-            text: "外部ブラウザで開く"
+            action     : { viewModel.onOpenWithBrowser() },
+            systemIcon : "safari",
+            text       : "外部ブラウザで開く",
+            color1     : .green,
+            color2     : .blue
         )
     }
 
     
     fileprivate func playVideoButton() -> some View {
         return FloatingButton(
-            action: { doesPlay.toggle() },
-            systemIcon: "play.circle",
-            text: "内蔵プレイヤーで再生"
+            action     : { doesPlay.toggle() },
+            systemIcon : "play.circle",
+            text       : "内蔵プレイヤーで再生",
+            color1     : .purple,
+            color2     : .red
         )
         .fullScreenCover(isPresented: $doesPlay){
             PlayerTopView(videoId, colorIndex: colorIndex, title : viewModel.prop.title)

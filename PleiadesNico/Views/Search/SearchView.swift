@@ -78,6 +78,8 @@ extension SearchView {
         return MenuStylePicker(
             options: viewModel.sortKeyOptions(),
             onChangeClosure: { keyId in viewModel.updateSortKey(newKeyId: keyId) },
+            color1 : .blue,
+            color2 : .green,
             selected: viewModel.orderKeyId
         )
     }
@@ -89,6 +91,8 @@ extension SearchView {
             onChangeClosure: { directionId in
                 viewModel.updateSortDirection(newDirectionId: directionId)
             },
+            color1 : .green,
+            color2 : .blue,
             selected: viewModel.orderDirectionId
         )
     }
@@ -98,6 +102,8 @@ extension SearchView {
         return MenuStylePicker(
             options: viewModel.searchKindOptions(),
             onChangeClosure: { kindId in viewModel.updateSearchKind(newKindId: kindId) },
+            color1 : .red,
+            color2 : .purple,
             selected: viewModel.searchKindId
         )
     }

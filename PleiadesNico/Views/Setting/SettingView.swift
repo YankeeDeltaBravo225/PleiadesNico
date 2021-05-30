@@ -72,7 +72,9 @@ extension SettingView {
         return FloatingButton(
             action     : { self.showLogin.toggle() },
             systemIcon : "safari",
-            text       : "開く"
+            text       : "開く",
+            color1     : .green,
+            color2     : .blue
         )
         .sheet(
             isPresented: $showLogin,
@@ -168,6 +170,8 @@ extension SettingView {
         return MenuStylePicker(
             options: viewModel.orientationOptions(),
             onChangeClosure: { viewModel.onOrietationChanged($0) },
+            color1 : .blue,
+            color2 : .green,
             selected: viewModel.playerOrientation
         )
     }
@@ -183,6 +187,8 @@ extension SettingView {
                 onChangeClosure: {
                     viewModel.onGestureChanged(gestureType: gestureType, newOperation: $0)
                 },
+                color1 : .blue,
+                color2 : .green,
                 selected: viewModel.gestureOperationSelects[gestureType]
             )
         }

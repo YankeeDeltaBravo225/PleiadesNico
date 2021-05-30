@@ -11,9 +11,11 @@ struct FloatingButton: View {
     let action     : () -> Void
     let systemIcon : String
     let text       : String
+    let color1     : Color
+    let color2     : Color
 
     var body: some View {
-        let gradient = LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        let gradient = LinearGradient(gradient: Gradient(colors: [color1, color2]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
         Button(
             action: action,
@@ -37,6 +39,6 @@ struct FloatingButton: View {
 
 struct FloatingButton_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingButton(action: {}, systemIcon: "safari", text: "OK")
+        FloatingButton(action: {}, systemIcon: "safari", text: "OK", color1: .blue, color2: .purple)
     }
 }
