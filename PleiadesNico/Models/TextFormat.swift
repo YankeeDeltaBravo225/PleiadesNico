@@ -105,7 +105,15 @@ class TextFormat {
         return self.dateFormatter.string(from: date)
     }
 
-    
+
+    func dateFromUnixTime(_ unixTime : Int) -> String {
+        let timeInterval = TimeInterval( integerLiteral: Int64(unixTime) )
+        let date = Date(timeIntervalSince1970: timeInterval )
+        
+        return self.dateFormatter.string(from: date)
+    }
+
+
     func currentTime() -> String {
         return self.timeFormatter.string(from: Date())
     }

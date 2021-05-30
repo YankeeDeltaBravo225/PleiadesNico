@@ -72,4 +72,15 @@ class NicoURL {
         return "https://api.dmc.nico/api/sessions/\(sessionId)?_format=json&_method=PUT"
     }
 
+    
+    //
+    // Mylist APIs
+    //
+    static func mylistGroup() -> String {
+        return "https://www.nicovideo.jp/api/mylistgroup/list"
+    }
+    
+    static func mylist(_ mylistId : String) -> String {
+        return "https://www.nicovideo.jp/api/mylist/list?group_id=\(mylistId)"
+    }
 }
