@@ -9,6 +9,11 @@ import Foundation
 class NicoURL {
     
     //
+    // User Agent for HTTP request
+    //
+    static let userAgent = "PleiadesNico/\(CommonData.appVersion) (https://twitter.com/AppsPleiades)"
+    
+    //
     // General (for HTTP request)
     //
     static let origin = "https://www.nicovideo.jp/"

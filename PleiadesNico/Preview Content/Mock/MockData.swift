@@ -19,7 +19,7 @@ let mockRank = RankingAPI.Item(
     duration  : "23:40"
 )
 
-let mockVideoAttribte = CommonType.VideoAttribute(
+let mockVideoAttribte = CommonData.VideoAttribute(
     number      : 1192,
     contentId   : "sm1192296",
     title       : "鎌倉幕府の成立から崩壊まで",

@@ -25,7 +25,7 @@ struct SearchResultRowView: View {
 
 struct SearchResultRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let attr = CommonType.VideoAttribute(
+        let attr = CommonData.VideoAttribute(
             number          : 1192,
             contentId       : "sm1192296",
             title           : "北条家の興亡と馬謖の熱い夜",

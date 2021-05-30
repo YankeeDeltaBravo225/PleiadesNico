@@ -92,8 +92,8 @@ class SearchAPI {
             Query( "targets",  targets ),
             Query( "fields",   fields ),
             Query( "_sort",    sortQueryValue(sortKeyId: sortKeyId, sortOrderId: sortOrderId) ),
-            Query( "_context", "SwiftSampleApp" ),
-            Query( "_offset",  String(offset))
+            Query( "_context", NicoURL.userAgent.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" ),
+            Query( "_offset",  String(offset)),
         ]
 
         let reduced = queries.reduce("") {$0 + $1.key + "=" + $1.value + "&"}

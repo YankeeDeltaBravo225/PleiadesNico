@@ -10,11 +10,11 @@ import UIKit
 
 final class VideoDetailViewModel: ObservableObject {
 
-    typealias Attr = CommonType.VideoAttribute
+    typealias Attr = CommonData.VideoAttribute
     typealias Prop = VideoInfoAPI.Prop
 
     @Published var prop      : Prop = VideoInfoAPI.defaultProp
-    @Published var attr      : Attr = CommonType.VideoAttribute(
+    @Published var attr      : Attr = CommonData.VideoAttribute(
         number    : 0,
         contentId : "????",
         title     : "no title",
@@ -75,7 +75,7 @@ final class VideoDetailViewModel: ObservableObject {
     func onReceivedVideoDetail(_ xmlText : String){
         self.hasProp = true
         self.prop    = self.infoApi.decodeXml(xmlText)
-        self.attr    = CommonType.VideoAttribute(
+        self.attr    = CommonData.VideoAttribute(
             number        : 0,
             contentId     : self.videoId,
             title         : self.prop.title,

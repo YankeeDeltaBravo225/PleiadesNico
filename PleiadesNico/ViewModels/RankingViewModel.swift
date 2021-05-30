@@ -10,7 +10,7 @@ import Combine
 
 final class RankingViewModel: ObservableObject {
 
-    typealias Rank  = CommonType.VideoAttribute
+    typealias Rank  = CommonData.VideoAttribute
     
     @Published var showSelector : Bool    = false
     @Published var genreId      : Int     = ConfigStorage.shared.rankingGenre
@@ -61,7 +61,7 @@ final class RankingViewModel: ObservableObject {
         let rankItems = self.rankingApi.decodeXml(xmlText)
 
         self.ranks = rankItems.map{ item in
-            CommonType.VideoAttribute(
+            CommonData.VideoAttribute(
                 number        : item.pos,
                 contentId     : item.videoId,
                 title         : item.title,

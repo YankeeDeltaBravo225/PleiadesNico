@@ -12,7 +12,7 @@ import Combine
 
 final class SearchViewModel: ObservableObject {
 
-    typealias ResultItem    = CommonType.VideoAttribute
+    typealias ResultItem    = CommonData.VideoAttribute
 
     @Published var searchWord      : String       = ""
 
@@ -171,7 +171,7 @@ final class SearchViewModel: ObservableObject {
         let newResults = searchApi.decode(resultText)
 
         let newItems = newResults.indices.map{ index in
-            CommonType.VideoAttribute(
+            CommonData.VideoAttribute(
                 number        : index + self.resultItems.count,
                 contentId     : newResults[index].contentId,
                 title         : TextFormat.shared.htmlEntityDecoded( newResults[index].title ),

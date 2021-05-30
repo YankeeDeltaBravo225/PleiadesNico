@@ -39,6 +39,7 @@ class NicoSession {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
+        request.addValue(NicoURL.userAgent, forHTTPHeaderField: "User-Agent")
         if let stringCookie = ConfigStorage.shared.stringCookie {
             request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
         }
@@ -57,6 +58,7 @@ class NicoSession {
         request.httpMethod = "POST"
         request.httpBody = data
 
+        request.addValue(NicoURL.userAgent, forHTTPHeaderField: "User-Agent")
         request.addValue(NicoURL.refer, forHTTPHeaderField: "Referer")
         if contentType == .textPlain {
             request.addValue("text/plain;charset=UTF-8",  forHTTPHeaderField: "Content-Type")
@@ -80,6 +82,7 @@ class NicoSession {
         var request = URLRequest(url: url)
         request.httpMethod = "OPTIONS"
 
+        request.addValue(NicoURL.userAgent, forHTTPHeaderField: "User-Agent")
         if let stringCookie = ConfigStorage.shared.stringCookie {
             request.setValue(stringCookie, forHTTPHeaderField: "Cookie")
         }

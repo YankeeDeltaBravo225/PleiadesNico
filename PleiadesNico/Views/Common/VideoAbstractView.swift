@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VideoAbstractView: View {
 
-    let attribute     : CommonType.VideoAttribute
+    let attribute     : CommonData.VideoAttribute
     let colorIndex    : Int
     let imageWidth    : CGFloat
     let imageHeight   : CGFloat

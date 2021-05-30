@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-class CommonType {
+class CommonData {
 
     struct VideoAttribute {
         let number        : Int
@@ -21,6 +21,6 @@ class CommonType {
         let mylists       : String
     }
     
-    
+    static let appVersion = "1.0"
     
 }
