@@ -185,7 +185,7 @@ extension VideoDetailView {
             color2     : .red
         )
         .fullScreenCover(isPresented: $doesPlay){
-            PlayerTopView(videoId, colorIndex: colorIndex, title : viewModel.prop.title)
+            PlayerTopView(videoId, colorIndex: colorIndex, title : viewModel.prop.title, showPlayer: $doesPlay)
         }
     }
 

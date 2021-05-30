@@ -144,6 +144,8 @@ final class PlayerViewModel: ObservableObject {
         self.timer?.cancel()
         self.screen.pause()
         self.screen.disappear()
+
+        self.isClosing = true
     }
     
     
@@ -213,7 +215,6 @@ final class PlayerViewModel: ObservableObject {
             restartControlFade()
         case ConfigStorage.GestureOperation.close.rawValue:
             self.onClose()
-            self.isClosing   = true
             self.showControl = true
         case ConfigStorage.GestureOperation.none.rawValue:
             break

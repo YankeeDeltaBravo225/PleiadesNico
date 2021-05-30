@@ -14,8 +14,6 @@ struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
     let title : String
     
-    @Environment(\.presentationMode) var presentation
-    
     var body: some View {
         VStack {
             upperControlView()
@@ -60,7 +58,6 @@ extension PlayControlView {
             Button(
                 action: {
                     viewModel.onClose()
-                    self.presentation.wrappedValue.dismiss()
                 },
                 label: {
                     Image(systemName:"chevron.down.circle")

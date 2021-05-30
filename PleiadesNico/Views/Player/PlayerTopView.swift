@@ -14,15 +14,16 @@ import AVKit
 // MARK: - Top View
 
 struct PlayerTopView: View {
-    
-    @Environment(\.presentationMode) var presentation
-    
+
     @ObservedObject var viewModel : PlayerViewModel
+
     let screen     : VideoScreen
     let colorIndex : Int
     let title      : String
     
-    init(_ contentId : String, colorIndex : Int, title : String){
+    @Binding var showPlayer: Bool
+    
+    init(_ contentId : String, colorIndex : Int, title : String, showPlayer : Binding<Bool>){
         self.screen = VideoScreen()
         self.viewModel = PlayerViewModel(
             screen: screen,
@@ -30,6 +31,7 @@ struct PlayerTopView: View {
         )
         self.colorIndex = colorIndex
         self.title      = title
+        self._showPlayer = showPlayer
     }
 
 
@@ -171,7 +173,7 @@ extension PlayerTopView {
                 Text("終了します")
                     .foregroundColor(.white)
                     .onAppear(){
-                        self.presentation.wrappedValue.dismiss()
+                        showPlayer = false
                     }
             } else {
                 EmptyView()
@@ -207,8 +209,10 @@ struct AvPlayerViewControllerWrap : UIViewControllerRepresentable {
 // MARK: - Preview
 
 struct PlayerTopView_Previews: PreviewProvider {
+    @State static var showPlayer = true
+
     static var previews: some View {
 //        let url  = URL(fileURLWithPath: "/Users/tkato/Documents/XCode/VideoProto/VideoProto/sample.mp4")
-        PlayerTopView("sm1192", colorIndex: 3, title : "Preview video 1192")
+        PlayerTopView("sm1192", colorIndex: 3, title : "Preview video 1192", showPlayer: $showPlayer )
     }
 }
