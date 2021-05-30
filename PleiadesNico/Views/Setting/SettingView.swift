@@ -19,16 +19,13 @@ struct SettingView: View {
     init(){
         viewModel = SettingViewModel()
     }
-    
+
+
     var body: some View {
         
         List {
             Section(header: Text("アカウント")){
-                HStack{
-                    Text("ログイン/ユーザ設定の確認")
-                    Spacer()
-                    loginPageButton()
-                }
+                loginPageView()
                 loginStatusView()
             }
             Section(header: Text("プレイヤー")){
@@ -39,13 +36,10 @@ struct SettingView: View {
                         orientationSelector()
                     }
                 }
-                Text("コントロールが自動で隠れるまで(秒)")
+                
                 controlFadeTimeStepper()
-                Text("コメントのサイズ")
                 commentFontSizeStepper()
-                Text("コメントの線の太さ")
                 commentStrokeSizeStepper()
-                Text("同時に表示する最大コメント数")
                 commentMaxDispNumStepper()
             }
             Section(header: Text("ジェスチャー")){
@@ -74,25 +68,18 @@ struct SettingView: View {
 
 extension SettingView {
 
-    fileprivate func loginPageButton() -> some View {
-        return FloatingButton(
-            action     : { self.showLogin.toggle() },
-            systemIcon : "safari",
-            text       : "開く",
-            color1     : .green,
-            color2     : .blue
-        )
-        .sheet(
-            isPresented: $showLogin,
-            onDismiss: {}
-        )
-        {
-            WebView(
-                viewModel.loginPageUrl,
-                onDisappear: {webView in
-                    viewModel.onLogginDisappear(webView: webView)
-                }
-            )
+    fileprivate func loginPageView() -> some View {
+        return NavigationLink(
+            destination: Group(){
+                WebView(
+                    viewModel.loginPageUrl,
+                    onDisappear: {webView in
+                        viewModel.onLogginDisappear(webView: webView)
+                    }
+                )
+            }
+        ){
+            Text("ログイン/ユーザ設定の確認")
         }
     }
 
@@ -100,7 +87,6 @@ extension SettingView {
     fileprivate func loginStatusView() -> some View {
         return HStack{
             Text("状態：")
-            Divider()
             if viewModel.isLoggedIn {
                 Image(systemName: "checkmark.circle")
             } else {
@@ -112,62 +98,85 @@ extension SettingView {
 
     
     fileprivate func commentFontSizeStepper() -> some View {
-        return HStack{
-            Stepper(
-                value : $viewModel.commentFontSize,
-                in : 10...50,
-                step : 1,
-                onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
-            )
-            {
-                Text("\(viewModel.commentFontSize)")
+        return VStack{
+            HStack{
+                Text("コメントのサイズ")
+                Spacer()
             }
-            Spacer()
+            HStack{
+                Stepper(
+                    value : $viewModel.commentFontSize,
+                    in : 10...50,
+                    step : 1,
+                    onEditingChanged: {viewModel.onCommentFontSizeChanged($0)}
+                )
+                {
+                    Text("\(viewModel.commentFontSize)")
+                }
+                Spacer()
+            }
         }
     }
 
     
     fileprivate func commentStrokeSizeStepper() -> some View {
-        return HStack{
-            Stepper(
-                value : $viewModel.commentStrokeSize,
-                in : 1...10,
-                step : 1,
-                onEditingChanged: {viewModel.onCommentStrokeSizeChanged($0)}
-            ){
-                Text("\(viewModel.commentStrokeSize)")
+        return VStack{
+            HStack{
+                Text("コメントの線の太さ")
+                Spacer()
             }
-            Spacer()
+            HStack{
+                Stepper(
+                    value : $viewModel.commentStrokeSize,
+                    in : 1...10,
+                    step : 1,
+                    onEditingChanged: {viewModel.onCommentStrokeSizeChanged($0)}
+                ){
+                    Text("\(viewModel.commentStrokeSize)")
+                }
+                Spacer()
+            }
         }
     }
 
     
     fileprivate func commentMaxDispNumStepper() -> some View {
-        return HStack{
-            Stepper(
-                value : $viewModel.commentMaxDispNum,
-                in : 10...1000,
-                step : 10,
-                onEditingChanged: {viewModel.onCommentMaxDispNumChanged($0)}
-            ){
-                Text("\(viewModel.commentMaxDispNum)")
+        return VStack{
+            HStack{
+                Text("同時に表示する最大コメント数")
+                Spacer()
             }
-            Spacer()
+            HStack{
+                Stepper(
+                    value : $viewModel.commentMaxDispNum,
+                    in : 10...1000,
+                    step : 10,
+                    onEditingChanged: {viewModel.onCommentMaxDispNumChanged($0)}
+                ){
+                    Text("\(viewModel.commentMaxDispNum)")
+                }
+                Spacer()
+            }
         }
     }
 
     
     fileprivate func controlFadeTimeStepper() -> some View {
-        return HStack{
-            Stepper(
-                value : $viewModel.controlFadeTime,
-                in : 1...99,
-                step : 1,
-                onEditingChanged: {viewModel.onControlFadeTimeChanged($0)}
-            ){
-                Text("\(viewModel.controlFadeTime)")
+        return VStack{
+            HStack{
+                Text("コントロールが自動で隠れるまで(秒)")
+                Spacer()
             }
-            Spacer()
+            HStack{
+                Stepper(
+                    value : $viewModel.controlFadeTime,
+                    in : 1...99,
+                    step : 1,
+                    onEditingChanged: {viewModel.onControlFadeTimeChanged($0)}
+                ){
+                    Text("\(viewModel.controlFadeTime)")
+                }
+            }
         }
     }
 
