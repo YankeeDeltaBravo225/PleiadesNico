@@ -24,10 +24,10 @@ class VideoInfoAPI{
     }
 
 
-    func decodeXml(_ xmlText : String) -> Prop {
+    func decodeXml(_ xmlText : String) -> Prop? {
         guard let xml = try? Kanna.XML(xml: xmlText, encoding: .utf8)
         else {
-            return VideoInfoAPI.defaultProp
+            return nil
         }
 
         let xpathes : [String : String] = [

@@ -73,8 +73,14 @@ final class VideoDetailViewModel: ObservableObject {
 
 
     func onReceivedVideoDetail(_ xmlText : String){
+        guard let prop = self.infoApi.decodeXml(xmlText)
+        else {
+            handleError("XMLデータのパースに失敗")
+            return
+        }
+        
+        self.prop    = prop
         self.hasProp = true
-        self.prop    = self.infoApi.decodeXml(xmlText)
         self.attr    = CommonData.VideoAttribute(
             number        : 0,
             contentId     : self.videoId,
@@ -86,11 +92,6 @@ final class VideoDetailViewModel: ObservableObject {
             comments      : self.prop.comments,
             mylists       : self.prop.mylists
         )
-
-        // Channel video will be supported in the future
-        if self.videoId.hasPrefix("sm") {
-            self.showPlay = true
-        }
         
         // Retrieve more detail from stream API
         session.get(
@@ -120,6 +121,11 @@ final class VideoDetailViewModel: ObservableObject {
         }
         
         self.dmcDescription = streamApi.videoDescription()
+
+        // Channel video will be supported in the future
+        if self.videoId.hasPrefix("sm") {
+            self.showPlay = true
+        }
     }
 
 
