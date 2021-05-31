@@ -57,6 +57,8 @@ final class SearchViewModel: ObservableObject {
     func newSearch(){
         self.searchOffset = 0
         self.showNoHit    = false
+        self.showAdd      = false
+        self.abstractText = ""
         self.resultItems  = []
 
         search()
