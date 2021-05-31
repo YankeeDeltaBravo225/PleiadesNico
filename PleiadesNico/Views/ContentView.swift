@@ -15,6 +15,7 @@ struct ContentView: View {
     enum Tab {
         case ranking
         case search
+        case mylist
         case setting
     }
     
@@ -33,16 +34,19 @@ struct ContentView: View {
                 }
                 .tag(Tab.search)
 
+            MylistTopView()
+                .tabItem {
+                    Label("マイリスト", systemImage: "star")
+                }
+                .tag(Tab.mylist)
+            
             SettingTopView()
                 .tabItem {
                     Label("設定", systemImage: "gear")
                 }
                 .tag(Tab.setting)
         }
-        
-        
-//        PlayerTopView("sm38564936")
-//        PlayerTopView("sm1192")
+
     }
 }
 

@@ -6,31 +6,7 @@
 
 import Foundation
 
-
-class MylistAPI{
-
-    // MARK: - MylistGroup
-    struct MylistGroup: Codable {
-
-        struct Content: Codable {
-            let id: String
-            let name: String
-
-            enum CodingKeys: String, CodingKey {
-                case id = "id"
-                case name = "name"
-            }
-        }
-        
-        let mylistgroup: [Content]
-        let status: String
-
-        enum CodingKeys: String, CodingKey {
-            case mylistgroup = "mylistgroup"
-            case status = "status"
-        }
-    }
-
+class SpecificMylistAPI{
     
     // MARK: - Mylist
     struct Mylist: Codable {
@@ -42,6 +18,7 @@ class MylistAPI{
                 let title: String
                 let thumbnailURL: String
                 let firstRetrieve: Int
+                let updateTime: Int
                 let viewCounter: String
                 let mylistCounter: String
                 let numRes: String
@@ -54,6 +31,7 @@ class MylistAPI{
                     case title = "title"
                     case thumbnailURL = "thumbnail_url"
                     case firstRetrieve = "first_retrieve"
+                    case updateTime = "update_time"
                     case viewCounter = "view_counter"
                     case mylistCounter = "mylist_counter"
                     case numRes = "num_res"
@@ -82,42 +60,23 @@ class MylistAPI{
             case status = "status"
         }
     }
-
-
-    private var myListGroup : MylistGroup?
-    private var mylist      : Mylist?
-
-    init(){
-        
-    }
-
-    
-    func mylistGroupUrl() -> String {
-        return NicoURL.mylistGroup()
-    }
-
-    
-    func mylistUrl(_ mylistId : String) -> String {
-        return NicoURL.mylist( mylistId )
-    }
     
 
-    func decodeGroup(_ jsonText : String) throws -> MylistGroup {
-        let json : NicoJson = NicoJson(jsonText)
+    private let listId : String
+    private var mylist : Mylist?
+    
 
-        var group : MylistGroup
-        do{
-            group = try json.decode(MylistGroup.self)
-        } catch {
-            throw error
-        }
-
-        self.myListGroup = group
-        return group
+    init(_ listId : String){
+        self.listId = listId
     }
 
 
-    func decodeMylist(_ jsonText : String) throws -> Mylist {
+    func url() -> String {
+        return NicoURL.mylist( self.listId )
+    }
+
+
+    func decode(_ jsonText : String) throws -> Mylist {
         let json : NicoJson = NicoJson(jsonText)
 
         var mylist : Mylist
@@ -130,5 +89,5 @@ class MylistAPI{
         self.mylist = mylist
         return mylist
     }
-    
+
 }

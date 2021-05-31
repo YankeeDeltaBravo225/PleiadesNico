@@ -10,6 +10,12 @@
 		F70A117126620E410078183F /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70A117026620E410078183F /* CommonData.swift */; };
 		F7215A6B264FCA0900B25EEE /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7215A6A264FCA0900B25EEE /* RankingTopView.swift */; };
 		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
+		F746461E26650DD200F189E5 /* MylistTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746461D26650DD200F189E5 /* MylistTopView.swift */; };
+		F746462326650DE300F189E5 /* MylistGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746462226650DE300F189E5 /* MylistGroupView.swift */; };
+		F746462826650E3200F189E5 /* MylistGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746462726650E3200F189E5 /* MylistGroupViewModel.swift */; };
+		F7464630266518AA00F189E5 /* SpecificMylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746462F266518AA00F189E5 /* SpecificMylistView.swift */; };
+		F746463826651CBD00F189E5 /* SpecificMylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746463726651CBD00F189E5 /* SpecificMylistViewModel.swift */; };
+		F746464826651E9E00F189E5 /* SpecificMylistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746464726651E9E00F189E5 /* SpecificMylistAPI.swift */; };
 		F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */; };
 		F748C1FD263D656F00DFD69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FC263D656F00DFD69F /* Assets.xcassets */; };
 		F748C200263D656F00DFD69F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F748C1FF263D656F00DFD69F /* Preview Assets.xcassets */; };
@@ -53,7 +59,7 @@
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F7920DAB2647927D00FD2D50 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
-		F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C800B226402716005F76D0 /* MylistAPI.swift */; };
+		F7C800B326402716005F76D0 /* MylistGroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C800B226402716005F76D0 /* MylistGroupAPI.swift */; };
 		F7C849E7266260500013CCB8 /* DescriptionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C849E6266260500013CCB8 /* DescriptionPageView.swift */; };
 		F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FD9263FE79400836A71 /* SettingView.swift */; };
 		F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */; };
@@ -83,6 +89,12 @@
 		F70A117026620E410078183F /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
 		F7215A6A264FCA0900B25EEE /* RankingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
 		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
+		F746461D26650DD200F189E5 /* MylistTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistTopView.swift; sourceTree = "<group>"; };
+		F746462226650DE300F189E5 /* MylistGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistGroupView.swift; sourceTree = "<group>"; };
+		F746462726650E3200F189E5 /* MylistGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistGroupViewModel.swift; sourceTree = "<group>"; };
+		F746462F266518AA00F189E5 /* SpecificMylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMylistView.swift; sourceTree = "<group>"; };
+		F746463726651CBD00F189E5 /* SpecificMylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMylistViewModel.swift; sourceTree = "<group>"; };
+		F746464726651E9E00F189E5 /* SpecificMylistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMylistAPI.swift; sourceTree = "<group>"; };
 		F748C1F5263D656A00DFD69F /* PleiadesNico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PleiadesNico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F748C1F8263D656A00DFD69F /* PleiadesNicoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleiadesNicoApp.swift; sourceTree = "<group>"; };
 		F748C1FC263D656F00DFD69F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +142,7 @@
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F7920DAA2647927D00FD2D50 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
-		F7C800B226402716005F76D0 /* MylistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistAPI.swift; sourceTree = "<group>"; };
+		F7C800B226402716005F76D0 /* MylistGroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistGroupAPI.swift; sourceTree = "<group>"; };
 		F7C849E6266260500013CCB8 /* DescriptionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPageView.swift; sourceTree = "<group>"; };
 		F7D72FD9263FE79400836A71 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +178,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F746461B26650D8300F189E5 /* Mylist */ = {
+			isa = PBXGroup;
+			children = (
+				F746461D26650DD200F189E5 /* MylistTopView.swift */,
+				F746462226650DE300F189E5 /* MylistGroupView.swift */,
+				F746462F266518AA00F189E5 /* SpecificMylistView.swift */,
+			);
+			path = Mylist;
+			sourceTree = "<group>";
+		};
 		F748C1EC263D656A00DFD69F = {
 			isa = PBXGroup;
 			children = (
@@ -274,8 +296,10 @@
 			children = (
 				F748C265263D67AE00DFD69F /* RankingViewModel.swift */,
 				F748C263263D67AE00DFD69F /* SearchViewModel.swift */,
-				F748C264263D67AE00DFD69F /* VideoDetailViewModel.swift */,
+				F746462726650E3200F189E5 /* MylistGroupViewModel.swift */,
+				F746463726651CBD00F189E5 /* SpecificMylistViewModel.swift */,
 				F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */,
+				F748C264263D67AE00DFD69F /* VideoDetailViewModel.swift */,
 				F748C266263D67AE00DFD69F /* Player */,
 			);
 			path = ViewModels;
@@ -298,8 +322,9 @@
 				F748C272263D67AF00DFD69F /* Common */,
 				F748C26A263D67AF00DFD69F /* Ranking */,
 				F748C270263D67AF00DFD69F /* Search */,
-				F748C26E263D67AF00DFD69F /* VideoDetail */,
+				F746461B26650D8300F189E5 /* Mylist */,
 				F7D72FD8263FE76600836A71 /* Setting */,
+				F748C26E263D67AF00DFD69F /* VideoDetail */,
 				F748C278263D67AF00DFD69F /* Player */,
 			);
 			path = Views;
@@ -376,7 +401,8 @@
 				F748C241263D678600DFD69F /* VideoInfoAPI.swift */,
 				F748C233263D678600DFD69F /* RankingAPI.swift */,
 				F748C242263D678600DFD69F /* SearchAPI.swift */,
-				F7C800B226402716005F76D0 /* MylistAPI.swift */,
+				F7C800B226402716005F76D0 /* MylistGroupAPI.swift */,
+				F746464726651E9E00F189E5 /* SpecificMylistAPI.swift */,
 			);
 			path = NicoAPI;
 			sourceTree = "<group>";
@@ -532,17 +558,22 @@
 				F748C251263D678600DFD69F /* TextFormat.swift in Sources */,
 				F748C27D263D67AF00DFD69F /* SearchViewModel.swift in Sources */,
 				F748C24A263D678600DFD69F /* MockData.swift in Sources */,
+				F746462826650E3200F189E5 /* MylistGroupViewModel.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
+				F746464826651E9E00F189E5 /* SpecificMylistAPI.swift in Sources */,
 				F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */,
 				F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */,
 				F748C248263D678600DFD69F /* DebugLog.swift in Sources */,
+				F7464630266518AA00F189E5 /* SpecificMylistView.swift in Sources */,
 				F748C247263D678600DFD69F /* VideoStreamAPI.swift in Sources */,
 				F748C282263D67AF00DFD69F /* RankingRowView.swift in Sources */,
 				F748C255263D678600DFD69F /* CommentRequest.swift in Sources */,
 				F748C24D263D678600DFD69F /* DmcSessionResponse.swift in Sources */,
+				F746463826651CBD00F189E5 /* SpecificMylistViewModel.swift in Sources */,
 				F748C253263D678600DFD69F /* SearchAPI.swift in Sources */,
 				F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */,
 				F748C254263D678600DFD69F /* CommentResponse.swift in Sources */,
+				F746462326650DE300F189E5 /* MylistGroupView.swift in Sources */,
 				F748C287263D67AF00DFD69F /* OnlineImageIView.swift in Sources */,
 				F748C28E263D67AF00DFD69F /* PlayControlView.swift in Sources */,
 				F748C27E263D67AF00DFD69F /* VideoDetailViewModel.swift in Sources */,
@@ -563,7 +594,8 @@
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
 				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,
-				F7C800B326402716005F76D0 /* MylistAPI.swift in Sources */,
+				F7C800B326402716005F76D0 /* MylistGroupAPI.swift in Sources */,
+				F746461E26650DD200F189E5 /* MylistTopView.swift in Sources */,
 				F7920DAB2647927D00FD2D50 /* FloatingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

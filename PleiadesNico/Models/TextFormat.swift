@@ -155,6 +155,7 @@ class TextFormat {
     }
 
     
+    // Make sure to call this function on the Main thread, otherwise this causes a Crash
     func htmlEntityDecoded(_ rawText : String ) -> String {
         guard let data = rawText.data(using: .utf8) else {
             return rawText
