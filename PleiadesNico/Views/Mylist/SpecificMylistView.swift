@@ -23,20 +23,29 @@ struct SpecificMylistView: View {
 
 
     var body: some View {
-        List{
-            ForEach(viewModel.videos.indices, id: \.self) { index in
-                let item  = viewModel.videos[index]
-                NavigationLink(
-                    destination: VideoDetailView(item.contentId, colorIndex: index)
-                ){
-                    VideoAbstractView(
-                        attribute     : item,
-                        colorIndex    : index,
-                        imageWidth    : 96,
-                        imageHeight   : 54, // 16:9 aspact rate
-                        titleFontSize : 14,
-                        attrFontSize  : 14
-                    )
+        GeometryReader { geometry in
+            List{
+                ForEach(viewModel.videos.indices, id: \.self) { index in
+                    let item  = viewModel.videos[index]
+                    NavigationLink(
+                        destination: VideoDetailView(item.contentId, colorIndex: index)
+                    ){
+                        VideoAbstractView(
+                            attribute     : item,
+                            colorIndex    : index,
+                            imageWidth    : 96,
+                            imageHeight   : 54, // 16:9 aspact rate
+                            titleFontSize : 14,
+                            attrFontSize  : 14
+                        )
+                    }
+                }
+            }
+            .toolbar{
+                ToolbarItem(placement : .navigationBarLeading ){
+                    Text(listName)
+                        .frame(maxWidth: geometry.size.width - 120)
+                        .lineLimit(1)
                 }
             }
         }

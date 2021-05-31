@@ -47,7 +47,6 @@ struct SettingView: View {
                     gestureSelector(gestureType)
                 }
 
-                Text("スワイプ認識する移動量")
                 swipeThresholdStepper()
             }
             Section(header: Text("このアプリについて")){
@@ -211,16 +210,22 @@ extension SettingView {
 
     
     fileprivate func swipeThresholdStepper() -> some View {
-        return HStack{
-            Stepper(
-                value : $viewModel.swipeThreshold,
-                in : 10...300,
-                step : 10,
-                onEditingChanged: {viewModel.onSwipeThresholdChanged($0)}
-            ){
-                Text("\(viewModel.swipeThreshold)")
+        return VStack{
+            HStack{
+                Text("スワイプ認識する移動量")
+                Spacer()
             }
-            Spacer()
+            HStack{
+                Stepper(
+                    value : $viewModel.swipeThreshold,
+                    in : 10...300,
+                    step : 10,
+                    onEditingChanged: {viewModel.onSwipeThresholdChanged($0)}
+                ){
+                    Text("\(viewModel.swipeThreshold)")
+                }
+                Spacer()
+            }
         }
     }
 
