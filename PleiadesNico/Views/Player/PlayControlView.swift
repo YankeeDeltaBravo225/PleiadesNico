@@ -18,6 +18,8 @@ struct PlayControlView: View {
         VStack {
             upperControlView()
             Spacer()
+            playPauseButtonView()
+            Spacer()
             lowerControlView()
         }
         .onAppear {
@@ -96,14 +98,14 @@ extension PlayControlView {
     fileprivate func lowerControlView() -> some View {
         return VStack{
             Divider()
-            timeSliderView()
-            HStack (alignment: .bottom) {
+            HStack () {
                 elapsedTimeView()
                 Spacer()
-                playPauseButtonView()
+                timeSliderView()
                 Spacer()
                 remainingTimeView()
             }
+            Divider()
         }
         .background(
             ColorPalette.controlBackground
@@ -118,7 +120,7 @@ extension PlayControlView {
         return Text("  " + viewModel.elapsedTimeText)
             .foregroundColor(.white)
             .font(.system(size: 18, design: .monospaced))
-            .padding(10)
+            .padding(4)
     }
     
 
@@ -126,7 +128,7 @@ extension PlayControlView {
         return Text(viewModel.remainTimeText + "  ")
             .foregroundColor(.white)
             .font(.system(size: 18, design: .monospaced))
-            .padding(10)
+            .padding(4)
     }
     
 
@@ -138,9 +140,11 @@ extension PlayControlView {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.white)
-                .frame(width: 40, height: 40)
+                .frame(width: 50, height: 50)
                 .padding(10)
         }
+        .shadow(color: .gray, radius: 3, x: 3, y: 3)
+        .padding(10)
     }
 
 
