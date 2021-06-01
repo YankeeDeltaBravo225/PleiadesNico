@@ -27,6 +27,7 @@ final class VideoDetailViewModel: ObservableObject {
     )
     @Published var hasProp        : Bool   = false
     @Published var showPlay       : Bool   = false
+    @Published var cantPlayReason : String = ""
     @Published var didAppear      : Bool   = false
     @Published var dmcDescription : String = "No description"
     
@@ -125,12 +126,20 @@ final class VideoDetailViewModel: ObservableObject {
         // Channel video will be supported in the future
         if self.videoId.hasPrefix("sm") {
             self.showPlay = true
+        } else {
+            if self.videoId.hasPrefix("so") {
+                self.cantPlayReason = "チャンネル動画は未サポートです"
+            } else {
+                self.cantPlayReason = "非サポートの動画形式です"
+            }
         }
     }
 
 
     func handleError(_ error : String){
         DebugLog.shared.error( error )
+        self.showPlay       = false
+        self.cantPlayReason = "再生情報の取得に失敗しました"
     }
 
 

@@ -34,7 +34,7 @@ struct VideoDetailView: View {
                         if viewModel.showPlay {
                             playVideoButton()
                         } else {
-                            Text("(内蔵プレイヤー非対応の動画です)")
+                            Text(viewModel.cantPlayReason)
                         }
                         openBrowserButton()
                     }
