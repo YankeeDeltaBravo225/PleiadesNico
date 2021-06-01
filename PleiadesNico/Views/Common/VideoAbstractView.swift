@@ -39,7 +39,7 @@ extension VideoAbstractView {
     fileprivate func titleAndThumbnailView() -> some View {
         return HStack {
             thumbnailView()
-                .shadow(color: .gray, radius: 2, x: 2, y: 2)
+                .shadow(color: .gray, radius: 4, x: 4, y: 4)
             VStack(alignment: .leading) {
                 Text(attribute.title)
                     .font(.system(size: titleFontSize))

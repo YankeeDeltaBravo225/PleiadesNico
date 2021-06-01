@@ -21,12 +21,12 @@ struct SearchView: View {
         GeometryReader { geometry in
             List{
                 VStack{
+                    searchWordEditor()
+                    searchKindSelector()
                     HStack{
-                        searchKindSelector()
                         sortKeySelector()
                         sortOrderSelector()
                     }
-                    searchWordEditor()
                 }
                 
                 if viewModel.showDirectOpen {
@@ -98,12 +98,10 @@ extension SearchView {
     }
 
 
-    fileprivate func searchKindSelector() -> MenuStylePicker {
-        return MenuStylePicker(
+    fileprivate func searchKindSelector() -> SegmentStylePicker {
+        return SegmentStylePicker(
             options: viewModel.searchKindOptions(),
             onChangeClosure: { kindId in viewModel.updateSearchKind(newKindId: kindId) },
-            color1 : .red,
-            color2 : .purple,
             selected: viewModel.searchKindId
         )
     }

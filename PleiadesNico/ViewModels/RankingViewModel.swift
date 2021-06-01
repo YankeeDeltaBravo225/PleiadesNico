@@ -43,7 +43,7 @@ final class RankingViewModel: ObservableObject {
 
         let genreDescription = rankingApi.genreDescription(genreId: self.genreId)
         let termDescription  = rankingApi.termDescription(termId: self.termId)
-        self.abstractText    = "\(genreDescription) - \(termDescription)"
+        self.abstractText    = "\(genreDescription) / \(termDescription)"
 
         self.session.get(
             urlText    : rankingApi.url(genreId: self.genreId, termId: self.termId),

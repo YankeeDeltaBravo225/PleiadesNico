@@ -18,11 +18,9 @@ struct RankingView: View {
     var body: some View {
         VStack{
             List{
-                HStack{
-                    Spacer()
+                VStack{
                     genreSelector()
                     termSelector()
-                    Spacer()
                 }
 
                 ForEach(viewModel.ranks, id:\.number) { rank in
@@ -62,12 +60,10 @@ extension RankingView {
     }
     
 
-    fileprivate func termSelector() -> MenuStylePicker {
-        return MenuStylePicker(
+    fileprivate func termSelector() -> SegmentStylePicker {
+        return SegmentStylePicker(
             options: viewModel.termOptions(),
             onChangeClosure: { termId in viewModel.updateTerm(termId) },
-            color1 : .blue,
-            color2 : .green,
             selected: viewModel.termId
         )
     }

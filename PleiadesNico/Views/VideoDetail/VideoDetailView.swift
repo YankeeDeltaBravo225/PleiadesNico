@@ -103,6 +103,8 @@ extension VideoDetailView {
                     height : 30
                 )
                     .mask( RoundedRectangle(cornerRadius: 4) )
+                    .shadow(color: .gray, radius: 2, x: 2, y: 2)
+                    .padding(3)
                 Text(viewModel.prop.ownerName)
                     .font(.system(size: 16))
             }

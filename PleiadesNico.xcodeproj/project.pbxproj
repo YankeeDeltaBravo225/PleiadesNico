@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F70A117126620E410078183F /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70A117026620E410078183F /* CommonData.swift */; };
+		F7110C8D2666893700862F3C /* SegmentStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7110C8C2666893700862F3C /* SegmentStylePicker.swift */; };
 		F7215A6B264FCA0900B25EEE /* RankingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7215A6A264FCA0900B25EEE /* RankingTopView.swift */; };
 		F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F733AF2B26477C0A00CF7023 /* NicoJson.swift */; };
 		F746461E26650DD200F189E5 /* MylistTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F746461D26650DD200F189E5 /* MylistTopView.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		F70A117026620E410078183F /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
+		F7110C8C2666893700862F3C /* SegmentStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentStylePicker.swift; sourceTree = "<group>"; };
 		F7215A6A264FCA0900B25EEE /* RankingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTopView.swift; sourceTree = "<group>"; };
 		F733AF2B26477C0A00CF7023 /* NicoJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoJson.swift; sourceTree = "<group>"; };
 		F746461D26650DD200F189E5 /* MylistTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistTopView.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				F782BE44263FCCAD00EFB676 /* WebView.swift */,
 				F7920DAA2647927D00FD2D50 /* FloatingButton.swift */,
 				F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */,
+				F7110C8C2666893700862F3C /* SegmentStylePicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				F748C28A263D67AF00DFD69F /* ColorPalette.swift in Sources */,
 				F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */,
 				F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */,
+				F7110C8D2666893700862F3C /* SegmentStylePicker.swift in Sources */,
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F70A117126620E410078183F /* CommonData.swift in Sources */,
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,

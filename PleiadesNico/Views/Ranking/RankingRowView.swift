@@ -45,11 +45,8 @@ extension RankingRowView {
                     .foregroundColor(.white)
                     
                     .font(.system(size: 28))
-                    .background(
-                        Capsule()
-                            .fill(Color.black)
-                            .opacity(0.6)
-                    )
+                    .shadow(color: .black, radius: 4, x: 4, y: 4)
+                    .padding(3)
             }
         }
     }
