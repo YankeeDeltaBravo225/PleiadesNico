@@ -36,19 +36,23 @@ struct PlayerTopView: View {
 
 
     var body: some View {
+        // Z indices are add to show remove transitions properly, see #51
         ZStack {
             backGroundView()
+                .zIndex(0)
             if( viewModel.showPlayer ){
                 screenView()
+                    .zIndex(10)
                 commentView()
+                    .zIndex(11)
             } else {
                 progressTextsView()
+                    .zIndex(12)
             }
-            if( viewModel.showControl ){
-//                timeBatteryBarBackground()
-                PlayControlView( viewModel : viewModel, title : title )
-            }
+            PlayControlView( viewModel : viewModel, title : title )
+                .zIndex(20)
             closingView()
+                .zIndex(30)
         }
         .alert(
             isPresented: $viewModel.showAlert,

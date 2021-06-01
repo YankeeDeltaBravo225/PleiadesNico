@@ -14,16 +14,32 @@ struct PlayControlView: View {
     @ObservedObject var viewModel: PlayerViewModel
     let title : String
     
+    @State var showControl : Bool = false
+    
     var body: some View {
         VStack {
-            upperControlView()
+            if showControl {
+                upperControlView()
+                    .transition(AnyTransition.opacity.combined(with: .offset(x: 0, y: -50)))
+            }
             Spacer()
-            playPauseButtonView()
+            if showControl {
+                playPauseButtonView()
+                    .transition(.opacity)
+            }
             Spacer()
-            lowerControlView()
+            if showControl {
+                lowerControlView()
+                    .transition(AnyTransition.opacity.combined(with: .offset(x: 0, y: 50)))
+            }
         }
         .onAppear {
             viewModel.onTimerTick()
+        }
+        .onReceive(viewModel.$showControl ) { newShowControl in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                showControl = newShowControl
+            }
         }
 
     }
