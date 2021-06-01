@@ -125,10 +125,8 @@ class CommentViewController: UIViewController {
             return
         }
 
-        let isVideoPaused : Bool = viewModel.elapsedTime == self.lastElapsedTime
-        
         // Pause -> Play
-        if !self.isPlaying && !isVideoPaused{
+        if !self.isPlaying && !isVideoPaused(viewModel){
             for chat in self.activeChats {
                 chat.resume()
             }
@@ -136,7 +134,7 @@ class CommentViewController: UIViewController {
         }
 
         // Play -> Pause
-        if self.isPlaying && isVideoPaused{
+        if self.isPlaying && isVideoPaused(viewModel){
             for chat in self.activeChats {
                 chat.pause()
             }
@@ -214,6 +212,16 @@ class CommentViewController: UIViewController {
         }
     }
 
+    
+    func isVideoPaused(_ viewModel : PlayerViewModel) -> Bool {
+        if viewModel.isFinished() {
+            return false
+        }
+        
+        let isPaused = viewModel.elapsedTime == self.lastElapsedTime
+        return isPaused
+    }
+    
 
     func instantiateLabel(comment : StreamConnection.Comment, textWidth : Int, xPos : CGFloat, yPos : CGFloat) -> ChatLabel{
 

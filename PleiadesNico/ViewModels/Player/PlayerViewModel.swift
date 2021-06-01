@@ -294,6 +294,12 @@ final class PlayerViewModel: ObservableObject {
         self.currentTimeText = TextFormat.shared.currentTime()
     }
 
+
+    func isFinished() -> Bool {
+        return abs( self.screen.remainTime() ) < 0.1
+    }
+    
+    
     
     func comments() -> [StreamConnection.Comment] {
         return self.connect.comments
