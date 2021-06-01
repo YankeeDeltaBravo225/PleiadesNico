@@ -43,7 +43,7 @@ final class PlayerViewModel: ObservableObject {
 
     private    var errorCount      : Int
     private    var prevElapsedTime : Int
-    private    var isSeeking       : Bool
+    private    var isTimeSliding   : Bool
     private    var isReady         : Bool
     private    var controlFadeTime : Double
     private    var doesControlFade : Bool
@@ -58,7 +58,7 @@ final class PlayerViewModel: ObservableObject {
         self.elapsedTime     = 0.0
         self.errorCount      = 0
         self.prevElapsedTime = -1
-        self.isSeeking       = false
+        self.isTimeSliding   = false
         self.isReady         = false
         self.controlFadeTime = -1.0
         self.doesControlFade = false
@@ -178,6 +178,7 @@ final class PlayerViewModel: ObservableObject {
 
     func onScreenTapp(){
         self.showControl.toggle()
+        self.doesControlFade = false
     }
 
 
@@ -233,7 +234,7 @@ final class PlayerViewModel: ObservableObject {
             countDownControlFade()
         }
 
-        if !self.isSeeking {
+        if !self.isTimeSliding {
             updateTime()
         }
     }
@@ -241,12 +242,16 @@ final class PlayerViewModel: ObservableObject {
 
     func onTimeSliderChange(start : Bool){
         self.screen.seek(rate : timeSliderPos)
-        self.isSeeking = start
+        self.isTimeSliding = start
     }
 
     
     func countDownControlFade(){
         if !self.doesControlFade {
+            return
+        }
+
+        if self.screen.isSeeking {
             return
         }
         

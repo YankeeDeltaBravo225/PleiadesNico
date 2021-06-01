@@ -12,16 +12,19 @@ import AVKit
 
 class VideoScreen{
 
-    typealias OperationHander = () -> Void
+    typealias LoadHander = () -> Void
+    typealias SeekHander = (Bool) -> Void
 
     var player          : AVPlayer
+    var isSeeking       : Bool
     var duration        : Double
     var durationObserver: NSKeyValueObservation?
 
     
     init() {
-        player   = AVPlayer(playerItem: nil)
-        duration = 0
+        player    = AVPlayer(playerItem: nil)
+        duration  = 0
+        isSeeking = false
     }
 
     func seek(rate : Float64){
@@ -33,8 +36,23 @@ class VideoScreen{
     }
 
     func seek (absSec : Float64){
+        if self.isSeeking {
+            return
+        }
+        
+        self.isSeeking = true
         let targetTime = CMTimeMakeWithSeconds( absSec, preferredTimescale: 1000 )
-        player.seek( to: targetTime, toleranceBefore: .zero, toleranceAfter: .zero)
+
+        player.seek(
+            to                : targetTime,
+            toleranceBefore   : .zero,
+            toleranceAfter    : .zero,
+            completionHandler : { [weak self] isFinished in
+                if let self = self {
+                    self.isSeeking = false
+                }
+            }
+        )
     }
     
     func elapsedTime() -> Float64 {
@@ -59,7 +77,7 @@ class VideoScreen{
         self.player.pause()
     }
     
-    func loadUrl(streamUrl : URL, handler : @escaping OperationHander){
+    func loadUrl(streamUrl : URL, handler : @escaping LoadHander){
         self.player.replaceCurrentItem(with: AVPlayerItem(url: streamUrl))
 
         // Update duration when the Item's duration is notified
