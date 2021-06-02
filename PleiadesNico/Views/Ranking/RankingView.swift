@@ -9,21 +9,32 @@ import SwiftUI
 
 struct RankingView: View {
 
-    @ObservedObject var viewModel : RankingViewModel
+    @ObservedObject var rankingViewModel      : RankingViewModel
+    @ObservedObject var pullDetectorViewModel : PullDetectorViewModel
     
     init(){
-        viewModel = RankingViewModel()
+        let rankingViewModel      = RankingViewModel()
+        let pullDetectorViewModel = PullDetectorViewModel(
+            threshold : 50,
+            onStart   : { rankingViewModel.loadRanking() },
+            onFinish  : {}
+        )
+
+        self.rankingViewModel      = rankingViewModel
+        self.pullDetectorViewModel = pullDetectorViewModel
     }
 
+        
     var body: some View {
-        VStack{
+        ZStack{
             List{
                 VStack{
+                    PullDetector( viewModel: self.pullDetectorViewModel )
                     genreSelector()
                     termSelector()
                 }
 
-                ForEach(viewModel.ranks, id:\.number) { rank in
+                ForEach(rankingViewModel.ranks, id:\.number) { rank in
                     NavigationLink(
                         destination: VideoDetailView(rank.contentId, colorIndex: rank.number)
                     ){
@@ -34,14 +45,15 @@ struct RankingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
-                    Text(viewModel.abstractText)
+                    Text(rankingViewModel.abstractText)
                         .frame(width: 240)
                         .lineLimit(1)
                 }
             }
+            loadingStatusView()
         }
         .onAppear(){
-            viewModel.onAppearRanking()
+            rankingViewModel.onAppearRanking()
         }
     }
 }
@@ -51,21 +63,36 @@ extension RankingView {
 
     fileprivate func genreSelector() -> MenuStylePicker {
         return MenuStylePicker(
-            options: viewModel.genreOptions(),
-            onChangeClosure: { genreId in viewModel.updateGenre(genreId) },
+            options: rankingViewModel.genreOptions(),
+            onChangeClosure: { genreId in rankingViewModel.updateGenre(genreId) },
             color1 : .red,
             color2 : .purple,
-            selected: viewModel.genreId
+            selected: rankingViewModel.genreId
         )
     }
     
 
     fileprivate func termSelector() -> SegmentStylePicker {
         return SegmentStylePicker(
-            options: viewModel.termOptions(),
-            onChangeClosure: { termId in viewModel.updateTerm(termId) },
-            selected: viewModel.termId
+            options: rankingViewModel.termOptions(),
+            onChangeClosure: { termId in rankingViewModel.updateTerm(termId) },
+            selected: rankingViewModel.termId
         )
+    }
+
+
+    fileprivate func loadingStatusView() -> some View {
+        return VStack{
+            HStack{
+                Spacer()
+                if rankingViewModel.showLoading {
+                    ProgressView()
+                        .padding(10)
+                }
+                Spacer()
+            }
+            Spacer()
+        }
     }
 
 }

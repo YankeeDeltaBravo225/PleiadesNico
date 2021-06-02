@@ -56,6 +56,7 @@
 		F748C28F263D67AF00DFD69F /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F748C27C263D67AF00DFD69F /* CommentView.swift */; };
 		F767D7F7264D4CE000111FBF /* MenuStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */; };
 		F767D7FF264D5DAC00111FBF /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */; };
+		F776381F2667C8260010EB9F /* PullDetectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F776381E2667C8260010EB9F /* PullDetectorViewModel.swift */; };
 		F7797FFB2663AE3300874E2B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7797FFA2663AE3300874E2B /* SettingTopView.swift */; };
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F7920DAB2647927D00FD2D50 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingButton.swift */; };
@@ -67,6 +68,7 @@
 		F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FE3263FF24800836A71 /* ConfigStorage.swift */; };
 		F7D83C912640E29B00FC42D7 /* NicoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D83C902640E29B00FC42D7 /* NicoURL.swift */; };
 		F7D83C9C26414B6F00FC42D7 /* SearchTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */; };
+		F7E3ACEA2667D0DF00A69DCD /* PullDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E3ACE92667D0DF00A69DCD /* PullDetector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,7 @@
 		F748C27C263D67AF00DFD69F /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStylePicker.swift; sourceTree = "<group>"; };
 		F767D7FE264D5DAC00111FBF /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
+		F776381E2667C8260010EB9F /* PullDetectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDetectorViewModel.swift; sourceTree = "<group>"; };
 		F7797FFA2663AE3300874E2B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F7920DAA2647927D00FD2D50 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 		F7D72FE3263FF24800836A71 /* ConfigStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStorage.swift; sourceTree = "<group>"; };
 		F7D83C902640E29B00FC42D7 /* NicoURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicoURL.swift; sourceTree = "<group>"; };
 		F7D83C9B26414B6F00FC42D7 /* SearchTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTopView.swift; sourceTree = "<group>"; };
+		F7E3ACE92667D0DF00A69DCD /* PullDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,12 +300,12 @@
 		F748C262263D67AE00DFD69F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F748C265263D67AE00DFD69F /* RankingViewModel.swift */,
-				F748C263263D67AE00DFD69F /* SearchViewModel.swift */,
-				F746462726650E3200F189E5 /* MylistGroupViewModel.swift */,
-				F746463726651CBD00F189E5 /* SpecificMylistViewModel.swift */,
-				F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */,
-				F748C264263D67AE00DFD69F /* VideoDetailViewModel.swift */,
+				F77638242667CDD70010EB9F /* Common */,
+				F77638252667CDE40010EB9F /* Ranking */,
+				F77638262667CDF70010EB9F /* Search */,
+				F77638232667CBD60010EB9F /* Mylist */,
+				F77638282667CE0D0010EB9F /* Setting */,
+				F77638272667CE060010EB9F /* VideoDetail */,
 				F748C266263D67AE00DFD69F /* Player */,
 			);
 			path = ViewModels;
@@ -371,6 +375,7 @@
 				F7920DAA2647927D00FD2D50 /* FloatingButton.swift */,
 				F767D7F6264D4CE000111FBF /* MenuStylePicker.swift */,
 				F7110C8C2666893700862F3C /* SegmentStylePicker.swift */,
+				F7E3ACE92667D0DF00A69DCD /* PullDetector.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -384,6 +389,55 @@
 				F748C27C263D67AF00DFD69F /* CommentView.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		F77638232667CBD60010EB9F /* Mylist */ = {
+			isa = PBXGroup;
+			children = (
+				F746462726650E3200F189E5 /* MylistGroupViewModel.swift */,
+				F746463726651CBD00F189E5 /* SpecificMylistViewModel.swift */,
+			);
+			path = Mylist;
+			sourceTree = "<group>";
+		};
+		F77638242667CDD70010EB9F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F776381E2667C8260010EB9F /* PullDetectorViewModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F77638252667CDE40010EB9F /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+				F748C265263D67AE00DFD69F /* RankingViewModel.swift */,
+			);
+			path = Ranking;
+			sourceTree = "<group>";
+		};
+		F77638262667CDF70010EB9F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F748C263263D67AE00DFD69F /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		F77638272667CE060010EB9F /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F748C264263D67AE00DFD69F /* VideoDetailViewModel.swift */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
+		F77638282667CE0D0010EB9F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				F7D72FDE263FF19A00836A71 /* SettingViewModel.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		F7D72FD8263FE76600836A71 /* Setting */ = {
@@ -583,6 +637,7 @@
 				F748C289263D67AF00DFD69F /* VideoAbstractView.swift in Sources */,
 				F748C28B263D67AF00DFD69F /* ContentView.swift in Sources */,
 				F748C285263D67AF00DFD69F /* VideoDetailView.swift in Sources */,
+				F7E3ACEA2667D0DF00A69DCD /* PullDetector.swift in Sources */,
 				F748C281263D67AF00DFD69F /* PlayerViewModel.swift in Sources */,
 				F7D72FE4263FF24800836A71 /* ConfigStorage.swift in Sources */,
 				F767D7FF264D5DAC00111FBF /* SearchResultRowView.swift in Sources */,
@@ -596,6 +651,7 @@
 				F7D72FDF263FF19A00836A71 /* SettingViewModel.swift in Sources */,
 				F70A117126620E410078183F /* CommonData.swift in Sources */,
 				F748C246263D678600DFD69F /* RankingAPI.swift in Sources */,
+				F776381F2667C8260010EB9F /* PullDetectorViewModel.swift in Sources */,
 				F748C250263D678600DFD69F /* NicoSession.swift in Sources */,
 				F748C1F9263D656A00DFD69F /* PleiadesNicoApp.swift in Sources */,
 				F7C800B326402716005F76D0 /* MylistGroupAPI.swift in Sources */,

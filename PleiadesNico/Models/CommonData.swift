@@ -9,6 +9,8 @@ import SwiftUI
 
 class CommonData {
 
+    typealias PlainClosure = () -> Void
+    
     struct VideoAttribute {
         let number        : Int
         let contentId     : String

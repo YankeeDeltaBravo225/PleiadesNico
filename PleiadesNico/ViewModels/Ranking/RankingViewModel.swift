@@ -11,7 +11,8 @@ import Combine
 final class RankingViewModel: ObservableObject {
 
     typealias Rank  = CommonData.VideoAttribute
-    
+
+    @Published var showLoading  : Bool    = false
     @Published var showSelector : Bool    = false
     @Published var genreId      : Int     = ConfigStorage.shared.rankingGenre
     @Published var termId       : Int     = ConfigStorage.shared.rankingTerm
@@ -21,12 +22,14 @@ final class RankingViewModel: ObservableObject {
     private let rankingApi  : RankingAPI
     private let session     : NicoSession
     private var appearCount : Int
+    private var isLoading   : Bool
 
 
     init(){
         self.rankingApi  = RankingAPI()
         self.session     = NicoSession()
         self.appearCount = 0
+        self.isLoading   = false
     }
 
 
@@ -39,6 +42,12 @@ final class RankingViewModel: ObservableObject {
     }
 
     func loadRanking(){
+        if self.isLoading {
+            return
+        }
+        
+        self.showLoading = true
+        self.isLoading   = true
         self.ranks       = []
 
         let genreDescription = rankingApi.genreDescription(genreId: self.genreId)
@@ -56,7 +65,7 @@ final class RankingViewModel: ObservableObject {
         )
     }
 
-    
+
     func onReceivedRankItems(_ xmlText : String){
         let rankItems = self.rankingApi.decodeXml(xmlText)
 
@@ -73,6 +82,9 @@ final class RankingViewModel: ObservableObject {
                 mylists       : item.mylists
             )
         }
+        
+        self.isLoading   = false
+        self.showLoading = false
     }
     
 
