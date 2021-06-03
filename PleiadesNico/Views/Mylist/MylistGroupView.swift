@@ -18,7 +18,6 @@ struct MylistGroupView: View {
     
     var body: some View {
         VStack(){
-            reloadButton()
             List(){
                 ForEach(viewModel.mylists.indices, id: \.self) { index in
                     let listId   = viewModel.mylists[index].id
@@ -36,26 +35,17 @@ struct MylistGroupView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing){
+                Button(action: {viewModel.fetchMylistGroup()}) {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+        }
         .onAppear(){
             viewModel.onAppearMylistGroup()
         }
     }
-}
-
-
-// MARK: - Extension
-extension MylistGroupView {
-
-    fileprivate func reloadButton() -> FloatingButton {
-        return FloatingButton(
-            action     : { viewModel.fetchMylistGroup() },
-            systemIcon : "arrow.counterclockwise",
-            text       : "リロード",
-            color1     : .pink,
-            color2     : .purple
-        )
-    }
-
 }
 
 

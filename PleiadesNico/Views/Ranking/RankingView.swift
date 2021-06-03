@@ -10,18 +10,9 @@ import SwiftUI
 struct RankingView: View {
 
     @ObservedObject var rankingViewModel      : RankingViewModel
-    @ObservedObject var pullDetectorViewModel : PullDetectorViewModel
     
     init(){
-        let rankingViewModel      = RankingViewModel()
-        let pullDetectorViewModel = PullDetectorViewModel(
-            threshold : 100,
-            onStart   : { rankingViewModel.loadRanking() },
-            onFinish  : {}
-        )
-
-        self.rankingViewModel      = rankingViewModel
-        self.pullDetectorViewModel = pullDetectorViewModel
+        self.rankingViewModel = RankingViewModel()
     }
 
         
@@ -29,7 +20,6 @@ struct RankingView: View {
         ZStack{
             List{
                 VStack{
-                    PullDetector( viewModel: self.pullDetectorViewModel )
                     genreSelector()
                     termSelector()
                 }
@@ -48,6 +38,11 @@ struct RankingView: View {
                     Text(rankingViewModel.abstractText)
                         .frame(width: 240)
                         .lineLimit(1)
+                }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {rankingViewModel.loadRanking()}) {
+                        Image(systemName: "arrow.clockwise")
+                    }
                 }
             }
             loadingStatusView()

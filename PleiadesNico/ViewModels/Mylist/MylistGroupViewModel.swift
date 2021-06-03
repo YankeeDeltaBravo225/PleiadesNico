@@ -14,7 +14,8 @@ final class MylistGroupViewModel: ObservableObject {
     }
 
 
-    @Published var mylists : [Mylist] = []
+    @Published var mylists    : [Mylist] = []
+    @Published var isLoggedIn : Bool     = ConfigStorage.shared.loginStatus
 
     private var didAppear  : Bool
     private var groupApi   : MylistGroupAPI
@@ -27,17 +28,23 @@ final class MylistGroupViewModel: ObservableObject {
         self.session   = NicoSession()
     }
 
-    
+
     func onAppearMylistGroup(){
-        if !self.didAppear {
+        let newIsLoggedIn  = ConfigStorage.shared.loginStatus
+        let isLoginUpdated = newIsLoggedIn != self.isLoggedIn
+        
+        if !self.didAppear || isLoginUpdated {
             fetchMylistGroup()
         }
 
-        self.didAppear = true
+        self.isLoggedIn = newIsLoggedIn
+        self.didAppear  = true
     }
-
-
+    
+    
     func fetchMylistGroup(){
+        self.mylists = []
+        
         self.session.get(
             urlText    : groupApi.url(),
             onReceived : {text in
