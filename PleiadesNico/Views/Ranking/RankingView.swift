@@ -15,7 +15,7 @@ struct RankingView: View {
     init(){
         let rankingViewModel      = RankingViewModel()
         let pullDetectorViewModel = PullDetectorViewModel(
-            threshold : 50,
+            threshold : 100,
             onStart   : { rankingViewModel.loadRanking() },
             onFinish  : {}
         )
