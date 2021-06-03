@@ -41,7 +41,8 @@ class VideoScreen{
         }
         
         self.isSeeking = true
-        let targetTime = CMTimeMakeWithSeconds( absSec, preferredTimescale: 1000 )
+        let targetSec  = absSec < self.duration ? absSec : duration
+        let targetTime = CMTimeMakeWithSeconds( targetSec, preferredTimescale: 1000 )
 
         player.seek(
             to                : targetTime,
@@ -61,7 +62,8 @@ class VideoScreen{
     }
     
     func remainTime() -> Float64 {
-        return self.duration - elapsedTime()
+        let remainTime = self.duration - elapsedTime()
+        return remainTime < 0.0 ? 0.0 : remainTime
     }
 
     func failed() -> Bool {

@@ -291,7 +291,7 @@ final class PlayerViewModel: ObservableObject {
             self.timeSliderPos = elapsedTime / duration
         }
         
-        if remainingTime == 0.0 {
+        if isFinished() {
             onPause()
         }
 
