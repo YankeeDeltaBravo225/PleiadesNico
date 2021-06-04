@@ -17,7 +17,7 @@ struct RankingView: View {
 
         
     var body: some View {
-        ZStack{
+        GeometryReader { geometry in
             List{
                 VStack{
                     genreSelector()
@@ -31,12 +31,13 @@ struct RankingView: View {
                         RankingRowView( rankItem:rank )
                     }
                 }
+                loadingStatusView()
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
                     Text(rankingViewModel.abstractText)
-                        .frame(width: 240)
+                        .frame(maxWidth: geometry.size.width - 120)
                         .lineLimit(1)
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -45,7 +46,6 @@ struct RankingView: View {
                     }
                 }
             }
-            loadingStatusView()
         }
         .onAppear(){
             rankingViewModel.onAppearRanking()
