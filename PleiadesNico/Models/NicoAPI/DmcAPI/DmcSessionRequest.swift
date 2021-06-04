@@ -122,7 +122,7 @@ class DmcSessionRequest {
                 )
             )
             contentAuth = ContentAuth(
-                authType          : session.authTypes.http,
+                authType          : session.authTypes.http ?? session.authTypes.hls,
                 contentKeyTimeout : session.contentKeyTimeout,
                 serviceID         : "nicovideo",
                 serviceUserID     : session.serviceUserID

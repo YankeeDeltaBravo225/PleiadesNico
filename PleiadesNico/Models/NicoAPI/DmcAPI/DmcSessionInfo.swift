@@ -206,7 +206,7 @@ class DmcSessionInfo {
 
     // MARK: - PurpleAuthTypes
     struct PurpleAuthTypes: Codable {
-        let http: String
+        let http: String?
         let hls: String
 
         enum CodingKeys: String, CodingKey {
