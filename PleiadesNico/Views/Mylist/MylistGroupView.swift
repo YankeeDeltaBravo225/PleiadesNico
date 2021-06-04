@@ -32,6 +32,9 @@ struct MylistGroupView: View {
                         Text(listName)
                     }
                 }
+                if !viewModel.isLoggedIn{
+                    Text("ログインしていません")
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
