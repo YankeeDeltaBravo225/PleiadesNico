@@ -9,7 +9,6 @@ import SwiftUI
 
 import Foundation
 import Combine
-import AVKit
 
 // MARK: - Top View
 
@@ -91,6 +90,11 @@ struct PlayerTopView: View {
                 viewModel.onInactive()
             }
         }
+        .onReceive(viewModel.$isClosing){ isClosing in
+            if isClosing {
+                showPlayer = false
+            }
+        }
         
     } // View
 
@@ -135,7 +139,7 @@ extension PlayerTopView {
     
     
     fileprivate func screenView() -> some View {
-        return AvPlayerViewControllerWrap(
+        return PlayScreenView(
             player: screen.player
         )
         .modifier(
@@ -176,9 +180,6 @@ extension PlayerTopView {
             if viewModel.isClosing {
                 Text("終了します")
                     .foregroundColor(.white)
-                    .onAppear(){
-                        showPlayer = false
-                    }
             } else {
                 EmptyView()
             }
@@ -188,30 +189,7 @@ extension PlayerTopView {
 }
 
 
-// MARK: - ViewController
-struct AvPlayerViewControllerWrap : UIViewControllerRepresentable {
-
-    var player : AVPlayer
-
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
-        let controller = AVPlayerViewController()
-        controller.showsPlaybackControls = false
-        controller.player  = player
-
-        return controller
-    }
-    
-    func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
-    }
-    
-    func dismantleUIViewController(_ uiViewController: Self.UIViewControllerType, coordinator: Self.Coordinator){
-    }
-    
-}
-
-
 // MARK: - Preview
-
 struct PlayerTopView_Previews: PreviewProvider {
     @State static var showPlayer = true
 

@@ -61,6 +61,7 @@
 		F782BE45263FCCAD00EFB676 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F782BE44263FCCAD00EFB676 /* WebView.swift */; };
 		F7920DAB2647927D00FD2D50 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7920DAA2647927D00FD2D50 /* FloatingButton.swift */; };
 		F792BEA8264282BB0048ECF0 /* StreamConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BEA7264282BB0048ECF0 /* StreamConnection.swift */; };
+		F7C7E0D42669C120001BD242 /* PlayScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C7E0D32669C120001BD242 /* PlayScreenView.swift */; };
 		F7C800B326402716005F76D0 /* MylistGroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C800B226402716005F76D0 /* MylistGroupAPI.swift */; };
 		F7C849E7266260500013CCB8 /* DescriptionPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C849E6266260500013CCB8 /* DescriptionPageView.swift */; };
 		F7D72FDA263FE79400836A71 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D72FD9263FE79400836A71 /* SettingView.swift */; };
@@ -147,6 +148,7 @@
 		F782BE44263FCCAD00EFB676 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F7920DAA2647927D00FD2D50 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		F792BEA7264282BB0048ECF0 /* StreamConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamConnection.swift; sourceTree = "<group>"; };
+		F7C7E0D32669C120001BD242 /* PlayScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScreenView.swift; sourceTree = "<group>"; };
 		F7C800B226402716005F76D0 /* MylistGroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistGroupAPI.swift; sourceTree = "<group>"; };
 		F7C849E6266260500013CCB8 /* DescriptionPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPageView.swift; sourceTree = "<group>"; };
 		F7D72FD9263FE79400836A71 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -314,9 +316,9 @@
 		F748C266263D67AE00DFD69F /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				F748C268263D67AE00DFD69F /* PlayerViewModel.swift */,
 				F748C267263D67AE00DFD69F /* VideoScreen.swift */,
 				F792BEA7264282BB0048ECF0 /* StreamConnection.swift */,
-				F748C268263D67AE00DFD69F /* PlayerViewModel.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -386,6 +388,7 @@
 				F748C279263D67AF00DFD69F /* SwipeGesture.swift */,
 				F748C27A263D67AF00DFD69F /* PlayerTopView.swift */,
 				F748C27B263D67AF00DFD69F /* PlayControlView.swift */,
+				F7C7E0D32669C120001BD242 /* PlayScreenView.swift */,
 				F748C27C263D67AF00DFD69F /* CommentView.swift */,
 			);
 			path = Player;
@@ -616,6 +619,7 @@
 				F748C27D263D67AF00DFD69F /* SearchViewModel.swift in Sources */,
 				F748C24A263D678600DFD69F /* MockData.swift in Sources */,
 				F746462826650E3200F189E5 /* MylistGroupViewModel.swift in Sources */,
+				F7C7E0D42669C120001BD242 /* PlayScreenView.swift in Sources */,
 				F748C24C263D678600DFD69F /* DmcSessionRequest.swift in Sources */,
 				F746464826651E9E00F189E5 /* SpecificMylistAPI.swift in Sources */,
 				F733AF2C26477C0A00CF7023 /* NicoJson.swift in Sources */,

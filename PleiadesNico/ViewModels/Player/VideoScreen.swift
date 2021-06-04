@@ -91,13 +91,11 @@ class VideoScreen{
     
 
     func play(){
-        self.isPlaying = true
         self.player.play()
     }
     
 
     func pause(){
-        self.isPlaying = false
         self.player.pause()
     }
     
