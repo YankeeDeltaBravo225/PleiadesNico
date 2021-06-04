@@ -22,63 +22,86 @@ class VideoScreen{
 
     
     init() {
-        player    = AVPlayer(playerItem: nil)
-        duration  = 0
-        isSeeking = false
+        self.player    = AVPlayer(playerItem: nil)
+        self.duration  = 0
+        self.isSeeking = false
     }
+
 
     func seek(rate : Float64){
         seek(absSec: rate * duration)
     }
 
+
     func seek(deltaSec : Float64){
         seek(absSec: elapsedTime() + deltaSec)
     }
+
 
     func seek (absSec : Float64){
         if self.isSeeking {
             return
         }
-        
-        self.isSeeking = true
-        let targetSec  = absSec < self.duration ? absSec : duration
-        let targetTime = CMTimeMakeWithSeconds( targetSec, preferredTimescale: 1000 )
 
+        let targetSec  = min(absSec, self.duration - 0.01)
+        let targetTime = CMTimeMakeWithSeconds( targetSec, preferredTimescale: 1000 )
+        
+        onSeekStart()
+        
         player.seek(
             to                : targetTime,
             toleranceBefore   : .zero,
             toleranceAfter    : .zero,
             completionHandler : { [weak self] isFinished in
                 if let self = self {
-                    self.isSeeking = false
+                    self.onSeekCompletion()
                 }
             }
         )
+
+    }
+
+    
+    private func onSeekStart(){
+        self.isSeeking = true
+    }
+
+    
+    private func onSeekCompletion(){
+        self.isSeeking = false
     }
     
+
     func elapsedTime() -> Float64 {
         let time : Float64 = CMTimeGetSeconds( player.currentTime() )
         return time.isNaN ? 0 : time
     }
     
+
     func remainTime() -> Float64 {
         let remainTime = self.duration - elapsedTime()
         return remainTime < 0.0 ? 0.0 : remainTime
     }
+
 
     func failed() -> Bool {
         guard let item = self.player.currentItem else { return false}
         return item.status == .failed
     }
     
+
     func play(){
+        self.isPlaying = true
         self.player.play()
     }
     
+
     func pause(){
+        self.isPlaying = false
         self.player.pause()
     }
     
+
     func loadUrl(streamUrl : URL, handler : @escaping LoadHander){
         self.player.replaceCurrentItem(with: AVPlayerItem(url: streamUrl))
 
@@ -97,6 +120,7 @@ class VideoScreen{
         )
     }
     
+
     func disappear(){
         self.player.pause()
         durationObserver?.invalidate()
@@ -104,4 +128,5 @@ class VideoScreen{
         
         self.player.replaceCurrentItem(with: nil)
     }
+
 }
