@@ -189,7 +189,7 @@ class CommentViewController: UIViewController {
 
             // Estimate X coordinates and duration
             let textWidth  = self.fontSize * comment.body.count
-            let dispSec    = self.baseDispSec + self.chatSecRate * Double(textWidth)
+            let dispSec    = self.baseDispSec + self.chatSecRate * (Double(textWidth) * 2.0)
             let duration   = (comment.sec + dispSec) - time
             let elapseRate = (self.baseDispSec - duration) / self.baseDispSec
             let origX      = self.screenWidth + (CGFloat(textWidth) / 2.0)
