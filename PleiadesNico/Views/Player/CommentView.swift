@@ -54,7 +54,7 @@ class CommentViewController: UIViewController {
 
     private var commentTimer : Cancellable?
 
-    let dispSec         = 4.0
+    let baseDispSec     = 4.0
 
     var isPlaying       = false
     var activeChats     = [ChatLabel]()
@@ -65,6 +65,7 @@ class CommentViewController: UIViewController {
     var lastElapsedTime = 0.0
     var screenWidth     : CGFloat = 400
     var screenHeight    : CGFloat = 300
+    var chatSecRate     : Double  = 0.0
     
     let viewModel: PlayerViewModel?
     
@@ -101,6 +102,7 @@ class CommentViewController: UIViewController {
         self.strokeSize    = viewModel.commentStrokeSize
         self.screenWidth   = self.view.bounds.width
         self.screenHeight  = self.view.bounds.height
+        self.chatSecRate   = (self.baseDispSec / Double(self.screenWidth))
         
         let chatHeight    = CGFloat(self.fontSize)
         let heightMargin  = chatHeight * 2.0
@@ -174,7 +176,7 @@ class CommentViewController: UIViewController {
             self.commentIndex += 1
             
             // Expired comment
-            if time > comment.sec + self.dispSec {
+            if time > comment.sec + self.baseDispSec {
                 continue
             }
             
@@ -187,8 +189,9 @@ class CommentViewController: UIViewController {
 
             // Estimate X coordinates and duration
             let textWidth  = self.fontSize * comment.body.count
-            let duration   = (comment.sec + self.dispSec) - time
-            let elapseRate = (self.dispSec - duration) / self.dispSec
+            let dispSec    = self.baseDispSec + self.chatSecRate * Double(textWidth)
+            let duration   = (comment.sec + dispSec) - time
+            let elapseRate = (self.baseDispSec - duration) / self.baseDispSec
             let origX      = self.screenWidth + (CGFloat(textWidth) / 2.0)
             let endX       = (CGFloat(textWidth) / 2.0) * -1.0
             let startX     = origX + ((endX - origX) * CGFloat(elapseRate))
