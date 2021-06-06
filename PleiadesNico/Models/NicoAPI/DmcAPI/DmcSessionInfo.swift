@@ -16,12 +16,14 @@ class DmcSessionInfo {
 
     // MARK: - ApiData
     struct ApiData: Codable {
+        let channel: Channel?
         let comment: DmcSessionInfoComment
         let media: Media
         let video: DmcSessionInfoVideo
         let viewer: DmcSessionInfoViewer?
 
         enum CodingKeys: String, CodingKey {
+            case channel = "channel"
             case comment = "comment"
             case media = "media"
             case video = "video"
@@ -29,6 +31,19 @@ class DmcSessionInfo {
         }
     }
 
+    // MARK: - Channel
+    struct Channel: Codable {
+        let id: String
+        let name: String
+        let isOfficialAnime: Bool
+
+        enum CodingKeys: String, CodingKey {
+            case id = "id"
+            case name = "name"
+            case isOfficialAnime = "isOfficialAnime"
+        }
+    }
+    
     // MARK: - DmcSessionInfoComment
     struct DmcSessionInfoComment: Codable {
         let server: Server
@@ -98,6 +113,7 @@ class DmcSessionInfo {
         let isLeafRequired: Bool
         let isOwnerThread: Bool
         let isThreadkeyRequired: Bool
+        let threadkey: String?
         let is184Forced: Bool
         let hasNicoscript: Bool
         let label: String
@@ -113,6 +129,7 @@ class DmcSessionInfo {
             case isLeafRequired = "isLeafRequired"
             case isOwnerThread = "isOwnerThread"
             case isThreadkeyRequired = "isThreadkeyRequired"
+            case threadkey = "threadkey"
             case is184Forced = "is184Forced"
             case hasNicoscript = "hasNicoscript"
             case label = "label"

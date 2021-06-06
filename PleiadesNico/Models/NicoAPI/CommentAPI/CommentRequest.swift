@@ -14,9 +14,9 @@ class CommentRequest {
         // MARK: - Constructor
         init(_ info : DmcSessionInfo.ApiData){
             var elements : [Element] = []
-
             elements.append( Element(ping: Ping(content: "rs:0"), thread: nil, threadLeaves: nil) )
-//            elements.append( Element(ping: Ping(content: "ps:0"), thread: nil, threadLeaves: nil) )
+            
+            let isChannel : Bool = info.channel != nil
             
             var count   = 0
             let threads = info.comment.threads.filter{ $0.isActive }
@@ -34,11 +34,13 @@ class CommentRequest {
                         fork: thread.fork,
                         language: 0,
                         userID: info.media.delivery.movie.session.serviceUserID,
+                        force184: thread.is184Forced ? "1" : nil,
                         withGlobal: 1,
                         scores: 1,
                         nicoru: 3,
+                        content: thread.isLeafRequired ? nil : content,
                         userkey: info.comment.keys.userKey,
-                        content: thread.isLeafRequired ? nil : content
+                        threadkey: thread.isThreadkeyRequired ? thread.threadkey : nil
                     ),
                     threadLeaves: nil
                 )
@@ -57,7 +59,9 @@ class CommentRequest {
                             content: content,
                             scores: 1,
                             nicoru: 3,
-                            userkey: info.comment.keys.userKey
+                            force184: thread.is184Forced ? "1" : nil,
+                            userkey: !isChannel ? info.comment.keys.userKey : nil,
+                            threadkey: isChannel ? thread.threadkey : nil
                         )
                     )
                     threadElements = [threadRoot, threadLeaf]
@@ -110,23 +114,26 @@ class CommentRequest {
         let fork: Int
         let language: Int
         let userID: String
+        let force184: String?
         let withGlobal: Int
         let scores: Int
         let nicoru: Int
-        let userkey: String
         let content: String?
-
+        let userkey: String?
+        let threadkey: String?
         enum CodingKeys: String, CodingKey {
             case thread = "thread"
             case version = "version"
             case fork = "fork"
             case language = "language"
             case userID = "user_id"
+            case force184 = "force_184"
             case withGlobal = "with_global"
             case scores = "scores"
             case nicoru = "nicoru"
-            case userkey = "userkey"
             case content = "content"
+            case userkey = "userkey"
+            case threadkey = "threadkey"
         }
     }
 
@@ -139,7 +146,9 @@ class CommentRequest {
         let content: String
         let scores: Int
         let nicoru: Int
-        let userkey: String
+        let force184: String?
+        let userkey: String?
+        let threadkey: String?
 
         enum CodingKeys: String, CodingKey {
             case thread = "thread"
@@ -149,7 +158,9 @@ class CommentRequest {
             case content = "content"
             case scores = "scores"
             case nicoru = "nicoru"
+            case force184 = "force_184"
             case userkey = "userkey"
+            case threadkey = "threadkey"
         }
     }
     
