@@ -172,7 +172,6 @@ class VideoStreamAPI {
 
         let commentReq = CommentRequest.Request( dmcInfo )
         let encoder = JSONEncoder()
-//        encoder.outputFormatting = .prettyregisterErrored
 
         guard let jsonReq = try? encoder.encode(commentReq.elements) else {
             registerError("Failed to encode Comment Request to JSON.")
@@ -227,5 +226,10 @@ class VideoStreamAPI {
     func isPremium() -> Bool?{
         return self.dmcApiInfo?.viewer?.isPremium
     }
-    
+
+
+    func isEncrypted() -> Bool{
+        return self.dmcApiInfo?.media.delivery.encryption != nil
+    }
+
 }

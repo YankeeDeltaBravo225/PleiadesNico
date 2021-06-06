@@ -83,6 +83,16 @@ class DmcSessionRequest {
             
             let transferPreset = session.transferPresets.count > 0 ? session.transferPresets[0] : ""
             
+            var reqEncryption : Encryption? = nil
+            if let infoEncryption = info.media.delivery.encryption {
+                reqEncryption = Encryption(
+                    hlsEncryptionV1: HLSEncryptionV1(
+                        encryptedKey: infoEncryption.encryptedKey,
+                        keyURI: infoEncryption.keyURI
+                    )
+                )
+            }
+            
             recipeID = session.recipeID
             contentID   = movie.contentID
             contentType =  "movie"
@@ -108,7 +118,8 @@ class DmcSessionRequest {
                                 useWellKnownPort : session.urls[0].isWellKnownPort ? "yes" : "no",
                                 useSSL           : session.urls[0].isSSL           ? "yes" : "no",
                                 transferPreset   : transferPreset,
-                                segmentDuration  : 6000
+                                segmentDuration  : 6000,
+                                encryption       : reqEncryption
                             )
                         )
                     )
@@ -270,12 +281,34 @@ class DmcSessionRequest {
         let useSSL: String
         let transferPreset: String
         let segmentDuration: Int
+        let encryption: Encryption?
 
         enum CodingKeys: String, CodingKey {
             case useWellKnownPort = "use_well_known_port"
             case useSSL = "use_ssl"
             case transferPreset = "transfer_preset"
             case segmentDuration = "segment_duration"
+            case encryption = "encryption"
+        }
+    }
+
+    // MARK: - Encryption
+    struct Encryption: Codable {
+        let hlsEncryptionV1: HLSEncryptionV1
+
+        enum CodingKeys: String, CodingKey {
+            case hlsEncryptionV1 = "hls_encryption_v1"
+        }
+    }
+
+    // MARK: - HLSEncryptionV1
+    struct HLSEncryptionV1: Codable {
+        let encryptedKey: String
+        let keyURI: String
+
+        enum CodingKeys: String, CodingKey {
+            case encryptedKey = "encrypted_key"
+            case keyURI = "key_uri"
         }
     }
 

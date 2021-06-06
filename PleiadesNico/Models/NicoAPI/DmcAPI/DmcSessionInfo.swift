@@ -133,14 +133,27 @@ class DmcSessionInfo {
     // MARK: - Delivery
     struct Delivery: Codable {
         let recipeID: String
+        let encryption: Encryption?
         let movie: Movie
 
         enum CodingKeys: String, CodingKey {
             case recipeID = "recipeId"
+            case encryption = "encryption"
             case movie = "movie"
         }
     }
 
+    // MARK: - Encryption
+    struct Encryption: Codable {
+        let encryptedKey: String
+        let keyURI: String
+
+        enum CodingKeys: String, CodingKey {
+            case encryptedKey = "encryptedKey"
+            case keyURI = "keyUri"
+        }
+    }
+    
     // MARK: - Movie
     struct Movie: Codable {
         let contentID: String

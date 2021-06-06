@@ -27,7 +27,7 @@ final class VideoDetailViewModel: ObservableObject {
     )
     @Published var hasProp        : Bool   = false
     @Published var showPlay       : Bool   = false
-    @Published var cantPlayReason : String = ""
+    @Published var cantPlayReason : String = "読み込み中"
     @Published var didAppear      : Bool   = false
     @Published var dmcDescription : String = "No description"
     
@@ -123,23 +123,27 @@ final class VideoDetailViewModel: ObservableObject {
         
         self.dmcDescription = streamApi.videoDescription()
 
-        // Channel video will be supported in the future
-        if self.videoId.hasPrefix("sm") {
-            self.showPlay = true
-        } else {
-            if self.videoId.hasPrefix("so") {
-                self.cantPlayReason = "チャンネル動画は未サポートです"
-            } else {
-                self.cantPlayReason = "非サポートの動画形式です"
-            }
+        let isPremium = streamApi.isPremium() ?? false
+        if prop.tags.contains( "プレミアム限定動画（プレミアム）" ) && !isPremium {
+            self.cantPlayReason = "プレミアム限定動画です"
         }
+        else if self.streamApi.isEncrypted(){
+            self.cantPlayReason = "HLS動画は将来サポート予定です"
+        }
+        else if (!self.videoId.hasPrefix("sm") && !self.videoId.hasPrefix("so")) {
+            self.cantPlayReason = "非サポートの動画形式です"
+        }
+        else {
+            self.showPlay = true
+        }
+
     }
 
 
     func handleError(_ error : String){
         DebugLog.shared.error( error )
         self.showPlay       = false
-        self.cantPlayReason = "再生情報の取得に失敗しました"
+        self.cantPlayReason = "再生できない動画です"
     }
 
 

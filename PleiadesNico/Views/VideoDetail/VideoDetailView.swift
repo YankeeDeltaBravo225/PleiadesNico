@@ -35,6 +35,7 @@ struct VideoDetailView: View {
                             playVideoButton()
                         } else {
                             Text(viewModel.cantPlayReason)
+                                .frame(height:20)
                         }
                         openBrowserButton()
                     }
