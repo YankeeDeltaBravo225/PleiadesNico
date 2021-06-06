@@ -63,7 +63,9 @@ class CommentViewController: UIViewController {
     var yCoords         = [CGFloat]()
     var commentIndex    = 0
     var lastElapsedTime = 0.0
-
+    var screenWidth     : CGFloat = 400
+    var screenHeight    : CGFloat = 300
+    
     let viewModel: PlayerViewModel?
     
 
@@ -97,10 +99,12 @@ class CommentViewController: UIViewController {
 
         self.fontSize      = viewModel.commentFontSize
         self.strokeSize    = viewModel.commentStrokeSize
+        self.screenWidth   = self.view.bounds.width
+        self.screenHeight  = self.view.bounds.height
         
         let chatHeight    = CGFloat(self.fontSize)
         let heightMargin  = chatHeight * 2.0
-        let screenHeight  = self.view.bounds.height - heightMargin
+        let screenHeight  = self.screenHeight - heightMargin
         let rawLaneNum    = (Int(screenHeight) / fontSize)
 
         self.yCoords = []
@@ -185,7 +189,7 @@ class CommentViewController: UIViewController {
             let textWidth  = self.fontSize * comment.body.count
             let duration   = (comment.sec + self.dispSec) - time
             let elapseRate = (self.dispSec - duration) / self.dispSec
-            let origX      = self.view.bounds.width + (CGFloat(textWidth) / 2.0)
+            let origX      = self.screenWidth + (CGFloat(textWidth) / 2.0)
             let endX       = (CGFloat(textWidth) / 2.0) * -1.0
             let startX     = origX + ((endX - origX) * CGFloat(elapseRate))
 
