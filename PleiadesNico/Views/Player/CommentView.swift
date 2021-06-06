@@ -52,20 +52,23 @@ struct CommentViewControllerRepresentable : UIViewControllerRepresentable {
 // MARK: - ViewController
 class CommentViewController: UIViewController {
 
+    typealias Comment = StreamConnection.Comment
+    
     private var commentTimer : Cancellable?
 
-    let baseDispSec     = 4.0
+    let dispSec         = 4.0
 
     var isPlaying       = false
     var activeChats     = [ChatLabel]()
     var fontSize        = 10
     var strokeSize      = 1
-    var yCoords         = [CGFloat]()
+    var mainLaneYCoords = [CGFloat]()
+    var subLaneYCoords   = [CGFloat]()
+    var lanesFreeTime   = [Double]()
     var commentIndex    = 0
     var lastElapsedTime = 0.0
     var screenWidth     : CGFloat = 400
     var screenHeight    : CGFloat = 300
-    var chatSecRate     : Double  = 0.0
     
     let viewModel: PlayerViewModel?
     
@@ -102,23 +105,26 @@ class CommentViewController: UIViewController {
         self.strokeSize    = viewModel.commentStrokeSize
         self.screenWidth   = self.view.bounds.width
         self.screenHeight  = self.view.bounds.height
-        self.chatSecRate   = (self.baseDispSec / Double(self.screenWidth))
         
         let chatHeight    = CGFloat(self.fontSize)
         let heightMargin  = chatHeight * 2.0
         let screenHeight  = self.screenHeight - heightMargin
         let rawLaneNum    = (Int(screenHeight) / fontSize)
 
-        self.yCoords = []
+        self.mainLaneYCoords = []
+        self.lanesFreeTime  = []
         
-        let primaryStartY = CGFloat(self.fontSize)
-        for primaryLane in 0..<rawLaneNum {
-            self.yCoords.append( primaryStartY   + ( chatHeight * CGFloat(primaryLane) ) )
+        let mainStartY = CGFloat(self.fontSize)
+        for mainLane in 0..<rawLaneNum {
+            self.mainLaneYCoords.append( mainStartY   + ( chatHeight * CGFloat(mainLane) ) )
+            self.lanesFreeTime.append(-1.0)
         }
 
-        let secondaryStartY = CGFloat(self.fontSize) * 1.5
-        for secondaryLane in 0..<rawLaneNum {
-            self.yCoords.append( secondaryStartY + ( chatHeight * CGFloat(secondaryLane) ) )
+        self.subLaneYCoords  = []
+
+        let subStartY = CGFloat(self.fontSize) * 1.5
+        for subLane in 0..<rawLaneNum {
+            self.subLaneYCoords.append( subStartY + ( chatHeight * CGFloat(subLane) ) )
         }
     }
 
@@ -156,6 +162,10 @@ class CommentViewController: UIViewController {
             for chat in self.activeChats {
                 chat.removeFromSuperview()
             }
+            for mainLane in self.lanesFreeTime.indices {
+                self.lanesFreeTime[mainLane] = -1.0
+            }
+            
             self.activeChats  = []
             self.commentIndex = 0
         }
@@ -176,7 +186,7 @@ class CommentViewController: UIViewController {
             self.commentIndex += 1
             
             // Expired comment
-            if time > comment.sec + self.baseDispSec {
+            if time > comment.sec + self.dispSec {
                 continue
             }
             
@@ -188,21 +198,19 @@ class CommentViewController: UIViewController {
             }
 
             // Estimate X coordinates and duration
-            let textWidth  = self.fontSize * comment.body.count
-            let dispSec    = self.baseDispSec + self.chatSecRate * (Double(textWidth) * 2.0)
-            let duration   = (comment.sec + dispSec) - time
-            let elapseRate = (self.baseDispSec - duration) / self.baseDispSec
-            let origX      = self.screenWidth + (CGFloat(textWidth) / 2.0)
-            let endX       = (CGFloat(textWidth) / 2.0) * -1.0
+            let textWidth  = CGFloat(self.fontSize * comment.body.count)
+            let duration   = (comment.sec + self.dispSec) - time
+            let elapseRate = (self.dispSec - duration) / self.dispSec
+            let origX      = self.screenWidth + (textWidth / 2.0)
+            let endX       = (textWidth / 2.0) * -1.0
             let startX     = origX + ((endX - origX) * CGFloat(elapseRate))
 
             // Estimate Y coordinate
-            let lane       = comment.index % self.yCoords.count
-            let startY     = self.yCoords[lane]
+            let startY     = allocateYlane( currentTime : time, comment: comment, textWidth: textWidth )
 
             let label = instantiateLabel(
                 comment  : comment,
-                textWidth: textWidth,
+                textWidth: Int(textWidth),
                 xPos: startX,
                 yPos: startY
             )
@@ -219,6 +227,24 @@ class CommentViewController: UIViewController {
         }
     }
 
+    
+    func allocateYlane(currentTime : Double, comment: Comment, textWidth : CGFloat) -> CGFloat{
+        let occupyRate = (textWidth / (screenWidth + textWidth))
+        let occupyTime = self.dispSec * Double(occupyRate + 0.3)
+
+
+        for mainLane in self.lanesFreeTime.indices {
+            if self.lanesFreeTime[mainLane] < currentTime {
+                self.lanesFreeTime[mainLane] = comment.sec + Double(occupyTime)
+
+                return self.mainLaneYCoords[mainLane]
+            }
+        }
+
+        let subLane = comment.index % self.subLaneYCoords.count
+        return self.subLaneYCoords[subLane]
+    }
+    
     
     func isVideoPaused(_ viewModel : PlayerViewModel) -> Bool {
         if viewModel.isFinished() {
