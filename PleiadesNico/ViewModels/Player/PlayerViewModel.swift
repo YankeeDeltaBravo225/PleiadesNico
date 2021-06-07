@@ -105,15 +105,27 @@ final class PlayerViewModel: ObservableObject {
         screen.loadUrl(
             streamUrl: streamUrl,
             handler: {
-                self.screen.play()
-                self.onPlay()
+                self.onVideoLoaded()
             }
         )
+
         self.showPlayer   = true
         self.showControl  = true
-        self.isReady      = true
     }
 
+    
+    func onVideoLoaded() {
+        if self.isReady {
+            // Called for seek completion
+            return
+        }
+        
+        self.isReady = true
+
+        self.screen.play()
+        self.onPlay()
+    }
+    
 
     func onError(reason : String, detail : String) {
         self.showControl  = true
