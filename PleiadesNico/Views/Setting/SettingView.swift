@@ -51,6 +51,7 @@ struct SettingView: View {
             }
             Section(header: Text("このアプリについて")){
                 appVersionView()
+                iosVersionView()
                 bugReportView()
             }
             Section(header: Text("OSSライセンス")){
@@ -248,11 +249,20 @@ extension SettingView {
             reportBugButton()
         }
     }
-    
+
+
+    fileprivate func iosVersionView() -> some View {
+        return HStack{
+            Text("iOSバージョン")
+            Spacer()
+            Text(UIDevice.current.systemVersion)
+        }
+    }
+
 
     fileprivate func appVersionView() -> some View {
         return HStack{
-            Text("バージョン")
+            Text("アプリバージョン")
             Spacer()
             Text(CommonData.appVersion)
         }

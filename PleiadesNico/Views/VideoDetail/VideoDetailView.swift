@@ -30,6 +30,8 @@ struct VideoDetailView: View {
                         ownerInfoView()
                     }
                     Section(header: Text("動画情報")){
+                        Text(videoId)
+                            .font(.system(size: 14))
                         videoInfoView()
                         if viewModel.showPlay {
                             playVideoButton()
