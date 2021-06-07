@@ -9,9 +9,7 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
-    
-    @State private var selection: Tab = .ranking
-    
+
     enum Tab {
         case ranking
         case search
@@ -19,26 +17,48 @@ struct ContentView: View {
         case setting
     }
     
+    @State private var selection: Tab = .ranking
+    @State private var idMap : [Tab:UUID] = [
+        .ranking : UUID(),
+        .search  : UUID(),
+        .mylist  : UUID()
+    ]
+    
     var body: some View {
+
+        let selectable = Binding(
+            get: {
+                self.selection
+            },
+            set: {
+                if self.selection == $0 {
+                    self.idMap[ self.selection ] = UUID()
+                }
+                self.selection = $0
+            }
+        )
         
-        TabView(selection: $selection) {
+        TabView(selection: selectable) {
             RankingTopView()
                 .tabItem {
                     Label("ランキング", systemImage: "rosette")
                 }
                 .tag(Tab.ranking)
+                .id(self.idMap[Tab.ranking])
 
             SearchTopView()
                 .tabItem {
                     Label("検索", systemImage: "magnifyingglass")
                 }
                 .tag(Tab.search)
-
+                .id(self.idMap[Tab.search])
+            
             MylistTopView()
                 .tabItem {
                     Label("マイリスト", systemImage: "star")
                 }
                 .tag(Tab.mylist)
+                .id(self.idMap[Tab.mylist])
             
             SettingTopView()
                 .tabItem {
