@@ -24,7 +24,13 @@ struct PlayControlView: View {
             }
             Spacer()
             if showControl {
-                playPauseButtonView()
+                HStack{
+                    Spacer()
+                    seekDeltaButton(-10.0)
+                    playPauseButtonView()
+                    seekDeltaButton(10.0)
+                    Spacer()
+                }
                     .transition(.opacity)
             }
             Spacer()
@@ -157,12 +163,28 @@ extension PlayControlView {
                 .scaledToFit()
                 .foregroundColor(.white)
                 .frame(width: 50, height: 50)
-                .padding(10)
         }
         .shadow(color: .gray, radius: 3, x: 3, y: 3)
         .padding(10)
     }
 
+    
+    fileprivate func seekDeltaButton(_ deltaSec : Double) -> some View {
+        
+        Button(action: {
+            viewModel.seekDelta(deltaSec)
+        }) {
+            Image(systemName: deltaSec > 0 ? "goforward.10" : "gobackward.10" )
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(.white)
+                .frame(width: 35, height: 35)
+        }
+        .shadow(color: .gray, radius: 3, x: 3, y: 3)
+        .padding(10)
+    }
+    
+    
 
     fileprivate func timeSliderView() -> some View {
         Slider(

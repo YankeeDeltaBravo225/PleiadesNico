@@ -191,6 +191,13 @@ final class PlayerViewModel: ObservableObject {
         }
     }
 
+    
+    func seekDelta(_ deltaSec : Double) {
+        screen.seek(deltaSec : deltaSec)
+        showControl = true
+        restartControlFade()
+    }
+    
 
     func onScreenTapp(){
         self.showControl.toggle()
@@ -223,13 +230,9 @@ final class PlayerViewModel: ObservableObject {
         
         switch(operation){
         case ConfigStorage.GestureOperation.plus10Sec.rawValue:
-            screen.seek(deltaSec : +10)
-            showControl = true
-            restartControlFade()
+            seekDelta(10.0)
         case ConfigStorage.GestureOperation.minus10Sec.rawValue:
-            screen.seek(deltaSec : -10)
-            showControl = true
-            restartControlFade()
+            seekDelta(-10.0)
         case ConfigStorage.GestureOperation.close.rawValue:
             self.onClose()
             self.showControl = true
