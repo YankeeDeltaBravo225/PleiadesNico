@@ -160,6 +160,10 @@ final class PlayerViewModel: ObservableObject {
 
 
     func onPause(){
+        if !self.isPlaying {
+            return
+        }
+        
         self.isPlaying   = false
         self.showControl = true
     }
