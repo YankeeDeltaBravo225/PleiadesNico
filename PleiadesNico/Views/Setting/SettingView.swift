@@ -11,8 +11,8 @@ import WebKit
 // MARK:- View
 struct SettingView: View {
 
-    @State private var showLogin = false
     @ObservedObject var viewModel : SettingViewModel
+
     private let isPad : Bool = UIDevice.current.userInterfaceIdiom == .pad
 
     init(){
@@ -52,7 +52,7 @@ struct SettingView: View {
                 appVersionView()
                 iosVersionView()
                 deviceTypeView()
-                bugReportView()
+                feedbackView()
             }
             Section(header: Text("OSSライセンス")){
                 ForEach(CommonData.ossLicenses.sorted(by: >), id: \.key) { key, value in
@@ -230,23 +230,12 @@ extension SettingView {
         }
     }
 
-    
-    fileprivate func reportBugButton() -> some View {
-        return FloatingButton(
-            action     : { viewModel.onOpenSupportTwitter() },
-            systemIcon : "paperplane",
-            text       : "作者Twitter",
-            color1     : .blue,
-            color2     : .blue
-        )
-    }
 
-
-    fileprivate func bugReportView() -> some View {
-        return HStack{
-            Text("バグを報告する")
-            Spacer()
-            reportBugButton()
+    fileprivate func feedbackView() -> some View {
+        return Group(){
+            NavigationLink( destination: FeedbackView(viewModel: viewModel) ){
+                Text("フィードバック")
+            }
         }
     }
 
