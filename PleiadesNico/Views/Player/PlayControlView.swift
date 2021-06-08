@@ -27,7 +27,11 @@ struct PlayControlView: View {
                 HStack{
                     Spacer()
                     seekDeltaButton(-10.0)
+                    Spacer()
+                        .frame(width:20)
                     playPauseButtonView()
+                    Spacer()
+                        .frame(width:20)
                     seekDeltaButton(10.0)
                     Spacer()
                 }
@@ -178,7 +182,8 @@ extension PlayControlView {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.white)
-                .frame(width: 35, height: 35)
+                .frame(width: 40, height: 40)
+                .padding(10)
         }
         .shadow(color: .gray, radius: 3, x: 3, y: 3)
         .padding(10)
