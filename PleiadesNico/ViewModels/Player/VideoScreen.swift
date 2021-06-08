@@ -107,13 +107,10 @@ class VideoScreen{
         durationObserver = self.player.currentItem?.observe(
             \.duration,
             changeHandler:{ [weak self] item, change in
-                guard let self = self
-                else {
-                    return
+                if let self = self {
+                    handler()
+                    self.duration = item.duration.seconds
                 }
-
-                handler()
-                self.duration = item.duration.seconds
             }
         )
     }

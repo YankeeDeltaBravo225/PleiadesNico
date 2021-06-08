@@ -95,11 +95,15 @@ class NicoSession {
         session.dataTaskPublisher(for: request)
             .receive(on: DispatchQueue.main)
             .sink(
-                receiveCompletion: { (completion) in
-                    self.didReceiveCompletion(completion: completion, onError: onError)
+                receiveCompletion: { [weak self] (completion) in
+                    if let self = self {
+                        self.didReceiveCompletion(completion: completion, onError: onError)
+                    }
                 },
-                receiveValue: { (data: Data, response: URLResponse) in
-                    self.didReceiveValue(data: data, response: response, onReceived: onReceived)
+                receiveValue: { [weak self] (data: Data, response: URLResponse) in
+                    if let self = self {
+                        self.didReceiveValue(data: data, response: response, onReceived: onReceived)
+                    }
                 }
             )
             .store(in: &cancellables)
