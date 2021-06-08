@@ -12,9 +12,8 @@ import WebKit
 struct SettingView: View {
 
     @State private var showLogin = false
-
     @ObservedObject var viewModel : SettingViewModel
-
+    private let isPad : Bool = UIDevice.current.userInterfaceIdiom == .pad
 
     init(){
         viewModel = SettingViewModel()
@@ -29,7 +28,7 @@ struct SettingView: View {
                 loginStatusView()
             }
             Section(header: Text("プレイヤー")){
-                if UIDevice.current.userInterfaceIdiom == .phone {
+                if !isPad {
                     HStack{
                         Text("再生時の向き")
                         Spacer()
@@ -52,6 +51,7 @@ struct SettingView: View {
             Section(header: Text("このアプリについて")){
                 appVersionView()
                 iosVersionView()
+                deviceTypeView()
                 bugReportView()
             }
             Section(header: Text("OSSライセンス")){
@@ -253,9 +253,9 @@ extension SettingView {
 
     fileprivate func iosVersionView() -> some View {
         return HStack{
-            Text("iOSバージョン")
+            Text("OS")
             Spacer()
-            Text(UIDevice.current.systemVersion)
+            Text("\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)")
         }
     }
 
@@ -268,6 +268,15 @@ extension SettingView {
         }
     }
 
+    
+    fileprivate func deviceTypeView() -> some View {
+        return HStack{
+            Text("機種")
+            Spacer()
+            Text(verbatim: UIDevice().model)
+        }
+    }
+    
     
     fileprivate func licenseView(_ key: String, _ value: String) -> some View {
         return Group(){
