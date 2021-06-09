@@ -30,14 +30,12 @@ struct VideoDetailView: View {
                         ownerInfoView()
                     }
                     Section(header: Text("動画情報")){
-                        Text(videoId)
-                            .font(.system(size: 14))
                         videoInfoView()
                         if viewModel.showPlay {
                             playVideoButton()
                         } else {
                             Text(viewModel.cantPlayReason)
-                                .frame(height:20)
+                                .padding(13)
                         }
                         openBrowserButton()
                     }
@@ -115,15 +113,24 @@ extension VideoDetailView {
 
 
     fileprivate func videoInfoView() -> some View {
-        return VideoAbstractView(
-            attribute     : viewModel.attr,
-            colorIndex    : colorIndex,
-            imageWidth    : 128,
-            imageHeight   : 72,  // 16:9 aspact rate
-            titleFontSize : 14,
-            attrFontSize  : 14
-        )
-        .padding(10)
+        return VStack{
+                VideoAbstractView(
+                attribute     : viewModel.attr,
+                colorIndex    : colorIndex,
+                imageWidth    : 128,
+                imageHeight   : 72,  // 16:9 aspact rate
+                titleFontSize : 14,
+                attrFontSize  : 14
+            )
+            .padding(10)
+            HStack{
+                Spacer()
+                    .frame(width:12)
+                Text("id : \(videoId)")
+                    .font(.system(size: 14))
+                Spacer()
+            }
+        }
     }
 
     
