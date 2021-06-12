@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 // MARK: - View Model
 
@@ -17,6 +18,7 @@ final class PlayerViewModel: ObservableObject {
     @Published var isPlaying         : Bool   = false
     @Published var isClosing         : Bool   = false
     @Published var showControl       : Bool   = false
+    @Published var showSeekBar       : Bool   = false
     @Published var showPlayer        : Bool   = false
     @Published var showAlert         : Bool   = false
     @Published var didAppear         : Bool   = false
@@ -47,6 +49,9 @@ final class PlayerViewModel: ObservableObject {
     private    var isReady         : Bool
     private    var controlFadeTime : Double
     private    var doesControlFade : Bool
+    private    var seekBarFadeTime : Double
+    private    var doesSeekBarFade : Bool
+    
     private    var timer           : Cancellable?
 
 
@@ -62,6 +67,8 @@ final class PlayerViewModel: ObservableObject {
         self.isReady         = false
         self.controlFadeTime = -1.0
         self.doesControlFade = false
+        self.seekBarFadeTime = -1.0
+        self.doesSeekBarFade = false
     }
 
 
@@ -111,6 +118,7 @@ final class PlayerViewModel: ObservableObject {
 
         self.showPlayer   = true
         self.showControl  = true
+        self.showSeekBar  = true
     }
 
     
@@ -129,6 +137,7 @@ final class PlayerViewModel: ObservableObject {
 
     func onError(reason : String, detail : String) {
         self.showControl  = true
+        self.showSeekBar  = true
         self.alertTitle   = reason
         self.alertMessage = [
             "エラー報告の際はこちらのスクリーンショット添付をお願いします。",
@@ -136,6 +145,9 @@ final class PlayerViewModel: ObservableObject {
             self.contentId,
             "ログイン:\(ConfigStorage.shared.loginStatus ? "Yes": "No")",
             "プレミアム:\((connect.isPremium ?? false) ? "Yes": "No")",
+            "アプリのバージョン:\(CommonData.appVersion)",
+            "機種名:\(UIDevice().model)",
+            "OS:\(UIDevice.current.systemName + UIDevice.current.systemVersion)",
             detail
         ].reduce(""){$0 + "\n" + $1}
         
@@ -168,6 +180,7 @@ final class PlayerViewModel: ObservableObject {
         
         self.isPlaying   = true
         self.restartControlFade()
+        self.restartSeekBarFade()
     }
 
 
@@ -178,6 +191,7 @@ final class PlayerViewModel: ObservableObject {
         
         self.isPlaying   = false
         self.showControl = true
+        self.showSeekBar = true
     }
  
     
@@ -192,16 +206,24 @@ final class PlayerViewModel: ObservableObject {
     }
 
     
-    func seekDelta(_ deltaSec : Double) {
+    func seekDelta(_ deltaSec : Double, isGesure : Bool) {
         screen.seek(deltaSec : deltaSec)
-        showControl = true
+
+        self.showSeekBar = true
+        restartSeekBarFade()
+
+        if !isGesure {
+            self.showControl = true
+        }
         restartControlFade()
     }
     
 
     func onScreenTapp(){
         self.showControl.toggle()
+        self.showSeekBar = self.showControl
         self.doesControlFade = false
+        self.doesSeekBarFade = false
     }
 
 
@@ -230,12 +252,13 @@ final class PlayerViewModel: ObservableObject {
         
         switch(operation){
         case ConfigStorage.GestureOperation.plus10Sec.rawValue:
-            seekDelta(10.0)
+            seekDelta(10.0, isGesure: true)
         case ConfigStorage.GestureOperation.minus10Sec.rawValue:
-            seekDelta(-10.0)
+            seekDelta(-10.0, isGesure: true)
         case ConfigStorage.GestureOperation.close.rawValue:
             self.onClose()
             self.showControl = true
+            self.showSeekBar = true
         case ConfigStorage.GestureOperation.none.rawValue:
             break
         default:
@@ -249,8 +272,9 @@ final class PlayerViewModel: ObservableObject {
             onError(reason: "動画の再生に失敗しました。", detail: "")
         }
         
-        if self.isPlaying && self.showControl {
+        if self.isPlaying && !self.screen.isSeeking {
             countDownControlFade()
+            countDownSeekBarFade()
         }
 
         if !self.isTimeSliding {
@@ -265,12 +289,9 @@ final class PlayerViewModel: ObservableObject {
     }
 
     
+    // todo: Refactoring
     func countDownControlFade(){
-        if !self.doesControlFade {
-            return
-        }
-
-        if self.screen.isSeeking {
+        if !self.doesControlFade || !self.showControl {
             return
         }
         
@@ -283,12 +304,35 @@ final class PlayerViewModel: ObservableObject {
     }
 
 
+    // todo: Refactoring
     func restartControlFade(){
         self.controlFadeTime = Double(ConfigStorage.shared.controlFadeTime)
         self.doesControlFade = true
     }
+
     
-    
+    // todo: Refactoring
+    func countDownSeekBarFade(){
+        if !self.doesSeekBarFade || !self.showSeekBar {
+            return
+        }
+        
+        self.seekBarFadeTime -= 0.1
+
+        if self.seekBarFadeTime < 0.0 {
+            self.showSeekBar     = false
+            self.doesSeekBarFade = false
+        }
+    }
+
+
+    // todo: Refactoring
+    func restartSeekBarFade(){
+        self.seekBarFadeTime = Double(ConfigStorage.shared.controlFadeTime)
+        self.doesSeekBarFade = true
+    }
+
+
     func updateTime(){
         let duration = self.screen.duration
         if duration == 0.0 {

@@ -15,6 +15,8 @@ struct PlayControlView: View {
     let title : String
     
     @State var showControl : Bool = false
+    @State var showSeekBar : Bool = false
+    
     
     var body: some View {
         VStack {
@@ -24,22 +26,12 @@ struct PlayControlView: View {
             }
             Spacer()
             if showControl {
-                HStack{
-                    Spacer()
-                    seekDeltaButton(-10.0)
-                    Spacer()
-                        .frame(width:20)
-                    playPauseButtonView()
-                    Spacer()
-                        .frame(width:20)
-                    seekDeltaButton(10.0)
-                    Spacer()
-                }
+                middleControlView()
                     .transition(.opacity)
             }
             Spacer()
-            if showControl {
-                lowerControlView()
+            if showSeekBar {
+                seekBarView()
                     .transition(AnyTransition.opacity.combined(with: .offset(x: 0, y: 50)))
             }
         }
@@ -51,6 +43,11 @@ struct PlayControlView: View {
                 showControl = newShowControl
             }
         }
+        .onReceive(viewModel.$showSeekBar ) { newShowSeekBar in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                showSeekBar = newShowSeekBar
+            }
+        }
 
     }
 
@@ -58,22 +55,6 @@ struct PlayControlView: View {
         viewModel.onTimeSliderChange(start: isStart)
     }
 
-}
-
-
-// MARK: - Preview
-
-// MARK: -  Preview
-struct PlayControlView_Previews: PreviewProvider {
-    static var previews: some View {
-        let screen    = VideoScreen()
-        let viewModel = PlayerViewModel(
-            screen  : screen,
-            contentId : "sm1192"
-        )
-
-        PlayControlView(viewModel: viewModel, title: "My video 1192")
-    }
 }
 
 
@@ -120,8 +101,23 @@ extension PlayControlView {
         .padding(10)
     }
 
-    
-    fileprivate func lowerControlView() -> some View {
+
+    fileprivate func middleControlView() -> some View {
+        return HStack{
+            Spacer()
+            seekDeltaButton(-10.0)
+            Spacer()
+                .frame(width:20)
+            playPauseButtonView()
+            Spacer()
+                .frame(width:20)
+            seekDeltaButton(10.0)
+            Spacer()
+        }
+    }
+
+
+    fileprivate func seekBarView() -> some View {
         return VStack{
             Divider()
             HStack () {
@@ -148,7 +144,7 @@ extension PlayControlView {
             .font(.system(size: 18, design: .monospaced))
             .padding(4)
     }
-    
+
 
     fileprivate func remainingTimeView() -> some View {
         return Text(viewModel.remainTimeText + "  ")
@@ -176,7 +172,7 @@ extension PlayControlView {
     fileprivate func seekDeltaButton(_ deltaSec : Double) -> some View {
         
         Button(action: {
-            viewModel.seekDelta(deltaSec)
+            viewModel.seekDelta(deltaSec, isGesure: false)
         }) {
             Image(systemName: deltaSec > 0 ? "goforward.10" : "gobackward.10" )
                 .resizable()
@@ -199,4 +195,18 @@ extension PlayControlView {
         )
     }
 
+}
+
+
+// MARK: -  Preview
+struct PlayControlView_Previews: PreviewProvider {
+    static var previews: some View {
+        let screen    = VideoScreen()
+        let viewModel = PlayerViewModel(
+            screen  : screen,
+            contentId : "sm1192"
+        )
+
+        PlayControlView(viewModel: viewModel, title: "My video 1192")
+    }
 }
