@@ -112,7 +112,7 @@ final class SearchViewModel: ObservableObject {
                 self.onReceivedSearchResult(text)
             },
             onError: { error in
-                print(error)
+                self.onError(error)
             }
         )
     }
@@ -199,6 +199,12 @@ final class SearchViewModel: ObservableObject {
         }
     }
 
+    
+    func onError(_ error : String){
+        DebugLog.shared.error(error)
+        self.showLoading = false
+    }
+    
 
     func onAppearSearch(){
         if self.appearCount == 0 {

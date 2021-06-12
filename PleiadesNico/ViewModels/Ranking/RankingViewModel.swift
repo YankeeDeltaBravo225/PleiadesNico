@@ -60,7 +60,7 @@ final class RankingViewModel: ObservableObject {
                 self.onReceivedRankItems(text)
             },
             onError: { error in
-                print(error)
+                self.onError(error)
             }
         )
     }
@@ -86,7 +86,13 @@ final class RankingViewModel: ObservableObject {
         self.isLoading   = false
         self.showLoading = false
     }
+
     
+    func onError(_ error : String){
+        DebugLog.shared.error(error)
+        self.showLoading = false
+    }
+
 
     func onSelectorEnabled(){
         self.showSelector = true
