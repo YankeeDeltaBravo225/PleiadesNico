@@ -49,6 +49,14 @@ final class SettingViewModel: ObservableObject {
         })
     }
 
+
+    func onOpenPrivacyPolicyPage() {
+        guard let url = URL(string: NicoURL.privacyPolicyPage) else {return}
+        UIApplication.shared.open(url, options: [.universalLinksOnly: false], completionHandler: {completed in
+            print(completed)
+        })
+    }
+
     
     func onCommentFontSizeChanged(_ isPressed : Bool){
         if isPressed {

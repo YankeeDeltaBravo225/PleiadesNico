@@ -13,6 +13,10 @@ class NicoURL {
     //
     static let supportPage = "https://twitter.com/AppsPleiades"
     
+    //
+    // Privacy policy page
+    //
+    static let privacyPolicyPage = "https://yankeedeltabravo225.github.io/PleiadesNico/PrivacyPolicy/English"
 
     //
     // User Agent for HTTP request

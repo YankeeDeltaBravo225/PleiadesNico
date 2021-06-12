@@ -19,7 +19,7 @@ struct SettingView: View {
         viewModel = SettingViewModel()
     }
 
-
+    
     var body: some View {
         
         List {
@@ -52,6 +52,7 @@ struct SettingView: View {
                 appVersionView()
                 iosVersionView()
                 deviceTypeView()
+                privacyPolicyView()
                 feedbackView()
             }
             Section(header: Text("OSSライセンス")){
@@ -230,6 +231,21 @@ extension SettingView {
         }
     }
 
+    
+    fileprivate func privacyPolicyView() -> some View {
+        return HStack{
+            Text("Privacy Policy")
+            Spacer()
+            FloatingButton(
+                action     : { viewModel.onOpenPrivacyPolicyPage() },
+                systemIcon : "safari",
+                text       : "Open with browser",
+                color1     : .blue,
+                color2     : .blue
+            )
+        }
+    }
+    
 
     fileprivate func feedbackView() -> some View {
         return Group(){
